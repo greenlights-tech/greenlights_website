@@ -1,81 +1,96 @@
-document.addEventListener('DOMContentLoaded', function () {
+(function (window, document) {
+    document.addEventListener('DOMContentLoaded', function () {
 
-    // Slides sollicitatie page in from left
-    document.getElementById('openSolli').addEventListener('click', function () {
-        document.querySelector('.sol-page').classList.add('active');
-    });
+        // Slides sollicitatie page in from left
+        document.getElementById('openSolli').addEventListener('click', function () {
+            document.querySelector('.sol-page').classList.add('active');
+        });
 
-    document.querySelector('.sol-close-button').addEventListener('click', function () {
-        document.querySelector('.sol-page').classList.remove('active');
-    });
+        document.querySelector('.sol-close-button').addEventListener('click', function () {
+            document.querySelector('.sol-page').classList.remove('active');
+        });
 
-    // Slides opdrachtgever page in from right
-    document.getElementById('openOpdrachtgever').addEventListener('click', function () {
-        document.querySelector('.opd-page').classList.add('active');
-    });
+        // Slides opdrachtgever page in from right
+        document.getElementById('openOpdrachtgever').addEventListener('click', function () {
+            document.querySelector('.opd-page').classList.add('active');
+        });
 
-    document.querySelector('.opd-close-button').addEventListener('click', function () {
-        document.querySelector('.opd-page').classList.remove('active');
-    });
+        document.querySelector('.opd-close-button').addEventListener('click', function () {
+            document.querySelector('.opd-page').classList.remove('active');
+        });
 
-    // Animation for sections when they come into view
-    const sections = document.querySelectorAll('.section-title, .section-content, .btn2');
+        // 27-06-2025 | Mark K. | Event listener aangemaakt
+        document.getElementById('sollicitatieForm').addEventListener('submit', sendSollicitatieDataToServer);
 
-    const observerOptions = {
-        root: null,
-        rootMargin: '-50px -50px -50px -50px',
-        threshold: 0.1
-    };
+        // Animation for sections when they come into view
+        const sections = document.querySelectorAll('.section-title, .section-content, .btn2');
 
-    const observer = new IntersectionObserver(function (entries, observer) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = 1;
-                entry.target.style.transform = 'translateY(0)';
+        const observerOptions = {
+            root: null,
+            rootMargin: '-50px -50px -50px -50px',
+            threshold: 0.1
+        };
 
-                // Stop observing this element after animation has run once
-                observer.unobserve(entry.target);
+        const observer = new IntersectionObserver(function (entries, observer) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+
+                    // Stop observing this element after animation has run once
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            section.style.opacity = 0;
+            section.style.transform = 'translateY(50px)';
+            section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(section);
+        });
+
+        // Improved hamburger menu toggle with smooth animations
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        let isMenuOpen = false;
+
+        hamburger.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+
+            isMenuOpen = !isMenuOpen;
+
+            navLinks.classList.toggle('active', isMenuOpen);
+            hamburger.classList.toggle('toggle', isMenuOpen);
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (isMenuOpen && !hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+                isMenuOpen = false;
+                navLinks.classList.remove('active');
+                hamburger.classList.remove('toggle');
+                document.body.style.overflow = 'auto';
             }
         });
-    }, observerOptions);
 
-    sections.forEach(section => {
-        section.style.opacity = 0;
-        section.style.transform = 'translateY(50px)';
-        section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-        observer.observe(section);
-    });
+        // Close menu when clicking on a link
+        const navLinksElements = navLinks.querySelectorAll('a');
+        navLinksElements.forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    isMenuOpen = false;
+                    navLinks.classList.remove('active');
+                    hamburger.classList.remove('toggle');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
 
-    // Improved hamburger menu toggle with smooth animations
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.querySelector('.nav-links');
-    let isMenuOpen = false;
-
-    hamburger.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-
-        isMenuOpen = !isMenuOpen;
-
-        navLinks.classList.toggle('active', isMenuOpen);
-        hamburger.classList.toggle('toggle', isMenuOpen);
-    });
-
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-        if (isMenuOpen && !hamburger.contains(e.target) && !navLinks.contains(e.target)) {
-            isMenuOpen = false;
-            navLinks.classList.remove('active');
-            hamburger.classList.remove('toggle');
-            document.body.style.overflow = 'auto';
-        }
-    });
-
-    // Close menu when clicking on a link
-    const navLinksElements = navLinks.querySelectorAll('a');
-    navLinksElements.forEach(link => {
-        link.addEventListener('click', () => {
-            if (window.innerWidth <= 768) {
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768 && isMenuOpen) {
                 isMenuOpen = false;
                 navLinks.classList.remove('active');
                 hamburger.classList.remove('toggle');
@@ -84,14 +99,33 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Handle window resize
-    window.addEventListener('resize', () => {
-        if (window.innerWidth > 768 && isMenuOpen) {
-            isMenuOpen = false;
-            navLinks.classList.remove('active');
-            hamburger.classList.remove('toggle');
-            document.body.style.overflow = 'auto';
-        }
-    });
+    // 27-06-2025 | Mark K. | Verzending van from data naar server.js
+    const API_URL = window.location.hostname === 'localhost'
+        ? 'http://localhost:5000'
+        : 'https://http://greenlights.tech/';
 
-});
+    async function sendSollicitatieDataToServer(e) {
+        e.preventDefault();
+
+        const sollicitatieFromData = new FormData(e.target);
+
+        try {
+            const response = await fetch(`${API_URL}/submit`, {
+                method: 'POST',
+                body: sollicitatieFromData,
+            });
+
+            if (!response.ok) {
+                throw new Error(`Server error: ${response.status}`);
+            }
+
+            const result = await response.json();
+            console.log(result);
+        } catch (err) {
+            console.error('Fout bij verzenden:', err);
+        }
+
+    };
+
+})(window, document);
+
