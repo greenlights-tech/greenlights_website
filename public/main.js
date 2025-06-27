@@ -100,9 +100,12 @@
     });
 
     // 27-06-2025 | Mark K. | Verzending van from data naar server.js
-    const API_URL = window.location.hostname === 'localhost'
+    const isLocal = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+
+    const API_URL = isLocal
         ? 'http://localhost:5000'
-        : 'https://http://greenlights.tech/';
+        : 'https://greenlights.tech'
+    ;
 
     async function sendSollicitatieDataToServer(e) {
         e.preventDefault();
