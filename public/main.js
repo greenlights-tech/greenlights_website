@@ -1,60 +1,60 @@
-(function (window, document) {
-    document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
 
-        // Slides sollicitatie page in from left
-        document.getElementById('openSolli').addEventListener('click', function () {
-            document.querySelector('.sol-page').classList.add('active');
+    // Slides sollicitatie page in from left
+    document.getElementById('openSolli').addEventListener('click', function () {
+        document.querySelector('.sol-page').classList.add('active');
+    });
+
+    document.querySelector('.sol-close-button').addEventListener('click', function () {
+        document.querySelector('.sol-page').classList.remove('active');
+    });
+
+    // Slides opdrachtgever page in from right
+    document.getElementById('openOpdrachtgever').addEventListener('click', function () {
+        document.querySelector('.opd-page').classList.add('active');
+    });
+
+    document.querySelector('.opd-close-button').addEventListener('click', function () {
+        document.querySelector('.opd-page').classList.remove('active');
+    });
+    
+    // 27-06-2025 | Mark K. | Event listener aangemaakt
+    document.getElementById('sollicitatieForm').addEventListener('submit', sendSollicitatieDataToServer);
+
+    // Animation for sections when they come into view
+    const sections = document.querySelectorAll('.section-title, .section-content, .btn2');
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '-50px -50px -50px -50px',
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver(function (entries, observer) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = 1;
+                entry.target.style.transform = 'translateY(0)';
+
+                // Stop observing this element after animation has run once
+                observer.unobserve(entry.target);
+            }
         });
+    }, observerOptions);
 
-        document.querySelector('.sol-close-button').addEventListener('click', function () {
-            document.querySelector('.sol-page').classList.remove('active');
-        });
+    sections.forEach(section => {
+        section.style.opacity = 0;
+        section.style.transform = 'translateY(50px)';
+        section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        observer.observe(section);
+    });
 
-        // Slides opdrachtgever page in from right
-        document.getElementById('openOpdrachtgever').addEventListener('click', function () {
-            document.querySelector('.opd-page').classList.add('active');
-        });
+    // Improved hamburger menu toggle with smooth animations
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    let isMenuOpen = false;
 
-        document.querySelector('.opd-close-button').addEventListener('click', function () {
-            document.querySelector('.opd-page').classList.remove('active');
-        });
-
-        // 27-06-2025 | Mark K. | Event listener aangemaakt
-        document.getElementById('sollicitatieForm').addEventListener('submit', sendSollicitatieDataToServer);
-
-        // Animation for sections when they come into view
-        const sections = document.querySelectorAll('.section-title, .section-content, .btn2');
-
-        const observerOptions = {
-            root: null,
-            rootMargin: '-50px -50px -50px -50px',
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver(function (entries, observer) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = 1;
-                    entry.target.style.transform = 'translateY(0)';
-
-                    // Stop observing this element after animation has run once
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        sections.forEach(section => {
-            section.style.opacity = 0;
-            section.style.transform = 'translateY(50px)';
-            section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            observer.observe(section);
-        });
-
-        // Improved hamburger menu toggle with smooth animations
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.querySelector('.nav-links');
-        let isMenuOpen = false;
-
+    if (hamburger && navLinks) {
         hamburger.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
@@ -97,15 +97,40 @@
                 document.body.style.overflow = 'auto';
             }
         });
+    }
+
+    // Modal handling with event delegation
+    var modal = document.getElementById("myModal");
+    var span = document.getElementsByClassName("close")[0];
+
+    // Use event delegation to handle button clicks (works even when button is initially off-screen)
+    document.addEventListener('click', function (event) {
+        // Check if clicked element is the sol-signup-button
+        if (event.target.id === 'sol-signup-button' || event.target.closest('#sol-signup-button')) {
+            modal.style.display = "flex";
+        }
     });
 
+    // When the user clicks on <span> (x), close the modal
+    if (span) {
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
     // 27-06-2025 | Mark K. | Verzending van from data naar server.js
     const isLocal = ['localhost', '127.0.0.1'].includes(window.location.hostname);
 
     const API_URL = isLocal
         ? 'http://localhost:5000'
         : 'https://greenlights.tech'
-    ;
+        ;
 
     async function sendSollicitatieDataToServer(e) {
         e.preventDefault();
@@ -131,4 +156,3 @@
     };
 
 })(window, document);
-

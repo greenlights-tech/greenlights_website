@@ -7,10 +7,39 @@
     <title>Greenlights</title>
     <link href="./style.css" type="text/css" rel="stylesheet">
     <link href="./favicon.png" type="image/x-icon" rel="icon">
-
 </head>
 
 <body>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">✖</span>
+                <h2>Invulformulier</h2>
+            </div>
+            <div class="modal-body">
+                <form class="soll-form" action="/action_page.php" id="sollicitatieForm" method="post">
+                    <label for="voornaam"><b>Voornaam:</b></label>
+                    <input type="text" id="voornaam" name="voornaam" required><br>
+
+                    <label for="achternaam"><b>Achternaam:</b></label>
+                    <input type="text" id="achternaam" name="achternaam" required><br>
+
+                    <label for="email"><b>Emailadres:</b></label>
+                    <input type="email" id="email" name="email" required><br>
+
+                    <label for="cv"><b>Upload CV:</b></label>
+                    <input type="file" id="cv" name="cv" accept=".pdf" required><br>
+
+                    <label>
+                        <input type="checkbox" id="voorwaarden" name="voorwaarden" value="voorwaarden" required>
+                        <b>Ik accepteer de algemene voorwaarden van Greenlights</b>
+                    </label><br>
+
+                    <input type="submit" value="Versturen">
+                </form>
+            </div>
+        </div>
+    </div>
     <div class="logo-container">
         <div class="title">
             <span class="letter">G</span>
@@ -80,17 +109,11 @@
                 <br /> <br />
                 <div class="sol-cta">
                     <b>Klaar voor jouw IT-start?</b>
-                    <button class="sol-signup-button">
+                    <button id="sol-signup-button" class="sol-signup-button">
                         <span class="sol-signup-button-text">
                             Meld je aan
                         </span>
                     </button>
-                    <form id="sollicitatieForm" method="post">
-                        <label for="naam">Naam:</label>
-                        <input type="text" id="naam" name="naam" required>
-                        <button type="submit">Verstuur</button>
-                    </form>
-
                 </div>
             </div>
         </div>
@@ -127,7 +150,9 @@
             </div>
         </div>
     </div>
+
     <script src="./main.js"></script>
+
 </body>
 
 </html>
