@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Greenlights</title>
     <link href="./style.css" type="text/css" rel="stylesheet">
-    <link href="./favicon.png" type="image/x-icon" rel="icon">
+    <link href="./icon_only.svg" type="image/svg+xml" rel="icon">
 </head>
 
 <body>
-    <div id="myModal" class="modal">
+    <div id="soll-modal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
                 <span class="close">✖</span>
@@ -25,15 +25,53 @@
                     <input type="text" id="achternaam" name="achternaam" required><br>
 
                     <label for="email"><b>Emailadres:</b></label>
-                    <input type="email" id="email" name="email" required><br>
+                    <input type="email" id="email" name="email" placeholder="voorbeeld@email.nl" required><br>
+
+                    <label for="telnummer"><b>Mobiel telefoonnummer:</b></label>
+                    <input type="tel" id="tel" name="tel" placeholder="0612345678"><br>
 
                     <label for="cv"><b>Upload CV:</b></label>
                     <input type="file" id="cv" name="cv" accept=".pdf" required><br>
 
+                    <label for="motivatie"><b>Upload motivatie:</b></label>
+                    <input type="file" id="motivatie" name="motivatie" accept=".pdf" required><br>
+
                     <label>
                         <input type="checkbox" id="voorwaarden" name="voorwaarden" value="voorwaarden" required>
-                        <b>Ik accepteer de algemene voorwaarden van Greenlights</b>
+                        <b>Ik ga akkoord met de verwerking van mijn persoonsgegevens via een geautomatiseerd systeem ten
+                            behoeve van mijn sollicitatie</b>
                     </label><br>
+
+                    <input type="submit" value="Versturen">
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="opd-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">✖</span>
+                <h2>Invulformulier</h2>
+            </div>
+            <div class="modal-body">
+                <form class="soll-form" action="/action_page.php" id="sollicitatieForm" method="post">
+                    <label for="bedrijfsnaam"><b>Bedrijfsnaam:</b></label>
+                    <input type="text" id="bedrijfsnaam" name="bedrijfsnaam" maxlength="50" required><br>
+
+                    <label for="voornaam"><b>Voornaam:</b></label>
+                    <input type="text" id="voornaam" name="voornaam" maxlength="50" required><br>
+
+                    <label for="achternaam"><b>Achternaam:</b></label>
+                    <input type="text" id="achternaam" name="achternaam" maxlength="50" required><br>
+
+                    <label for="email"><b>Emailadres:</b></label>
+                    <input type="email" id="email" name="email" placeholder="voorbeeld@email.nl" maxlength="50" required><br>
+
+                    <label for="telnummer"><b>Mobiel telefoonnummer:</b></label>
+                    <input type="tel" id="tel" name="tel" placeholder="0612345678" maxlength="12"><br>
+
+                    <label for="opmerkingen"><b>Opmerkingen:</b></label>
+                    <textarea id="opmerkingen" name="opmerkingen" class="big-textbox" maxlength="200"></textarea><br>
 
                     <input type="submit" value="Versturen">
                 </form>
@@ -108,12 +146,24 @@
                 ✔️ Persoonlijke coaching en begeleiding, vanaf dag één tot je volledig bent ingewerkt.
                 <br /> <br />
                 <div class="sol-cta">
-                    <b>Klaar voor jouw IT-start?</b>
-                    <button id="sol-signup-button" class="sol-signup-button">
-                        <span class="sol-signup-button-text">
-                            Meld je aan
-                        </span>
-                    </button>
+                    <div class="button-container">
+                        <b>Klaar voor jouw IT-start?</b>
+                        <button id="sol-signup-button" class="sol-signup-button">
+                            <span class="sol-signup-button-text">
+                                Meld je aan
+                            </span>
+                        </button>
+                    </div>
+                    <div class="button-container">
+                        <b>Meer informatie?</b>
+                        <a href="./info.html" style="text-decoration: none; color: inherit;">
+                            <button id="info-button" class="info-button">
+                                <span class="sol-signup-button-text">
+                                    Lees meer
+                                </span>
+                            </button>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -140,12 +190,24 @@
                 ✔️ Detavast-constructie: je bouwt aan je team van morgen, niet aan een flexibele schil.
                 <br /><br />
                 <div class="opd-cta">
-                    <b>Nieuw IT-talent nodig?</b>
-                    <button class="opd-signup-button">
-                        <span class="opd-signup-button-text">
-                            Plan een gesprek
-                        </span>
-                    </button>
+                    <div class="button-container">
+                        <b>Nieuw IT-Talent nodig?</b>
+                        <button id="opd-signup-button" class="opd-signup-button">
+                            <span class="opd-signup-button-text">
+                                Plan een gesprek
+                            </span>
+                        </button>
+                    </div>
+                    <div class="button-container">
+                        <b>Meer informatie?</b>
+                        <a href="./info.html" style="text-decoration: none; color: inherit;">
+                            <button id="info-button" class="info-button">
+                                <span class="sol-signup-button-text">
+                                    Lees meer
+                                </span>
+                            </button>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

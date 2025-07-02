@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelector('.opd-close-button').addEventListener('click', function () {
         document.querySelector('.opd-page').classList.remove('active');
     });
-    
+
     // 27-06-2025 | Mark K. | Event listener aangemaakt
     document.getElementById('sollicitatieForm').addEventListener('submit', sendSollicitatieDataToServer);
 
@@ -100,29 +100,52 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Modal handling with event delegation
-    var modal = document.getElementById("myModal");
+    var modal = document.getElementById("soll-modal");
+    var opdModal = document.getElementById("opd-modal");
     var span = document.getElementsByClassName("close")[0];
+    var opdSpan = document.querySelector("#opd-modal .close"); // Assuming opd-modal also has a close button
 
-    // Use event delegation to handle button clicks (works even when button is initially off-screen)
+    // Use event delegation to handle button clicks
     document.addEventListener('click', function (event) {
-        // Check if clicked element is the sol-signup-button
+        // Check which button was clicked and open corresponding modal
         if (event.target.id === 'sol-signup-button' || event.target.closest('#sol-signup-button')) {
             modal.style.display = "flex";
+        } else if (event.target.id === 'opd-signup-button' || event.target.closest('#opd-signup-button')) {
+            opdModal.style.display = "flex";
         }
     });
 
-    // When the user clicks on <span> (x), close the modal
+    // When the user clicks on <span> (x), close the respective modal
     if (span) {
         span.onclick = function () {
             modal.style.display = "none";
         }
     }
 
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
+    if (opdSpan) {
+        opdSpan.onclick = function () {
+            opdModal.style.display = "none";
         }
+    }
+
+    // When the user clicks anywhere outside of the modals, close them
+    let mouseDownOutside = false;
+
+    window.onmousedown = function (event) {
+        if (event.target == modal || event.target == opdModal) {
+            mouseDownOutside = true;
+        } else {
+            mouseDownOutside = false;
+        }
+    }
+
+    window.onmouseup = function (event) {
+        if (event.target == modal && mouseDownOutside) {
+            modal.style.display = "none";
+        } else if (event.target == opdModal && mouseDownOutside) {
+            opdModal.style.display = "none";
+        }
+        mouseDownOutside = false;
     }
     // 27-06-2025 | Mark K. | Verzending van from data naar server.js
     const isLocal = ['localhost', '127.0.0.1'].includes(window.location.hostname);
