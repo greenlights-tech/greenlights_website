@@ -1,21 +1,28 @@
 document.addEventListener('DOMContentLoaded', function () {
 
+    // Store original URL to revert back to
+    let originalUrl = window.location.pathname;
+
     // Slides sollicitatie page in from left
     document.getElementById('openSolli').addEventListener('click', function () {
         document.querySelector('.sol-page').classList.add('active');
+        changeUrl('/sollicitatie');
     });
 
-    document.querySelector('.sol-close-button').addEventListener('click', function () {
+    document.querySelector('.sol-home-button-container').addEventListener('click', function () {
         document.querySelector('.sol-page').classList.remove('active');
+        changeUrl(originalUrl);
     });
 
     // Slides opdrachtgever page in from right
     document.getElementById('openOpdrachtgever').addEventListener('click', function () {
         document.querySelector('.opd-page').classList.add('active');
+        changeUrl('/opdrachtgever');
     });
 
-    document.querySelector('.opd-close-button').addEventListener('click', function () {
+    document.querySelector('.opd-home-button-container').addEventListener('click', function () {
         document.querySelector('.opd-page').classList.remove('active');
+        changeUrl(originalUrl);
     });
 
     // 27-06-2025 | Mark K. | Event listener aangemaakt
@@ -147,13 +154,13 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         mouseDownOutside = false;
     }
+
     // 27-06-2025 | Mark K. | Verzending van from data naar server.js
     const isLocal = ['localhost', '127.0.0.1'].includes(window.location.hostname);
 
     const API_URL = isLocal
         ? 'http://localhost:5000'
-        : 'https://greenlights.tech'
-        ;
+        : 'https://greenlights.tech';
 
     async function sendSollicitatieDataToServer(e) {
         e.preventDefault();
@@ -175,7 +182,42 @@ document.addEventListener('DOMContentLoaded', function () {
         } catch (err) {
             console.error('Fout bij verzenden:', err);
         }
+    }
 
-    };
+    // // Fixed URL change functions
+    // function changeUrl(path) {
+    //     history.pushState(null, '', path);
+    //     updatePathDisplay();
+    //     // Optionally trigger custom event for SPA routing
+    //     window.dispatchEvent(new CustomEvent('urlchange', { detail: { path } }));
+    // }
 
-})(window, document);
+    // function updatePathDisplay() {
+    //     const urlElement = document.getElementById('urlDisplay');
+    //     if (urlElement) {
+    //         urlElement.textContent = window.location.href;
+    //     }
+    // }
+
+    // // Update on load
+    // updatePathDisplay();
+
+    // // Update when navigating back/forward
+    // window.addEventListener('popstate', updatePathDisplay);
+
+    // // Example usage: Add event listeners to navigation elements
+    // // You can uncomment and modify these based on your HTML structure
+    // /*
+    // document.querySelectorAll('[data-route]').forEach(element => {
+    //     element.addEventListener('click', function(e) {
+    //         e.preventDefault();
+    //         const path = this.getAttribute('data-route');
+    //         changeUrl(path);
+    //     });
+    // });
+    // */
+
+    // // Make changeUrl available globally if needed
+    // window.changeUrl = changeUrl;
+
+});
