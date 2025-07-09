@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greenlights</title>
+    <link href="./style.css" type="text/css" rel="stylesheet">
+    <link href="./Icon_only.svg" type="image/svg+xml" rel="icon">
+</head>
+
+<body>
+    <div id="sol-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">✖</span>
+                <h2>Invulformulier</h2>
+            </div>
+            <div class="modal-body">
+                <form class="sol-form" id="sollicitatieForm" method="post">
+                    <label for="voornaam"><b>Voornaam:*</b></label>
+                    <input type="text" id="voornaam" name="voornaam" maxlength="50" required><br>
+
+                    <label for="achternaam"><b>Achternaam:*</b></label>
+                    <input type="text" id="achternaam" name="achternaam" maxlength="50" required><br>
+
+                    <label for="email"><b>Emailadres:*</b></label>
+                    <input type="email" id="email" name="email" placeholder="voorbeeld@email.nl" maxlength="50" required><br>
+
+                    <label for="telnummer"><b>Mobiel telefoonnummer:</b></label>
+                    <input type="tel" id="tel" name="tel" placeholder="0612345678" maxlength="20"><br>
+
+                    <!-- <label for="cv"><b>Upload CV:</b></label>
+                    <input type="file" id="cv" name="cv" accept=".pdf" required><br>
+
+                    <label for="motivatie"><b>Upload motivatie:</b></label>
+                    <input type="file" id="motivatie" name="motivatie" accept=".pdf" required><br> -->
+
+                    <label>
+                        <input type="checkbox" id="voorwaarden" name="voorwaarden" value="voorwaarden" required>
+                        <b>Ik ga akkoord met de verwerking van mijn persoonsgegevens via een geautomatiseerd systeem ten
+                            behoeve van mijn sollicitatie</b>
+                    </label><br>
+
+                    <input id="Sol-versturen" type="submit" value="Versturen">
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="./form.js"></script>
+
+</body>
+
+</html>

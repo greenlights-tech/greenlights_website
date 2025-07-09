@@ -10,25 +10,25 @@
 </head>
 
 <body>
-    <div id="soll-modal" class="modal">
+    <!-- <div id="sol-modal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
                 <span class="close">✖</span>
                 <h2>Invulformulier</h2>
             </div>
             <div class="modal-body">
-                <form class="sol-form" action="/action_page.php" id="sollicitatieForm" method="post">
-                    <label for="voornaam"><b>Voornaam:</b></label>
-                    <input type="text" id="voornaam" name="voornaam" required><br>
+                <form class="sol-form" action="sendemail.php" id="sollicitatieForm" method="post">
+                    <label for="voornaam"><b>Voornaam:*</b></label>
+                    <input type="text" id="voornaam" name="voornaam" maxlength="50" required><br>
 
-                    <label for="achternaam"><b>Achternaam:</b></label>
-                    <input type="text" id="achternaam" name="achternaam" required><br>
+                    <label for="achternaam"><b>Achternaam:*</b></label>
+                    <input type="text" id="achternaam" name="achternaam" maxlength="50" required><br>
 
-                    <label for="email"><b>Emailadres:</b></label>
-                    <input type="email" id="email" name="email" placeholder="voorbeeld@email.nl" required><br>
+                    <label for="email"><b>Emailadres:*</b></label>
+                    <input type="email" id="email" name="email" placeholder="voorbeeld@email.nl" maxlength="50" required><br>
 
                     <label for="telnummer"><b>Mobiel telefoonnummer:</b></label>
-                    <input type="tel" id="tel" name="tel" placeholder="0612345678"><br>
+                    <input type="tel" id="tel" name="tel" placeholder="0612345678" maxlength="20"><br>
 
                     <label for="cv"><b>Upload CV:</b></label>
                     <input type="file" id="cv" name="cv" accept=".pdf" required><br>
@@ -42,7 +42,7 @@
                             behoeve van mijn sollicitatie</b>
                     </label><br>
 
-                    <input type="submit" value="Versturen">
+                    <input id="Sol-versturen" type="submit" value="Versturen">
                 </form>
             </div>
         </div>
@@ -78,7 +78,10 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> -->
+    <a href="https://www.linkedin.com/company/greenlights-nl" style="text-decoration: none; color: inherit;">
+    <div class="linkedin-logo"></div>
+    </a>
     <div class="logo-container">
         <div class="title">
             <span class="letter">G</span>
@@ -136,38 +139,23 @@
                 Onze belofte
             </div>
             <div class="sol-content">
-                Bij Greenlights geloven we dat ieder individu het potentieel heeft om het beste uit zichzelf te halen —
-                mits de juiste omstandigheden en ondersteuning aanwezig zijn. Onze belofte is dan ook helder:
-                <b>wij zorgen voor duurzame inzetbaarheid door maatwerkbegeleiding, eerlijke feedback en de ruimte om te
-                    groeien.</b>
-                Of iemand nu aan het begin van zijn carrière staat of klaar is voor een volgende stap,
-                wij bieden de
-                begeleiding die mensen helpt verder te komen — zowel professioneel als persoonlijk.
+                Greenlights gelooft in de potentie van het individu. Wij bieden maatwerk en de juiste ondersteuning. De
+                belofte is helder: duurzame inzetbaarheid door begeleiding, feedback en ruimte om te groeien, zowel voor
+                starters en professionals met ervaring.
                 <br><br>
-                <b>Waarom Greenlights Nodig Is</b>
+                <b>Waarom Greenlights?</b>
                 <br>
-                De wereld van werk verandert razendsnel. Technologische ontwikkelingen, hoge werkdruk en toenemende
-                eisen aan flexibiliteit maken het voor veel professionals lastig om koers te houden. Tegelijkertijd
-                worstelen organisaties met verloop, verminderde motivatie en een gebrek aan toekomstbestendige
-                vaardigheden bij hun mensen.
-                Greenlights is nodig omdat wij het antwoord zijn op deze uitdagingen. Wij begeleiden mensen met
-                aandacht, geven hen zelfinzicht en helpen hen regie te nemen over hun loopbaan. Zo versterken we niet
-                alleen het individu, maar ook het team en de organisatie als geheel.
+                De wereld veranderd in rap tempo. Organisaties worstelen met verloop en toekomstbestendige vaardigheden
+                van werknemers. Greenlights begeleid je met aandacht, biedt zelfinzicht en helpt de regie te nemen over
+                je loopbaan. Zo versterken we zowel het individu als de organisatie.
                 <br><br>
-                <b>Wat Greenlights Doet Werkt</b><br>
-                Onze aanpak is niet alleen mensgericht, maar ook bewezen effectief. Zo zien we dat:
-                <br><br>
-                ✔️85% van de deelnemers meer werkplezier ervaart na begeleiding via Greenlights.
+                <div class="checkmark"></div> Deelnemers ervaren meer werkplezier na begeleiding via Greenlights
                 <br>
-                ✔️Meer dan 70% concrete vervolgstappen zet binnen zes maanden — denk aan scholing, een nieuwe rol of het
-                versterken van persoonlijke competenties.
+                <div class="checkmark"></div> Greenlighters nemen sneller concrete vervolgstappen in hun loopbaan.
                 <br>
-                ✔️Organisaties die met Greenlights samenwerken rapporteren een lager ziekteverzuim en hogere
-                medewerkerstevredenheid.
+                <div class="checkmark"></div> Samenwerkende organisaties ervaren minder ziekteverzuim en hoge tevredenheid van medewerkers!
                 <br><br>
-                Onze coaches zijn gecertificeerd, ervaren en werken met gevalideerde methodieken. Door structurele
-                metingen en evaluaties houden we grip op de voortgang — en blijven we verbeteren.
-                <br><br>
+
                 <div class="sol-cta">
                     <div class="button-container">
                         <b>Klaar voor jouw IT-start?</b>
@@ -199,48 +187,28 @@
         </div>
         <div class="opd-container">
             <div class="opd-title">
-                Onze Belofte aan Opdrachtgevers
+                De belofte van Greenlights
             </div>
             <div class="opd-content">
-                IT-talent vinden zónder gedoe — dat is waar Greenlights voor staat. Geen cv-stapels, geen anonieme
-                traineeships, maar <b>direct passende IT-starters</b> die jouw team versterken. Wij selecteren op
-                motivatie,
-                leervermogen en culturele fit, leiden kandidaten gericht op in wat jouw organisatie nodig heeft, en
-                zorgen voor persoonlijke begeleiding tot ze volledig meedraaien.
-                <b>Greenlights regelt het.</b> Vanaf dag één investeren we in de toekomst van jouw team, met de intentie
-                dat
-                onze mensen op termijn bij jou in dienst treden. Zo bouw je duurzaam aan je IT-capaciteit — zonder de
-                risico’s van tijdelijke inhuur.
+                Snel, passend IT-talent vinden, geselecteerd op motivatie, groei mind-set en passend bij uw
+                bedrijfscultuur. Kandidaten zijn opgeleid, specifiek voor uw behoefte en krijgen persoonlijke
+                begeleiding tot ze volledig meedraaien. Wij investeren in de toekomst van uw team, met intentie tot in
+                dienst treding.
                 <br><br>
-                <b>Waarom Greenlights Nodig Is</b>
+                <b>Waarom Greenlights nodig is</b>
                 <br>
-                De strijd om goed IT-talent is hevig — zeker als je zoekt naar starters die niet alleen technisch
-                capabel zijn, maar ook écht passen binnen jouw organisatie. Tegelijk loop je in standaard
-                instroomtrajecten vaak tegen dezelfde problemen aan: generieke profielen, lange inwerktijden,
-                onvoldoende aansluiting op de praktijk.
-                Greenlights doorbreekt dat patroon. Wij leveren geen cv’s, maar mensen. Mensen die we zorgvuldig
-                selecteren, opleiden in de juiste context én actief begeleiden op de werkvloer. Geen ‘one size fits
-                all’, maar een maatwerktraject afgestemd op jouw opdracht en teamdynamiek.
+                Greenlights biedt het hoofd aan de hevige strijd om startend IT-talent te binden aan uw organisatie. In
+                het werkveld zien we dat men tegen dezelfde problemen aanloopt: generieke profielen, lange inwerktijd en
+                onvoldoende aansluiting op de praktijk. Wij leveren zorgvuldig geselecteerd talent. Een maatwerktraject,
+                afgestemd op uw opdracht!
                 <br><br>
-                <b>Het Werkt</b>
+                <div class="checkmark"></div> Opdrachtgevers geven aan dat kandidaten sneller inzetbaar zijn
                 <br>
-                Onze aanpak is bewezen effectief voor opdrachtgevers:
-                <br><br>
-                ✔️ 100% van onze opdrachtgevers geeft aan dat onze kandidaten sneller inzetbaar zijn dan via reguliere
-                instroomtrajecten.
+                <div class="checkmark"></div> Selectie op basis van motivatie, leervermogen en cultuur
                 <br>
-                ✔️ Gerichte selectie op motivatie, leervermogen en culturele fit — géén generieke instroom.
-                <br>
-                ✔️ Detavast-constructie: je investeert in toekomstig teamlid, niet in tijdelijke capaciteit.
-                <br>
-                ✔️ Begeleiding tot volledige inzetbaarheid: onze coaches zorgen dat kandidaten groeien in
-                zelfstandigheid, soft skills en vakkennis.
-                <br>
-                ✔️ Hoge conversie naar dienstverband: de meeste kandidaten stromen na afloop duurzaam in bij de
-                opdrachtgever.
-                <br><br>
-                Met Greenlights vergroot je je slagkracht, verminder je je risico’s en haal je starters in huis die het
-                verschil maken.
+                <div class="checkmark"></div> Volledige begeleiding tot inzetbaarheid
+
+
                 <br><br>
                 <div class="opd-cta">
                     <div class="button-container">
