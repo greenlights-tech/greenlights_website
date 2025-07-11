@@ -681,7 +681,7 @@ body {
 }
 
 .modal {
-    display: block;
+    display: none;
     position: fixed;
     z-index: var(--z-popup);
     left: 0;

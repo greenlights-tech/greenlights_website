@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const sollicitatieForm = document.getElementById("sollicitatieForm");
     if (sollicitatieForm) {
         sollicitatieForm.addEventListener("submit", function (e) {
+            console.log('fired!!!!');
             e.preventDefault();
 
             var formData = new FormData(this);
