@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greenlights</title>
+    <link href="./css/style.css" type="text/css" rel="stylesheet">
+    <link href="./images/Icon_only.svg" type="image/svg+xml" rel="icon">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+
+<body>
+    <div id="sol-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">✖</span>
+                <h2>Invulformulier</h2>
+            </div>
+            <div class="modal-body">
+                <form class="sol-form" id="sollicitatieForm" method="post">
+                    <input type="text" id="voornaam" name="voornaam" maxlength="50" placeholder="Voornaam*" required><br>
+
+                    <input type="text" id="achternaam" name="achternaam" maxlength="50" placeholder="Achternaam*" required><br>
+
+                    <input type="email" id="email" name="email" placeholder="E-mailadres*" maxlength="50"
+                        required><br>
+
+                    <input type="tel" id="tel" name="tel" placeholder="Mobiel telefoonummer" maxlength="20"><br>
+
+                    <!-- <label for="cv"><b>Upload CV:</b></label>
+                    <input type="file" id="cv" name="cv" accept=".pdf" required><br>
+
+                    <label for="motivatie"><b>Upload motivatie:</b></label>
+                    <input type="file" id="motivatie" name="motivatie" accept=".pdf" required><br> -->
+
+                    <label>
+                        <input type="checkbox" id="voorwaarden" name="voorwaarden" value="voorwaarden" required>
+                        Ik ga akkoord met de <a href="./privacyverklaring.html" target="_blank">privacy
+                                verklaring</a> van Greenlights*
+                    </label><br>
+                    <div class="g-recaptcha" style="width: 100%;" data-sitekey="6LfVWn8rAAAAAJRHg_yYWP9c8wX_3Htkh6Dlfq2v"></div>
+                    <br>
+                    <input id="Sol-versturen" type="submit" value="Versturen">
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="./js/form.js"></script>
+
+</body>
+
+</html>

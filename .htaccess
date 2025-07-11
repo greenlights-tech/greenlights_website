@@ -1,0 +1,7 @@
+RewriteEngine On
+
+# Redirect to HTTPS and www
+RewriteCond %{HTTPS} !=on [OR]
+RewriteCond %{HTTP_HOST} !^www\.greenlights\.tech$ [NC]
+RewriteRule ^(.*)$ https://www.greenlights.tech/$1 [L,R=301]
+Options -Indexes
