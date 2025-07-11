@@ -6,8 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Check required fields
     if (
-        empty($_POST["voornaam"]) ||
-        empty($_POST["achternaam"]) ||
+        empty($_POST["naam"]) ||
         empty($_POST["email"]) ||
         !isset($_POST["voorwaarden"])
     ) {
@@ -34,13 +33,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Sanitize and validate input
-    $voornaam = strip_tags(trim($_POST["voornaam"]));
-    $achternaam = strip_tags(trim($_POST["achternaam"]));
+    $naam = strip_tags(trim($_POST["naam"]));
     $email = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
     $telnummer = isset($_POST["tel"]) ? strip_tags(trim($_POST["tel"])) : "";
     $opmerkingen = strip_tags(trim($_POST["opmerkingen"]));
 
-    file_put_contents("log.txt", "Sanitized values: $voornaam, $achternaam, $email, $telnummer\n", FILE_APPEND);
+    file_put_contents("log.txt", "Sanitized values: $naam, $email, $telnummer\n", FILE_APPEND);
 
     // Validate email format
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -54,16 +52,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit("Ongeldig e-mailadres.");
     }
 
-    // Validate voornaam
-    if (!preg_match("/^[\p{L}\p{M}0-9\s'’-]{1,100}$/u", $voornaam)) {
-        file_put_contents("log.txt", "Voornaam check failed: $voornaam\n", FILE_APPEND);
-        exit("Ongeldige voornaam.");
-    }
-
-    // Validate achternaam
-    if (!preg_match("/^[\p{L}\p{M}0-9\s'’-]{1,100}$/u", $achternaam)) {
-        file_put_contents("log.txt", "Achternaam check failed: $achternaam\n", FILE_APPEND);
-        exit("Ongeldige achternaam.");
+    // Validate Naam
+    if (!preg_match("/^[\p{L}\p{M}0-9\s'’-]{1,100}$/u", $naam)) {
+        file_put_contents("log.txt", "Naam check failed: $naam\n", FILE_APPEND);
+        exit("Ongeldige naam.");
     }
 
     // Validate telefoonnummer if provided
@@ -82,10 +74,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
 
     // Compose email
-    $subject = "$voornaam $achternaam heeft een aanvraag";
+    $subject = "$naam heeft een aanvraag";
 
-    $body = "Voornaam: $voornaam\n";
-    $body .= "Achternaam: $achternaam\n";
+    $body = "Naam: $naam\n";
     $body .= "Email: $email\n";
     $body .= "Telefoonnummer: $telnummer\n";
     $body .= "Akkoord met voorwaarden: $voorwaarden\n";
