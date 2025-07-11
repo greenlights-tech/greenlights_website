@@ -46,6 +46,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit("Ongeldig e-mailadres.");
     }
 
+    // Voorkom header injection op rest van velden
+    foreach ([$naam, $telnummer, $opmerkingen] as $veld) {
+    if (preg_match("/[\r\n]/", $veld)) {
+        file_put_contents("log.txt", "Header injection poging\n", FILE_APPEND);
+        exit("Ongeldige invoer gedetecteerd.");
+        }
+    }
+
     // Prevent header injection in email field
     if (preg_match("/[\r\n]/", $email)) {
         file_put_contents("log.txt", "Prevent header injection check failed\n", FILE_APPEND);
@@ -82,7 +90,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $body .= "Akkoord met voorwaarden: $voorwaarden\n";
     $body .= "Opmerkingen: $opmerkingen\n";
 
-    $headers = "From: no-reply@greenlights.tech\r\nReply-To: $email";
+    $headers = [
+    'From' => 'no-reply@greenlights.tech',
+    'Reply-To' => $email
+    ];
+
+    $headers_string = "";
+    foreach ($headers as $key => $value) {
+        $headers_string .= "$key: $value\r\n";
+    }
+
 
     // Send email
     if (mail($to, $subject, $body, $headers)) {

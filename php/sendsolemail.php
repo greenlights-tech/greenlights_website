@@ -54,22 +54,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Validate voornaam
-    if (!preg_match("/^[\p{L}\p{M}0-9\s'’-]{1,100}$/u", $voornaam)) {
+    if (
+        !preg_match("/^[\p{L}\p{M}0-9\s'’-]{1,100}$/u", $voornaam) ||
+        preg_match("/[\r\n]/", $voornaam)
+    ) {
         file_put_contents("log.txt", "Voornaam check failed: $voornaam\n", FILE_APPEND);
         exit("Ongeldige voornaam.");
     }
 
     // Validate achternaam
-    if (!preg_match("/^[\p{L}\p{M}0-9\s'’-]{1,100}$/u", $achternaam)) {
+    if (!preg_match("/^[\p{L}\p{M}0-9\s'’-]{1,100}$/u", $achternaam)
+        preg_match("/[\r\n]/", $achternaam)
+    ) {
         file_put_contents("log.txt", "Achternaam check failed: $achternaam\n", FILE_APPEND);
         exit("Ongeldige achternaam.");
     }
 
     // Validate telefoonnummer if provided
-    if (!empty($telnummer) && !preg_match("/^[0-9+\-\s()]{7,20}$/", $telnummer)) {
+    if (
+        !empty($telnummer) &&
+        (
+            strlen($telnummer) > 20 ||
+            !preg_match("/^\+?[0-9]{1,4}?[\s\-()0-9]{6,}$/", $telnummer) ||
+            preg_match("/[\r\n]/", $telnummer)
+        )
+    ) {
         file_put_contents("log.txt", "Telefoon check failed: $telnummer\n", FILE_APPEND);
         exit("Ongeldig telefoonnummer.");
     }
+
 
     // Check voorwaarden value
     $voorwaarden = isset($_POST["voorwaarden"]) ? "Ja" : "Nee";
