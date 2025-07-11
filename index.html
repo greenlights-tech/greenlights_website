@@ -235,7 +235,7 @@
         </div>
     </div>
 
-    <!-- modal -->
+    <!-- Sol modal -->
     <div id="sol-modal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -269,6 +269,41 @@
                         data-sitekey="6LfVWn8rAAAAAJRHg_yYWP9c8wX_3Htkh6Dlfq2v"></div>
                     <br>
                     <input id="Sol-versturen" type="submit" value="Versturen">
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Opd Modal -->
+     <div id="opd-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">✖</span>
+                <h2>Invulformulier</h2>
+            </div>
+            <div class="modal-body">
+                <form class="opd-form" id="opdrachtgeverForm" method="post">
+                    <input type="text" id="voornaam" name="voornaam" maxlength="50" placeholder="Voornaam*"
+                        required><br>
+
+                    <input type="text" id="achternaam" name="achternaam" maxlength="50" placeholder="Achternaam*"
+                        required><br>
+
+                    <input type="email" id="email" name="email" placeholder="E-mailadres*" maxlength="50" required><br>
+
+                    <input type="tel" id="tel" name="tel" placeholder="Mobiele telefoonummer" maxlength="12"><br>
+
+                    <textarea id="opmerkingen" name="opmerkingen" class="big-textbox" placeholder="Opmerkingen..."
+                        maxlength="400"></textarea><br>
+
+                    <label>
+                        <input type="checkbox" id="voorwaarden" name="voorwaarden" value="voorwaarden" required>
+                        Ik ga akkoord met de <a href="./privacyverklaring.html" target="_blank">privacy
+                                verklaring</a> van Greenlights*
+                    </label><br>
+                    <div class="g-recaptcha" data-sitekey="6LfVWn8rAAAAAJRHg_yYWP9c8wX_3Htkh6Dlfq2v"></div>
+                    <br>
+                    <input id="opd-versturen" type="submit" value="Versturen">
                 </form>
             </div>
         </div>
