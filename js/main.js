@@ -182,26 +182,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         mouseDownOutside = false;
     }
-    document.getElementById("sol-form").addEventListener("submit", function (e) {
-        e.preventDefault(); // prevent normal form submission
-
-        var formData = new FormData(this);
-
-        fetch("sendemail.php", {
-            method: "POST",
-            body: formData
-        })
-            .then(response => response.text())
-            .then(data => {
-                // Show a popup or message based on response
-                alert(data);
-                document.getElementById("sol-form").reset(); // reset form if needed
-            })
-            .catch(error => {
-                alert("Oops — something went wrong.");
-                console.error(error);
-            });
-    });
+    
     // URL management functions
     //     function changeUrl(path) {
     //         history.pushState(null, '', path);

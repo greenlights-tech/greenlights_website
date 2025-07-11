@@ -113,7 +113,7 @@ body {
 
 .left {
     left: 0;
-    background-image: url("./images/background2.jpg");
+    background-image: url("/images/background2.jpg");
     background-color: rgb(230, 230, 230);
     background-size: auto 100%;
     background-repeat: no-repeat;
@@ -129,7 +129,7 @@ body {
 
 .right {
     right: 0;
-    background-image: url("./images/background4.jpg");
+    background-image: url("/images/background4.jpg");
     background-color: rgb(43, 53, 75);
     background-size: auto 100%;
     background-repeat: no-repeat;
@@ -301,7 +301,7 @@ body {
             rgb(226, 226, 226) 0%,
             rgba(226, 226, 226, 1) 45%,
             rgba(226, 226, 226, 0.5) 75%),
-        url("./images/background1.jpg");
+        url("/images/background1.jpg");
     background-repeat: no-repeat, no-repeat, no-repeat;
     background-size: cover, 100% 100%, cover;
     background-position: center center, left top, right top;
@@ -320,7 +320,7 @@ body {
             rgba(32, 38, 51, 0.9) 0%,
             rgba(32, 38, 51, 1) 45%,
             rgba(32, 38, 51, 1) 75%),
-        url("./images/background5.jpg");
+        url("/images/background5.jpg");
     background-repeat: no-repeat, no-repeat, no-repeat;
     background-size: cover, 100% 100%, cover;
     background-position: center center, left top, right top;
@@ -357,7 +357,7 @@ body {
             rgb(226, 226, 226) 0%,
             rgba(226, 226, 226, 1) 45%,
             rgba(226, 226, 226, 0.5) 75%),
-        url("./images/background1.jpg");
+        url("/images/background1.jpg");
     background-repeat: no-repeat, no-repeat, no-repeat;
     background-size: cover, 100% 100%, cover;
     background-position: center center, left top, right top;
@@ -378,7 +378,7 @@ body {
             rgba(32, 38, 51, 0.95) 0%,
             rgba(32, 38, 51, 0.95) 45%,
             rgba(32, 38, 51, 1) 75%),
-        url("./images/background3.jpg");
+        url("/images/background3.jpg");
     background-repeat: no-repeat, no-repeat, no-repeat;
     background-size: cover, 100% 100%, cover;
     background-position: center center, left top, right top;
@@ -963,7 +963,7 @@ body {
                 rgb(226, 226, 226, 0.6) 0%,
                 rgba(226, 226, 226, 0.6) 45%,
                 rgba(226, 226, 226, 0.6) 75%),
-            url("./images/background1.jpg");
+            url("/images/background1.jpg");
     }
 
     .opd-container {
@@ -977,7 +977,7 @@ body {
                 rgba(32, 38, 51, 0.95) 0%,
                 rgba(32, 38, 51, 0.95) 45%,
                 rgba(32, 38, 51, 0.95) 75%),
-            url("./images/background5.jpg");
+            url("/images/background5.jpg");
     }
 
 
