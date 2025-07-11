@@ -2,7 +2,7 @@
 file_put_contents("log.txt", "Request received\n", FILE_APPEND);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $to = "info@greenlights.tech";
+    $to = "c.nanninga@qquest.nl";
 
     // Check required fields
     if (
