@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Verify reCAPTCHA with Google
-    $recaptcha_secret = '6LfVWn8rAAAAAK45Zkx9iBPq2Ytl9YM04d1kAXwf';
+    $recaptcha_secret = '6LfVWn8rAAAAAK45Zkx9iBPq2Ytl9YM04d1kAXwf'; // moet in een .env document komen die niet op git gepushed wordt!!!!!! <-----------------
     $recaptcha_response = $_POST['g-recaptcha-response'];
 
     $verify_response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$recaptcha_secret}&response={$recaptcha_response}");
