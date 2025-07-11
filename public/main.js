@@ -19,9 +19,6 @@
             document.querySelector('.opd-page').classList.remove('active');
         });
 
-        // 27-06-2025 | Mark K. | Event listener aangemaakt
-        document.getElementById('sollicitatieForm').addEventListener('submit', sendSollicitatieDataToServer);
-
         // Animation for sections when they come into view
         const sections = document.querySelectorAll('.section-title, .section-content, .btn2');
 
