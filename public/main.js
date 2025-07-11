@@ -98,37 +98,5 @@
             }
         });
     });
-
-    // 27-06-2025 | Mark K. | Verzending van from data naar server.js
-    const isLocal = ['localhost', '127.0.0.1'].includes(window.location.hostname);
-
-    const API_URL = isLocal
-        ? 'http://localhost:5000'
-        : 'https://greenlights.tech'
-    ;
-
-    async function sendSollicitatieDataToServer(e) {
-        e.preventDefault();
-
-        const sollicitatieFromData = new FormData(e.target);
-
-        try {
-            const response = await fetch(`${API_URL}/submit`, {
-                method: 'POST',
-                body: sollicitatieFromData,
-            });
-
-            if (!response.ok) {
-                throw new Error(`Server error: ${response.status}`);
-            }
-
-            const result = await response.json();
-            console.log(result);
-        } catch (err) {
-            console.error('Fout bij verzenden:', err);
-        }
-
-    };
-
 })(window, document);
 
