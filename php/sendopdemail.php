@@ -2,7 +2,7 @@
 file_put_contents("log.txt", "Request received\n", FILE_APPEND);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $to = "c.nanninga@qquest.nl";
+    $to = "info@greenlights.tech";
 
     // Check required fields
     if (
@@ -15,22 +15,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Check if reCAPTCHA response exists
-    if (empty($_POST["g-recaptcha-response"])) {
-        file_put_contents("log.txt", "No reCAPTCHA response received\n", FILE_APPEND);
-        exit("Bevestig dat je geen robot bent.");
-    }
+    // if (empty($_POST["g-recaptcha-response"])) {
+    //     file_put_contents("log.txt", "No reCAPTCHA response received\n", FILE_APPEND);
+    //     exit("Bevestig dat je geen robot bent.");
+    // }
 
     // Verify reCAPTCHA with Google
-    $recaptcha_secret = '6LfVWn8rAAAAAK45Zkx9iBPq2Ytl9YM04d1kAXwf';
-    $recaptcha_response = $_POST['g-recaptcha-response'];
+    // $recaptcha_secret = '6LfVWn8rAAAAAK45Zkx9iBPq2Ytl9YM04d1kAXwf';
+    // $recaptcha_response = $_POST['g-recaptcha-response'];
 
-    $verify_response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$recaptcha_secret}&response={$recaptcha_response}");
-    $captcha_success = json_decode($verify_response);
+    // $verify_response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$recaptcha_secret}&response={$recaptcha_response}");
+    // $captcha_success = json_decode($verify_response);
 
-    if (!$captcha_success->success) {
-        file_put_contents("log.txt", "reCAPTCHA verification failed\n", FILE_APPEND);
-        exit("Bevestiging mislukt. Probeer het opnieuw.");
-    }
+    // if (!$captcha_success->success) {
+    //     file_put_contents("log.txt", "reCAPTCHA verification failed\n", FILE_APPEND);
+    //     exit("Bevestiging mislukt. Probeer het opnieuw.");
+    // }
 
     // Sanitize and validate input
     $naam = strip_tags(trim($_POST["naam"]));
