@@ -21,13 +21,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // }
 
     // Verify reCAPTCHA with Google
-<<<<<<< HEAD
-    // $recaptcha_secret = '6LfVWn8rAAAAAK45Zkx9iBPq2Ytl9YM04d1kAXwf';
+    // $recaptcha_secret = '';
     // $recaptcha_response = $_POST['g-recaptcha-response'];
-=======
-    $recaptcha_secret = '6LfVWn8rAAAAAK45Zkx9iBPq2Ytl9YM04d1kAXwf'; // moet in een .env document komen die niet op git gepushed wordt!!!!!! <-----------------
-    $recaptcha_response = $_POST['g-recaptcha-response'];
->>>>>>> 7bc8708bff61159a4ae2ce67e57a046d5616cd0d
 
     // $verify_response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$recaptcha_secret}&response={$recaptcha_response}");
     // $captcha_success = json_decode($verify_response);
