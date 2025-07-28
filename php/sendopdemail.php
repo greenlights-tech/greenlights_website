@@ -72,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit("Ongeldig telefoonnummer.");
     }
 
-    if (!empty($opmerkingen) && !preg_match("/^[\p{L}\p{M}0-9\s.,!?:;\"'()\[\]\-\/\n]{1,400}*$/u", $opmerkingen)) {
+    if (!empty($opmerkingen) && !preg_match("/^[\p{L}\p{M}0-9\s.,!?:;\"'()\[\]\-\/\n]{1,400}$/u", $opmerkingen)) {
         file_put_contents("log.txt", "Opmerkingen check failed: $opmerkingen\n", FILE_APPEND);
         exit("Ongeldige opmerkingen.");
     }
@@ -92,7 +92,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $headers = [
     'From' => 'no-reply@greenlights.tech',
-    'Reply-To' => $email
+    'Reply-To' => $email,
+    'MIME-Version' => '1.0',
+    'Content-Type' => 'text/plain; charset=UTF-8',
+    'X-Mailer' => 'PHP/' . phpversion()
     ];
 
     $headers_string = "";
@@ -102,7 +105,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     // Send email
-    if (mail($to, $subject, $body, $headers)) {
+    if (mail($to, $subject, $body, $headers_string)) {
         file_put_contents("log.txt", "Email sent successfully\n", FILE_APPEND);
         echo "Verzonden!";
     } else {

@@ -89,10 +89,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $body .= "Telefoonnummer: $telnummer\n";
     $body .= "Akkoord met voorwaarden: $voorwaarden\n";
 
-    $headers = "From: no-reply@greenlights.tech\r\nReply-To: $email";
+    $headers = [
+    'From' => 'no-reply@greenlights.tech',
+    'Reply-To' => $email,
+    'MIME-Version' => '1.0',
+    'Content-Type' => 'text/plain; charset=UTF-8',
+    'X-Mailer' => 'PHP/' . phpversion()
+    ];
+
+    $headers_string = "";
+    foreach ($headers as $key => $value) {
+        $headers_string .= "$key: $value\r\n";
+    }
 
     // Send email
-    if (mail($to, $subject, $body, $headers)) {
+    if (mail($to, $subject, $body, $headers_string)) {
         log_with_timestamp("Email sent successfully");
         echo "Verzonden!";
     } else {

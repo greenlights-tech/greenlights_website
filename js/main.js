@@ -25,17 +25,6 @@ document.addEventListener('DOMContentLoaded', function () {
         changeUrl(originalUrl);
     });
 
-    // function sendEmail() {
-    //     var link = document.getElementById('Sol-versturen');
-    //     var voornaam = document.getElementById('voornaam').value;
-    //     var achternaam = document.getElementById('achternaam').value;
-    //     var message = "Hallo, ik ben " + voornaam + achternaam;
-    //     var email = "c.nanninga@qquest.nl";
-    //     var href = "mailto:" + email + "?subject=" + voornaam + achternaam + "&body=" + message;
-    //     console.log(href);
-    //     link.setAttribute("href", href);
-    // }
-
     // Intersection Observer for animations on sections
     const sections = document.querySelectorAll('.section-title, .section-content, .btn2');
 
@@ -62,50 +51,6 @@ document.addEventListener('DOMContentLoaded', function () {
         observer.observe(section);
     });
 
-    // Hamburger menu toggle
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.querySelector('.nav-links');
-    let isMenuOpen = false;
-
-    if (hamburger && navLinks) {
-        hamburger.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            isMenuOpen = !isMenuOpen;
-            navLinks.classList.toggle('active', isMenuOpen);
-            hamburger.classList.toggle('toggle', isMenuOpen);
-        });
-
-        document.addEventListener('click', (e) => {
-            if (isMenuOpen && !hamburger.contains(e.target) && !navLinks.contains(e.target)) {
-                isMenuOpen = false;
-                navLinks.classList.remove('active');
-                hamburger.classList.remove('toggle');
-                document.body.style.overflow = 'auto';
-            }
-        });
-
-        const navLinksElements = navLinks.querySelectorAll('a');
-        navLinksElements.forEach(link => {
-            link.addEventListener('click', () => {
-                if (window.innerWidth <= 768) {
-                    isMenuOpen = false;
-                    navLinks.classList.remove('active');
-                    hamburger.classList.remove('toggle');
-                    document.body.style.overflow = 'auto';
-                }
-            });
-        });
-
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 768 && isMenuOpen) {
-                isMenuOpen = false;
-                navLinks.classList.remove('active');
-                hamburger.classList.remove('toggle');
-                document.body.style.overflow = 'auto';
-            }
-        });
-    }
 
     // Modal handling
     var modal = document.getElementById("sol-modal");
@@ -175,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
         });
     }
-
+    // Opd Form
     const opdrachtgeverForm = document.getElementById("opdrachtgeverForm");
     if (opdrachtgeverForm) {
         opdrachtgeverForm.addEventListener("submit", function (e) {
@@ -198,24 +143,5 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
         });
     }
-
-    // URL management functions
-    //     function changeUrl(path) {
-    //         history.pushState(null, '', path);
-    //         updatePathDisplay();
-    //         window.dispatchEvent(new CustomEvent('urlchange', { detail: { path } }));
-    //     }
-
-    //     function updatePathDisplay() {
-    //         const urlElement = document.getElementById('urlDisplay');
-    //         if (urlElement) {
-    //             urlElement.textContent = window.location.href;
-    //         }
-    //     }
-
-    //     updatePathDisplay();
-    //     window.addEventListener('popstate', updatePathDisplay);
-
-    //     window.changeUrl = changeUrl;
 
 });
