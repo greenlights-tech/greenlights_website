@@ -20,7 +20,9 @@ function validateCvUpload(string $inputName = 'cv'): array|false {
     $fileSize = $_FILES[$inputName]['size'];
 
     // Sanitize bestandsnaam
-    $fileNameClean = preg_replace("/[^a-zA-Z0-9\-\_\.]/", "", basename($fileName));
+    $fileNameClean = basename($fileName);
+    $fileNameClean = str_replace(' ', '_', $fileNameClean);
+    $fileNameClean = preg_replace("/[^a-zA-Z0-9\-\_\.]/", "", $fileNameClean);
 
     // Check extensie
     $allowedExtensions = ['pdf'];
@@ -93,7 +95,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     log_with_timestamp("Sanitized values: $naam, $email, $telnummer");
 
     if ($cvFile === false) {
-        die("PDF bestand is ongeldig op niet geüpload.");
+        $cvFile = null;
     }
 
     // Validate email format
@@ -141,9 +143,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $message .= "Telefoonnummer: $telnummer\n";
     $message .= "Akkoord met voorwaarden: $voorwaarden\n";
 
-    $fileContent = chunk_split(base64_encode(file_get_contents($cvFile['tmp_path'])));
-    $fileName = $cvFile['original_name'];
-    $fileType = $cvFile['mime_type'];
+    if ($cvFile !== null) {
+        $fileContent = chunk_split(base64_encode(file_get_contents($cvFile['tmp_path'])));
+        $fileName = $cvFile['original_name'];
+        $fileType = $cvFile['mime_type'];
+    }
+
 
     $boundary = md5(time());
 
@@ -157,11 +162,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $body .= "Content-Transfer-Encoding: 7bit\r\n\r\n";
     $body .= $message . "\r\n";
 
-    $body .= "--{$boundary}\r\n";
-    $body .= "Content-Type: {$fileType}; name=\"{$fileName}\"\r\n";
-    $body .= "Content-Transfer-Encoding: base64\r\n";
-    $body .= "Content-Disposition: attachment; filename=\"{$fileName}\"\r\n\r\n";
-    $body .= $fileContent . "\r\n";
+    if ($cvFile !== null) {
+        $body .= "--{$boundary}\r\n";
+        $body .= "Content-Type: {$fileType}; name=\"{$fileName}\"\r\n";
+        $body .= "Content-Transfer-Encoding: base64\r\n";
+        $body .= "Content-Disposition: attachment; filename=\"{$fileName}\"\r\n\r\n";
+        $body .= $fileContent . "\r\n";
+    }
     $body .= "--{$boundary}--";
 
     if (mail($to, $subject, $body, $headers)) {
