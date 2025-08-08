@@ -1,10 +1,8 @@
-<!-- 
-To Do:
-- maak log ook voor pdf
--->
-
-
 <?php
+
+// To Do:
+// - voeg pdf toe aan log
+
 function log_with_timestamp($message) {
     $timestamp = date("Y-m-d H:i:s");
     file_put_contents("log.txt", "[$timestamp] $message\n", FILE_APPEND);
