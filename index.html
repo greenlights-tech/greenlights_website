@@ -243,7 +243,7 @@
                 <h2>Invulformulier</h2>
             </div>
             <div class="modal-body">
-                <form class="sol-form" id="sollicitatieForm" method="post">
+                <form class="sol-form" id="sollicitatieForm" method="post" enctype="multipart/form-data">
                     <input type="text" id="voornaam" name="voornaam" maxlength="50" placeholder="Voornaam*"
                         required><br>
 
@@ -254,11 +254,8 @@
 
                     <input type="tel" id="tel" name="tel" placeholder="Mobiel telefoonummer" maxlength="20"><br>
 
-                    <!-- <label for="cv"><b>Upload CV:</b></label>
-                    <input type="file" id="cv" name="cv" accept=".pdf" required><br>
-
-                    <label for="motivatie"><b>Upload motivatie:</b></label>
-                    <input type="file" id="motivatie" name="motivatie" accept=".pdf" required><br> -->
+                    <label for="cv"><b>Upload CV:</b></label>
+                    <input type="file" id="cv" name="cv" accept=".pdf"><br>
 
                     <label>
                         <input type="checkbox" id="voorwaarden" name="voorwaarden" value="voorwaarden" required>
