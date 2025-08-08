@@ -10,75 +10,7 @@
 </head>
 
 <body>
-    <!-- <div id="sol-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span class="close">✖</span>
-                <h2>Invulformulier</h2>
-            </div>
-            <div class="modal-body">
-                <form class="sol-form" action="sendemail.php" id="sollicitatieForm" method="post">
-                    <label for="voornaam"><b>Voornaam:*</b></label>
-                    <input type="text" id="voornaam" name="voornaam" maxlength="50" required><br>
 
-                    <label for="achternaam"><b>Achternaam:*</b></label>
-                    <input type="text" id="achternaam" name="achternaam" maxlength="50" required><br>
-
-                    <label for="email"><b>Emailadres:*</b></label>
-                    <input type="email" id="email" name="email" placeholder="voorbeeld@email.nl" maxlength="50" required><br>
-
-                    <label for="telnummer"><b>Mobiel telefoonnummer:</b></label>
-                    <input type="tel" id="tel" name="tel" placeholder="0612345678" maxlength="20"><br>
-
-                    <label for="cv"><b>Upload CV:</b></label>
-                    <input type="file" id="cv" name="cv" accept=".pdf" required><br>
-
-                    <label for="motivatie"><b>Upload motivatie:</b></label>
-                    <input type="file" id="motivatie" name="motivatie" accept=".pdf" required><br>
-
-                    <label>
-                        <input type="checkbox" id="voorwaarden" name="voorwaarden" value="voorwaarden" required>
-                        <b>Ik ga akkoord met de verwerking van mijn persoonsgegevens via een geautomatiseerd systeem ten
-                            behoeve van mijn sollicitatie</b>
-                    </label><br>
-
-                    <input id="Sol-versturen" type="submit" value="Versturen">
-                </form>
-            </div>
-        </div>
-    </div>
-    <div id="opd-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span class="close">✖</span>
-                <h2>Invulformulier</h2>
-            </div>
-            <div class="modal-body">
-                <form class="opd-form" action="/action_page.php" id="sollicitatieForm" method="post">
-                    <label for="bedrijfsnaam"><b>Bedrijfsnaam:</b></label>
-                    <input type="text" id="bedrijfsnaam" name="bedrijfsnaam" maxlength="50" required><br>
-
-                    <label for="voornaam"><b>Voornaam:</b></label>
-                    <input type="text" id="voornaam" name="voornaam" maxlength="50" required><br>
-
-                    <label for="achternaam"><b>Achternaam:</b></label>
-                    <input type="text" id="achternaam" name="achternaam" maxlength="50" required><br>
-
-                    <label for="email"><b>Emailadres:</b></label>
-                    <input type="email" id="email" name="email" placeholder="voorbeeld@email.nl" maxlength="50"
-                        required><br>
-
-                    <label for="telnummer"><b>Mobiel telefoonnummer:</b></label>
-                    <input type="tel" id="tel" name="tel" placeholder="0612345678" maxlength="12"><br>
-
-                    <label for="opmerkingen"><b>Opmerkingen:</b></label>
-                    <textarea id="opmerkingen" name="opmerkingen" class="big-textbox" maxlength="200"></textarea><br>
-
-                    <input type="submit" value="Versturen">
-                </form>
-            </div>
-        </div>
-    </div> -->
     <a href="https://www.linkedin.com/company/greenlights-nl" style="text-decoration: none; color: inherit;">
         <div class="linkedin-logo"></div>
     </a>
@@ -159,19 +91,19 @@
 
                 <div class="sol-cta">
                     <div class="button-container">
-                        <b>Klaar voor jouw IT-start?</b>
+                        <b>Klaar voor je IT-start?</b>
                         <button id="sol-signup-button" class="sol-signup-button">
                             <span class="sol-signup-button-text">
-                                Meld je aan
+                                Ik doe mee!
                             </span>
                         </button>
                     </div>
                     <div class="button-container">
-                        <b>Meer informatie?</b>
+                        <b>Meer weten?</b>
                         <a href="./info.html" style="text-decoration: none; color: inherit;">
                             <button id="info-button" class="info-button">
                                 <span class="sol-signup-button-text">
-                                    Lees meer
+                                    Check de details
                                 </span>
                             </button>
                         </a>
@@ -205,27 +137,27 @@
                 <br><br>
                 <div class="checkmark"></div> Opdrachtgevers geven aan dat kandidaten sneller inzetbaar zijn
                 <br>
-                <div class="checkmark"></div> Selectie op basis van motivatie, leervermogen en cultuur
+                <div class="checkmark"></div>  Selectie op basis van motivatie, leervermogen en cultuur
                 <br>
-                <div class="checkmark"></div> Volledige begeleiding tot inzetbaarheid
+                <div class="checkmark"></div>  Volledige begeleiding tot inzetbaarheid
 
 
                 <br><br>
                 <div class="opd-cta">
                     <div class="button-container">
-                        <b>Nieuw IT-Talent nodig?</b>
+                        <b>Nieuw IT-talent nodig?</b>
                         <button id="opd-signup-button" class="opd-signup-button">
                             <span class="opd-signup-button-text">
-                                Plan een gesprek
+                                Neem contact op
                             </span>
                         </button>
                     </div>
                     <div class="button-container">
-                        <b>Meer informatie?</b>
+                        <b>Meer weten?</b>
                         <a href="./info.html" style="text-decoration: none; color: inherit;">
                             <button id="info-button" class="info-button">
                                 <span class="sol-signup-button-text">
-                                    Lees meer
+                                    Check de details
                                 </span>
                             </button>
                         </a>
@@ -243,14 +175,13 @@
                 <h2>Invulformulier</h2>
             </div>
             <div class="modal-body">
+                <form class="sol-form" id="sollicitatieForm" method="post">
+                    <input type="text" id="naam" name="naam" maxlength="100" placeholder="Naam*" required><br>
                 <form class="sol-form" id="sollicitatieForm" method="post" enctype="multipart/form-data">
                     <input type="text" id="voornaam" name="voornaam" maxlength="50" placeholder="Voornaam*"
                         required><br>
 
-                    <input type="text" id="achternaam" name="achternaam" maxlength="50" placeholder="Achternaam*"
-                        required><br>
-
-                    <input type="email" id="email" name="email" placeholder="E-mailadres*" maxlength="50" required><br>
+                    <input type="email" id="email" name="email" placeholder="E-mailadres*" maxlength="100" required><br>
 
                     <input type="tel" id="tel" name="tel" placeholder="Mobiel telefoonummer" maxlength="20"><br>
 
@@ -262,8 +193,8 @@
                         Ik ga akkoord met de <a href="./privacyverklaring.html" target="_blank">privacy
                             verklaring</a> van Greenlights*
                     </label><br>
-                    <div class="g-recaptcha" style="width: 100%;"
-                        data-sitekey="6LfVWn8rAAAAAJRHg_yYWP9c8wX_3Htkh6Dlfq2v"></div>
+                    <!-- <div class="g-recaptcha" style="width: 100%;"
+                        data-sitekey=""></div> -->
                     <br>
                     <input id="Sol-versturen" type="submit" value="Versturen">
                 </form>
@@ -280,7 +211,7 @@
             </div>
             <div class="modal-body">
                 <form class="opd-form" id="opdrachtgeverForm" method="post">
-                    <input type="text" id="naam" name="naam" maxlength="50" placeholder="Naam*" required><br>
+                    <input type="text" id="naam" name="naam" maxlength="100" placeholder="Naam*" required><br>
 
                     <input type="email" id="email" name="email" placeholder="E-mailadres*" maxlength="50" required><br>
 
@@ -294,7 +225,7 @@
                         Ik ga akkoord met de <a href="./privacyverklaring.html" target="_blank">privacy
                             verklaring</a> van Greenlights*
                     </label><br>
-                    <div class="g-recaptcha" data-sitekey="6LfVWn8rAAAAAJRHg_yYWP9c8wX_3Htkh6Dlfq2v"></div>
+                    <!-- <div class="g-recaptcha" data-sitekey=""></div> -->
                     <br>
                     <input id="opd-versturen" type="submit" value="Versturen">
                 </form>

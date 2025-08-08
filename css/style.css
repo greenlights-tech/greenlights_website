@@ -473,11 +473,10 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background-color: white; /* default overlay color */
+  background-color: white; 
   opacity: 1;
   transition: background-color 0.3s ease, transform 0.3s ease;
   pointer-events: none;
-
   -webkit-mask-image: url("https://www.pagetraffic.com/blog/wp-content/uploads/2022/09/linkedin-blue-logo-icon.png");
   mask-image: url("https://www.pagetraffic.com/blog/wp-content/uploads/2022/09/linkedin-blue-logo-icon.png");
   mask-size: cover;
@@ -491,7 +490,7 @@ body {
 }
 
 .linkedin-logo:hover::after {
-  background-color: var(--color-primary); /* change to your green color var */
+  background-color: var(--color-primary); 
 }
 
 .sol-cta,
@@ -519,7 +518,7 @@ body {
     width: 20%;
     text-align: center;
     color: var(--color-secondary);
-    font-size: 1.05rem;
+    font-size: 1.2rem;
     font-weight: 700;
     text-transform: uppercase;
     display: flex;
@@ -535,6 +534,8 @@ body {
 .info-button {
     background-color: rgb(0, 230, 104, 0);
     color: var(--color-primary);
+    height: 40px;
+    font-size: 1.05rem;
 }
 
 .sol-signup-button:after,
