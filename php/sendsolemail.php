@@ -1,7 +1,54 @@
+<!-- 
+To Do:
+- maak log ook voor pdf
+-->
+
+
 <?php
 function log_with_timestamp($message) {
     $timestamp = date("Y-m-d H:i:s");
     file_put_contents("log.txt", "[$timestamp] $message\n", FILE_APPEND);
+}
+
+function validateCvUpload(string $inputName = 'cv'): array|false {
+    if (!isset($_FILES[$inputName]) || $_FILES[$inputName]['error'] !== UPLOAD_ERR_OK) {
+        return false;
+    }
+
+    $fileTmpPath = $_FILES[$inputName]['tmp_name'];
+    $fileName = $_FILES[$inputName]['name'];
+    $fileSize = $_FILES[$inputName]['size'];
+
+    // Sanitize bestandsnaam
+    $fileNameClean = preg_replace("/[^a-zA-Z0-9\-\_\.]/", "", basename($fileName));
+
+    // Check extensie
+    $allowedExtensions = ['pdf'];
+    $fileExtension = strtolower(pathinfo($fileNameClean, PATHINFO_EXTENSION));
+    if (!in_array($fileExtension, $allowedExtensions)) {
+        return false;
+    }
+
+    // Check mime-type
+    $finfo = finfo_open(FILEINFO_MIME_TYPE);
+    $mimeType = finfo_file($finfo, $fileTmpPath);
+    finfo_close($finfo);
+    if ($mimeType !== 'application/pdf') {
+        return false;
+    }
+
+    // Check bestandsgrootte max 5MB
+    if ($fileSize > 5 * 1024 * 1024) {
+        return false;
+    }
+
+    // Alles ok, return de bestandsinfo als array
+    return [
+        'tmp_path' => $fileTmpPath,
+        'original_name' => $fileNameClean,
+        'size' => $fileSize,
+        'mime_type' => $mimeType
+    ];
 }
 
 log_with_timestamp("Request received");
@@ -37,12 +84,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //     exit("Bevestiging mislukt. Probeer het opnieuw.");
     // }
 
-    // Sanitize and validate input
+    // Sanitize and validate naam, email en tel
     $naam = strip_tags(trim($_POST["naam"]));
     $email = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
     $telnummer = isset($_POST["tel"]) ? strip_tags(trim($_POST["tel"])) : "";
+    $cvFile = validateCvUpload();
 
     log_with_timestamp("Sanitized values: $naam, $email, $telnummer");
+
+    if ($cvFile === false) {
+        die("PDF bestand is ongeldig op niet geüpload.");
+    }
 
     // Validate email format
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -84,26 +136,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Compose email
     $subject = "$naam wil solliciteren";
 
-    $body = "Naam: $naam\n";
-    $body .= "Email: $email\n";
-    $body .= "Telefoonnummer: $telnummer\n";
-    $body .= "Akkoord met voorwaarden: $voorwaarden\n";
+    $message = "Naam: $naam\n";
+    $message .= "Email: $email\n";
+    $message .= "Telefoonnummer: $telnummer\n";
+    $message .= "Akkoord met voorwaarden: $voorwaarden\n";
 
-    $headers = [
-    'From' => 'no-reply@greenlights.tech',
-    'Reply-To' => $email,
-    'MIME-Version' => '1.0',
-    'Content-Type' => 'text/plain; charset=UTF-8',
-    'X-Mailer' => 'PHP/' . phpversion()
-    ];
+    $fileContent = chunk_split(base64_encode(file_get_contents($cvFile['tmp_path'])));
+    $fileName = $cvFile['original_name'];
+    $fileType = $cvFile['mime_type'];
 
-    $headers_string = "";
-    foreach ($headers as $key => $value) {
-        $headers_string .= "$key: $value\r\n";
-    }
+    $boundary = md5(time());
 
-    // Send email
-    if (mail($to, $subject, $body, $headers_string)) {
+    $headers = "From: no-reply@greenlights.tech\r\n";
+    $headers .= "Reply-To: $email\r\n";
+    $headers .= "MIME-Version: 1.0\r\n";
+    $headers .= "Content-Type: multipart/mixed; boundary=\"{$boundary}\"\r\n\r\n";
+
+    $body = "--{$boundary}\r\n";
+    $body .= "Content-Type: text/plain; charset=UTF-8\r\n";
+    $body .= "Content-Transfer-Encoding: 7bit\r\n\r\n";
+    $body .= $message . "\r\n";
+
+    $body .= "--{$boundary}\r\n";
+    $body .= "Content-Type: {$fileType}; name=\"{$fileName}\"\r\n";
+    $body .= "Content-Transfer-Encoding: base64\r\n";
+    $body .= "Content-Disposition: attachment; filename=\"{$fileName}\"\r\n\r\n";
+    $body .= $fileContent . "\r\n";
+    $body .= "--{$boundary}--";
+
+    if (mail($to, $subject, $body, $headers)) {
         log_with_timestamp("Email sent successfully");
         echo "Verzonden!";
     } else {
