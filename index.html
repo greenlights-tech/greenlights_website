@@ -6,234 +6,287 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Greenlights</title>
     <link href="./css/style.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/blog.css">
     <link href="./images/Icon_only.svg" type="image/svg+xml" rel="icon">
 </head>
 
 <body>
+    <div id="section-container">
+        <header>
+            <a href="https://www.linkedin.com/company/greenlights-nl" style="text-decoration: none; color: inherit;">
+                <div class="linkedin-logo"></div>
+            </a>
+            <div class="logo-container">
+                <div class="title">
+                    <span class="letter">G</span>
+                    <span class="letter">r</span>
+                    <span class="letter">e</span>
+                    <span class="letter">e</span>
+                    <span class="letter">n</span>
+                    <span class="letter">l</span>
+                    <span class="letter">i</span>
+                    <span class="letter">g</span>
+                    <span class="letter">h</span>
+                    <span class="letter">t</span>
+                    <span class="letter">s</span>
+                </div>
+                <div class="tagline">Slimme instroom, blijvend resultaat</div>
+            </div>
 
-    <a href="https://www.linkedin.com/company/greenlights-nl" style="text-decoration: none; color: inherit;">
-        <div class="linkedin-logo"></div>
-    </a>
-    <div class="logo-container">
-        <div class="title">
-            <span class="letter">G</span>
-            <span class="letter">r</span>
-            <span class="letter">e</span>
-            <span class="letter">e</span>
-            <span class="letter">n</span>
-            <span class="letter">l</span>
-            <span class="letter">i</span>
-            <span class="letter">g</span>
-            <span class="letter">h</span>
-            <span class="letter">t</span>
-            <span class="letter">s</span>
-        </div>
-        <div class="tagline">Slimme instroom, blijvend resultaat</div>
-    </div>
-
-    <button onclick="changeUrl('/solliciteren')" id="openSolli" class="split left">
-        <div class="centered">
-            <div class="centered-text">
-                <div class="arrow-container">
-                    <div class="arrow">
-                        <span></span>
-                        <span></span>
-                        <span></span>
+            <button onclick="changeUrl('/solliciteren')" id="openSolli" class="split left">
+                <div class="centered">
+                    <div class="centered-text">
+                        <div class="arrow-container">
+                            <div class="arrow">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+                        Solliciteer
                     </div>
                 </div>
-                Solliciteer
-            </div>
-        </div>
-    </button>
+            </button>
 
-    <button onclick="changeUrl('/opdrachtgever')" id="openOpdrachtgever" class="split right">
-        <div class="centered">
-            <div class="centered-text">
-                Opdrachtgever
-                <div class="arrow-container">
-                    <div class="arrow">
-                        <span></span>
-                        <span></span>
-                        <span></span>
+            <button onclick="changeUrl('/opdrachtgever')" id="openOpdrachtgever" class="split right">
+                <div class="centered">
+                    <div class="centered-text">
+                        Opdrachtgever
+                        <div class="arrow-container">
+                            <div class="arrow">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </button>
+            </button>
 
-    <div class="sol-page">
-        <div class="sol-home-button-container">
-            <div class="sol-home-button"></div>
-            <div class="sol-home-button"></div>
-        </div>
-        <div class="sol-container">
-            <div class="sol-title">
-                Onze belofte
-            </div>
-            <div class="sol-content">
-                Greenlights gelooft in de potentie van het individu. Wij bieden maatwerk en de juiste ondersteuning. De
-                belofte is helder: duurzame inzetbaarheid door begeleiding, feedback en ruimte om te groeien, zowel voor
-                starters en professionals met ervaring.
-                <br><br>
-                <b>Waarom Greenlights?</b>
-                <br>
-                De wereld veranderd in rap tempo. Organisaties worstelen met verloop en toekomstbestendige vaardigheden
-                van werknemers. Greenlights begeleid je met aandacht, biedt zelfinzicht en helpt de regie te nemen over
-                je loopbaan. Zo versterken we zowel het individu als de organisatie.
-                <br><br>
-                <div class="checkmark"></div> Deelnemers ervaren meer werkplezier na begeleiding via Greenlights
-                <br>
-                <div class="checkmark"></div> Greenlighters nemen sneller concrete vervolgstappen in hun loopbaan.
-                <br>
-                <div class="checkmark"></div> Samenwerkende organisaties ervaren minder ziekteverzuim en hoge
-                tevredenheid van medewerkers!
-                <br><br>
-
-                <div class="sol-cta">
-                    <div class="button-container">
-                        <b>Klaar voor je IT-start?</b>
-                        <button id="sol-signup-button" class="sol-signup-button">
-                            <span class="sol-signup-button-text">
-                                Ik doe mee!
-                            </span>
-                        </button>
-                    </div>
-                    <div class="button-container">
-                        <b>Meer weten?</b>
-                        <a href="./info.html" style="text-decoration: none; color: inherit;">
-                            <button id="info-button" class="info-button">
-                                <span class="sol-signup-button-text">
-                                    Check de details
-                                </span>
-                            </button>
-                        </a>
-                    </div>
+            <div class="sol-page">
+                <div class="sol-home-button-container">
+                    <div class="sol-home-button"></div>
+                    <div class="sol-home-button"></div>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="opd-page">
-        <div class="opd-home-button-container">
-            <div class="opd-home-button"></div>
-            <div class="opd-home-button"></div>
-        </div>
-        <div class="opd-container">
-            <div class="opd-title">
-                De belofte van Greenlights
-            </div>
-            <div class="opd-content">
-                Snel, passend IT-talent vinden, geselecteerd op motivatie, groei mind-set en passend bij uw
-                bedrijfscultuur. Kandidaten zijn opgeleid, specifiek voor uw behoefte en krijgen persoonlijke
-                begeleiding tot ze volledig meedraaien. Wij investeren in de toekomst van uw team, met intentie tot in
-                dienst treding.
-                <br><br>
-                <b>Waarom Greenlights nodig is</b>
-                <br>
-                Greenlights biedt het hoofd aan de hevige strijd om startend IT-talent te binden aan uw organisatie. In
-                het werkveld zien we dat men tegen dezelfde problemen aanloopt: generieke profielen, lange inwerktijd en
-                onvoldoende aansluiting op de praktijk. Wij leveren zorgvuldig geselecteerd talent. Een maatwerktraject,
-                afgestemd op uw opdracht!
-                <br><br>
-                <div class="checkmark"></div> Opdrachtgevers geven aan dat kandidaten sneller inzetbaar zijn
-                <br>
-                <div class="checkmark"></div> Selectie op basis van motivatie, leervermogen en cultuur
-                <br>
-                <div class="checkmark"></div> Volledige begeleiding tot inzetbaarheid
-
-
-                <br><br>
-                <div class="opd-cta">
-                    <div class="button-container">
-                        <b>Nieuw IT-talent nodig?</b>
-                        <button id="opd-signup-button" class="opd-signup-button">
-                            <span class="opd-signup-button-text">
-                                Neem contact op
-                            </span>
-                        </button>
+                <div class="sol-container">
+                    <div class="sol-title">
+                        Onze belofte
                     </div>
-                    <div class="button-container">
-                        <b>Meer weten?</b>
-                        <a href="./info.html" style="text-decoration: none; color: inherit;">
-                            <button id="info-button" class="info-button">
-                                <span class="sol-signup-button-text">
-                                    Check de details
-                                </span>
-                            </button>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Sol modal -->
-    <div id="sol-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span class="close">✖</span>
-                <h2>Invulformulier</h2>
-            </div>
-            <div class="modal-body">
-                    <form class="sol-form" id="sollicitatieForm" method="post" enctype="multipart/form-data">
-                        <input type="text" id="naam" name="naam" maxlength="50" placeholder="naam*"
-                            required><br>
-
-                        <input type="email" id="email" name="email" placeholder="E-mailadres*" maxlength="100"
-                            required><br>
-
-                        <input type="tel" id="tel" name="tel" placeholder="Mobiel telefoonummer" maxlength="20"><br>
-
-                        <label for="cv"><b>Upload CV:</b></label>
-                        <input type="file" id="cv" name="cv" accept=".pdf"><br>
-
-                        <label>
-                            <input type="checkbox" id="voorwaarden" name="voorwaarden" value="voorwaarden" required>
-                            Ik ga akkoord met de <a href="./privacyverklaring.html" target="_blank">privacy
-                                verklaring</a> van Greenlights*
-                        </label><br>
-                        <!-- <div class="g-recaptcha" style="width: 100%;"
-                        data-sitekey=""></div> -->
+                    <div class="sol-content">
+                        Greenlights gelooft in de potentie van het individu. Wij bieden maatwerk en de juiste
+                        ondersteuning. De
+                        belofte is helder: duurzame inzetbaarheid door begeleiding, feedback en ruimte om te groeien,
+                        zowel voor
+                        starters en professionals met ervaring.
+                        <br><br>
+                        <b>Waarom Greenlights?</b>
                         <br>
-                        <input id="Sol-versturen" type="submit" value="Versturen">
-                    </form>
+                        De wereld veranderd in rap tempo. Organisaties worstelen met verloop en toekomstbestendige
+                        vaardigheden
+                        van werknemers. Greenlights begeleid je met aandacht, biedt zelfinzicht en helpt de regie te
+                        nemen over
+                        je loopbaan. Zo versterken we zowel het individu als de organisatie.
+                        <br><br>
+                        <div class="checkmark"></div> Deelnemers ervaren meer werkplezier na begeleiding via Greenlights
+                        <br>
+                        <div class="checkmark"></div> Greenlighters nemen sneller concrete vervolgstappen in hun
+                        loopbaan.
+                        <br>
+                        <div class="checkmark"></div> Samenwerkende organisaties ervaren minder ziekteverzuim en hoge
+                        tevredenheid van medewerkers!
+                        <br><br>
+
+                        <div class="sol-cta">
+                            <div class="button-container">
+                                <b>Klaar voor je IT-start?</b>
+                                <button id="sol-signup-button" class="sol-signup-button">
+                                    <span class="sol-signup-button-text">
+                                        Ik doe mee!
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="button-container">
+                                <b>Meer weten?</b>
+                                <a href="./info.html" style="text-decoration: none; color: inherit;">
+                                    <button id="info-button" class="info-button">
+                                        <span class="sol-signup-button-text">
+                                            Check de details
+                                        </span>
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+
+            <div class="opd-page">
+                <div class="opd-home-button-container">
+                    <div class="opd-home-button"></div>
+                    <div class="opd-home-button"></div>
+                </div>
+                <div class="opd-container">
+                    <div class="opd-title">
+                        De belofte van Greenlights
+                    </div>
+                    <div class="opd-content">
+                        Snel, passend IT-talent vinden, geselecteerd op motivatie, groei mind-set en passend bij uw
+                        bedrijfscultuur. Kandidaten zijn opgeleid, specifiek voor uw behoefte en krijgen persoonlijke
+                        begeleiding tot ze volledig meedraaien. Wij investeren in de toekomst van uw team, met intentie
+                        tot in
+                        dienst treding.
+                        <br><br>
+                        <b>Waarom Greenlights nodig is</b>
+                        <br>
+                        Greenlights biedt het hoofd aan de hevige strijd om startend IT-talent te binden aan uw
+                        organisatie. In
+                        het werkveld zien we dat men tegen dezelfde problemen aanloopt: generieke profielen, lange
+                        inwerktijd en
+                        onvoldoende aansluiting op de praktijk. Wij leveren zorgvuldig geselecteerd talent. Een
+                        maatwerktraject,
+                        afgestemd op uw opdracht!
+                        <br><br>
+                        <div class="checkmark"></div> Opdrachtgevers geven aan dat kandidaten sneller inzetbaar zijn
+                        <br>
+                        <div class="checkmark"></div> Selectie op basis van motivatie, leervermogen en cultuur
+                        <br>
+                        <div class="checkmark"></div> Volledige begeleiding tot inzetbaarheid
+
+
+                        <br><br>
+                        <div class="opd-cta">
+                            <div class="button-container">
+                                <b>Nieuw IT-talent nodig?</b>
+                                <button id="opd-signup-button" class="opd-signup-button">
+                                    <span class="opd-signup-button-text">
+                                        Neem contact op
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="button-container">
+                                <b>Meer weten?</b>
+                                <a href="./info.html" style="text-decoration: none; color: inherit;">
+                                    <button id="info-button" class="info-button">
+                                        <span class="sol-signup-button-text">
+                                            Check de details
+                                        </span>
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sol modal -->
+            <div id="sol-modal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span class="close">✖</span>
+                        <h2>Invulformulier</h2>
+                    </div>
+                    <div class="modal-body">
+                        <form class="sol-form" id="sollicitatieForm" method="post" enctype="multipart/form-data">
+                            <input type="text" id="naam" name="naam" maxlength="50" placeholder="naam*" required><br>
+
+                            <input type="email" id="email" name="email" placeholder="E-mailadres*" maxlength="100"
+                                required><br>
+
+                            <input type="tel" id="tel" name="tel" placeholder="Mobiel telefoonummer" maxlength="20"><br>
+
+                            <label for="cv"><b>Upload CV:</b></label>
+                            <input type="file" id="cv" name="cv" accept=".pdf"><br>
+
+                            <label>
+                                <input type="checkbox" id="voorwaarden" name="voorwaarden" value="voorwaarden" required>
+                                Ik ga akkoord met de <a href="./privacyverklaring.html" target="_blank">privacy
+                                    verklaring</a> van Greenlights*
+                            </label><br>
+                            <!-- <div class="g-recaptcha" style="width: 100%;"
+                        data-sitekey=""></div> -->
+                            <br>
+                            <input id="Sol-versturen" type="submit" value="Versturen">
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Opd Modal -->
+            <div id="opd-modal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span class="close">✖</span>
+                        <h2>Invulformulier</h2>
+                    </div>
+                    <div class="modal-body">
+                        <form class="opd-form" id="opdrachtgeverForm" method="post">
+                            <input type="text" id="naam" name="naam" maxlength="100" placeholder="Naam*" required><br>
+
+                            <input type="email" id="email" name="email" placeholder="E-mailadres*" maxlength="50"
+                                required><br>
+
+                            <input type="tel" id="tel" name="tel" placeholder="Mobiele telefoonummer"
+                                maxlength="12"><br>
+
+                            <textarea id="opmerkingen" name="opmerkingen" class="big-textbox"
+                                placeholder="Opmerkingen..." maxlength="400"></textarea><br>
+
+                            <label>
+                                <input type="checkbox" id="voorwaarden" name="voorwaarden" value="voorwaarden" required>
+                                Ik ga akkoord met de <a href="./privacyverklaring.html" target="_blank">privacy
+                                    verklaring</a> van Greenlights*
+                            </label><br>
+                            <!-- <div class="g-recaptcha" data-sitekey=""></div> -->
+                            <br>
+                            <input id="opd-versturen" type="submit" value="Versturen">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <section>
+            <div class="blog-grid">
+                <h1>Blog</h1>
+                <div id="article1" class="grid-item">
+                    <img src="https://via.placeholder.com/220x180" alt="Artikel 1">
+                    <h2>Groene Innovaties</h2>
+                    <p>Ontdek hoe groene technologieën de wereld veranderen en duurzame oplossingen bieden voor de
+                        toekomst.</p>
+                    <div class="date">1 januari 2025</div>
+                </div>
+                <div id="article2" class="grid-item">
+                    <img src="https://via.placeholder.com/220x180" alt="Artikel 2">
+                    <h2>Tech Nieuws</h2>
+                    <p>Laatste updates over software, apps en gadgets die je dagelijks leven makkelijker maken.</p>
+                    <p>Laatste updates over software, apps en gadgets die je dagelijks leven makkelijker maken.</p>
+                    <p>Laatste updates over software, apps en gadgets die je dagelijks leven makkelijker maken.</p>
+                    <p>Laatste updates over software, apps en gadgets die je dagelijks leven makkelijker maken.</p>
+                    <p>Laatste updates over software, apps en gadgets die je dagelijks leven makkelijker maken.</p>
+                    <p>Laatste updates over software, apps en gadgets die je dagelijks leven makkelijker maken.</p>
+                    <div class="date">1 januari 2025</div>
+                </div>
+                <div id="article3" class="grid-item">
+                    <img src="https://via.placeholder.com/220x150" alt="Artikel 3">
+                    <h2>Design Trends</h2>
+                    <p>Inspiratie en tips voor modern web- en grafisch design, van kleurgebruik tot layout-technieken.</p>
+                    <p>Inspiratie en tips voor modern web- en grafisch design, van kleurgebruik tot layout-technieken.</p>
+                    <p>Inspiratie en tips voor modern web- en grafisch design, van kleurgebruik tot layout-technieken.</p>
+                    <p>Inspiratie en tips voor modern web- en grafisch design, van kleurgebruik tot layout-technieken.</p>
+                    <div class="date">1 januari 2025</div>
+                </div>
+                <div id="article4" class="grid-item">
+                    <img src="https://via.placeholder.com/220x130" alt="Artikel 4">
+                    <h2>Gezondheid & Lifestyle</h2>
+                    <p>Praktische adviezen en interessante weetjes om een gezondere en gebalanceerde levensstijl te
+                        leiden.</p>
+                    <div class="date">1 januari 2025</div>
+                </div>
+            </div>
+        </section>
     </div>
 
-    <!-- Opd Modal -->
-    <div id="opd-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span class="close">✖</span>
-                <h2>Invulformulier</h2>
-            </div>
-            <div class="modal-body">
-                <form class="opd-form" id="opdrachtgeverForm" method="post">
-                    <input type="text" id="naam" name="naam" maxlength="100" placeholder="Naam*" required><br>
-
-                    <input type="email" id="email" name="email" placeholder="E-mailadres*" maxlength="50" required><br>
-
-                    <input type="tel" id="tel" name="tel" placeholder="Mobiele telefoonummer" maxlength="12"><br>
-
-                    <textarea id="opmerkingen" name="opmerkingen" class="big-textbox" placeholder="Opmerkingen..."
-                        maxlength="400"></textarea><br>
-
-                    <label>
-                        <input type="checkbox" id="voorwaarden" name="voorwaarden" value="voorwaarden" required>
-                        Ik ga akkoord met de <a href="./privacyverklaring.html" target="_blank">privacy
-                            verklaring</a> van Greenlights*
-                    </label><br>
-                    <!-- <div class="g-recaptcha" data-sitekey=""></div> -->
-                    <br>
-                    <input id="opd-versturen" type="submit" value="Versturen">
-                </form>
-            </div>
-        </div>
-    </div>
-
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
     <script src="./js/main.js"></script>
-
 </body>
 
 </html>

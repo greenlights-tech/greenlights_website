@@ -25,10 +25,26 @@
 
 body {
     color: var(--color-secondary);
-    overflow-x: hidden;
     --sb-track-color: rgb(235, 235, 235);
     --sb-thumb-color: var(--color-primary);
     --sb-size: 14px;
+
+    overflow: auto;
+    -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+#section-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+header {
+    height: 100vh;
 }
 
 .logo-container {
@@ -206,8 +222,6 @@ body {
     opacity: 0;
     transition: opacity 2s;
 }
-
-
 
 .arrow span {
     display: block;
@@ -458,39 +472,39 @@ body {
 }
 
 .linkedin-logo {
-  width: 30px;
-  height: 30px;
-  background: url("https://www.pagetraffic.com/blog/wp-content/uploads/2022/09/linkedin-blue-logo-icon.png") no-repeat center / cover;
-  position: absolute;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  z-index: var(--z-logo);
-  right: 5vh;
-  bottom: 5vh;
+    width: 30px;
+    height: 30px;
+    background: url("https://www.pagetraffic.com/blog/wp-content/uploads/2022/09/linkedin-blue-logo-icon.png") no-repeat center / cover;
+    position: absolute;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    z-index: var(--z-logo);
+    right: 5vh;
+    bottom: 5vh;
 }
 
 .linkedin-logo::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-color: white; 
-  opacity: 1;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  pointer-events: none;
-  -webkit-mask-image: url("https://www.pagetraffic.com/blog/wp-content/uploads/2022/09/linkedin-blue-logo-icon.png");
-  mask-image: url("https://www.pagetraffic.com/blog/wp-content/uploads/2022/09/linkedin-blue-logo-icon.png");
-  mask-size: cover;
-  mask-repeat: no-repeat;
-  mask-position: center;
-  z-index: var(--z-logo);
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: white;
+    opacity: 1;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+    -webkit-mask-image: url("https://www.pagetraffic.com/blog/wp-content/uploads/2022/09/linkedin-blue-logo-icon.png");
+    mask-image: url("https://www.pagetraffic.com/blog/wp-content/uploads/2022/09/linkedin-blue-logo-icon.png");
+    mask-size: cover;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    z-index: var(--z-logo);
 }
 
 .linkedin-logo:hover {
-  transform: scale(1.1);
+    transform: scale(1.1);
 }
 
 .linkedin-logo:hover::after {
-  background-color: var(--color-primary); 
+    background-color: var(--color-primary);
 }
 
 .sol-cta,

@@ -1,0 +1,16 @@
+:root {
+    --color-primary: rgb(0, 230, 104);
+    --color-secondary: rgb(255, 255, 255);
+    --color-tertiary: rgb(0, 32, 96);
+    --color-gray-light: rgba(240, 240, 240, 0.7);
+}
+
+.blog-grid {
+    color: var(--color-tertiary);
+    background-color: var(--color-gray-light);
+}
+
+.grid-item img {
+    width: 150px;
+    height: 150px;
+}

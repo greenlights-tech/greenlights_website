@@ -144,4 +144,39 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    const blogGrid = document.querySelector('.blog-grid');
+    const msnry = new Masonry(blogGrid, {
+        itemSelector: '.grid-item',
+        columnWidth: 240,
+        gutter: 20,
+        fitWidth: true,
+    });
+
+
+    const GallaryModule = (function () {
+
+        const imageUrls = [
+            'https://images.unsplash.com/photo-1716743306215-741874df14b2?q=80&w=883&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        ];
+
+        function getRandomImage() {
+            const index = Math.floor(Math.random() * imageUrls.length);
+            return imageUrls[index];
+        }
+
+        function addImgToBlog(articleID) {
+            const container = document.getElementById(articleID);
+            let img = container.querySelector('img');
+            img.src = getRandomImage();
+            img.alt = `${articleID} picture`;
+        }
+
+
+        return { addImgToBlog };
+    })();
+
+    GallaryModule.addImgToBlog('article1');
+    GallaryModule.addImgToBlog('article2');
+    GallaryModule.addImgToBlog('article3');
+    GallaryModule.addImgToBlog('article4');
 });
