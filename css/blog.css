@@ -5,12 +5,93 @@
     --color-gray-light: rgba(240, 240, 240, 0.7);
 }
 
-.blog-grid {
+#blog {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    font-family: 'Montserrat', sans-serif;
     color: var(--color-tertiary);
-    background-color: var(--color-gray-light);
+    background: repeating-linear-gradient(23deg,
+            rgb(235, 235, 235) 0px,
+            rgb(235, 235, 235) 5px,
+            rgb(237, 237, 237) 6px,
+            rgb(237, 237, 237) 11px,
+            rgb(237, 237, 237) 12px),
+        linear-gradient(to right,
+            rgb(226, 226, 226) 0%,
+            rgba(226, 226, 226, 1) 45%,
+            rgba(226, 226, 226, 0.5) 75%),
+        url("/images/background1.jpg");
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-size: cover, 100% 100%, cover;
+    background-position: center center, left top, right top;
+    background-attachment: fixed, scroll, fixed;
+    background-blend-mode: overlay, normal, normal;
+}
+
+#blog h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 5vw;
+    font-weight: 600;
+    margin: 5vh;
+}
+
+.blog-grid {
+    width: 100%;
+    margin: 5vh;
+}
+
+.grid-item {
+    width: 240px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.grid-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
 .grid-item img {
-    width: 150px;
-    height: 150px;
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    height: 180px;
+    /* vaste hoogte, kan ook responsive */
+}
+
+.grid-item h3 {
+    font-size: 1.2rem;
+    margin: 0.5rem;
+}
+
+.grid-item p {
+    font-size: 0.95rem;
+    margin: 0.5rem;
+    line-height: 1.4;
+}
+
+.grid-item small {
+    display: block;
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    border-top: 1px solid #eee;
+}
+
+@media (max-width: 900px) {
+    .grid-item {
+        width: 45%;
+    }
+}
+
+@media (max-width: 600px) {
+    .grid-item {
+        width: 100%;
+    }
 }
