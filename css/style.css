@@ -40,34 +40,52 @@ body::-webkit-scrollbar {
 #section-container {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
 header {
-  height: 100vh;
+  width: 100%;
+  /* geen height: 100vh; zodat de header alleen de inhoud omvat */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .logo-container {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  gap: 1vh;
+  align-items: center;
   color: var(--color-secondary);
   text-align: center;
   justify-content: center;
+  width: 100%;
+  margin: 0 auto;
   pointer-events: none;
-  z-index: var(--z-logo);
   position: relative;
-  right: 60%;
-  margin-top: 1%;
+  top: 0; /* helemaal bovenaan */
+  left: 0;
+  background: rgb(32, 38, 51);
+  /* right: 60%; */
+  /* border-top: 1px solid var(--color-primary); */
+  /* box-shadow: 0 0 15px -5px var(--color-primary); */
+
+  /* ---- transitions toevoegen ---- */
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  pointer-events: auto;
+  z-index: var(--z-logo);
 }
 
 .title {
   display: flex;
   color: var(--color-primary);
-  font-size: 7vw;
-  font-family: "Funnel Display", sans-serif;
-  font-weight: 600;
+  font-size: 4rem;
+  /* font-family: "Funnel Display", sans-serif; */
+  font-family: "Overpass Mono", sans-serif;
+  font-weight: 400;
+  text-shadow: 0 0 6px var(--color-primary);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-top: 0.5rem;
 }
 
 .letter {
@@ -100,9 +118,27 @@ header {
   animation-delay: 0.45s;
 }
 
-.tagline {
+.tagline-container {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: center;
+  gap: 1vh;
+  width: 100%;
+  margin: 0 auto;
   color: var(--color-secondary);
-  font-size: 1.1vw;
+  text-align: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: var(--z-logo);
+  position: relative;
+  /* background-color: rgb(32, 38, 51); */
+  /* right: 60%; */
+  /* ---- transitions toevoegen ---- */
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  pointer-events: auto;
+  color: var(--color-secondary);
+  /* text-shadow: 0 0 3px var(--color-primary); */
   letter-spacing: 3px;
   opacity: 0;
   animation: fadeUpTagline 1s
@@ -122,22 +158,35 @@ header {
     forwards;
   animation-delay: 0.9s;
   transform: translateY(-30px);
-  font-family: "Roboto", sans-serif;
-  font-weight: 700;
-  text-transform: uppercase;
+
   padding: 5px;
-  border-radius: 3px;
-  background-color: var(--color-primary);
+  border-radius: 0;
+}
+
+.tagline {
+  /* font-family: "Roboto", sans-serif; */
+  font-family: "Overpass Mono", sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 1.1vw;
+  border: 1px solid var(--color-primary);
+  box-shadow: inset 0 0 15px -5px var(--color-primary),
+    /* naar binnen */ 0 0 15px -5px var(--color-primary);
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-bottom: 0.5rem;
+  background-color: transparent;
 }
 
 .split-container {
   display: flex;
-  position: fixed;
+  justify-content: center;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
-  z-index: var(--z-base);
+  /* height: 100vh; */
 }
 
 .split {
@@ -156,12 +205,12 @@ header {
   background-repeat: no-repeat;
   background-position: center;
   background-blend-mode: screen;
-  height: 100vh;
+  min-height: 90vh;
   color: var(--color-tertiary);
   transition: all 0.7s ease;
   display: flex;
   justify-content: flex-end;
-  border: none;
+  z-index: var(--z-base);
   /* box-shadow: 14px 2px 25px -8px rgba(0, 0, 0, 0.6) inset; */
 }
 
@@ -169,9 +218,9 @@ header {
   right: 0;
   background-image: url("/images/background4.jpg");
   /* background-color: rgb(43, 53, 75); */
-  background-color: rgb(27, 37, 58);
+  background-color: rgb(32, 38, 51, 0.8);
 
-  background-size: auto 100%;
+  background-size: auto 110%;
   background-repeat: no-repeat;
   background-position: center;
   background-blend-mode: overlay;
@@ -199,9 +248,9 @@ header {
 }
 
 .centered-text {
-  font-family: "Montserrat", sans-serif;
+  /* font-family: "Montserrat", sans-serif; */
   font-size: 5vw;
-  font-weight: 600;
+  font-weight: 400;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -212,22 +261,23 @@ header {
 
 .centered-hoofdtext {
   font-family: "Overpass Mono", sans-serif;
-  font-size: 3.5vw;
-  font-weight: 900;
+  font-size: 3rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
 }
 
 .centered-subtext {
   font-family: "Overpass Mono", sans-serif;
-  font-size: 1vw;
-  font-weight: 800;
+  font-size: 1.25rem;
+  font-weight: 500;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .highlight {
   font-weight: 900;
   color: #00e668;
+  text-shadow: 0 0 2px var(--color-primary);
 }
 
 .left:hover {
@@ -235,33 +285,19 @@ header {
   /* background-size: auto 115%; */
   background-size: auto 110%;
   background-color: rgb(199, 199, 199);
-  /* box-shadow: -14px 2px 25px -8px rgba(0, 0, 0, 0.4) inset; */
 }
 
 .right:hover {
   /* background-size: auto 115%; */
   flex: 1.1;
-  background-size: auto 110%;
+  background-size: auto 120%;
   /* background-color: rgb(27, 37, 58); */
-  background-color: rgb(43, 53, 75);
+  background-color: rgb(32, 38, 51, 0.8);
 }
 
 .left:hover ~ .right {
   box-shadow: inset 100px 0px 100px 0px rgba(0, 0, 0, 0.4);
 }
-
-/* .right:hover ~ .left {
-  box-shadow: inset -100px 0px 100px 0px #0000;
-  background-color: rgb(255, 255, 255);
-} */
-
-/* .left:hover .centered-text {
-  transform: translateX(5%);
-}
-
-.right:hover .centered-text {
-  transform: translateX(-5%);
-} */
 
 .arrow-container {
   position: relative;
@@ -316,6 +352,7 @@ header {
   border-right: 10px solid var(--color-secondary);
 }
 
+/* EINDE HOOFDPAGINA */
 .sol-page {
   position: fixed;
   top: 0;
@@ -1071,7 +1108,7 @@ header {
       url("/images/background5.jpg");
   }
 
-  .logo-container {
+  /* .logo-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1086,15 +1123,15 @@ header {
     top: 1%;
     left: 50%;
     transform: translateX(-50%);
-  }
+  } */
 
-  .title {
+  /* .title {
     font-size: 15vw;
   }
 
   .tagline {
     font-size: 2.6vw;
-  }
+  } */
 
   .info-back-arrow {
     margin-top: 35px;
