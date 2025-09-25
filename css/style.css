@@ -64,7 +64,7 @@ header {
   position: relative;
   top: 0; /* helemaal bovenaan */
   left: 0;
-  background: rgb(32, 38, 51);
+  background-color: rgba(37, 44, 59, 0.99);
   /* right: 60%; */
   /* border-top: 1px solid var(--color-primary); */
   /* box-shadow: 0 0 15px -5px var(--color-primary); */
@@ -85,7 +85,7 @@ header {
   text-shadow: 0 0 6px var(--color-primary);
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  margin-top: 0.5rem;
+  margin-top: 1rem;
 }
 
 .letter {
@@ -140,7 +140,7 @@ header {
   color: var(--color-secondary);
   /* text-shadow: 0 0 3px var(--color-primary); */
   letter-spacing: 3px;
-  opacity: 0;
+  /* opacity: 0; */
   animation: fadeUpTagline 1s
     linear(
       0,
@@ -176,7 +176,7 @@ header {
   padding-bottom: 0.5rem;
   padding-left: 1rem;
   padding-right: 1rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0rem;
   background-color: transparent;
 }
 
@@ -185,7 +185,10 @@ header {
   justify-content: center;
   top: 0;
   left: 0;
+  gap: 3rem;
   width: 100%;
+  padding: 3rem;
+  background-color: rgba(37, 44, 59, 0.99);
   /* height: 100vh; */
 }
 
@@ -199,36 +202,38 @@ header {
 
 .left {
   left: 0;
-  background-image: url("/images/background2.jpg");
-  background-color: rgb(230, 230, 230);
-  background-size: auto 100%;
+  background-image: url("/images/background6-kopie.jpg");
+  /* background-color: rgb(32, 38, 51); */
+  background-size: auto 105%;
   background-repeat: no-repeat;
   background-position: center;
-  background-blend-mode: screen;
-  min-height: 90vh;
-  color: var(--color-tertiary);
+  background-color: rgba(37, 44, 59, 0.99);
+  min-height: 70vh;
+  color: var(--color-secondary);
   transition: all 0.7s ease;
   display: flex;
   justify-content: flex-end;
   z-index: var(--z-base);
+  border: 1px solid transparent;
   /* box-shadow: 14px 2px 25px -8px rgba(0, 0, 0, 0.6) inset; */
 }
 
 .right {
   right: 0;
-  background-image: url("/images/background4.jpg");
+  background-image: url("/images/background7kopie.jpg");
   /* background-color: rgb(43, 53, 75); */
-  background-color: rgb(32, 38, 51, 0.8);
+  background-color: rgb(32, 38, 51, 0.99);
 
-  background-size: auto 110%;
+  background-size: auto 100%;
   background-repeat: no-repeat;
   background-position: center;
-  background-blend-mode: overlay;
+  /* background-blend-mode: overlay; */
   transition: all 0.7s ease;
   display: flex;
   justify-content: flex-end;
   border: none;
   color: var(--color-secondary);
+  border: 1px solid transparent;
 }
 
 .centered {
@@ -243,7 +248,7 @@ header {
   transform: translate(-50%, -50%);
   text-align: center;
   transition: all 0.7s ease;
-  background-color: rgb(0, 230, 104, 0);
+  /* background-color: rgb(0, 230, 104, 0); */
   animation: fadeIn 2.3s;
 }
 
@@ -283,21 +288,29 @@ header {
 .left:hover {
   flex: 1.1;
   /* background-size: auto 115%; */
-  background-size: auto 110%;
-  background-color: rgb(199, 199, 199);
+  background-size: auto 120%;
+  background-color: rgb(32, 38, 51, 0.8);
+  border: 1px solid var(--color-primary);
+  box-shadow: 0 0 15px -5px var(--color-primary);
 }
 
 .right:hover {
   /* background-size: auto 115%; */
   flex: 1.1;
-  background-size: auto 120%;
+  background-size: auto 115%;
   /* background-color: rgb(27, 37, 58); */
   background-color: rgb(32, 38, 51, 0.8);
+  border: 1px solid var(--color-primary);
+  box-shadow: 0 0 15px -5px var(--color-primary);
 }
 
 .left:hover ~ .right {
   box-shadow: inset 100px 0px 100px 0px rgba(0, 0, 0, 0.4);
 }
+
+/* .right:hover ~ .left {
+  box-shadow: inset 100px 0px 100px 0px rgba(0, 0, 0, 0.4);
+} */
 
 .arrow-container {
   position: relative;
@@ -320,8 +333,8 @@ header {
   display: block;
   width: 30px;
   height: 30px;
-  border-bottom: 10px solid var(--color-tertiary);
-  border-right: 10px solid var(--color-tertiary);
+  border-bottom: 10px solid var(--color-secondary);
+  border-right: 10px solid var(--color-secondary);
   transform: rotate(45deg);
   margin: -10px;
   transition: all 0.7s ease;
