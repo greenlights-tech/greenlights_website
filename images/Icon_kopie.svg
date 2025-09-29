@@ -21,7 +21,7 @@
 <feFuncA type="discrete" tableValues="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "/>
 </feComponentTransfer>
 <feComposite operator="in" in2="shape" in="coloredNoise1" result="noise1Clipped" />
-<feFlood flood-color="rgba(0, 0, 0, 0.25)" result="color1Flood" />
+<feFlood flood-color="rgb(0, 230, 104)" result="color1Flood" />
 <feComposite operator="in" in2="noise1Clipped" in="color1Flood" result="color1" />
 <feMerge result="effect1_noise_2019_122">
 <feMergeNode in="shape" />
@@ -37,7 +37,7 @@
 <feFuncA type="discrete" tableValues="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "/>
 </feComponentTransfer>
 <feComposite operator="in" in2="shape" in="coloredNoise1" result="noise1Clipped" />
-<feFlood flood-color="rgba(0, 0, 0, 0.25)" result="color1Flood" />
+<feFlood flood-color="rgb(0, 230, 104)" result="color1Flood" />
 <feComposite operator="in" in2="noise1Clipped" in="color1Flood" result="color1" />
 <feMerge result="effect1_noise_2019_122">
 <feMergeNode in="shape" />
@@ -53,7 +53,7 @@
 <feFuncA type="discrete" tableValues="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "/>
 </feComponentTransfer>
 <feComposite operator="in" in2="shape" in="coloredNoise1" result="noise1Clipped" />
-<feFlood flood-color="rgba(0, 0, 0, 0.25)" result="color1Flood" />
+<feFlood flood-color="#00941a" result="color1Flood" />
 <feComposite operator="in" in2="noise1Clipped" in="color1Flood" result="color1" />
 <feMerge result="effect1_noise_2019_122">
 <feMergeNode in="shape" />
@@ -69,7 +69,7 @@
 <feFuncA type="discrete" tableValues="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "/>
 </feComponentTransfer>
 <feComposite operator="in" in2="shape" in="coloredNoise1" result="noise1Clipped" />
-<feFlood flood-color="rgba(0, 0, 0, 0.25)" result="color1Flood" />
+<feFlood flood-color="#00b83e" result="color1Flood" />
 <feComposite operator="in" in2="noise1Clipped" in="color1Flood" result="color1" />
 <feMerge result="effect1_noise_2019_122">
 <feMergeNode in="shape" />
@@ -77,18 +77,18 @@
 </feMerge>
 </filter>
 <linearGradient id="paint0_linear_2019_122" x1="58.0579" y1="56.0041" x2="58.0579" y2="181.304" gradientUnits="userSpaceOnUse">
-<stop stop-color="#3B8558"/>
-<stop offset="1" stop-color="#007416"/>
+<stop stop-color=" #00d256"/>
+<stop offset="1" stop-color="#00c077"/>
 </linearGradient>
 <linearGradient id="paint1_linear_2019_122" x1="68.2533" y1="5.18281" x2="68.2533" y2="48.0068" gradientUnits="userSpaceOnUse">
-<stop stop-color="#3B8558"/>
+<stop stop-color="#00d256"/>
 </linearGradient>
 <linearGradient id="paint2_linear_2019_122" x1="106.204" y1="82.7122" x2="106.204" y2="208.012" gradientUnits="userSpaceOnUse">
-<stop stop-color="#007416"/>
-<stop offset="1" stop-color="#00450D"/>
+<stop stop-color="#00941a"/>
+<stop offset="1" stop-color="#006000"/>
 </linearGradient>
 <linearGradient id="paint3_linear_2019_122" x1="115.925" y1="33.4047" x2="115.925" y2="76.2286" gradientUnits="userSpaceOnUse">
-<stop stop-color="#007416"/>
+<stop stop-color="#00941a"/>
 </linearGradient>
 </defs>
 </svg>

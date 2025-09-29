@@ -8,6 +8,9 @@
   --color-primary: rgb(0, 230, 104);
   --color-secondary: rgb(255, 255, 255);
   --color-tertiary: rgb(0, 32, 96);
+  --color-primaryy: rgba(0, 230, 104, 0.455);
+  --color-primaryyy: rgb(0, 230, 104);
+  --color-primaryyyy: rgb(0, 73, 33);
 
   /* ===== Z-index scale ===== */
   --z-base: 0;
@@ -45,10 +48,49 @@ body::-webkit-scrollbar {
 
 header {
   width: 100%;
-  /* geen height: 100vh; zodat de header alleen de inhoud omvat */
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  justify-content: space-between;
+  padding-left: 3rem;
+  pointer-events: none;
+  background-color: rgba(37, 44, 59, 0.99);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  pointer-events: auto;
+  z-index: var(--z-logo);
+  /* border: 2px solid yellow; */
+}
+
+.icon-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* Lichtvlek op de "vloer" onder het icoon */
+.icon-wrapper::after {
+  content: "";
+  position: absolute;
+  bottom: -35px;
+  left: 0%;
+  transform: translateX(-50%) rotate(20deg);
+  width: 70px;
+  height: 30px;
+  background: radial-gradient(
+    ellipse at center,
+    rgb(0, 230, 104, 0.6) 0%,
+    rgba(0, 255, 136, 0.2) 60%,
+    transparent 100%
+  );
+  filter: blur(10px);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.icon-greenlights {
+  width: 60px;
+  height: 60px;
+  /* filter: drop-shadow(0 0 8px #00ff88) drop-shadow(0 0 16px #00ff88); */
+  /* border: 1px solid green; */
 }
 
 .logo-container {
@@ -58,17 +100,11 @@ header {
   color: var(--color-secondary);
   text-align: center;
   justify-content: center;
-  width: 100%;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   pointer-events: none;
-  position: relative;
-  top: 0; /* helemaal bovenaan */
+  /* position: relative; */
+  /* top: 0;
   left: 0;
-  background-color: rgba(37, 44, 59, 0.99);
-  /* right: 60%; */
-  /* border-top: 1px solid var(--color-primary); */
-  /* box-shadow: 0 0 15px -5px var(--color-primary); */
-
   /* ---- transitions toevoegen ---- */
   transition: box-shadow 0.3s ease, border-color 0.3s ease;
   pointer-events: auto;
@@ -78,8 +114,7 @@ header {
 .title {
   display: flex;
   color: var(--color-primary);
-  font-size: 4rem;
-  /* font-family: "Funnel Display", sans-serif; */
+  font-size: 3rem;
   font-family: "Overpass Mono", sans-serif;
   font-weight: 400;
   text-shadow: 0 0 6px var(--color-primary);
@@ -168,7 +203,7 @@ header {
   font-family: "Overpass Mono", sans-serif;
   font-weight: 500;
   text-transform: uppercase;
-  font-size: 1.1vw;
+  font-size: 0.75rem;
   border: 1px solid var(--color-primary);
   box-shadow: inset 0 0 15px -5px var(--color-primary),
     /* naar binnen */ 0 0 15px -5px var(--color-primary);
@@ -178,6 +213,10 @@ header {
   padding-right: 1rem;
   margin-bottom: 0rem;
   background-color: transparent;
+}
+
+.hamburger-menu {
+  padding-right: 3rem;
 }
 
 .split-container {
@@ -202,7 +241,7 @@ header {
 
 .left {
   left: 0;
-  background-image: url("/images/background6-kopie.jpg");
+  background-image: url("/images/background6.avif");
   /* background-color: rgb(32, 38, 51); */
   background-size: auto 105%;
   background-repeat: no-repeat;
@@ -220,7 +259,7 @@ header {
 
 .right {
   right: 0;
-  background-image: url("/images/background7kopie.jpg");
+  background-image: url("/images/background7.jpg");
   /* background-color: rgb(43, 53, 75); */
   background-color: rgb(32, 38, 51, 0.99);
 
