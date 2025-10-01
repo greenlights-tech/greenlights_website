@@ -325,19 +325,18 @@ header {
   background-repeat: no-repeat;
   background-position: center;
   background-color: rgba(37, 44, 59, 0.99);
+  background-size: auto 100%;
 }
 
 .left {
   background-image: url("/images/background6.avif");
   /* background-color: rgb(32, 38, 51); */
-  background-size: auto 100%;
+
   /* box-shadow: 14px 2px 25px -8px rgba(0, 0, 0, 0.6) inset; */
 }
 
 .right {
   background-image: url("/images/background7.jpg");
-  background-color: rgb(32, 38, 51, 0.99);
-  background-size: auto 100%;
 }
 
 .centered {
@@ -387,12 +386,6 @@ header {
   text-shadow: 0 0 2px var(--color-primary);
 }
 
-/* .left:hover,
-.right:hover {
-  border: 1px solid var(--color-primary);
-  box-shadow: 0 0 15px -5px var(--color-primary);
-} */
-
 .split-container-mobile-only {
   display: none;
 }
@@ -410,12 +403,14 @@ header {
   .mySwiper {
     --swiper-pagination-color: #00e668; /* actieve bolletjes */
   }
+  .split {
+    background-size: cover;
+  }
 }
 
-.split-container .swiper {
+/* .split-container .swiper {
   width: 100%;
-  padding: 2rem 0;
-}
+} */
 
 /* Zorg dat slides en buttons de juiste grootte krijgen binnen Swiper */
 .split-container-mobile-only .swiper-wrapper {
@@ -436,6 +431,12 @@ header {
   width: 100%;
   flex: 1 1 auto;
   min-height: 50vh;
+}
+
+.mySwiper .swiper-pagination {
+  position: static; /* haalt hem uit overlay */
+  margin-top: 10px; /* ruimte tussen afbeelding en bolletjes */
+  text-align: center;
 }
 
 /* Op grotere schermen: laat Swiper 2 slides zien (de breakpoints in JS doen het grootste werk) */
