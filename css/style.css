@@ -315,7 +315,7 @@ header {
   flex: 1;
   transition: all 0.7s ease;
   border: none;
-  cursor: pointer;
+  gap: 3rem;
   position: relative;
   border: 1px solid transparent;
   color: var(--color-secondary);
@@ -387,126 +387,71 @@ header {
   text-shadow: 0 0 2px var(--color-primary);
 }
 
-.left:hover,
+/* .left:hover,
 .right:hover {
   border: 1px solid var(--color-primary);
   box-shadow: 0 0 15px -5px var(--color-primary);
-}
-
-/* .right:hover ~ .left {
-  box-shadow: inset 100px 0px 100px 0px rgba(0, 0, 0, 0.4);
 } */
 
-.arrow-container {
-  position: relative;
-  width: 3vw;
-  height: 3vw;
-  overflow: visible;
+.split-container-mobile-only {
+  display: none;
 }
 
-.arrow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(90deg);
-  cursor: pointer;
-  opacity: 0;
-  transition: opacity 2s;
-}
-
-.arrow span {
-  display: block;
-  width: 1.75rem;
-  height: 1.75rem;
-  border-bottom: 0.5rem solid var(--color-secondary);
-  border-right: 0.5rem solid var(--color-secondary);
-  transform: rotate(45deg);
-  margin: -0.5rem;
-  transition: all 0.7s ease;
-  animation: arrows-animation 2s infinite;
-  animation-timing-function: linear;
-  opacity: 0;
-  font-size: var(--subh2-font-size);
-}
-
-.arrow span:nth-child(2) {
-  animation-delay: -0.3s;
-}
-
-.arrow span:nth-child(3) {
-  animation-delay: -0.6s;
-}
-
-.left:hover .arrow,
-.right:hover .arrow {
-  opacity: 1;
-}
-
-.right .arrow {
-  transform: translate(-50%, -50%) rotate(-90deg);
-}
-
-@media (max-width: 479px) {
+@media (max-width: 767px) {
   .split-container {
-    flex-direction: column;
-  }
-  .split {
-    min-height: 30vh;
-    background-size: cover;
-  }
-  .arrow-container,
-  .arrow,
-  .arrow span {
     display: none;
   }
-}
-
-/* Tablet */
-@media (min-width: 480px) and (max-width: 767px) {
-  .split-container {
-    flex-direction: column;
+  .split-container-mobile-only {
+    display: block;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+    background-color: rgba(37, 44, 59, 0.99);
   }
-  .split {
-    min-height: 40vh;
-    background-size: cover;
+  .mySwiper {
+    --swiper-pagination-color: #00e668; /* actieve bolletjes */
   }
 }
 
-/* Small Desktop */
-@media (min-width: 768px) and (max-width: 991px) {
+.split-container .swiper {
+  width: 100%;
+  padding: 2rem 0;
+}
+
+/* Zorg dat slides en buttons de juiste grootte krijgen binnen Swiper */
+.split-container-mobile-only .swiper-wrapper {
+  align-items: stretch; /* zorgt dat buttons dezelfde hoogte krijgen */
+}
+
+.split-container-mobile-only .swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  width: 75%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Zorg dat jouw .split button de volledige slide vult */
+.split-container-mobile-only .swiper-slide .split {
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 50vh;
+}
+
+/* Op grotere schermen: laat Swiper 2 slides zien (de breakpoints in JS doen het grootste werk) */
+@media (min-width: 768px) {
   .split-container {
     flex-direction: row;
-    gap: 2rem;
-  }
-  .split {
-    min-height: 60vh;
-    background-size: auto 100%;
-  }
-}
-
-/* Desktop */
-@media (min-width: 992px) and (max-width: 1279px) {
-  .split-container {
+    width: auto;
     gap: 3rem;
   }
   .split {
-    min-height: 70vh;
-    background-size: auto 100%;
+    cursor: pointer;
   }
-}
 
-/* Large Desktop */
-@media (min-width: 1280px) {
-  .split-container {
-    gap: 4rem;
+  .split-container-mobile-only {
+    display: none; /* Swiper weer uit */
   }
-  .split {
-    min-height: 70vh;
-    background-size: auto 100%;
-  }
-}
-
-@media (min-width: 768px) {
   .left:hover {
     flex: 1.1;
     background-size: auto 115%;

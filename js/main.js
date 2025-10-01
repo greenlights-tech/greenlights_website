@@ -10,6 +10,14 @@ document.addEventListener("DOMContentLoaded", function () {
     changeUrl("/sollicitatie");
   });
 
+  // Slides sollicitatie page in from left (mobile)
+  document
+    .getElementById("openSolliMobile")
+    .addEventListener("click", function () {
+      document.querySelector(".sol-page").classList.add("active");
+      changeUrl("/sollicitatie");
+    });
+
   document
     .querySelector(".sol-home-button-container")
     .addEventListener("click", function () {
@@ -20,6 +28,14 @@ document.addEventListener("DOMContentLoaded", function () {
   // Slides opdrachtgever page in from right
   document
     .getElementById("openOpdrachtgever")
+    .addEventListener("click", function () {
+      document.querySelector(".opd-page").classList.add("active");
+      changeUrl("/opdrachtgever");
+    });
+
+  // Slides opdrachtgever page in from right (mobile)
+  document
+    .getElementById("openOpdrachtgeverMobile")
     .addEventListener("click", function () {
       document.querySelector(".opd-page").classList.add("active");
       changeUrl("/opdrachtgever");
