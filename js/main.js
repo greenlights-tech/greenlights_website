@@ -10,6 +10,12 @@ document.addEventListener("DOMContentLoaded", function () {
     changeUrl("/sollicitatie");
   });
 
+  const menuToggle = document.querySelector(".menu-toggle");
+
+  menuToggle.addEventListener("click", () => {
+    menuToggle.classList.toggle("is-active");
+  });
+
   // Slides sollicitatie page in from left (mobile)
   document
     .getElementById("openSolliMobile")

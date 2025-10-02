@@ -21,168 +21,147 @@
 
   <body>
     <div id="section-container">
-      <header class="header">
-        <div class="icon-wrapper">
-          <img
-            src="./images/Icon_kopie.svg"
-            alt="Greenlights logo"
-            class="icon-greenlights"
-          />
-        </div>
-
-        <div class="logo-container">
-          <h1 class="logo">Greenlights</h1>
-          <div class="tagline-container">
-            <p class="tagline">Slimme instroom, blijvend resultaat</p>
+      <div class="homepage">
+        <header class="header">
+          <div class="logo-container">
+            <h1 class="logo">Greenlights</h1>
+            <div class="tagline-container">
+              <p class="tagline">Slimme instroom, blijvend resultaat</p>
+            </div>
           </div>
-        </div>
-        <div class="hamburger-menu">
-          <span>Menu</span>
-        </div>
-      </header>
+          <div class="menu-wrapper">
+            <button class="menu-toggle" aria-label="menu"></button>
+          </div>
+        </header>
 
-      <div class="split-container-mobile-only">
-        <div class="swiper mySwiper">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <div
-                onclick="changeUrl('/solliciteren')"
-                id="openSolliMobile"
-                class="split left"
-                aria-label="IT-talent — Ontdek opdrachten"
-              >
-                <div class="centered">
-                  <div class="centered-text">
-                    <div class="arrow-container">
-                      <div class="arrow">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                      </div>
+        <div class="split-container-mobile-only">
+          <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div
+                  onclick="changeUrl('/solliciteren')"
+                  id="openSolliMobile"
+                  class="split left"
+                  aria-label="IT-talent — Ontdek opdrachten"
+                >
+                  <div class="centered">
+                    <div class="centered-text">
+                      <h2 class="centered-hoofdtext">IT-talent</h2>
+                      <p class="centered-subtext">
+                        Ontdek <span class="highlight">opdrachten</span>
+                      </p>
                     </div>
-                    <h2 class="centered-hoofdtext">IT-talent</h2>
-                    <p class="centered-subtext">
-                      Ontdek <span class="highlight">opdrachten</span>
-                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="swiper-slide">
+                <div
+                  onclick="changeUrl('/opdrachtgever')"
+                  id="openOpdrachtgeverMobile"
+                  class="split right"
+                  aria-label="Talentzoeker — Ontdek trainees"
+                >
+                  <div class="centered">
+                    <div class="centered-text">
+                      <span class="centered-hoofdtext">Talentzoeker</span>
+                      <span class="centered-subtext">
+                        Ontdek <span class="highlight">trainees</span>
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div class="swiper-slide">
-              <div
-                onclick="changeUrl('/opdrachtgever')"
-                id="openOpdrachtgeverMobile"
-                class="split right"
-                aria-label="Talentzoeker — Ontdek trainees"
-              >
-                <div class="centered">
-                  <div class="centered-text">
-                    <div class="arrow-container">
-                      <div class="arrow">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                      </div>
-                    </div>
-                    <span class="centered-hoofdtext">Talentzoeker</span>
-                    <span class="centered-subtext">
-                      Ontdek <span class="highlight">trainees</span>
-                    </span>
+            <!-- optionele paginatie (bolletjes) -->
+            <div class="swiper-pagination" aria-hidden="true"></div>
+          </div>
+        </div>
+
+        <div class="split-container">
+          <button
+            onclick="changeUrl('/solliciteren')"
+            id="openSolli"
+            class="split left"
+          >
+            <div class="centered">
+              <div class="centered-text">
+                <div class="arrow-container">
+                  <div class="arrow">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                   </div>
                 </div>
+                <h2 class="centered-hoofdtext">IT-talent</h2>
+                <p class="centered-subtext">
+                  Ontdek <span class="highlight">opdrachten</span>
+                </p>
               </div>
             </div>
-          </div>
+          </button>
 
-          <!-- optionele paginatie (bolletjes) -->
-          <div class="swiper-pagination" aria-hidden="true"></div>
+          <button
+            onclick="changeUrl('/opdrachtgever')"
+            id="openOpdrachtgever"
+            class="split right"
+          >
+            <div class="centered">
+              <div class="centered-text">
+                <div class="arrow-container">
+                  <div class="arrow">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                </div>
+                <span class="centered-hoofdtext">Talentzoeker</span>
+                <span class="centered-subtext">
+                  Ontdek <span class="highlight">trainees</span></span
+                >
+              </div>
+            </div>
+          </button>
         </div>
-      </div>
 
-      <div class="split-container">
-        <button
-          onclick="changeUrl('/solliciteren')"
-          id="openSolli"
-          class="split left"
-        >
-          <div class="centered">
-            <div class="centered-text">
-              <div class="arrow-container">
-                <div class="arrow">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
-              </div>
-              <h2 class="centered-hoofdtext">IT-talent</h2>
-              <p class="centered-subtext">
-                Ontdek <span class="highlight">opdrachten</span>
-              </p>
-            </div>
-          </div>
-        </button>
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+        <script>
+          let swiper = null;
 
-        <button
-          onclick="changeUrl('/opdrachtgever')"
-          id="openOpdrachtgever"
-          class="split right"
-        >
-          <div class="centered">
-            <div class="centered-text">
-              <div class="arrow-container">
-                <div class="arrow">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
-              </div>
-              <span class="centered-hoofdtext">Talentzoeker</span>
-              <span class="centered-subtext">
-                Ontdek <span class="highlight">trainees</span></span
-              >
-            </div>
-          </div>
-        </button>
-      </div>
-
-      <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-      <script>
-        let swiper = null;
-
-        function initSwiper() {
-          if (window.innerWidth < 768 && !swiper) {
-            // alleen initialiseren als hij nog niet bestaat
-            swiper = new Swiper(".mySwiper", {
-              effect: "coverflow",
-              grabCursor: true,
-              centeredSlides: true,
-              slidesPerView: "auto",
-              coverflowEffect: {
-                rotate: 50,
-                stretch: 0,
-                depth: 100,
-                modifier: 1,
-                slideShadows: true,
-              },
-              pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-              },
-            });
-          } else if (window.innerWidth >= 768 && swiper) {
-            // Swiper weer uitschakelen als scherm breed wordt
-            swiper.destroy(true, true);
-            swiper = null;
+          function initSwiper() {
+            if (window.innerWidth < 768 && !swiper) {
+              swiper = new Swiper(".mySwiper", {
+                effect: "coverflow",
+                grabCursor: true,
+                centeredSlides: true,
+                slidesPerView: "auto",
+                coverflowEffect: {
+                  rotate: 50,
+                  stretch: 0,
+                  depth: 100,
+                  modifier: 1,
+                  slideShadows: true,
+                },
+                pagination: {
+                  el: ".swiper-pagination",
+                  clickable: true,
+                },
+              });
+            } else if (window.innerWidth >= 768 && swiper) {
+              // Swiper weer uitschakelen als scherm breed wordt
+              swiper.destroy(true, true);
+              swiper = null;
+            }
           }
-        }
 
-        // bij laden van de pagina
-        initSwiper();
+          // bij laden van de pagina
+          initSwiper();
 
-        // en bij resize checken
-        window.addEventListener("resize", initSwiper);
-      </script>
+          // en bij resize checken
+          window.addEventListener("resize", initSwiper);
+        </script>
+      </div>
 
       <div class="sol-page">
         <div class="sol-home-button-container">
@@ -430,12 +409,11 @@
         </div>
       </div>
 
-      <section id="blog">
+      <!-- <section id="blog">
         <h2>Blog</h2>
         <div class="blog-grid">
-          <!-- Dinamicly rendered by blogs.js -->
         </div>
-      </section>
+      </section> -->
     </div>
 
     <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>

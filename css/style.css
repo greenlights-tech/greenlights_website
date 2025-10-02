@@ -158,14 +158,15 @@ table {
 :root {
   /* ===== COLORS =====*/
   --color-primary: rgb(0, 230, 104);
+  --color-bg: rgba(37, 44, 59);
   --color-secondary: rgb(255, 255, 255);
   --color-tertiary: rgb(0, 32, 96);
   --color-primaryy: rgba(0, 230, 104, 0.455);
   --color-primaryyy: rgb(0, 230, 104);
   --color-primaryyyy: rgb(0, 73, 33);
 
-  /* ===== LETTERSIZE */
-  --logo-font-size: clamp(2.5rem, 4vw, 3.5rem);
+  /* ===== FONTSIZE */
+  --logo-font-size: clamp(2rem, 4vw, 3.5rem);
   --sublogo-font-size: clamp(0.75rem, 1vw, 0.875rem);
   --h2-font-size: clamp(1.75rem, 4vw, 2.75rem);
   --subh2-font-size: clamp(1rem, 4vw, 1.25rem);
@@ -193,7 +194,7 @@ body {
   --sb-thumb-color: var(--color-primary);
   --sb-size: 14px;
 
-  overflow: auto;
+  overflow: hidden;
   -ms-overflow-style: none;
 }
 
@@ -207,50 +208,25 @@ body::-webkit-scrollbar {
   justify-content: center;
 }
 
+.homepage {
+  height: 100svh; /* “small” viewport (stabiel, zonder UI balken) */
+  height: 100dvh;
+  background-color: var(--color-bg);
+}
+
 header {
   width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-  padding-left: 3rem;
+  justify-content: center;
   pointer-events: none;
-  background-color: rgba(37, 44, 59, 0.99);
+  position: relative;
+  background-color: rgba(37, 44, 59);
   transition: box-shadow 0.3s ease, border-color 0.3s ease;
   pointer-events: auto;
   z-index: var(--z-logo);
   /* border: 2px solid yellow; */
-}
-
-.icon-wrapper {
-  position: relative;
-  display: inline-block;
-}
-
-.icon-wrapper::after {
-  content: "";
-  position: absolute;
-  bottom: -40px;
-  left: 45%;
-  transform: translateX(-40%) rotate(30deg);
-  width: 70px;
-  height: 30px;
-  background: radial-gradient(
-    ellipse at center,
-    rgb(0, 230, 104, 0.6) 0%,
-    rgba(0, 255, 136, 0.2) 60%,
-    transparent 100%
-  );
-  filter: blur(10px);
-  z-index: -1;
-  pointer-events: none;
-}
-
-.icon-greenlights {
-  width: 60px;
-  height: 60px;
-  /* filter: drop-shadow(0 0 8px #00ff88) drop-shadow(0 0 16px #00ff88); */
-  /* border: 1px solid green; */
 }
 
 .logo-container {
@@ -275,7 +251,7 @@ header {
   text-shadow: 0 0 6px var(--color-primary);
   letter-spacing: clamp(0.05em, 0.1vw, 0.1em);
   text-transform: uppercase;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   margin-bottom: clamp(0.5rem, 2vw, 0.75rem);
 }
 
@@ -297,39 +273,90 @@ header {
   letter-spacing: clamp(0.05em, 0.15vw, 0.2em);
 }
 
-.hamburger-menu {
-  padding-right: 3rem;
+.menu-wrapper {
+  position: absolute;
+  right: clamp(0.75rem, 4vw, 3.5rem);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.menu-toggle {
+  position: relative;
+  display: block;
+  width: 24px;
+  height: 20px;
+  background: transparent;
+  border-top: 4px solid;
+  border-bottom: 4px solid;
+  color: white;
+  font-size: 0;
+  transition: all 0.25s ease-in-out;
+}
+
+.menu-toggle::before,
+.menu-toggle::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 4px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: currentColor;
+  transform: translate(-50%, -50%);
+  transition: transform 0.25s ease-in-out;
+}
+
+/* Hover-effect */
+.menu-toggle:hover {
+  color: var(--color-primary);
+}
+
+/* Active state (kruis) */
+.menu-toggle.is-active {
+  border-color: transparent;
+}
+
+.menu-toggle.is-active::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.menu-toggle.is-active::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* Algemene button-stijl */
+button {
+  border: none;
+  cursor: pointer;
+  outline: none;
 }
 
 .split-container {
   display: flex;
   justify-content: center;
-  gap: 3rem;
   width: 100%;
-  padding: 3rem;
-  background-color: rgba(37, 44, 59, 0.99);
+  padding: 3.5rem;
+  background-color: var(--color-bg);
   flex-wrap: nowrap;
 }
 
 .split {
   flex: 1;
-  transition: all 0.7s ease;
   border: none;
-  gap: 3rem;
   position: relative;
-  border: 1px solid transparent;
   color: var(--color-secondary);
   display: flex;
-  justify-content: flex-end;
-  min-height: 70vh;
+  justify-content: center;
   background-repeat: no-repeat;
   background-position: center;
-  background-color: rgba(37, 44, 59, 0.99);
-  background-size: auto 100%;
+  background-color: var(--color-bg);
+  background-size: cover;
+  aspect-ratio: 1 / 1; /* vierkant */
 }
 
 .left {
-  background-image: url("/images/background6.avif");
+  background-image: url("/images/background6.jpg");
   /* background-color: rgb(32, 38, 51); */
 
   /* box-shadow: 14px 2px 25px -8px rgba(0, 0, 0, 0.6) inset; */
@@ -341,27 +368,22 @@ header {
 
 .centered {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  inset: 0;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   text-align: center;
-  transition: all 0.7s ease;
+  /* transition: all 0.7s ease; */
   /* background-color: rgb(0, 230, 104, 0); */
-  animation: fadeIn 2.3s;
 }
 
 .centered-text {
   font-weight: 400;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+  text-align: center;
   gap: clamp(0.25rem, 2vw, 0.5rem);
-  position: relative;
   /* transition: transform 0.7s ease; */
 }
 
@@ -387,30 +409,19 @@ header {
 }
 
 .split-container-mobile-only {
+  display: block;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  background-color: var(--color-bg);
+  min-height: 30vh;
+}
+
+.split-container {
   display: none;
 }
-
-@media (max-width: 767px) {
-  .split-container {
-    display: none;
-  }
-  .split-container-mobile-only {
-    display: block;
-    padding-top: 2rem;
-    padding-bottom: 3rem;
-    background-color: rgba(37, 44, 59, 0.99);
-  }
-  .mySwiper {
-    --swiper-pagination-color: #00e668; /* actieve bolletjes */
-  }
-  .split {
-    background-size: cover;
-  }
+.mySwiper {
+  --swiper-pagination-color: #00e668; /* actieve bolletjes */
 }
-
-/* .split-container .swiper {
-  width: 100%;
-} */
 
 /* Zorg dat slides en buttons de juiste grootte krijgen binnen Swiper */
 .split-container-mobile-only .swiper-wrapper {
@@ -420,17 +431,17 @@ header {
 .split-container-mobile-only .swiper-slide {
   display: flex;
   justify-content: center;
-  align-items: stretch;
+  align-items: center;
   width: 75%;
   max-width: 100%;
-  box-sizing: border-box;
 }
 
 /* Zorg dat jouw .split button de volledige slide vult */
 .split-container-mobile-only .swiper-slide .split {
   width: 100%;
   flex: 1 1 auto;
-  min-height: 50vh;
+  aspect-ratio: 1 / 1; /* vierkant */
+  height: auto;
 }
 
 .mySwiper .swiper-pagination {
@@ -439,19 +450,32 @@ header {
   text-align: center;
 }
 
+@media (min-width: 480px) and (max-width: 767px) {
+  .split {
+    min-height: 40vh;
+  }
+}
+
 /* Op grotere schermen: laat Swiper 2 slides zien (de breakpoints in JS doen het grootste werk) */
 @media (min-width: 768px) {
   .split-container {
+    display: flex;
     flex-direction: row;
-    width: auto;
     gap: 3rem;
+    width: auto;
   }
   .split {
+    transition: all 0.7s ease;
     cursor: pointer;
+    background-size: auto 100%;
+    border: 1px solid var(--color-bg);
+    aspect-ratio: 16 / 9; /* of 4/3, 1/1, enz. */
+    width: 100%;
+    overflow: hidden;
   }
 
   .split-container-mobile-only {
-    display: none; /* Swiper weer uit */
+    display: none;
   }
   .left:hover {
     flex: 1.1;
@@ -471,6 +495,27 @@ header {
 
   .left:hover ~ .right {
     box-shadow: inset 100px 0px 100px 0px rgba(0, 0, 0, 0.4);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .split {
+    min-height: 50vh;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1279px) {
+  .split {
+    min-height: 60vh;
+  }
+}
+
+@media (min-width: 1280px) {
+  .split-container {
+    gap: 3.5rem;
+  }
+  .split {
+    min-height: 70vh;
   }
 }
 
