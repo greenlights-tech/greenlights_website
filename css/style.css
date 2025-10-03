@@ -181,6 +181,17 @@ table {
   --z-popup: 20;
 }
 
+::selection {
+  background-color: #00e668;
+  color: black;
+}
+
+/* Voor Firefox */
+::-moz-selection {
+  background-color: #00e668;
+  color: black;
+}
+
 /* ===== RESET & BASE STYLES ===== */
 * {
   margin: 0;
@@ -209,14 +220,30 @@ body::-webkit-scrollbar {
 }
 
 .homepage {
-  height: 100svh; /* “small” viewport (stabiel, zonder UI balken) */
+  height: 100svh;
   height: 100dvh;
   background-color: var(--color-bg);
+  /* overflow: hidden; */
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+  max-width: 100%;
 }
 
+/*
+  ========================================
+  Header section
+  ========================================
+*/
+
 header {
+  grid-area: header;
   width: 100%;
   display: flex;
+  flex: 0 0 auto;
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -226,7 +253,6 @@ header {
   transition: box-shadow 0.3s ease, border-color 0.3s ease;
   pointer-events: auto;
   z-index: var(--z-logo);
-  /* border: 2px solid yellow; */
 }
 
 .logo-container {
@@ -240,10 +266,12 @@ header {
   transition: box-shadow 0.3s ease, border-color 0.3s ease;
   pointer-events: auto;
   z-index: var(--z-logo);
+  width: auto;
 }
 
 .logo {
   display: flex;
+  position: relative;
   color: var(--color-primary);
   font-size: var(--logo-font-size);
   font-family: var(--font-primary);
@@ -251,8 +279,7 @@ header {
   text-shadow: 0 0 6px var(--color-primary);
   letter-spacing: clamp(0.05em, 0.1vw, 0.1em);
   text-transform: uppercase;
-  margin-top: 1.5rem;
-  margin-bottom: clamp(0.5rem, 2vw, 0.75rem);
+  /* padding-top: 1.5rem; */
 }
 
 .tagline {
@@ -268,26 +295,24 @@ header {
   padding-bottom: 0.5em;
   padding-left: 0.5em;
   padding-right: 0.5em;
-  margin-bottom: 0em;
   background-color: transparent;
   letter-spacing: clamp(0.05em, 0.15vw, 0.2em);
+  margin-top: clamp(0.75rem, 2vw, 1rem);
 }
 
 .menu-wrapper {
   position: absolute;
   right: clamp(0.75rem, 4vw, 3.5rem);
-  top: 50%;
-  transform: translateY(-50%);
 }
 
 .menu-toggle {
   position: relative;
   display: block;
-  width: 24px;
-  height: 20px;
+  width: clamp(24px, 4vw, 30px);
+  height: clamp(20px, 3vw, 26px);
   background: transparent;
-  border-top: 4px solid;
-  border-bottom: 4px solid;
+  border-top: 3px solid;
+  border-bottom: 3px solid;
   color: white;
   font-size: 0;
   transition: all 0.25s ease-in-out;
@@ -298,7 +323,7 @@ header {
   content: "";
   display: block;
   width: 100%;
-  height: 4px;
+  height: 2px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -332,31 +357,20 @@ button {
   outline: none;
 }
 
-.split-container {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  padding: 3.5rem;
-  background-color: var(--color-bg);
-  flex-wrap: nowrap;
+/*
+  ========================================
+  Main section
+  ========================================
+*/
+
+main {
+  grid-area: main;
 }
 
-.split {
-  flex: 1;
-  border: none;
-  position: relative;
-  color: var(--color-secondary);
-  display: flex;
-  justify-content: center;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color: var(--color-bg);
-  background-size: cover;
-  aspect-ratio: 1 / 1; /* vierkant */
-}
+/* Teasers universele instellingen */
 
 .left {
-  background-image: url("/images/background6.jpg");
+  background-image: url("/images/background6.avif");
   /* background-color: rgb(32, 38, 51); */
 
   /* box-shadow: 14px 2px 25px -8px rgba(0, 0, 0, 0.6) inset; */
@@ -408,10 +422,26 @@ button {
   text-shadow: 0 0 2px var(--color-primary);
 }
 
-.split-container-mobile-only {
+/* Teasers mobile/ tablet version */
+
+.teaser-mobile {
+  /* flex: 1 1 auto; */
+  border: none;
+  /* position: relative; */
+  color: var(--color-secondary);
+  display: flex;
+  justify-content: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: var(--color-bg);
+  background-size: cover;
+  aspect-ratio: 1 / 1;
+  border: 1px solid green;
+}
+
+.teasers-mobile-only {
   display: block;
   padding-top: 5rem;
-  padding-bottom: 5rem;
   background-color: var(--color-bg);
   min-height: 30vh;
 }
@@ -419,16 +449,16 @@ button {
 .split-container {
   display: none;
 }
+
 .mySwiper {
-  --swiper-pagination-color: #00e668; /* actieve bolletjes */
+  --swiper-pagination-color: #00e668;
 }
 
-/* Zorg dat slides en buttons de juiste grootte krijgen binnen Swiper */
-.split-container-mobile-only .swiper-wrapper {
-  align-items: stretch; /* zorgt dat buttons dezelfde hoogte krijgen */
+.teasers-container-mobile-only .swiper-wrapper {
+  align-items: stretch;
 }
 
-.split-container-mobile-only .swiper-slide {
+.teasers-container-mobile-only .swiper-slide {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -436,45 +466,83 @@ button {
   max-width: 100%;
 }
 
-/* Zorg dat jouw .split button de volledige slide vult */
-.split-container-mobile-only .swiper-slide .split {
+.teasers-container-mobile-only .swiper-slide .teaser-mobile {
   width: 100%;
   flex: 1 1 auto;
-  aspect-ratio: 1 / 1; /* vierkant */
+  aspect-ratio: 1 / 1;
   height: auto;
+  max-height: 40vh;
+  border: 1px solid yellow;
 }
 
 .mySwiper .swiper-pagination {
-  position: static; /* haalt hem uit overlay */
-  margin-top: 10px; /* ruimte tussen afbeelding en bolletjes */
+  position: static;
+  margin-top: 10px;
   text-align: center;
 }
 
-@media (min-width: 480px) and (max-width: 767px) {
+/* @media (min-width: 480px) and (max-width: 767px) {
   .split {
     min-height: 40vh;
   }
+} */
+
+@media (min-width: 800px) and (max-width: 991px) {
+  .teasers-container-mobile-only {
+    padding: 3.5rem;
+  }
+
+  .teasers-container-mobile-only .swiper-slide .teaser-mobile {
+    min-height: 30vh;
+    max-height: 30vh;
+  }
 }
 
-/* Op grotere schermen: laat Swiper 2 slides zien (de breakpoints in JS doen het grootste werk) */
-@media (min-width: 768px) {
+/* Teasers desktop version */
+
+@media (min-width: 992px) {
   .split-container {
     display: flex;
-    flex-direction: row;
-    gap: 3rem;
-    width: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3.5rem 5rem;
+    padding-bottom: 0rem;
+    background-color: var(--color-bg);
+    flex-wrap: nowrap;
+    border: 1px solid red;
+    max-height: 100%;
   }
-  .split {
+  .buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+    border: 1px solid orange;
+    width: 100%;
+  }
+  .teaser {
     transition: all 0.7s ease;
+    /* flex: 0 0 calc(50% - 1.75rem); */
+    flex: 1;
     cursor: pointer;
+    width: 100%;
     background-size: auto 100%;
     border: 1px solid var(--color-bg);
-    aspect-ratio: 16 / 9; /* of 4/3, 1/1, enz. */
-    width: 100%;
-    overflow: hidden;
+    min-height: 65vh;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: var(--color-bg);
+    color: var(--color-secondary);
+    display: flex;
+    justify-content: center;
+    border: 1px solid purple;
+    gap: 3.5rem;
+    max-width: 100%;
   }
 
-  .split-container-mobile-only {
+  .teasers-container-mobile-only {
     display: none;
   }
   .left:hover {
@@ -498,25 +566,23 @@ button {
   }
 }
 
-@media (min-width: 768px) and (max-width: 991px) {
-  .split {
-    min-height: 50vh;
-  }
-}
-
-@media (min-width: 992px) and (max-width: 1279px) {
-  .split {
-    min-height: 60vh;
-  }
-}
-
-@media (min-width: 1280px) {
+/* @media (min-width: 1280px) {
   .split-container {
-    gap: 3.5rem;
+    gap: 4rem;
   }
   .split {
-    min-height: 70vh;
+    max-height: 60vh;
   }
+} */
+
+/*
+  ========================================
+  Footer section
+  ========================================
+*/
+
+footer {
+  grid-area: footer;
 }
 
 /* EINDE HOOFDPAGINA */
