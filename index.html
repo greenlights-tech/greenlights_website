@@ -22,26 +22,33 @@
   <body>
     <div id="section-container">
       <div class="homepage">
-        <header>
+        <nav class="nav-container">
+          <div class="nav-left-placeholder"></div>
           <div class="logo-container">
             <h1 class="logo">Greenlights</h1>
-            <div class="tagline-container">
-              <p class="tagline">Slimme instroom, blijvend resultaat</p>
-            </div>
           </div>
           <div class="menu-wrapper">
             <button class="menu-toggle" aria-label="menu"></button>
           </div>
+        </nav>
+
+        <header>
+          <div class="left-placeholder"></div>
+          <div class="tagline-container">
+            <p class="tagline">Slimme instroom, blijvend resultaat</p>
+          </div>
+
+          <div class="right-placeholder"></div>
         </header>
         <main>
-          <div class="teasers-container-mobile-only">
+          <div class="teasers-container-swiper">
             <div class="swiper mySwiper">
               <div class="swiper-wrapper">
                 <div class="swiper-slide">
                   <div
                     onclick="changeUrl('/solliciteren')"
                     id="openSolliMobile"
-                    class="teaser-mobile left"
+                    class="teaser-swiper left"
                     aria-label="IT-talent — Ontdek opdrachten"
                   >
                     <div class="centered">
@@ -59,7 +66,7 @@
                   <div
                     onclick="changeUrl('/opdrachtgever')"
                     id="openOpdrachtgeverMobile"
-                    class="teaser-mobile right"
+                    class="teaser-swiper right"
                     aria-label="Talentzoeker — Ontdek trainees"
                   >
                     <div class="centered">
@@ -73,13 +80,11 @@
                   </div>
                 </div>
               </div>
-
-              <!-- optionele paginatie (bolletjes) -->
               <div class="swiper-pagination" aria-hidden="true"></div>
             </div>
           </div>
 
-          <div class="split-container">
+          <div class="teasers-container">
             <div class="buttons">
               <button
                 onclick="changeUrl('/solliciteren')"
@@ -112,41 +117,6 @@
               </button>
             </div>
           </div>
-
-          <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-          <script>
-            let swiper = null;
-
-            function initSwiper() {
-              if (window.innerWidth < 992 && !swiper) {
-                swiper = new Swiper(".mySwiper", {
-                  effect: "coverflow",
-                  grabCursor: true,
-                  centeredSlides: true,
-                  slidesPerView: "auto",
-                  coverflowEffect: {
-                    rotate: 50,
-                    stretch: 0,
-                    depth: 100,
-                    modifier: 1,
-                    slideShadows: true,
-                  },
-                  pagination: {
-                    el: ".swiper-pagination",
-                    clickable: true,
-                  },
-                });
-              } else if (window.innerWidth >= 992 && swiper) {
-                // Swiper weer uitschakelen als scherm breed wordt
-                swiper.destroy(true, true);
-                swiper = null;
-              }
-            }
-
-            initSwiper();
-
-            window.addEventListener("resize", initSwiper);
-          </script>
         </main>
         <footer>
           <div class="footer-content">
@@ -412,7 +382,40 @@
         </div>
       </section> -->
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+      let swiper = null;
 
+      function initSwiper() {
+        if (window.innerWidth < 992 && !swiper) {
+          swiper = new Swiper(".mySwiper", {
+            effect: "coverflow",
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: "auto",
+            coverflowEffect: {
+              rotate: 50,
+              stretch: 0,
+              depth: 100,
+              modifier: 1,
+              slideShadows: true,
+            },
+            pagination: {
+              el: ".swiper-pagination",
+              clickable: true,
+            },
+          });
+        } else if (window.innerWidth >= 992 && swiper) {
+          // Swiper weer uitschakelen als scherm breed wordt
+          swiper.destroy(true, true);
+          swiper = null;
+        }
+      }
+
+      initSwiper();
+
+      window.addEventListener("resize", initSwiper);
+    </script>
     <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
     <script src="./js/main.js" type="module"></script>
   </body>
