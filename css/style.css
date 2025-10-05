@@ -158,7 +158,8 @@ table {
 :root {
   /* ===== COLORS =====*/
   --color-primary: rgb(0, 230, 104);
-  --color-bg: rgba(37, 44, 59);
+  /* --color-bg: rgba(37, 44, 59); */
+  --color-bg: #323332;
   --color-secondary: rgb(255, 255, 255);
   --color-tertiary: rgb(0, 32, 96);
   --color-primaryy: rgba(0, 230, 104, 0.455);
@@ -170,6 +171,8 @@ table {
   --sublogo-font-size: clamp(0.75rem, 1vw, 0.875rem);
   --h2-font-size: clamp(1.75rem, 4vw, 2.75rem);
   --subh2-font-size: clamp(1rem, 4vw, 1.25rem);
+  --h3-font-size: clamp(1rem, 1vw, 1.25rem);
+  --nav-link-font-size: clamp(1rem, 1.5vw, 1rem);
 
   --font-primary: "Sanchez", "Manrope", "Gill Sans MT", sans-serif;
   --font-secondary: "Manrope", "Gill Sans MT", sans-serif;
@@ -199,6 +202,39 @@ table {
   box-sizing: border-box;
 }
 
+html {
+  /* Houd ruimte vrij voor scrollbar, voorkomt verspringen bij scrollen */
+  scrollbar-gutter: auto;
+
+  /* Alleen voor Firefox */
+  scrollbar-color: rgb(16, 18, 24) var(--color-bg);
+  scrollbar-width: normal;
+}
+
+/* ===== Voor Chrome, Edge, Safari ===== */
+::-webkit-scrollbar {
+  width: 0.75rem; /* Breedte van de scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--color-bg); /* Achtergrondkleur van de scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #7a7a7a; /* De “duim” (het schuifgedeelte) */
+  border-radius: 6px; /* Afronding */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #7a7a7a; /* Optioneel: iets donkerder bij hover */
+}
+
+html,
+body {
+  height: 100%;
+  overflow-y: auto; /* Zorg dat verticaal scrollen aanstaat */
+}
+
 body {
   color: var(--color-secondary);
   --sb-track-color: rgb(235, 235, 235);
@@ -221,41 +257,37 @@ body {
 
 .homepage {
   background-color: var(--color-bg);
-  background-color: gray;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-areas:
-    "nav"
-    "header"
-    "main"
-    "footer";
+  /* background-color: green; */
+  display: flex;
+  flex-direction: column;
   max-width: 100%;
-  grid-template-rows: auto auto 1fr auto;
   min-height: 100vh;
+  /* overflow: hidden; */
 }
 
 /*
   ========================================
-  Navigation section
+  Header section
   ========================================
 */
 
-.nav-container {
-  grid-area: "nav";
+header {
+  position: relative;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: var(--color-bg);
   padding-top: 1.5rem;
+  margin-bottom: clamp(0.75rem, 2vw, 1rem);
 }
 
-.nav-left-placeholder {
+.left-placeholder {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .logo-container {
@@ -271,7 +303,7 @@ body {
   pointer-events: auto;
   /* z-index: var(--z-logo); */
   /* width: auto; */
-  border: 1px solid purple;
+  /* border: 1px solid purple; */
   /* padding-top: 1.5rem; */
 }
 
@@ -285,99 +317,44 @@ body {
   text-shadow: 0 0 6px var(--color-primary);
   letter-spacing: clamp(0.05em, 0.1vw, 0.1em);
   text-transform: uppercase;
-  border: 1px solid yellow;
+  /* border: 1px solid yellow; */
   /* padding-top: 1.5rem; */
 }
 
-.menu-wrapper {
-  display: flex;
-  align-items: center;
-  flex: 1;
-  justify-content: flex-end;
-  border: 1px solid red;
-  background-color: var(--color-bg);
-}
-
-.menu-toggle {
-  position: relative;
-  display: block;
-  width: clamp(24px, 4vw, 24px);
-  height: clamp(20px, 3vw, 20px);
-  background: transparent;
-  border-top: 3px solid;
-  border-bottom: 3px solid;
-  color: white;
-  font-size: 0;
-  transition: all 0.25s ease-in-out;
-  margin-right: 2rem;
-  /* border: 1px solid yellow; */
-}
-
-.menu-toggle::before,
-.menu-toggle::after {
-  content: "";
-  display: block;
-  width: 100%;
-  height: 2px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  background: currentColor;
-  transform: translate(-50%, -50%);
-  transition: transform 0.25s ease-in-out;
-}
-
-/* Hover-effect */
-.menu-toggle:hover {
-  color: var(--color-primary);
-}
-
-/* Active state (kruis) */
-.menu-toggle.is-active {
-  border-color: transparent;
-}
-
-.menu-toggle.is-active::before {
-  transform: translate(-50%, -50%) rotate(45deg);
-}
-
-.menu-toggle.is-active::after {
-  transform: translate(-50%, -50%) rotate(-45deg);
-}
-
-/* Algemene button-stijl */
-button {
-  border: none;
-  cursor: pointer;
-  outline: none;
-}
-
-/*
-  ========================================
-  Header section
-  ========================================
-*/
-
-header {
-  grid-area: "header";
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  pointer-events: none;
-  position: relative;
-  background-color: rgba(37, 44, 59);
-  transition: box-shadow 0.3s ease, border-color 0.3s ease;
-  pointer-events: auto;
-  z-index: var(--z-logo);
-  border: 1px solid red;
-}
-
-.left-placeholder {
+.right-placeholder {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
+  /* border: 1px solid red; */
+}
+
+/*
+  ========================================
+  Navigation section
+  ========================================
+*/
+
+.nav-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  pointer-events: none;
+  position: relative;
+  background-color: var(--color-bg);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  pointer-events: auto;
+  /* border: 1px solid red; */
+}
+
+.nav-left-placeholder {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* border: 1px solid red; */
 }
 
 .tagline-container {
@@ -385,7 +362,7 @@ header {
   align-items: center;
   flex: 1;
   justify-content: center;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   background-color: var(--color-bg);
 }
 
@@ -404,14 +381,264 @@ header {
   padding-right: 0.5em;
   background-color: transparent;
   letter-spacing: clamp(0.05em, 0.15vw, 0.2em);
-  margin-top: clamp(0.75rem, 2vw, 1rem);
+  /* margin-top: clamp(0.75rem, 2vw, 1rem); */
 }
 
-.right-placeholder {
-  flex: 1;
+.menu-container {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-end;
+  flex: 1;
+  justify-content: flex-end;
+  /* border: 1px solid red; */
+  background-color: var(--color-bg);
+  /* border: 1px solid red; */
+  /* margin-top: clamp(0.75rem, 2vw, 1rem); */
+}
+
+/* .menu-wrapper {
+  border: 1px solid yellow;
+} */
+
+.menu-toggle {
+  position: relative;
+  display: block;
+  width: clamp(24px, 4vw, 24px);
+  height: clamp(20px, 3vw, 20px);
+  background: transparent;
+  border-top: 3px solid;
+  border-bottom: 3px solid;
+  color: white;
+  font-size: 0;
+  transition: all 0.25s ease-in-out;
+  margin-right: 3rem;
+  z-index: 10;
+}
+
+.menu-toggle::before,
+.menu-toggle::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: currentColor;
+  transform: translate(-50%, -50%);
+  transform-origin: 0% 0%;
+
+  transition: transform 0.25s ease-in-out;
+}
+/* --- OPENEN MENU BIJ HOVER OF KLIK --- */
+/* Opent de mega-box bij hover op de wrapper OF als de JS-klasse 'open' is toegevoegd. */
+.menu-wrapper:hover .mega-box,
+.mega-box.open {
+  opacity: 1;
+  visibility: visible;
+  top: 0%;
+  transition: all 0.3s ease;
+}
+
+/* --- KRUISJE TONEN BIJ HOVER OF KLIK (.is-active) --- */
+
+/* Verbergt de top/bottom lijnen van de hamburger bij hover of klik */
+.menu-wrapper:hover .menu-toggle,
+.menu-toggle.is-active {
+  border-color: transparent;
+  color: var(--color-primary); /* Kleur van het kruisje/hamburger bij hover */
+}
+
+/* Transformatie naar kruisje bij hover of klik */
+.menu-wrapper:hover .menu-toggle::before,
+.menu-toggle.is-active::before {
+  transform: translate(-50%, 0) rotate(-45deg) scaleX(0.7);
+}
+
+.menu-wrapper:hover .menu-toggle::after,
+.menu-toggle.is-active::after {
+  transform: translate(-50%, 0) rotate(45deg) scaleX(0.7);
+}
+
+/* Zorgt ervoor dat de toggle ook kleur krijgt bij hover als deze NIET actief is */
+.menu-toggle:hover {
+  color: var(--color-primary);
+}
+
+/* Algemene button-stijl */
+button {
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.nav-container .mobile-item {
+  display: none;
+}
+
+.mega-box {
+  display: flex;
+  position: absolute;
+  left: 3rem;
+  right: 3rem;
+  top: 0%;
+  opacity: 0;
+  border: 1px solid var(--color-primary);
+  box-shadow: 0 0 15px -5px var(--color-primary);
+  visibility: hidden;
+  /* border: 1px solid yellow; */
+}
+
+.mega-box .content {
+  background: #242526;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  /* width: 100%; */
+  justify-content: space-between;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  /* border: 1px solid red; */
+  gap: 1rem;
+}
+.mega-box .content .row {
+  /* width: calc(25% - 30px); */
+  width: 100%;
+  flex: 1;
+
+  /* NIEUW: Maak dit element een flex-container */
+  display: flex;
+
+  /* NIEUW: Stapel de inhoud (header, ul, img) verticaal */
+  flex-direction: column;
+
+  /* Ruimte tussen de elementen in de kolom */
+  gap: 1rem;
+  /* border: 1px solid yellow; */
+}
+.content .row img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.content .row h3 {
+  font-size: var(--h3-font-size);
+  font-family: var(--font-secondary);
+  text-transform: uppercase;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.content .row .mega-links {
+  /* De lijst moet ook een flex-container zijn voor de verticale links */
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  font-size: var(--nav-link-font-size);
+  font-family: var(--font-secondary);
+}
+
+/* .content .row header {
+  color: #f2f2f2;
+  font-size: 20px;
+  font-weight: 500;
+} */
+.content .row .mega-links {
+  border-left: 1px solid rgba(255, 255, 255, 0.09);
+}
+/* .row .mega-links li {
+  padding: 0 20px;
+} */
+
+.row .mega-links li a {
+  color: white;
+  text-decoration: none;
+}
+.row .mega-links li a:hover {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+@media screen and (max-width: 970px) {
+  /* custom scroll bar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #242526;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #3a3b3c;
+  }
+  /* .menu-toggle {
+    display: none;
+  } */
+  .mobile-item {
+    display: block;
+    color: #f2f2f2;
+    font-size: 20px;
+    font-weight: 500;
+    padding-left: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+  }
+  .mobile-item:hover {
+    background: #3a3b3c;
+  }
+  /* .mega-box {
+    position: absolute;
+    top: 0;
+    opacity: 1;
+    visibility: visible;
+    max-height: 0px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    z-index: 1;
+  } */
+
+  /* .mega-box .content {
+    box-shadow: none;
+    flex-direction: column;
+    padding: 20px 20px 0 20px;
+  }
+  .mega-box .content .row {
+    width: 100%;
+    margin-bottom: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .mega-box .content .row:nth-child(1),
+  .mega-box .content .row:nth-child(2) {
+    border-top: 0px;
+  }
+  .content .row .mega-links {
+    border-left: 0px;
+    padding-left: 15px;
+  }
+  .row .mega-links li {
+    margin: 0;
+  }
+  .content .row header {
+    font-size: 19px;
+  } */
+}
+.nav-container input {
+  display: none;
+}
+
+/* .body-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+  padding: 0 30px;
+} */
+.body-text div {
+  font-size: 45px;
+  font-weight: 600;
 }
 
 /*
@@ -420,9 +647,9 @@ header {
   ========================================
 */
 
-main {
-  grid-area: "main";
+.homepage-main {
   /* overflow: hidden; */
+  flex: 1;
 }
 
 /* Teasers universele instellingen */
@@ -487,6 +714,7 @@ main {
 .teasers-container-swiper {
   display: block;
   padding-top: 4rem;
+  padding-bottom: 10rem;
   background-color: var(--color-bg);
   border: 1px solid white;
 }
@@ -660,8 +888,7 @@ main {
   ========================================
 */
 
-footer {
-  grid-area: "footer";
+/* footer {
   border: 1px solid yellow;
   width: 100%;
   display: flex;
@@ -680,7 +907,7 @@ footer {
   background-color: var(--color-bg);
   color: var(--color-secondary);
   text-align: center;
-}
+} */
 
 /* EINDE HOOFDPAGINA */
 .sol-page {
