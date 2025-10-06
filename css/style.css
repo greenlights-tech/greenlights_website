@@ -158,8 +158,11 @@ table {
 :root {
   /* ===== COLORS =====*/
   --color-primary: rgb(0, 230, 104);
-  /* --color-bg: rgba(37, 44, 59); */
-  --color-bg: #323332;
+  --color-bg: rgba(37, 44, 59);
+  --color-bg: #464545;
+  --color-bg: #444857;
+  --color-bg: #3e414e;
+  --color-menu: #444857;
   --color-secondary: rgb(255, 255, 255);
   --color-tertiary: rgb(0, 32, 96);
   --color-primaryy: rgba(0, 230, 104, 0.455);
@@ -280,6 +283,9 @@ header {
   background-color: var(--color-bg);
   padding-top: 1.5rem;
   margin-bottom: clamp(0.75rem, 2vw, 1rem);
+  /* box-shadow: inset 0px 18px 16px 0 rgba(0, 0, 0, 0.3); */
+  border-top: 1px solid var(--color-primary);
+  /* box-shadow: inset 0 0 15px -5px var(--color-primary); */
 }
 
 .left-placeholder {
@@ -339,13 +345,14 @@ header {
   position: relative;
   width: 100%;
   display: flex;
-  align-items: flex-start;
+  align-items: flex-end;
   justify-content: space-between;
   pointer-events: none;
   position: relative;
   background-color: var(--color-bg);
   transition: box-shadow 0.3s ease, border-color 0.3s ease;
   pointer-events: auto;
+  /* border-top: 1px solid var(--color-primary); */
   /* border: 1px solid red; */
 }
 
@@ -355,6 +362,16 @@ header {
   align-items: center;
   justify-content: center;
   /* border: 1px solid red; */
+}
+
+.sublogo-container {
+  display: flex;
+  position: relative;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  box-shadow: 0px 18px 16px 0 rgba(0, 0, 0, 0.3);
+  /* border: 1px solid var(--color-primary); */
+  /* box-shadow: inset 0px 18px 16px 0 rgba(0, 0, 0, 0.3); */
 }
 
 .tagline-container {
@@ -392,78 +409,53 @@ header {
   /* border: 1px solid red; */
   background-color: var(--color-bg);
   /* border: 1px solid red; */
+  margin-top: 0.5rem;
+  margin-right: 0.5rem;
+
   /* margin-top: clamp(0.75rem, 2vw, 1rem); */
 }
 
-/* .menu-wrapper {
-  border: 1px solid yellow;
-} */
+.menu-wrapper {
+  /* border: 1px solid yellow; */
+  margin-right: 3rem;
+}
 
 .menu-toggle {
   position: relative;
   display: block;
-  width: clamp(24px, 4vw, 24px);
-  height: clamp(20px, 3vw, 20px);
-  background: transparent;
-  border-top: 3px solid;
-  border-bottom: 3px solid;
+  width: 2.5rem; /* Bepaal de grootte van het klikgebied */
+  height: 2.5rem;
   color: white;
   font-size: 0;
   transition: all 0.25s ease-in-out;
-  margin-right: 3rem;
   z-index: 10;
+
+  /* border: 1px solid yellow; */
 }
 
-.menu-toggle::before,
-.menu-toggle::after {
-  content: "";
-  display: block;
+.menu-toggle img {
+  /* Zorg ervoor dat de afbeelding de link-container vult */
   width: 100%;
-  height: 2px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  background: currentColor;
-  transform: translate(-50%, -50%);
-  transform-origin: 0% 0%;
-
-  transition: transform 0.25s ease-in-out;
-}
-/* --- OPENEN MENU BIJ HOVER OF KLIK --- */
-/* Opent de mega-box bij hover op de wrapper OF als de JS-klasse 'open' is toegevoegd. */
-.menu-wrapper:hover .mega-box,
-.mega-box.open {
-  opacity: 1;
-  visibility: visible;
-  top: 0%;
-  transition: all 0.3s ease;
+  height: 100%;
+  display: block;
+  transform-origin: center;
+  transition: transform 0.3s ease;
 }
 
-/* --- KRUISJE TONEN BIJ HOVER OF KLIK (.is-active) --- */
-
-/* Verbergt de top/bottom lijnen van de hamburger bij hover of klik */
-.menu-wrapper:hover .menu-toggle,
-.menu-toggle.is-active {
-  border-color: transparent;
-  color: var(--color-primary); /* Kleur van het kruisje/hamburger bij hover */
-}
-
-/* Transformatie naar kruisje bij hover of klik */
-.menu-wrapper:hover .menu-toggle::before,
-.menu-toggle.is-active::before {
-  transform: translate(-50%, 0) rotate(-45deg) scaleX(0.7);
-}
-
-.menu-wrapper:hover .menu-toggle::after,
-.menu-toggle.is-active::after {
-  transform: translate(-50%, 0) rotate(45deg) scaleX(0.7);
-}
-
-/* Zorgt ervoor dat de toggle ook kleur krijgt bij hover als deze NIET actief is */
 .menu-toggle:hover {
   color: var(--color-primary);
 }
 
+/* ⬅️ Dit is de belangrijke stap */
+.menu-toggle img {
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+
+/* 🔄 Rotatie: De <img> draait 90 graden wanneer je over de link hovert. */
+.menu-wrapper:hover .menu-toggle img {
+  transform: rotate(90deg);
+}
 /* Algemene button-stijl */
 button {
   border: none;
@@ -475,6 +467,13 @@ button {
   display: none;
 }
 
+.nav-container li:hover .mega-box {
+  transition: all 0.3s ease;
+  top: 0%;
+  opacity: 1;
+  visibility: visible;
+}
+
 .mega-box {
   display: flex;
   position: absolute;
@@ -482,21 +481,24 @@ button {
   right: 3rem;
   top: 0%;
   opacity: 0;
-  border: 1px solid var(--color-primary);
-  box-shadow: 0 0 15px -5px var(--color-primary);
+  border-top: 1px solid var(--color-primary);
+  /* box-shadow: inset 0 0 15px -5px var(--color-primary); */
+  box-shadow: 0 100px 300px 500px rgba(0, 0, 0, 0.3);
   visibility: hidden;
   /* border: 1px solid yellow; */
 }
 
 .mega-box .content {
-  background: #242526;
+  background: var(--color-bg);
   padding: 2rem 1rem;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   /* width: 100%; */
   justify-content: space-between;
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+
+  /* box-shadow: 0 0 15px -5px var(--color-primary); */
+  /* box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); */
   /* border: 1px solid red; */
   gap: 1rem;
 }
@@ -571,6 +573,19 @@ button {
   ::-webkit-scrollbar-thumb {
     background: #3a3b3c;
   }
+  #menu-btn:checked ~ .nav-links {
+    left: 0%;
+  }
+  #menu-btn:checked ~ .btn.menu-btn {
+    display: none;
+  }
+  #close-btn:checked ~ .btn.menu-btn {
+    display: block;
+  }
+
+  #showMega:checked ~ .mega-box {
+    max-height: 100%;
+  }
   /* .menu-toggle {
     display: none;
   } */
@@ -582,23 +597,23 @@ button {
     padding-left: 20px;
     cursor: pointer;
     border-radius: 5px;
-    transition: all 0.3s ease;
+    /* transition: all 0.3s ease; */
   }
   .mobile-item:hover {
     background: #3a3b3c;
   }
-  /* .mega-box {
+  .mega-box {
     position: absolute;
-    top: 0;
+    top: 0%;
     opacity: 1;
     visibility: visible;
+    /* padding: 0 20px; */
     max-height: 0px;
     overflow: hidden;
-    transition: all 0.3s ease;
+    /* transition: all 0.3s ease; */
     z-index: 1;
-  } */
-
-  /* .mega-box .content {
+  }
+  .mega-box .content {
     box-shadow: none;
     flex-direction: column;
     padding: 20px 20px 0 20px;
@@ -621,7 +636,7 @@ button {
   }
   .content .row header {
     font-size: 19px;
-  } */
+  }
 }
 .nav-container input {
   display: none;
@@ -655,7 +670,7 @@ button {
 /* Teasers universele instellingen */
 
 .left {
-  background-image: url("/images/background6.avif");
+  background-image: url("/images/background6.jpg");
   /* background-color: rgb(32, 38, 51); */
 
   /* box-shadow: 14px 2px 25px -8px rgba(0, 0, 0, 0.6) inset; */
@@ -814,6 +829,7 @@ button {
     justify-content: center;
     align-items: center;
     padding: 3rem 8rem;
+    padding-top: 2rem;
     background-color: var(--color-bg);
     flex-wrap: nowrap;
     /* border: 1px solid red; */
@@ -825,7 +841,7 @@ button {
     justify-content: center;
     align-items: center;
     gap: 5rem;
-    border: 1px solid orange;
+    /* border: 1px solid orange; */
     width: 100%;
   }
   .teaser {
@@ -844,9 +860,10 @@ button {
     color: var(--color-secondary);
     display: flex;
     justify-content: center;
-    border: 1px solid purple;
+    /* border: 1px solid purple; */
     gap: 3.5rem;
     max-width: 100%;
+    box-shadow: 18px 18px 16px 0 rgba(0, 0, 0, 0.3);
   }
 
   .teasers-container-swiper {
@@ -858,6 +875,7 @@ button {
     background-color: rgb(32, 38, 51, 0.8);
     border: 1px solid var(--color-primary);
     box-shadow: 0 0 15px -5px var(--color-primary);
+    box-shadow: 18px 18px 16px 0 rgba(0, 0, 0, 0.3);
   }
 
   .right:hover {
@@ -866,11 +884,12 @@ button {
     background-color: rgb(32, 38, 51, 0.8);
     border: 1px solid var(--color-primary);
     box-shadow: 0 0 15px -5px var(--color-primary);
+    box-shadow: 18px 18px 16px 0 rgba(0, 0, 0, 0.3);
   }
 
-  .left:hover ~ .right {
+  /* .left:hover ~ .right {
     box-shadow: inset 100px 0px 100px 0px rgba(0, 0, 0, 0.4);
-  }
+  } */
 }
 
 /* @media (min-width: 1280px) {

@@ -14,20 +14,12 @@ document.addEventListener("DOMContentLoaded", function () {
   const megaBox = document.querySelector(".mega-box");
 
   menuToggle.addEventListener("click", () => {
-    // 1. Controleer of het menu open is (door de aanwezigheid van de 'open' klasse)
-    if (megaBox.classList.contains("open")) {
-      // 2. Sluit het menu:
-      megaBox.classList.remove("open");
+    // 1. Schakelen tussen de 'open' klasse op het menu
+    megaBox.classList.toggle("open");
 
-      // 3. Verander de knop terug naar de hamburger:
-      menuToggle.classList.remove("is-active");
-
-      // Belangrijk: De CSS-hover-regel (menu-wrapper:hover .mega-box)
-      // zal nu de sluiting van de klik niet ongedaan maken, dankzij de
-      // hogere CSS-specificiteit van de sluit-regel.
-    }
-
-    // Merk op: Er is GEEN 'else' om het menu te openen! De klik opent het niet.
+    // 2. Schakelen tussen de 'is-active' klasse op de toggle-knop
+    // Dit zorgt ervoor dat de CSS (.menu-toggle.is-active img) wordt toegepast
+    menuToggle.classList.toggle("is-active");
   });
 
   // Slides sollicitatie page in from left (mobile)
