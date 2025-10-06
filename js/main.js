@@ -22,6 +22,10 @@ document.addEventListener("DOMContentLoaded", function () {
     menuToggle.classList.toggle("is-active");
   });
 
+  particlesJS.load("particles-js", "particles.json", function () {
+    console.log("callback - particles.js config loaded");
+  });
+
   // Slides sollicitatie page in from left (mobile)
   document
     .getElementById("openSolliMobile")
