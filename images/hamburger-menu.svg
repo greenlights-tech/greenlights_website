@@ -11,9 +11,9 @@
     </defs>
 
     <g style="filter:url(#dropshadow-groot);">
-        <rect fill="rgb(0, 230, 104)" height="1" width="11" x="0.5" y="5.5"/>
-        <rect fill="rgb(0, 230, 104)" height="1" width="11" x="0.5" y="2.5"/>
-        <rect fill="rgb(0, 230, 104)" height="1" width="11" x="0.5" y="8.5"/>
+        <rect fill="#888" height="1" width="11" x="0.5" y="5.5"/>
+        <rect fill="#888" height="1" width="11" x="0.5" y="2.5"/>
+        <rect fill="#888" height="1" width="11" x="0.5" y="8.5"/>
     </g>
 
 </svg>

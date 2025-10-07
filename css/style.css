@@ -173,7 +173,7 @@ table {
   /* ===== FONTSIZE */
   --logo-font-size: clamp(2rem, 4vw, 3.5rem);
   --sublogo-font-size: clamp(0.75rem, 1vw, 0.875rem);
-  --h2-font-size: clamp(1.75rem, 4vw, 2.75rem);
+  --h2-font-size: clamp(1.75rem, 4vw, 2.5rem);
   --subh2-font-size: clamp(1rem, 4vw, 1.25rem);
   --h3-font-size: clamp(1rem, 1vw, 1.25rem);
   --nav-link-font-size: clamp(1rem, 1.5vw, 1rem);
@@ -233,11 +233,11 @@ html {
   background-color: #7a7a7a; /* Optioneel: iets donkerder bij hover */
 }
 
-html,
+/* html,
 body {
   min-height: 120vh;
-  overflow-y: auto; /* Zorg dat verticaal scrollen aanstaat */
-}
+  overflow-y: auto;
+} */
 
 body {
   color: var(--color-secondary);
@@ -253,7 +253,7 @@ body {
   display: none;
 } */
 
-/* .container-footer {
+/* .footer-container {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -262,22 +262,23 @@ body {
   align-items: center;
   justify-content: flex-end;
   background-color: var(--color-primary);
-  z-index: -100;
+  z-index: 10;
   padding-bottom: 1rem;
 }
 
-.footer-content {
+.footer-links {
   display: flex;
   width: 100%;
   padding: 3rem;
   height: 20vh;
+  align-items: center;
+  justify-content: space-around;
   border: 1px solid red;
 } */
 
 .particles {
-  border-top: 0.125rem solid var(--color-primary);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   /* left: 0.25rem;
   right: 0.25rem; */
   top: 0%;
@@ -298,7 +299,7 @@ body {
 
 #section-container {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   justify-content: center;
   position: relative;
   height: 100vh;
@@ -312,7 +313,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100vh;
+  min-height: 140dvh;
   position: relative;
   /* border-bottom: 1px solid var(--color-primary); */
   /* overflow: hidden; */
@@ -333,6 +334,7 @@ header {
   background-color: transparent;
   padding-top: 1.5rem;
   margin-bottom: clamp(0.75rem, 2vw, 1rem);
+  /* border-top: 0.125rem solid var(--color-primary); */
   /* box-shadow: inset 0px 18px 16px 0 rgba(0, 0, 0, 0.3); */
   /* box-shadow: inset 0 0 15px -5px var(--color-primary); */
 }
@@ -434,7 +436,10 @@ header {
 
 .tagline {
   font-family: var(--font-secondary);
-  font-weight: 500;
+  font-weight: 600;
+  color: #888;
+  color: #b0b0b0;
+  text-shadow: 0 0 5px rgba(100, 100, 100, 0.5);
   text-transform: uppercase;
   font-size: var(--sublogo-font-size);
   white-space: nowrap;
@@ -446,7 +451,8 @@ header {
   padding-left: 0.5em;
   padding-right: 0.5em;
   /* background-color: transparent; */
-  letter-spacing: clamp(0.05em, 0.15vw, 0.2em);
+  /* letter-spacing: clamp(0.05em, 0.15vw, 0.2em); */
+  font-family: "MS Gothic", "Courier New", monospace;
   /* margin-top: clamp(0.75rem, 2vw, 1rem); */
 }
 
@@ -713,20 +719,20 @@ button {
 
 .homepage-main {
   /* overflow: hidden; */
-  flex: 1;
+  flex-grow: 1;
 }
 
 /* Teasers universele instellingen */
 
 .left {
-  background-image: url("/images/background6.jpg");
+  background-image: url("/images/background6-kopie.jpg");
   /* background-color: rgb(32, 38, 51); */
 
   /* box-shadow: 14px 2px 25px -8px rgba(0, 0, 0, 0.6) inset; */
 }
 
 .right {
-  background-image: url("/images/background7.jpg");
+  background-image: url("/images/background7kopie.jpg");
 }
 
 .centered {
@@ -751,16 +757,20 @@ button {
 }
 
 .centered-hoofdtext {
-  font-family: var(--font-secondary);
+  font-family: var(--font-tertiary);
+  font-family: monospace;
   font-size: var(--h2-font-size);
+  color: #b9b9b9;
   font-weight: 600;
   text-transform: uppercase;
 }
 
 .centered-subtext {
   font-family: var(--font-secondary);
+  font-family: monospace;
   font-size: var(--subh2-font-size);
-  font-weight: 600;
+  color: #b9b9b9;
+  font-weight: 800;
   text-transform: uppercase;
   white-space: nowrap;
 }
@@ -964,19 +974,159 @@ button {
   justify-content: space-between;
   background-color: var(--color-bg);
   padding-top: 1.5rem;
+} */
+
+.sesh-footer {
+  width: 100%;
+  background-color: #111;
+  border: 1px solid #333;
+  box-shadow: inset 0 0 15px #000;
+  color: #aaa;
+  position: relative;
+  overflow: hidden;
+
+  margin-top: auto;
+  font-family: "MS Gothic", "Courier New", monospace;
 }
 
 .footer-content {
   display: flex;
-  justify-content: center;
   align-items: center;
-  padding: 1rem;
   font-size: 0.875rem;
   background-color: var(--color-bg);
   color: var(--color-secondary);
   text-align: center;
-} */
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+}
 
+.ascii-art {
+  font-size: 12px;
+  line-height: 12px;
+  white-space: pre;
+  color: #666;
+  text-shadow: 0 0 5px rgba(100, 100, 100, 0.3);
+  margin-right: 15px;
+}
+
+.footer-text {
+  font-size: 11px;
+  letter-spacing: 1px;
+  flex-grow: 1;
+}
+
+.footer-text h3 {
+  font-weight: normal;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #b0b0b0;
+  text-transform: uppercase;
+}
+
+.footer-text p {
+  margin-bottom: 4px;
+  color: #888;
+}
+
+/* The scrolling marquee-like text at bottom */
+.sesh-ticker {
+  width: 100%;
+  background-color: #212121;
+  border-top: 1px solid #222;
+  overflow: hidden;
+  position: relative;
+  height: 16px;
+}
+
+.ticker-content {
+  position: absolute;
+  white-space: nowrap;
+  animation: scroll-left 30s linear infinite;
+  color: #717171;
+  font-size: 11px;
+  letter-spacing: 1px;
+  padding: 1px 0;
+}
+
+/* Links styling */
+.sesh-links {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.sesh-link {
+  color: #b0b0b0;
+  font-size: 0.75rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color 0.3s, text-shadow 0.3s;
+  padding: 2px 4px;
+}
+
+.sesh-link:hover {
+  color: #b0b0b0;
+  text-shadow: 0 0 5px rgba(100, 100, 100, 0.5);
+}
+
+/* Separator pipes between links */
+.sesh-link:not(:last-child)::after {
+  content: "|";
+  margin-left: 8px;
+  color: #333;
+}
+
+/* Animations */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Flickering animation for VHS effect */
+.flicker {
+  animation: flicker 8s infinite;
+}
+
+@keyframes flicker {
+  0% {
+    opacity: 1;
+  }
+  3% {
+    opacity: 0.8;
+  }
+  6% {
+    opacity: 1;
+  }
+  7% {
+    opacity: 0.9;
+  }
+  9% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  52% {
+    opacity: 0.8;
+  }
+  54% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  96% {
+    opacity: 0.7;
+  }
+  98% {
+    opacity: 1;
+  }
+}
 /* EINDE HOOFDPAGINA */
 .sol-page {
   position: fixed;
