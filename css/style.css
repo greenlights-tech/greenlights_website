@@ -288,10 +288,8 @@ body {
   right: 0.25rem; */
   top: 0%;
   /* 1. Afmetingen: Zorg dat de div de volledige breedte en hoogte van het scherm vult */
-  height: 120vh;
+  height: 100vh;
   position: fixed;
-  border-bottom-left-radius: 1rem;
-  border-bottom-right-radius: 1rem;
   width: 100%;
   /* top: 0;
   left: 0; */
@@ -318,7 +316,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 100%;
-  min-height: 140dvh;
+  min-height: 120dvh;
   position: relative;
   /* border-bottom: 1px solid var(--color-primary); */
   /* overflow: hidden; */
@@ -959,7 +957,7 @@ button {
     padding-top: 2rem;
     /* background-color: var(--color-bg); */
     flex-wrap: nowrap;
-    /* border: 1px solid red; */
+    border: 1px solid red;
     /* max-height: 100%; */
   }
   .buttons {
@@ -1205,7 +1203,7 @@ button {
   display: flex;
   width: 100%;
   position: relative;
-  height: 2rem;
+  height: 2.5rem;
   align-items: center;
   border-top: 1px solid var(--color-primary);
   /* border-bottom: 1px solid var(--color-primary); */
@@ -1219,10 +1217,10 @@ button {
 
 .ticker-content {
   white-space: nowrap;
-  animation: scroll-left 30s linear infinite;
+  animation: scroll-left 35s linear infinite;
   font-weight: 600;
   color: #b0b0b0;
-  font-size: var(--sublogo-font-size);
+  font-size: var(--nav-link-font-size);
   font-family: "MS Gothic", "Courier New", monospace;
 }
 

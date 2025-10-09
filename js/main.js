@@ -10,17 +10,13 @@ document.addEventListener("DOMContentLoaded", function () {
     changeUrl("/sollicitatie");
   });
 
-  const menuToggle = document.querySelector(".menu-toggle");
-  const megaBox = document.querySelector(".mega-box");
+  // const menuToggle = document.querySelector(".menu-toggle");
+  // const megaBox = document.querySelector(".mega-box");
 
-  menuToggle.addEventListener("click", () => {
-    // 1. Schakelen tussen de 'open' klasse op het menu
-    megaBox.classList.toggle("open");
-
-    // 2. Schakelen tussen de 'is-active' klasse op de toggle-knop
-    // Dit zorgt ervoor dat de CSS (.menu-toggle.is-active img) wordt toegepast
-    menuToggle.classList.toggle("is-active");
-  });
+  // menuToggle.addEventListener("click", () => {
+  //   megaBox.classList.toggle("open");
+  //   menuToggle.classList.toggle("is-active");
+  // });
 
   particlesJS.load("particles-js", "particles.json", function () {
     console.log("callback - particles.js config loaded");
