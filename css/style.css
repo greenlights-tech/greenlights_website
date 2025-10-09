@@ -209,27 +209,33 @@ table {
 
 html {
   scrollbar-gutter: auto;
-
-  scrollbar-color: var(--color-scrollbar) var(--color-bg);
+  scrollbar-color: #888 var(--color-bg);
   scrollbar-width: normal;
 }
 
-/* ===== Voor Chrome, Edge, Safari ===== */
+/* =========================================
+2. Voor Chrome, Edge, Safari (Webkit)
+=========================================
+*/
+
+/* Breedte van de scrollbar */
 ::-webkit-scrollbar {
   width: 0.75rem;
 }
 
+/* Achtergrond van de scrollbar (de 'track') */
 ::-webkit-scrollbar-track {
   background-color: var(--color-bg);
 }
 
+/* De schuifbalk zelf (de 'thumb') */
 ::-webkit-scrollbar-thumb {
-  background-color: var(--color-bg);
+  background-color: #888;
   border-radius: 6px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: var(--color-bg);
+  background-color: #888;
 }
 
 /* html,
@@ -240,8 +246,8 @@ body {
 
 body {
   color: var(--color-secondary);
-  --sb-track-color: rgb(235, 235, 235);
-  --sb-thumb-color: var(--color-primary);
+  /* --sb-track-color: rgb(235, 235, 235);
+  --sb-thumb-color: var(--color-primary); */
   --sb-size: 14px;
 
   /* overflow: hidden;
@@ -419,6 +425,11 @@ header {
   /* padding-top: 1.5rem; */
 }
 
+.logo-container a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .logo {
   display: flex;
   position: relative;
@@ -466,8 +477,8 @@ header {
 .menu-toggle {
   position: relative;
   display: block;
-  width: 2.5rem; /* Bepaal de grootte van het klikgebied */
-  height: 2.5rem;
+  width: 2rem; /* Bepaal de grootte van het klikgebied */
+  height: 2rem;
   color: white;
   font-size: 0;
   transition: all 0.25s ease-in-out;
@@ -1035,11 +1046,14 @@ button {
   padding-top: 1.5rem;
 } */
 
-.sesh-footer {
+.footer-container {
+  position: relative;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   border: 1px solid #333;
   color: #aaa;
-  position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -1049,23 +1063,51 @@ button {
 }
 
 .footer-content {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
   align-items: center;
   font-size: 0.875rem;
   background-color: var(--color-bg);
   color: var(--color-secondary);
   text-align: center;
-  justify-content: space-between;
   padding: 0.75rem 1rem;
   /* border: 1px solid green; */
 }
 
-.ascii-art {
+.footer-content-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  /* border: 1px solid red; */
+}
+
+.icon-greenlights {
+  width: 30px;
+  height: 30px;
+  /* filter: drop-shadow(0 0 8px #00ff88) drop-shadow(0 0 16px #00ff88); */
+  /* border: 1px solid green; */
+}
+
+/* .ascii-art {
   font-size: 12px;
   line-height: 12px;
   white-space: pre;
   color: #666;
   text-shadow: 0 0 5px rgba(100, 100, 100, 0.3);
   margin-right: 15px;
+} */
+
+.footer-content-center {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  /* border: 1px solid yellow; */
 }
 
 .footer-text {
@@ -1088,30 +1130,45 @@ button {
   text-decoration: none;
 }
 
-/* The scrolling marquee-like text at bottom */
-.sesh-ticker {
+.footer-content-right {
+  flex: 1;
   display: flex;
-  width: 100%;
-  position: relative;
-  height: 2rem;
   align-items: center;
-  border-top: 1px solid var(--color-primary);
-  /* border-bottom: 1px solid var(--color-primary); */
-  background-color: transparent;
-  /* box-shadow: inset 0 0 15px -5px var(--color-primary),
-    0 0 15px -5px var(--color-primary); */
-  /* overflow: hidden; */
-
+  justify-content: flex-end;
   /* border: 1px solid red; */
 }
 
-.ticker-content {
-  white-space: nowrap;
-  animation: scroll-left 30s linear infinite;
-  font-weight: 600;
-  color: #b0b0b0;
-  font-size: var(--sublogo-font-size);
-  font-family: "MS Gothic", "Courier New", monospace;
+.contact-icon-wrapper {
+  display: flex;
+  position: fixed;
+  right: 0;
+  bottom: 2.25rem;
+  background-color: inherit;
+  margin-right: 2rem;
+  padding: 0.5rem;
+  /* border: 1px solid red; */
+}
+
+.contact-icon {
+  position: relative;
+  display: block;
+  width: 2rem; /* Bepaal de grootte van het klikgebied */
+  height: 2rem;
+  color: white;
+  font-size: 0;
+  transition: all 0.25s ease-in-out;
+  z-index: 10;
+
+  /* border: 1px solid yellow; */
+}
+
+.contact-icon img {
+  /* Zorg ervoor dat de afbeelding de link-container vult */
+  width: 100%;
+  height: 100%;
+  display: block;
+  transform-origin: center;
+  transition: transform 0.3s ease;
 }
 
 /* Links styling */
@@ -1141,6 +1198,32 @@ button {
   content: "|";
   margin-left: 8px;
   color: #333;
+}
+
+/* The scrolling marquee-like text at bottom */
+.footer-ticker {
+  display: flex;
+  width: 100%;
+  position: relative;
+  height: 2rem;
+  align-items: center;
+  border-top: 1px solid var(--color-primary);
+  /* border-bottom: 1px solid var(--color-primary); */
+  background-color: transparent;
+  /* box-shadow: inset 0 0 15px -5px var(--color-primary),
+    0 0 15px -5px var(--color-primary); */
+  /* overflow: hidden; */
+
+  /* border: 1px solid red; */
+}
+
+.ticker-content {
+  white-space: nowrap;
+  animation: scroll-left 30s linear infinite;
+  font-weight: 600;
+  color: #b0b0b0;
+  font-size: var(--sublogo-font-size);
+  font-family: "MS Gothic", "Courier New", monospace;
 }
 
 /* Animations */
