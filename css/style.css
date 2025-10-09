@@ -791,14 +791,14 @@ button {
 /* Teasers universele instellingen */
 
 .left {
-  background-image: url("/images/background6-kopie.jpg");
+  background-image: url("../images/background6-kopie.jpg");
   /* background-color: rgb(32, 38, 51); */
 
   /* box-shadow: 14px 2px 25px -8px rgba(0, 0, 0, 0.6) inset; */
 }
 
 .right {
-  background-image: url("/images/background7kopie.jpg");
+  background-image: url("../images/background7kopie.jpg");
 }
 
 .centered {
