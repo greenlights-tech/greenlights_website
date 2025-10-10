@@ -159,7 +159,6 @@ table {
   /* ===== COLORS =====*/
   --color-primary: rgb(0, 230, 104);
   --color-bg: rgba(37, 44, 59);
-  --color-bg: #464545;
   --color-bg: #444857;
   --color-bg: #3e414e;
   --color-header: #33353f;
@@ -307,7 +306,7 @@ body {
   /* flex-direction: column; */
   justify-content: center;
   position: relative;
-  height: 100vh;
+  min-height: 100vh;
   z-index: 10;
   width: 100%;
 }
@@ -316,14 +315,11 @@ body {
   background-color: transparent;
   /* background-color: green; */
   display: flex;
-  /* flex-direction: column; */
   width: 100%;
-  /* min-height: 120dvh; */
-  /* position: relative; */
   min-height: 100vh;
+  min-height: 100dvh;
   flex-flow: column nowrap;
   flex-grow: 1;
-  /* border-bottom: 1px solid var(--color-primary); */
   /* overflow: hidden; */
 }
 
@@ -660,6 +656,8 @@ button {
 .homepage-main {
   /* overflow: hidden; */
   flex: 1 0 auto;
+  /* align-items: center; */
+  justify-content: center;
   /* padding-top: 10rem; */
 }
 
@@ -747,13 +745,13 @@ button {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 3px solid black;
+  /* border: 3px solid black; */
   position: relative;
   --swiper-pagination-color: #00e668;
 }
 
 .mySwiper .swiper-wrapper {
-  border: 1px solid yellow;
+  /* border: 1px solid yellow; */
   width: 100%;
 }
 
@@ -765,9 +763,9 @@ button {
 
 /* WRAPPER & SLIDES */
 
-.swiper-wrapper {
+/* .swiper-wrapper {
   border: 1px solid yellow;
-}
+} */
 
 .teasers-container-swiper .swiper-wrapper {
   align-items: stretch;
@@ -792,19 +790,21 @@ button {
   color: var(--color-secondary);
   display: flex;
   justify-content: center;
+  width: 100%;
+  flex: 1 1 auto;
+  height: auto;
+  aspect-ratio: 1 / 1;
   background-repeat: no-repeat;
   background-position: center;
   background-color: var(--color-bg);
   background-size: cover;
-  aspect-ratio: 1 / 1;
-  border: 1px solid purple;
+  box-shadow: 18px 18px 16px 0 rgba(0, 0, 0, 0.3);
+  border: 1px solid rgb(31, 31, 31);
+  /* border: 1px solid purple; */
 }
 
-.teasers-container-swiper .swiper-slide .teaser-swiper {
-  width: 100%;
-  flex: 1 1 auto;
-  aspect-ratio: 1 / 1;
-  height: auto;
+.swiper-slide-active {
+  border: 1px solid var(--color-primary);
 }
 
 /* PAGINATION */
@@ -813,7 +813,7 @@ button {
   position: static;
   margin-top: clamp(1rem, 2vw, 3rem);
   text-align: center;
-  border: 1px solid green;
+  /* border: 1px solid green; */
 }
 
 /* @media (min-width: 480px) and (max-width: 767px) {
@@ -834,7 +834,7 @@ button {
     padding-top: 3rem;
     background-color: transparent;
     flex-wrap: nowrap;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     /* max-height: 100%; */
   }
   .buttons {
@@ -859,8 +859,6 @@ button {
     max-height: 60vh;
     background-repeat: no-repeat;
     background-position: center;
-
-    /* background-color: var(--color-bg); */
     color: var(--color-secondary);
     display: flex;
     justify-content: center;
@@ -947,7 +945,7 @@ button {
   background-color: var(--color-bg);
   color: var(--color-secondary);
   text-align: center;
-  padding: 0.75rem 1rem;
+  padding: 5rem 1rem;
   /* border: 1px solid green; */
 }
 
@@ -985,18 +983,91 @@ button {
   /* border: 1px solid yellow; */
 }
 
-.footer-text {
-  font-size: 11px;
-  letter-spacing: 1px;
-  flex-grow: 1;
-}
-
 .footer-text h3 {
   font-weight: normal;
-  margin-bottom: 5px;
-  font-size: 14px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
   color: #b0b0b0;
+  font-family: monospace;
+}
+
+.button-contact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1.5rem;
+  padding-left: 1.5rem;
+  background: linear-gradient(to right, #11998e, var(--color-primary));
+  box-shadow: 5px 5px 2px -2px var(--color-header);
+  color: var(--color-primary);
+  font-family: monospace;
+  color: var(--color-header);
+  cursor: pointer;
+  position: relative;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 2rem;
+  /* box-shadow: 5px 8px 10px -2px rgb(253 29 29 / 35%); */
+  gap: 0.25rem;
+}
+
+.button-contact::after {
+  content: "";
+
+  /* De witte rand zelf */
+  border: 2px solid var(--color-header);
+  border-radius: 50px; /* Moet overeenkomen met de rand van de knop */
+
+  /* Dimensies: Maak het iets kleiner dan de knop */
+  height: calc(100% - 10px); /* 10px kleiner dan de knophoogte */
+  width: calc(100% - 10px); /* 10px kleiner dan de knopbreedte */
+
+  position: absolute;
+
+  /* Zorgt ervoor dat het element exact in het midden van de knop staat */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  /* Zorg ervoor dat de rand onder de tekst blijft */
+  z-index: 1;
+}
+
+/* .button-contact::before {
+  content: "";
+  position: absolute;
+
+  width: 100%;
+  height: auto;
+  background: linear-gradient(to right, #ff7e5f, #feb47b);
+} */
+
+/* .button-contact:hover::before {
+  animation: spin linear 2s infinite;
+} */
+
+/* .button-contact::after {
+  content: "";
+  position: absolute;
+
+  width: calc(100% - 3px);
+  height: calc(100% - 3px);
+} */
+
+.button-contact span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  z-index: 1;
+  font-size: 1rem;
   text-transform: uppercase;
+}
+
+.icon-arrow {
+  z-index: 1;
+  width: 20px;
+  height: 20px;
 }
 
 .footer-text p a {
