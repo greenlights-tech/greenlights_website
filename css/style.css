@@ -158,6 +158,7 @@ table {
 :root {
   /* ===== COLORS =====*/
   --color-primary: rgb(0, 230, 104);
+  --color-primary: #1ca45b;
   --color-bg: rgba(37, 44, 59);
   --color-bg: #444857;
   --color-bg: #3e414e;
@@ -166,9 +167,6 @@ table {
   --color-menu: #444857;
   --color-secondary: rgb(255, 255, 255);
   --color-tertiary: rgb(0, 32, 96);
-  --color-primaryy: rgba(0, 230, 104, 0.455);
-  --color-primaryyy: rgb(0, 230, 104);
-  --color-primaryyyy: rgb(0, 73, 33);
 
   /* ===== FONTSIZE */
   --logo-font-size: clamp(2rem, 4vw, 3.5rem);
@@ -189,13 +187,13 @@ table {
 }
 
 ::selection {
-  background-color: #00e668;
+  background-color: #1ca45b;
   color: black;
 }
 
 /* Voor Firefox */
 ::-moz-selection {
-  background-color: #00e668;
+  background-color: #1ca45b;
   color: black;
 }
 
@@ -250,6 +248,9 @@ body {
   --sb-size: 14px;
   display: flex;
   flex-flow: column;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
 
   /* overflow: hidden;
   -ms-overflow-style: none; */
@@ -434,10 +435,25 @@ header {
   display: flex;
   position: relative;
   color: var(--color-primary);
+  background-image: linear-gradient(
+    to right,
+    #316449,
+    #37694e,
+    #3e6d54,
+    #447259,
+    #4a775f
+  );
+
+  /* 2. Vertel de browser dat de achtergrond alleen in de tekst moet verschijnen */
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  /* 3. Maak de eigenlijke tekst (foreground) transparant zodat de achtergrond erdoorheen schijnt */
+  color: #1ca45b;
   font-size: var(--logo-font-size);
   font-family: var(--font-primary);
   font-weight: 400;
-  text-shadow: 0 0 6px var(--color-primary);
+  text-shadow: 0 0 6px #1ca45b;
   letter-spacing: clamp(0.05em, 0.1vw, 0.1em);
   text-transform: uppercase;
   /* border: 1px solid yellow; */
@@ -634,9 +650,8 @@ button {
   text-shadow: 0 0 5px rgba(100, 100, 100, 0.5);
   text-transform: uppercase;
   white-space: nowrap;
-  border: 1px solid var(--color-primary);
-  box-shadow: inset 0 0 15px -5px var(--color-primary),
-    0 0 15px -5px var(--color-primary);
+  border: 1px solid #1ca45b;
+  box-shadow: inset 0 0 15px -5px #1ca45b, 0 0 15px -5px #1ca45b;
   padding-top: 0.5em;
   padding-bottom: 0.5em;
   padding-left: 0.5em;
@@ -718,8 +733,8 @@ button {
 
 .highlight {
   font-weight: 900;
-  color: #00e668;
-  text-shadow: 0 0 2px var(--color-primary);
+  color: #1ca45b;
+  /* text-shadow: 0 0 2px #1ca45b; */
 }
 
 /* ============= Teasers swiper (mobile/ tablet) ============= */
@@ -747,7 +762,7 @@ button {
   justify-content: center;
   /* border: 3px solid black; */
   position: relative;
-  --swiper-pagination-color: #00e668;
+  --swiper-pagination-color: #1ca45b;
 }
 
 .mySwiper .swiper-wrapper {
@@ -854,7 +869,7 @@ button {
     width: 100%;
     background-size: auto 100%;
     background-color: var(--color-bg);
-    border: 1px solid rgb(31, 31, 31);
+    border: transparent;
     min-height: 60vh;
     max-height: 60vh;
     background-repeat: no-repeat;
@@ -865,7 +880,7 @@ button {
     /* border: 1px solid purple; */
     gap: 3.5rem;
     max-width: 100%;
-    box-shadow: 18px 18px 16px 0 rgba(0, 0, 0, 0.3);
+    /* box-shadow: 18px 18px 16px 0 rgba(0, 0, 0, 0.3); */
   }
 
   .teasers-container-swiper {
@@ -875,18 +890,18 @@ button {
     flex: 1.1;
     background-size: auto 115%;
     background-color: var(--color-bg);
-    border: 1px solid var(--color-primary);
+    border: 1px solid #1ca45b;
     box-shadow: 0 0 15px -5px var(--color-primary);
-    box-shadow: 18px 18px 16px 5px rgba(0, 0, 0, 0.3);
+    /* box-shadow: 18px 18px 16px 5px rgba(0, 0, 0, 0.3); */
   }
 
   .right:hover {
     flex: 1.1;
     background-size: auto 115%;
     background-color: var(--color-bg);
-    border: 1px solid var(--color-primary);
-    box-shadow: 0 0 15px -5px var(--color-primary);
-    box-shadow: 18px 18px 16px 5px rgba(0, 0, 0, 0.3);
+    border: 1px solid #1ca45b;
+    box-shadow: 0 0 15px -5px #1ca45b;
+    /* box-shadow: 18px 18px 16px 5px rgba(0, 0, 0, 0.3); */
   }
 
   /* .left:hover ~ .right {
@@ -925,7 +940,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid #333;
+  /* border: 1px solid #333; */
   color: #aaa;
   overflow: hidden;
   flex-direction: column;
@@ -1011,11 +1026,34 @@ button {
   width: 6rem;
   height: 2.5rem;
   transition: 0.4s;
+  /* border-radius: 9999px; */
+  position: relative;
+  border: 1px solid #4a775f;
 }
+
+/* .button-contact:before {
+  content: "";
+  position: absolute;
+  background: conic-gradient(
+      from 0deg,
+      transparent 40deg,
+      rgba(255, 255, 255, var(--glint-opacity, 0.6)) 80deg,
+      rgba(255, 255, 255, var(--glint-opacity-peak, 0.7)) 90deg,
+      rgba(255, 255, 255, var(--glint-opacity, 0.6)) 100deg,
+      transparent 150deg
+    ),
+    radial-gradient(circle, #565656 0% 100%);
+  animation: border-spin var(--animation-duration) linear infinite;
+  z-index: 1;
+  border-radius: 50%;
+  transition: scale 0.1s ease-out;
+} */
 
 .card-contact .button-contact.button-contact1 {
   position: relative;
-  background: #888;
+  width: 6rem;
+  height: 2.5rem;
+  /* background: #888; */
   display: flex;
   justify-content: center;
   align-content: center;
@@ -1059,7 +1097,7 @@ button {
 
 .content-contact span {
   font-size: 1rem;
-  color: var(--color-primary);
+  color: #b0b0b0;
 }
 
 .content-contact img {
@@ -1069,7 +1107,14 @@ button {
 
 .button-contact.button-contact2 {
   position: relative;
-  background: var(--color-header);
+  background-image: linear-gradient(
+    to right,
+    #316449,
+    #37694e,
+    #3e6d54,
+    #447259,
+    #4a775f
+  );
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1197,13 +1242,13 @@ button {
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 1px;
-  transition: color 0.3s, text-shadow 0.3s;
+  /* transition: color 0.3s, text-shadow 0.3s; */
   padding: 2px 4px;
 }
 
 .sesh-link:hover {
   color: #b0b0b0;
-  text-shadow: 0 0 5px rgba(100, 100, 100, 0.5);
+  /* text-shadow: 0 0 5px rgba(100, 100, 100, 0.5); */
 }
 
 /* Separator pipes between links */
@@ -1220,7 +1265,7 @@ button {
   position: relative;
   height: 2.5rem;
   align-items: center;
-  border-top: 1px solid var(--color-primary);
+  border-top: 1px solid #1ca45b;
   /* border-bottom: 1px solid var(--color-primary); */
   background-color: transparent;
   /* box-shadow: inset 0 0 15px -5px var(--color-primary),
