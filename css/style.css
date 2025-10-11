@@ -980,7 +980,6 @@ button {
   align-items: center;
   text-align: center;
   justify-content: center;
-  /* border: 1px solid yellow; */
 }
 
 .footer-text h3 {
@@ -991,14 +990,16 @@ button {
   font-family: monospace;
 }
 
+.card-contact {
+  position: relative;
+}
+
 .button-contact {
-  display: flex;
+  /* display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem 1.5rem;
-  padding-left: 1.5rem;
+  padding: 0.75rem 0.75rem;
   background: linear-gradient(to right, #11998e, var(--color-primary));
-  box-shadow: 5px 5px 2px -2px var(--color-header);
   color: var(--color-primary);
   font-family: monospace;
   color: var(--color-header);
@@ -1006,32 +1007,90 @@ button {
   position: relative;
   margin-bottom: 1rem;
   border: none;
-  border-radius: 2rem;
-  /* box-shadow: 5px 8px 10px -2px rgb(253 29 29 / 35%); */
-  gap: 0.25rem;
+  gap: 0.25rem; */
+  width: 8rem;
+  height: 2.5rem;
+  transition: 0.4s;
 }
 
-.button-contact::after {
+.card-contact .button-contact.button-contact1 {
+  position: relative;
+  background: #888;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  transform: translateY(1.25rem);
+}
+
+.card-contact:hover .button-contact.button-contact1 {
+  transform: translateY(0);
+}
+
+.button-contact.button-contact1 .content-contact {
+  opacity: 0.2;
+  transition: 0.5s;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  /* border: 1px solid red; */
+}
+
+.button-contact.button-contact2 .content-contact {
+  opacity: 0.2;
+  transition: 0.5s;
+  text-align: center;
+  gap: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* border: 1px solid red; */
+}
+
+.content-contact a {
+  transition: 0.5s;
+}
+
+.content-contact span {
+  font-size: 1rem;
+  color: white;
+}
+
+.content-contact img {
+  width: 1rem;
+  height: 1rem;
+}
+
+.button-contact.button-contact2 {
+  position: relative;
+  background: var(--color-header);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+  z-index: 1;
+  transform: translateY(-1.25rem);
+}
+
+.card-contact:hover .button-contact.button-contact2 {
+  transform: translateY(0);
+}
+
+/* .button-contact::after {
   content: "";
-
-  /* De witte rand zelf */
   border: 2px solid var(--color-header);
-  border-radius: 50px; /* Moet overeenkomen met de rand van de knop */
-
-  /* Dimensies: Maak het iets kleiner dan de knop */
-  height: calc(100% - 10px); /* 10px kleiner dan de knophoogte */
-  width: calc(100% - 10px); /* 10px kleiner dan de knopbreedte */
-
+  border-radius: 50px;
+  height: calc(100% - 8px);
+  width: calc(100% - 8px);
   position: absolute;
-
-  /* Zorgt ervoor dat het element exact in het midden van de knop staat */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
-  /* Zorg ervoor dat de rand onder de tekst blijft */
   z-index: 1;
-}
+} */
 
 /* .button-contact::before {
   content: "";
@@ -1054,20 +1113,24 @@ button {
   height: calc(100% - 3px);
 } */
 
-.button-contact span {
+/* .button-contact span {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  z-index: 1;
   font-size: 1rem;
   text-transform: uppercase;
+  z-index: 1;
 }
+
+.button-contact:hover span {
+  transform: translateY(0);
+} */
 
 .icon-arrow {
   z-index: 1;
-  width: 20px;
-  height: 20px;
+  width: 1rem;
+  height: 1rem;
 }
 
 .footer-text p a {
