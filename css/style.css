@@ -295,15 +295,14 @@ body {
   width: 100%;
   /* top: 0;
   left: 0; */
-
-  /* 3. Z-Index: Zorg ervoor dat de deeltjes ACHTER je content staan */
   z-index: -99; /* Hiermee komt hij achter alle elementen met z-index 0 of hoger */
   background-color: #0d182b;
   background-color: #797762;
   background-color: #e6e7e8;
   background-color: #686563;
   background-color: #41403e;
-  background-image: linear-gradient(to top, #41403e, #41403e 50%, #2d2d2b);
+  /* background-image: linear-gradient(to bottom, #41403e, #41403e 50%, #2d2d2b); */
+  background-color: #464443;
   /* background-color: #e4dcd3; */
 
   /* background-color: #e0ff98; */
@@ -356,6 +355,7 @@ body {
   width: 100%;
   flex-shrink: 0;
   background-color: transparent;
+  background-image: linear-gradient(to top, #686563, #686563 30%, #464443);
   /* border-radius: 1.5rem 1.5rem 0rem 0rem; */
   /* position: fixed;
   top: 0;
@@ -364,7 +364,7 @@ body {
 
 /* Flickering animation for VHS effect */
 .flicker {
-  animation: flicker 8s infinite;
+  animation: flicker 5s infinite;
 }
 
 @keyframes flicker {
@@ -649,7 +649,7 @@ button {
 .tagline {
   font-family: var(--font-secondary);
   font-weight: 600;
-  color: #b0b0b0;
+  /* color: #e7e8e9; */
   font-size: var(--sublogo-font-size);
   text-shadow: 0 0 5px rgba(100, 100, 100, 0.5);
   text-transform: uppercase;
@@ -665,6 +665,18 @@ button {
   /* background-color: transparent; */
   /* letter-spacing: clamp(0.05em, 0.15vw, 0.2em); */
   font-family: "MS Gothic", "Courier New", monospace;
+  /* background-image: linear-gradient(
+    115deg,
+    rgb(235, 89, 81) 14%,
+    rgba(255, 255, 255, 0.637) 50%,
+    #4a94f9 94%
+  );
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text; */
+  color: #bec6ab;
+  /* color: #3e79cc;
+  color: #4a94f9; */
   /* margin-top: clamp(0.75rem, 2vw, 1rem); */
 }
 
@@ -679,11 +691,15 @@ button {
   flex: 1 0 auto;
   /* align-items: center; */
   justify-content: center;
-  background-color: #686563;
+
   border: 1px solid var(--color-primary);
+  border-bottom: none;
   border-radius: 1.5rem 1.5rem 0rem 0rem;
   margin-right: 2rem;
   margin-left: 2rem;
+  /* background-image: linear-gradient(to bottom, #686563, #686563 50%, #464443); */
+  background-color: #86817f;
+  margin-top: 10rem;
   /* padding-top: 10rem; */
 }
 
@@ -1299,9 +1315,19 @@ button {
   white-space: nowrap;
   animation: scroll-left 35s linear infinite;
   font-weight: 600;
-  color: #b0b0b0;
+  color: white;
   font-size: var(--nav-link-font-size);
   font-family: "MS Gothic", "Courier New", monospace;
+  /* background-image: linear-gradient(
+    115deg,
+    rgb(235, 89, 81) 14%,
+    white 50%,
+    #00dbff 94%
+  );
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text; */
+  color: #4a94f9;
 }
 
 /* Animations */
