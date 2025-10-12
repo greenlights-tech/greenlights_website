@@ -158,10 +158,10 @@ table {
 :root {
   /* ===== COLORS =====*/
   --color-primary: rgb(0, 230, 104);
-  --color-primary: #1ca45b;
   --color-bg: rgba(37, 44, 59);
   --color-bg: #444857;
   --color-bg: #3e414e;
+  --color-bg: #686563;
   --color-header: #33353f;
   --color-scrollbar: #2b2c34;
   --color-menu: #444857;
@@ -187,13 +187,13 @@ table {
 }
 
 ::selection {
-  background-color: #1ca45b;
+  background-color: var(--color-primary);
   color: black;
 }
 
 /* Voor Firefox */
 ::-moz-selection {
-  background-color: #1ca45b;
+  background-color: var(--color-primary);
   color: black;
 }
 
@@ -298,7 +298,15 @@ body {
 
   /* 3. Z-Index: Zorg ervoor dat de deeltjes ACHTER je content staan */
   z-index: -99; /* Hiermee komt hij achter alle elementen met z-index 0 of hoger */
-  background-color: var(--color-header);
+  background-color: #0d182b;
+  background-color: #797762;
+  background-color: #e6e7e8;
+  background-color: #686563;
+  background-color: #41403e;
+  background-image: linear-gradient(to top, #41403e, #41403e 50%, #2d2d2b);
+  /* background-color: #e4dcd3; */
+
+  /* background-color: #e0ff98; */
   /* border-bottom: 0.125rem solid var(--color-primary); */
 }
 
@@ -321,6 +329,9 @@ body {
   min-height: 100dvh;
   flex-flow: column nowrap;
   flex-grow: 1;
+
+  border-bottom: none;
+  border-radius: 0rem 1.5rem;
   /* overflow: hidden; */
 }
 
@@ -331,7 +342,11 @@ body {
 */
 
 .header-container {
-  background-color: #3e414ec5;
+  background-color: #1e1e1e;
+  background-color: #e0ff98;
+  background-color: #686563;
+  background-color: transparent;
+  /* background-color: #2d353f; */
   padding-bottom: 1rem;
   margin-bottom: 2rem;
   display: flex;
@@ -340,6 +355,8 @@ body {
   justify-content: center;
   width: 100%;
   flex-shrink: 0;
+  background-color: transparent;
+  /* border-radius: 1.5rem 1.5rem 0rem 0rem; */
   /* position: fixed;
   top: 0;
   left: 0; */
@@ -395,6 +412,7 @@ header {
   background-color: transparent;
   padding-top: 1rem;
   margin-bottom: clamp(0.75rem, 2vw, 1rem);
+
   /* background-color: var(--color-bg); */
   /* border-top: 0.125rem solid var(--color-primary); */
   /* box-shadow: inset 0px 18px 16px 0 rgba(0, 0, 0, 0.3); */
@@ -435,25 +453,11 @@ header {
   display: flex;
   position: relative;
   color: var(--color-primary);
-  background-image: linear-gradient(
-    to right,
-    #316449,
-    #37694e,
-    #3e6d54,
-    #447259,
-    #4a775f
-  );
-
-  /* 2. Vertel de browser dat de achtergrond alleen in de tekst moet verschijnen */
-  -webkit-background-clip: text;
-  background-clip: text;
-
-  /* 3. Maak de eigenlijke tekst (foreground) transparant zodat de achtergrond erdoorheen schijnt */
-  color: #1ca45b;
+  text-shadow: 0 0 6px #1ca45b;
   font-size: var(--logo-font-size);
   font-family: var(--font-primary);
   font-weight: 400;
-  text-shadow: 0 0 6px #1ca45b;
+
   letter-spacing: clamp(0.05em, 0.1vw, 0.1em);
   text-transform: uppercase;
   /* border: 1px solid yellow; */
@@ -650,12 +654,14 @@ button {
   text-shadow: 0 0 5px rgba(100, 100, 100, 0.5);
   text-transform: uppercase;
   white-space: nowrap;
-  border: 1px solid #1ca45b;
-  box-shadow: inset 0 0 15px -5px #1ca45b, 0 0 15px -5px #1ca45b;
+  border: 1px solid var(--color-primary);
+  box-shadow: inset 0 0 15px -5px var(--color-primary),
+    0 0 15px -5px var(--color-primary);
+  /* border-radius: 0.0625rem; */
   padding-top: 0.5em;
   padding-bottom: 0.5em;
-  padding-left: 0.5em;
-  padding-right: 0.5em;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
   /* background-color: transparent; */
   /* letter-spacing: clamp(0.05em, 0.15vw, 0.2em); */
   font-family: "MS Gothic", "Courier New", monospace;
@@ -673,20 +679,25 @@ button {
   flex: 1 0 auto;
   /* align-items: center; */
   justify-content: center;
+  background-color: #686563;
+  border: 1px solid var(--color-primary);
+  border-radius: 1.5rem 1.5rem 0rem 0rem;
+  margin-right: 2rem;
+  margin-left: 2rem;
   /* padding-top: 10rem; */
 }
 
 /* Teasers universele instellingen */
 
 .left {
-  background-image: url("../images/background6-kopie.jpg");
+  background-image: url("../images/background6.avif");
   /* background-color: rgb(32, 38, 51); */
 
   /* box-shadow: 14px 2px 25px -8px rgba(0, 0, 0, 0.6) inset; */
 }
 
 .right {
-  background-image: url("../images/background7kopie.jpg");
+  background-image: url("../images/background9.jpg");
 }
 
 .centered {
@@ -733,7 +744,7 @@ button {
 
 .highlight {
   font-weight: 900;
-  color: #1ca45b;
+  color: var(--color-primary);
   /* text-shadow: 0 0 2px #1ca45b; */
 }
 
@@ -846,7 +857,7 @@ button {
     justify-content: center;
     align-items: center;
     padding: 6rem 8rem;
-    padding-top: 3rem;
+    padding-top: 5rem;
     background-color: transparent;
     flex-wrap: nowrap;
     /* border: 1px solid red; */
@@ -869,7 +880,9 @@ button {
     width: 100%;
     background-size: auto 100%;
     background-color: var(--color-bg);
-    border: transparent;
+    background-color: #e7e8e9;
+    border: 1px solid rgb(31, 31, 31);
+    border-radius: 1.5rem;
     min-height: 60vh;
     max-height: 60vh;
     background-repeat: no-repeat;
@@ -880,7 +893,7 @@ button {
     /* border: 1px solid purple; */
     gap: 3.5rem;
     max-width: 100%;
-    /* box-shadow: 18px 18px 16px 0 rgba(0, 0, 0, 0.3); */
+    box-shadow: 18px 18px 16px 0 rgba(0, 0, 0, 0.3);
   }
 
   .teasers-container-swiper {
@@ -890,18 +903,18 @@ button {
     flex: 1.1;
     background-size: auto 115%;
     background-color: var(--color-bg);
-    border: 1px solid #1ca45b;
-    box-shadow: 0 0 15px -5px var(--color-primary);
-    /* box-shadow: 18px 18px 16px 5px rgba(0, 0, 0, 0.3); */
+    border: 1px solid var(--color-primary);
+    /* box-shadow: 0 0 15px -5px var(--color-primary); */
+    box-shadow: 18px 18px 16px 5px rgba(0, 0, 0, 0.3);
   }
 
   .right:hover {
     flex: 1.1;
     background-size: auto 115%;
     background-color: var(--color-bg);
-    border: 1px solid #1ca45b;
-    box-shadow: 0 0 15px -5px #1ca45b;
-    /* box-shadow: 18px 18px 16px 5px rgba(0, 0, 0, 0.3); */
+    border: 1px solid var(--color-primary);
+    /* box-shadow: 0 0 15px -5px #1ca45b; */
+    box-shadow: 18px 18px 16px 5px rgba(0, 0, 0, 0.3);
   }
 
   /* .left:hover ~ .right {
@@ -936,31 +949,37 @@ button {
 
 .footer-container {
   position: relative;
-  width: 100%;
+  width: 96%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  margin: 0 auto;
   /* border: 1px solid #333; */
   color: #aaa;
   overflow: hidden;
   flex-direction: column;
-  margin-top: auto;
+  /* margin-top: auto; */
   font-family: "MS Gothic", "Courier New", monospace;
   flex-shrink: 0;
+
   /* border: 1px solid blue; */
 }
 
 .footer-content {
   display: flex;
   width: 100%;
+  position: relative;
   align-items: center;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center;
   font-size: 0.875rem;
-  background-color: var(--color-bg);
+  background-color: #e0ff98;
+  background-color: #1e1e1e;
+  background-color: #e7e8e9;
   color: var(--color-secondary);
   text-align: center;
   padding: 1rem 1rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
   /* border: 1px solid green; */
 }
 
@@ -1028,7 +1047,8 @@ button {
   transition: 0.4s;
   /* border-radius: 9999px; */
   position: relative;
-  border: 1px solid #4a775f;
+  border: 0.0625rem solid var(--color-primary);
+  border-radius: 0.5rem;
 }
 
 /* .button-contact:before {
@@ -1107,14 +1127,14 @@ button {
 
 .button-contact.button-contact2 {
   position: relative;
-  background-image: linear-gradient(
+  /* background-image: linear-gradient(
     to right,
     #316449,
     #37694e,
     #3e6d54,
     #447259,
     #4a775f
-  );
+  ); */
   display: flex;
   align-items: center;
   justify-content: center;
