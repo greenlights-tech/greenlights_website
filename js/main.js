@@ -1,14 +1,14 @@
-import { blog } from "./blog.js";
+// import { blog } from "./blog.js";
+gsap.registerPlugin(SplitText);
 
 document.addEventListener("DOMContentLoaded", function () {
   // Store original URL to revert back to
   let originalUrl = window.location.pathname;
 
+  const ticker = document.querySelector(".ticker-content");
+  ticker.style.transform = `translateX(${Math.random() * 100}%)`;
+
   // Slides sollicitatie page in from left
-  document.getElementById("openSolli").addEventListener("click", function () {
-    document.querySelector(".sol-page").classList.add("active");
-    changeUrl("/sollicitatie");
-  });
 
   // const menuToggle = document.querySelector(".menu-toggle");
   // const megaBox = document.querySelector(".mega-box");
@@ -18,9 +18,151 @@ document.addEventListener("DOMContentLoaded", function () {
   //   menuToggle.classList.toggle("is-active");
   // });
 
-  particlesJS.load("particles-js", "particles.json", function () {
-    console.log("callback - particles.js config loaded");
+  // 2. Initialisatie en Setup
+  gsap.set(".header-container", { opacity: 0 });
+  gsap.set(".homepage-main", { opacity: 0, y: -50 });
+  gsap.set(".tagline-container", { opacity: 0, y: 10 });
+
+  // 3. Maak de SplitText instantie
+  const splitLogo = SplitText.create(".logo", {
+    type: "chars",
+    charsClass: "split-char",
   });
+
+  // Zorg ervoor dat de letters eerst onzichtbaar zijn voordat ze in beeld schuiven
+  gsap.set(splitLogo.chars, { yPercent: 100, stagger: 0.05 });
+
+  const splitTagline = SplitText.create(".tagline", {
+    type: "chars",
+  });
+
+  gsap.set(splitTagline.chars, { yPercent: 120 });
+  // En de tagline zelf onzichtbaar (vooral voor de 'border' animatie)
+  gsap.set(".tagline", {
+    borderColor: "transparent", // Zorgt ervoor dat de border wel de dikte heeft (1px) maar onzichtbaar is
+    boxShadow: "0 0 0px 0px transparent", // Een animatievriendelijke 'none' state
+  });
+
+  // 4. Maak de Timeline
+  const logoAnimation = gsap.timeline({
+    delay: 0.5,
+  });
+
+  // =======================================================
+  // EERSTE FASE: LETTER INTRODUCTIE
+  // =======================================================
+  logoAnimation
+    // A. Logo zichtbaar maken (op tijd 0)
+    .to(
+      ".logo",
+      {
+        duration: 0.01,
+        opacity: 1,
+      },
+      0
+    )
+
+    // B. De letters komen in beeld (van y: 100% naar y: 0)
+    .to(
+      splitLogo.chars,
+      {
+        duration: 0.5,
+        yPercent: 0,
+        ease: "power2.out",
+        stagger: {
+          each: 0.05,
+          from: "center",
+        },
+      },
+      0.1
+    ) // Start 0.1 seconde na het begin van de timeline
+
+    .to(
+      splitTagline.chars,
+      {
+        duration: 0.4,
+        yPercent: 0,
+        stagger: 0.03, // Sneller laten opvolgen dan het hoofdlogo
+      },
+      "+=0.1"
+    )
+
+    .to(
+      ".tagline-container",
+      {
+        duration: 0.4,
+        opacity: 1,
+        y: 0,
+        ease: "power2.out",
+      },
+      "<"
+    )
+
+    // C3. De BORDER en BOX-SHADOW verschijnen (Start vlak nadat de letters beginnen)
+    .to(
+      ".tagline",
+      {
+        duration: 0.3,
+        borderColor: "var(--color-primary)",
+        boxShadow:
+          "inset 0 0 15px -5px var(--color-primary), 0 0 15px -5px var(--color-primary)",
+      },
+      "<0.1"
+    )
+
+    // =======================================================
+    // TWEEDE FASE: KRIMP EN BEWEGING NAAR DE TOP
+    // =======================================================
+    // Let op: 'logoAnimation.to' wordt gebruikt i.p.v. 'gsap.to'
+    .to(
+      ".logo-container",
+      {
+        duration: 3,
+        ease: "power2.out",
+
+        // Eind-positie
+        left: "50%",
+        xPercent: -50,
+        top: "0",
+        yPercent: 0,
+        scale: 1,
+
+        onComplete: () => {
+          // Val terug naar de normale stroom
+          gsap.set(".logo-container", {
+            position: "relative",
+            top: "initial",
+            left: "initial",
+            xPercent: 0,
+            yPercent: 0,
+          });
+        },
+      },
+      "+=0.2"
+    ) // Start een halve seconde nadat de letters klaar zijn
+
+    // 5. Fade-in van de header achtergrond
+    .to(
+      ".header-container",
+      {
+        duration: 0.3,
+        opacity: 1,
+        ease: "power1.out",
+      },
+      "<"
+    ) // Start op hetzelfde moment als de logo-beweging (de vorige stap)
+
+    // 6. Homepage main content komt 'aanwaaien'
+    .to(
+      ".homepage-main",
+      {
+        duration: 0.8,
+        y: 0,
+        opacity: 1,
+        ease: "power2.out",
+      },
+      ">-0.4"
+    ); // Start 0.4 seconden vóór het einde van de vorige stap
 
   // Initialize Lenis
   const lenis = new Lenis({
@@ -32,6 +174,10 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log(e);
   });
 
+  document.getElementById("openSolli").addEventListener("click", function () {
+    document.querySelector(".sol-page").classList.add("active");
+    changeUrl("/sollicitatie");
+  });
   // Slides sollicitatie page in from left (mobile)
   document
     .getElementById("openSolliMobile")
@@ -196,5 +342,5 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  blog.render();
+  // blog.render();
 });

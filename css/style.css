@@ -208,6 +208,7 @@ html {
   scrollbar-gutter: auto;
   scrollbar-color: #888 var(--color-bg);
   scrollbar-width: normal;
+  background: transparent;
 }
 
 /* =========================================
@@ -251,7 +252,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-tap-highlight-color: transparent;
-
+  background-color: black;
   /* overflow: hidden;
   -ms-overflow-style: none; */
 }
@@ -283,40 +284,38 @@ body {
   border: 1px solid red;
 } */
 
-.particles {
-  display: flex;
-  flex-direction: row;
-  /* left: 0.25rem;
-  right: 0.25rem; */
-  top: 0%;
-  /* 1. Afmetingen: Zorg dat de div de volledige breedte en hoogte van het scherm vult */
-  height: 100vh;
-  position: fixed;
+#section-container {
+  /* display: flex; */
+  /* flex-direction: column; */
+  justify-content: center;
+  position: relative;
+  min-height: 100vh;
+  z-index: 1;
   width: 100%;
+  background-color: transparent;
+}
+
+#tsparticles {
+  height: 100vh;
+  position: absolute;
+  width: 100%;
+  z-index: -1;
+  height: 100vh !important;
+  width: 100vw !important;
+  inset: 0;
   /* top: 0;
   left: 0; */
-  z-index: -99; /* Hiermee komt hij achter alle elementen met z-index 0 of hoger */
+  /* Hiermee komt hij achter alle elementen met z-index 0 of hoger */
   background-color: #0d182b;
   background-color: #797762;
   background-color: #e6e7e8;
   background-color: #686563;
   background-color: #41403e;
-  /* background-image: linear-gradient(to bottom, #41403e, #41403e 50%, #2d2d2b); */
   background-color: #464443;
   /* background-color: #e4dcd3; */
-
+  /* background-image: linear-gradient(to bottom, #41403e, #41403e 50%, #2d2d2b); */
   /* background-color: #e0ff98; */
   /* border-bottom: 0.125rem solid var(--color-primary); */
-}
-
-#section-container {
-  display: flex;
-  /* flex-direction: column; */
-  justify-content: center;
-  position: relative;
-  min-height: 100vh;
-  z-index: 10;
-  width: 100%;
 }
 
 .homepage {
@@ -328,7 +327,6 @@ body {
   min-height: 100dvh;
   flex-flow: column nowrap;
   flex-grow: 1;
-
   border-bottom: none;
   border-radius: 0rem 1.5rem;
   /* overflow: hidden; */
@@ -346,8 +344,8 @@ body {
   background-color: #686563;
   background-color: transparent;
   /* background-color: #2d353f; */
-  padding-bottom: 1rem;
-  margin-bottom: 2rem;
+  /* padding-bottom: 1rem;
+  margin-bottom: 2rem; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -355,6 +353,7 @@ body {
   width: 100%;
   flex-shrink: 0;
   background-color: transparent;
+  opacity: 0;
   background-image: linear-gradient(to top, #686563, #686563 30%, #464443);
   /* border-radius: 1.5rem 1.5rem 0rem 0rem; */
   /* position: fixed;
@@ -410,8 +409,7 @@ header {
   align-items: center;
   justify-content: space-between;
   background-color: transparent;
-  padding-top: 1rem;
-  margin-bottom: clamp(0.75rem, 2vw, 1rem);
+  /* padding-top: 1rem; */
 
   /* background-color: var(--color-bg); */
   /* border-top: 0.125rem solid var(--color-primary); */
@@ -438,6 +436,14 @@ header {
   pointer-events: none;
   transition: box-shadow 0.3s ease, border-color 0.3s ease;
   pointer-events: auto;
+  position: fixed;
+  top: 50vh;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(3);
+  z-index: 1001;
+  will-change: transform, top, position;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   /* z-index: var(--z-logo); */
   /* width: auto; */
   /* border: 1px solid purple; */
@@ -447,19 +453,29 @@ header {
 .logo-container a {
   text-decoration: none;
   color: inherit;
+  display: inline-block;
+  /* Zorgt ervoor dat alle letters die buiten de box van de a-tag vallen, verborgen zijn */
+  overflow: hidden;
+  padding: 0;
 }
 
 .logo {
   display: flex;
-  position: relative;
+  /* position: relative; */
   color: var(--color-primary);
   text-shadow: 0 0 6px #1ca45b;
   font-size: var(--logo-font-size);
   font-family: var(--font-primary);
   font-weight: 400;
-
   letter-spacing: clamp(0.05em, 0.1vw, 0.1em);
   text-transform: uppercase;
+  top: initial;
+  left: initial;
+  transform: initial;
+  margin: 20px 0 0 0;
+  opacity: 0;
+  padding: 0;
+  /* line-height: 1.1cap; */
   /* border: 1px solid yellow; */
   /* padding-top: 1.5rem; */
 }
@@ -642,6 +658,9 @@ button {
   align-items: center;
   flex: 1;
   justify-content: center;
+  opacity: 0;
+  transform: translateY(1rem);
+  margin-top: clamp(0.75rem, 2vw, 1rem);
   /* border: 1px solid red; */
   /* background-color: var(--color-bg); */
 }
@@ -675,8 +694,9 @@ button {
   -webkit-background-clip: text;
   background-clip: text; */
   color: #bec6ab;
-  /* color: #3e79cc;
-  color: #4a94f9; */
+  color: #3e79cc;
+  color: #4a94f9;
+  margin: 0;
   /* margin-top: clamp(0.75rem, 2vw, 1rem); */
 }
 
@@ -701,6 +721,8 @@ button {
   background-color: #86817f;
   margin-top: 10rem;
   /* padding-top: 10rem; */
+  opacity: 0;
+  transform: translateY(-50px);
 }
 
 /* Teasers universele instellingen */

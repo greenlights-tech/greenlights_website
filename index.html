@@ -24,7 +24,7 @@
   </head>
 
   <body>
-    <div id="particles-js" class="particles"></div>
+    <div id="tsparticles" class="particlests"></div>
     <div id="section-container">
       <div class="homepage">
         <div class="header-container flicker">
@@ -34,6 +34,9 @@
               <a href="/">
                 <h1 class="logo">Greenlights</h1>
               </a>
+              <div class="tagline-container">
+                <p class="tagline">Slimme instroom, blijvend resultaat</p>
+              </div>
             </div>
             <ul class="menu-container">
               <!-- <div class="menu-wrapper">
@@ -49,11 +52,6 @@
               </div> -->
             </ul>
           </header>
-          <div class="sublogo-container">
-            <div class="tagline-container">
-              <p class="tagline">Slimme instroom, blijvend resultaat</p>
-            </div>
-          </div>
         </div>
 
         <main class="homepage-main">
@@ -499,15 +497,34 @@
 
       window.addEventListener("resize", initSwiper);
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const ticker = document.querySelector(".ticker-content");
-        ticker.style.transform = `translateX(${Math.random() * 100}%)`;
+      window.addEventListener("load", async () => {
+        if (window.tsParticles) {
+          await tsParticles.load("tsparticles", {
+            background: { color: "#464443" }, // of transparant als je de background van je site wilt zien
+            fullScreen: { enable: true }, // vult het hele scherm
+            particles: {
+              number: { value: 80, density: { enable: true, area: 800 } },
+              color: { value: "rgb(0, 230, 104)" },
+              shape: { type: "circle" },
+              opacity: { value: 0.8 },
+              size: { value: 1.5, random: { enable: true, minimumValue: 2 } },
+              move: {
+                enable: true,
+                speed: 0.5,
+                direction: "none",
+                outModes: "bounce",
+              },
+            },
+          });
+        }
       });
     </script>
     <script src="https://unpkg.com/lenis@1.3.11/dist/lenis.min.js"></script>
     <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
     <script src="./js/main.js" type="module"></script>
   </body>
 </html>
