@@ -27,19 +27,26 @@
     <div id="tsparticles" class="particlests"></div>
     <div id="section-container">
       <div class="homepage">
-        <div class="header-container flicker">
-          <header>
-            <div class="left-placeholder"></div>
-            <div class="logo-container">
-              <a href="/">
-                <h1 class="logo">Greenlights</h1>
-              </a>
-              <div class="tagline-container">
+        <header class="header flicker">
+          <div class="container">
+            <!-- <div class="left-placeholder"></div> -->
+            <div class="logo">
+              <h1 id="headerLogo">Greenlights</h1>
+              <!-- <div class="tagline-container">
                 <p class="tagline">Slimme instroom, blijvend resultaat</p>
-              </div>
+              </div> -->
             </div>
-            <ul class="menu-container">
-              <!-- <div class="menu-wrapper">
+            <nav class="nav">
+              <li>products</li>
+              <li>pricing</li>
+              <li>blog</li>
+              <li>contact</li>
+            </nav>
+            <!-- <nav class="nav">
+              <ul class="menu"></ul>
+            </nav> -->
+
+            <!-- <div class="menu-wrapper">
                 <li>
                   <a href="#" class="menu-toggle" aria-label="menu">
                     <img
@@ -50,8 +57,15 @@
                   
                 </li>
               </div> -->
-            </ul>
-          </header>
+          </div>
+        </header>
+        <div class="main">
+          <section class="hero">
+            <div class="logo" id="heroLogo">
+              <h1>Greenlights</h1>
+            </div>
+          </section>
+          <section class="spacer"></section>
         </div>
 
         <main class="homepage-main">
@@ -497,11 +511,10 @@
 
       window.addEventListener("resize", initSwiper);
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tsparticles/2.0.6/tsparticles.bundle.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tsparticles/2.0.6/tsparticles.bundle.min.js"></script>
     <script>
       window.addEventListener("load", async () => {
         if (window.tsParticles) {
-          // Laad particles
           await tsParticles.load("tsparticles", {
             background: { color: "#464443" },
             fullScreen: { enable: true },
@@ -526,11 +539,9 @@
           });
         }
       });
-    </script>
-    <script src="https://unpkg.com/lenis@1.3.11/dist/lenis.min.js"></script>
-    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+    </script> -->
+    <!-- <script src="https://unpkg.com/lenis@1.3.11/dist/lenis.min.js"></script> -->
+    <!-- <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script> -->
     <script src="./src/main.js" type="module"></script>
   </body>
 </html>

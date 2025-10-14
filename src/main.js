@@ -1,5 +1,37 @@
 // import { blog } from "./blog.js";
-gsap.registerPlugin(SplitText);
+import { gsap } from "gsap";
+import { Flip } from "gsap/all";
+import { ScrollTrigger } from "gsap/all";
+gsap.registerPlugin(Flip, ScrollTrigger);
+
+let rainbow = 0;
+window.addEventListener("click", (e) => {
+  const particle = document.createElement("part");
+  document.body.appendChild(particle);
+
+  rainbow += 2;
+
+  const size = Math.random() * 120 + 30;
+  gsap.set(particle, {
+    x: e.clientX - size / 2,
+    y: e.clientY - size / 2,
+    width: size,
+    height: size,
+    filter: `blur(${(1 - (size - 30) / 120) * 10}px)`,
+    backgroundColor: `hsl(${rainbow}, 70%, 50%)`,
+  });
+
+  gsap.to(particle, {
+    x: "+=random(-200, 200)",
+    y: "+=random(-200, 200)",
+    opacity: 0,
+    duration: "random(4, 7)",
+    ease: "power2.out",
+    onComplete: () => {
+      particle.remove();
+    },
+  });
+});
 
 document.addEventListener("DOMContentLoaded", function () {
   // Store original URL to revert back to
@@ -18,161 +50,56 @@ document.addEventListener("DOMContentLoaded", function () {
   //   menuToggle.classList.toggle("is-active");
   // });
 
-  // 2. Initialisatie en Setup
-  gsap.set(".header-container", { opacity: 0 });
-  gsap.set(".homepage-main", { opacity: 0, y: -50 });
-  gsap.set(".tagline-container", { opacity: 0, y: 10 });
+  console.clear();
 
-  // 3. Maak de SplitText instantie
-  const splitLogo = SplitText.create(".logo", {
-    type: "chars",
-    charsClass: "split-char",
+  window.addEventListener("load", () => {
+    const flip = Flip.fit("#headerLogo", "#heroLogo", {
+      scale: true,
+      duration: 1,
+      ease: "none",
+    });
+    flip.pause(1);
+
+    ScrollTrigger.create({
+      trigger: ".header",
+      start: "top top",
+      end: "top top",
+      endTrigger: "#heroLogo",
+      markers: true,
+      onUpdate: (s) => {
+        flip.progress(1 - s.progress);
+      },
+    });
+
+    const headerTween = gsap
+      .to(".header", {
+        yPercent: -100,
+        ease: "power1.inOut",
+        paused: true,
+      })
+      .reverse();
+
+    ScrollTrigger.create({
+      trigger: "#heroLogo",
+      start: "top top",
+      end: "+=" + document.body.clientHeight,
+      markers: {
+        indent: 200,
+      },
+      onUpdate: (s) => {
+        console.log(s.direction > 0);
+        headerTween.reversed(s.direction < 0);
+      },
+    });
   });
 
-  // Zorg ervoor dat de letters eerst onzichtbaar zijn voordat ze in beeld schuiven
-  gsap.set(splitLogo.chars, { yPercent: 100, stagger: 0.05 });
+  // const lenis = new Lenis({
+  //   autoRaf: true,
+  // });
 
-  const splitTagline = SplitText.create(".tagline", {
-    type: "chars",
-  });
-
-  gsap.set(splitTagline.chars, { yPercent: 120 });
-  // En de tagline zelf onzichtbaar (vooral voor de 'border' animatie)
-  gsap.set(".tagline", {
-    borderColor: "transparent", // Zorgt ervoor dat de border wel de dikte heeft (1px) maar onzichtbaar is
-    boxShadow: "0 0 0px 0px transparent", // Een animatievriendelijke 'none' state
-  });
-
-  // 4. Maak de Timeline
-  const logoAnimation = gsap.timeline({
-    delay: 0.5,
-  });
-
-  // =======================================================
-  // EERSTE FASE: LETTER INTRODUCTIE
-  // =======================================================
-  logoAnimation
-    // A. Logo zichtbaar maken (op tijd 0)
-    .to(
-      ".logo",
-      {
-        duration: 0.01,
-        opacity: 1,
-      },
-      0
-    )
-
-    // B. De letters komen in beeld (van y: 100% naar y: 0)
-    .to(
-      splitLogo.chars,
-      {
-        duration: 0.5,
-        yPercent: 0,
-        ease: "power2.out",
-        stagger: {
-          each: 0.05,
-          from: "center",
-        },
-      },
-      0.1
-    ) // Start 0.1 seconde na het begin van de timeline
-
-    .to(
-      splitTagline.chars,
-      {
-        duration: 0.4,
-        yPercent: 0,
-        stagger: 0.03, // Sneller laten opvolgen dan het hoofdlogo
-      },
-      "+=0.1"
-    )
-
-    .to(
-      ".tagline-container",
-      {
-        duration: 0.4,
-        opacity: 1,
-        y: 0,
-        ease: "power2.out",
-      },
-      "<"
-    )
-
-    // C3. De BORDER en BOX-SHADOW verschijnen (Start vlak nadat de letters beginnen)
-    .to(
-      ".tagline",
-      {
-        duration: 0.3,
-        borderColor: "var(--color-primary)",
-        boxShadow:
-          "inset 0 0 15px -5px var(--color-primary), 0 0 15px -5px var(--color-primary)",
-      },
-      "<0.1"
-    )
-
-    // =======================================================
-    // TWEEDE FASE: KRIMP EN BEWEGING NAAR DE TOP
-    // =======================================================
-    // Let op: 'logoAnimation.to' wordt gebruikt i.p.v. 'gsap.to'
-    .to(
-      ".logo-container",
-      {
-        duration: 3,
-        ease: "power2.out",
-
-        // Eind-positie
-        left: "50%",
-        xPercent: -50,
-        top: "0",
-        yPercent: 0,
-        scale: 1,
-
-        onComplete: () => {
-          // Val terug naar de normale stroom
-          gsap.set(".logo-container", {
-            position: "relative",
-            top: "initial",
-            left: "initial",
-            xPercent: 0,
-            yPercent: 0,
-          });
-        },
-      },
-      "+=0.2"
-    ) // Start een halve seconde nadat de letters klaar zijn
-
-    // 5. Fade-in van de header achtergrond
-    .to(
-      ".header-container",
-      {
-        duration: 0.3,
-        opacity: 1,
-        ease: "power1.out",
-      },
-      "<"
-    ) // Start op hetzelfde moment als de logo-beweging (de vorige stap)
-
-    // 6. Homepage main content komt 'aanwaaien'
-    .to(
-      ".homepage-main",
-      {
-        duration: 0.8,
-        y: 0,
-        opacity: 1,
-        ease: "power2.out",
-      },
-      ">-0.4"
-    ); // Start 0.4 seconden vóór het einde van de vorige stap
-
-  // Initialize Lenis
-  const lenis = new Lenis({
-    autoRaf: true,
-  });
-
-  // Listen for the scroll event and log the event data
-  lenis.on("scroll", (e) => {
-    console.log(e);
-  });
+  // lenis.on("scroll", (e) => {
+  //   console.log(e);
+  // });
 
   document.getElementById("openSolli").addEventListener("click", function () {
     document.querySelector(".sol-page").classList.add("active");
