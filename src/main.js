@@ -1,8 +1,15 @@
 // import { blog } from "./blog.js";
 import { gsap } from "gsap";
-import { Flip } from "gsap/all";
-import { ScrollTrigger } from "gsap/all";
-gsap.registerPlugin(Flip, ScrollTrigger);
+import { Flip } from "gsap/Flip";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollSmoother } from "gsap/ScrollSmoother";
+gsap.registerPlugin(Flip, ScrollTrigger, ScrollSmoother);
+
+let smoother = ScrollSmoother.create({
+  wrapper: "#smooth-wrapper",
+  content: "#smooth-content",
+  smooth: 2,
+});
 
 let rainbow = 0;
 window.addEventListener("click", (e) => {
@@ -57,6 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
       scale: true,
       duration: 1,
       ease: "none",
+      // rotate: 360,
     });
     flip.pause(1);
 
