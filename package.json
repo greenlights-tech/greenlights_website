@@ -1,7 +1,19 @@
 {
+  "name": "greenlights",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "multer": "^2.0.1"
+  },
+  "devDependencies": {
+    "vite": "^7.1.9"
   }
 }
