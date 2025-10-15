@@ -171,9 +171,10 @@ table {
   /* ===== FONTSIZE */
   --logo-font-size: clamp(2rem, 4vw, 3.5rem);
   --sublogo-font-size: clamp(0.75rem, 1vw, 0.875rem);
-  --h2-font-size: clamp(1.75rem, 4vw, 2.5rem);
-  --subh2-font-size: clamp(1rem, 4vw, 1.25rem);
-  --h3-font-size: clamp(1rem, 1vw, 1.25rem);
+  --h2-font-size: clamp(2rem, 4vw, 3rem);
+  --h3-font-size: clamp(1.75rem, 4vw, 2.5rem);
+  --subh3-font-size: clamp(1rem, 4vw, 1.25rem);
+  --h4-font-size: clamp(1rem, 1vw, 1.25rem);
   --nav-link-font-size: clamp(1rem, 1.5vw, 1rem);
 
   --font-primary: "Sanchez", "Manrope", "Gill Sans MT", sans-serif;
@@ -246,7 +247,7 @@ body {
   color: var(--color-secondary);
   /* --sb-track-color: rgb(235, 235, 235);
   --sb-thumb-color: var(--color-primary); */
-  --sb-size: 14px;
+  /* --sb-size: 14px; */
   display: flex;
   flex-flow: column;
   -webkit-font-smoothing: antialiased;
@@ -254,6 +255,7 @@ body {
   -webkit-tap-highlight-color: transparent;
   background-color: black;
   overflow-x: hidden;
+  font-size: 16px;
   /* overflow: hidden; */
   /* -ms-overflow-style: none; */
 }
@@ -620,8 +622,9 @@ button {
   -webkit-background-clip: text;
   background-clip: text; */
   color: #bec6ab;
-  color: #3e79cc;
-  color: #4a94f9;
+  color: #b9b9b9;
+  /* color: #3e79cc;
+  color: #4a94f9; */
   margin: 0;
   /* margin-top: clamp(0.75rem, 2vw, 1rem); */
 }
@@ -633,6 +636,8 @@ button {
 
 .main {
   height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .container {
@@ -680,6 +685,7 @@ button {
 .main {
   position: relative;
   z-index: 1;
+  border: 1px solid yellow;
   /* padding-top: 80px; */
 }
 
@@ -694,13 +700,16 @@ section.section .container {
 
 .hero {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  border: 2px solid blue;
 }
 
 .hero .logo {
   display: flex; /* Maak het een flex container */
+
   align-items: center; /* Verticaal centreren */
   justify-content: center;
   border: 1px dashed white;
@@ -745,9 +754,24 @@ nav {
   margin-left: 2rem;
   /* background-image: linear-gradient(to bottom, #686563, #686563 50%, #464443); */
   background-color: #86817f;
+  background-color: transparent;
   margin-top: 10rem;
   /* padding-top: 10rem; */
 }
+
+.homepage-main .intro .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.homepage-main .intro .container h2 {
+  font-size: var(--h2-font-size);
+}
+
+/* .homepage-main .intro .container p {
+  font-size: var(--)
+} */
 
 /* Teasers universele instellingen */
 
@@ -786,7 +810,7 @@ nav {
 .centered-hoofdtext {
   font-family: var(--font-tertiary);
   font-family: monospace;
-  font-size: var(--h2-font-size);
+  font-size: var(--h3-font-size);
   color: #b9b9b9;
   font-weight: 600;
   text-transform: uppercase;
@@ -797,7 +821,7 @@ nav {
 .centered-subtext {
   font-family: var(--font-secondary);
   font-family: monospace;
-  font-size: var(--subh2-font-size);
+  font-size: var(--subh3-font-size);
   color: #b9b9b9;
   font-weight: 800;
   text-transform: uppercase;

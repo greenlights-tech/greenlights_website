@@ -3,12 +3,15 @@ import { gsap } from "gsap";
 import { Flip } from "gsap/Flip";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
-gsap.registerPlugin(Flip, ScrollTrigger, ScrollSmoother);
+import { SplitText } from "gsap/SplitText";
+// import MorphSVGPlugin from "gsap/MorphSVGPlugin";
+gsap.registerPlugin(Flip, ScrollTrigger, ScrollSmoother, SplitText);
 
 let smoother = ScrollSmoother.create({
   wrapper: "#smooth-wrapper",
   content: "#smooth-content",
   smooth: 2,
+  effects: true,
 });
 
 let rainbow = 0;
@@ -44,27 +47,12 @@ document.addEventListener("DOMContentLoaded", function () {
   // Store original URL to revert back to
   let originalUrl = window.location.pathname;
 
-  const ticker = document.querySelector(".ticker-content");
-  ticker.style.transform = `translateX(${Math.random() * 100}%)`;
-
-  // Slides sollicitatie page in from left
-
-  // const menuToggle = document.querySelector(".menu-toggle");
-  // const megaBox = document.querySelector(".mega-box");
-
-  // menuToggle.addEventListener("click", () => {
-  //   megaBox.classList.toggle("open");
-  //   menuToggle.classList.toggle("is-active");
-  // });
-
-  console.clear();
-
   window.addEventListener("load", () => {
     const flip = Flip.fit("#headerLogo", "#heroLogo", {
       scale: true,
       duration: 1,
       ease: "none",
-      // rotate: 360,
+      rotate: 360,
     });
     flip.pause(1);
 
@@ -72,7 +60,9 @@ document.addEventListener("DOMContentLoaded", function () {
       trigger: ".header",
       start: "top top",
       end: "top top",
+      scrub: true,
       endTrigger: "#heroLogo",
+
       markers: true,
       onUpdate: (s) => {
         flip.progress(1 - s.progress);
@@ -90,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ScrollTrigger.create({
       trigger: "#heroLogo",
       start: "top top",
-      end: "+=" + document.body.clientHeight,
+      end: () => `+=${document.body.clientHeight}`,
       markers: {
         indent: 200,
       },
@@ -108,6 +98,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // lenis.on("scroll", (e) => {
   //   console.log(e);
   // });
+
+  const ticker = document.querySelector(".ticker-content");
+  ticker.style.transform = `translateX(${Math.random() * 100}%)`;
 
   document.getElementById("openSolli").addEventListener("click", function () {
     document.querySelector(".sol-page").classList.add("active");
