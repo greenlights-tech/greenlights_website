@@ -270,50 +270,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // blog.render();
 
-  let flipCtx;
+  const logo = document.querySelector(".logo"),
+    originalContainer = document.querySelector(".original-container"),
+    newContainer = document.querySelector(".new-container");
 
-  function createTimeline() {
-    // Verwijder oude context als die er is (handig bij resize)
-    flipCtx && flipCtx.revert();
+  const state = Flip.getState(logo);
 
-    flipCtx = gsap.context(() => {
-      const logo = document.querySelector(".logo");
-      const originalContainer = document.querySelector(".original-container");
-      const newContainer = document.querySelector(".new-container");
+  (logo.parentNode === originalContainer
+    ? newContainer
+    : originalContainer
+  ).appendChild(logo);
 
-      const state = Flip.getState(logo);
-
-      (logo.parentNode === originalContainer
-        ? newContainer
-        : originalContainer
-      ).appendChild(logo);
-
-      // Maak een ScrollTrigger-timeline aan
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: "#flip-logo", // jouw section id
-          start: "top top",
-          end: "+=500", // scrollafstand van de animatie
-          scrub: true,
-          pin: true,
-          markers: true, // zet op false als je klaar bent
-        },
-      });
-
-      tl.add(
-        Flip.from(state, {
-          duration: 1,
-          ease: "power1.inOut",
-          scale: true,
-          nested: true,
-        })
-      );
-    });
-  }
-
-  // Initieel aanmaken
-  createTimeline();
-
-  // Responsief gedrag
-  window.addEventListener("resize", createTimeline);
+  Flip.from(state, {
+    // absolute: true,
+    scale: true,
+    duration: 1.2,
+    delay: 0.5,
+    nested: true,
+    stagger: "0.2",
+    ease: "power2.inOut",
+  });
 });
