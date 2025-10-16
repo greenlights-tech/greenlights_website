@@ -47,48 +47,65 @@ document.addEventListener("DOMContentLoaded", function () {
   // Store original URL to revert back to
   let originalUrl = window.location.pathname;
 
+  // const flip = Flip.fit("#headerLogo", "#heroLogo", {
+  //   scale: true,
+  //   duration: 1,
+  //   fitChild: ".child1",
+  //   ease: "power1.inOut",
+  // });
+  // flip.pause(1);
+
+  const logo = document.querySelector(".logo"),
+    originalContainer = document.querySelector(".original-container"),
+    newContainer = document.querySelector(".new-container");
+
   window.addEventListener("load", () => {
-    const flip = Flip.fit("#headerLogo", "#heroLogo", {
+    const state = Flip.getState(logo);
+
+    (logo.parentNode === originalContainer
+      ? newContainer
+      : originalContainer
+    ).appendChild(logo);
+
+    Flip.from(state, {
       scale: true,
-      duration: 1,
-      ease: "none",
-      rotate: 360,
-    });
-    flip.pause(1);
-
-    ScrollTrigger.create({
-      trigger: ".header",
-      start: "top top",
-      end: "top top",
-      scrub: true,
-      endTrigger: "#heroLogo",
-
-      markers: true,
-      onUpdate: (s) => {
-        flip.progress(1 - s.progress);
-      },
+      duration: 2,
+      ease: "power1.inOut",
     });
 
-    const headerTween = gsap
-      .to(".header", {
-        yPercent: -100,
-        ease: "power1.inOut",
-        paused: true,
-      })
-      .reverse();
+    // ScrollTrigger.create({
+    //   trigger: ".header",
+    //   start: "top top",
+    //   end: "top top",
+    //   scrub: true,
+    //   endTrigger: "#heroLogo",
 
-    ScrollTrigger.create({
-      trigger: "#heroLogo",
-      start: "top top",
-      end: () => `+=${document.body.clientHeight}`,
-      markers: {
-        indent: 200,
-      },
-      onUpdate: (s) => {
-        console.log(s.direction > 0);
-        headerTween.reversed(s.direction < 0);
-      },
-    });
+    //   markers: true,
+    //   onUpdate: (s) => {
+    //     flip.progress(1 - s.progress);
+    //   },
+    // });
+
+    // const headerTween = gsap
+    //   .to(".header", {
+    //     yPercent: -100,
+    //     ease: "power1.inOut",
+    //     paused: true,
+    //   })
+    //   .reverse();
+
+    // ScrollTrigger.create({
+    //   trigger: "#heroLogo",
+    //   start: "top top",
+    //   end: () => `+=${document.body.clientHeight}`,
+    //   markers: {
+    //     indent: 200,
+    //   },
+    //   onUpdate: (s) => {
+    //     console.log(s.direction > 0);
+    //     headerTween.reversed(s.direction < 0);
+    //   },
+    // });
   });
 
   // const lenis = new Lenis({
