@@ -55,58 +55,39 @@ document.addEventListener("DOMContentLoaded", function () {
   // });
   // flip.pause(1);
 
-  const logo = document.querySelector(".logo"),
-    originalContainer = document.querySelector(".original-container"),
-    newContainer = document.querySelector(".new-container");
+  // ScrollTrigger.create({
+  //   trigger: ".header",
+  //   start: "top top",
+  //   end: "top top",
+  //   scrub: true,
+  //   endTrigger: "#heroLogo",
 
-  window.addEventListener("load", () => {
-    const state = Flip.getState(logo);
+  //   markers: true,
+  //   onUpdate: (s) => {
+  //     flip.progress(1 - s.progress);
+  //   },
+  // });
 
-    (logo.parentNode === originalContainer
-      ? newContainer
-      : originalContainer
-    ).appendChild(logo);
+  // const headerTween = gsap
+  //   .to(".header", {
+  //     yPercent: -100,
+  //     ease: "power1.inOut",
+  //     paused: true,
+  //   })
+  //   .reverse();
 
-    Flip.from(state, {
-      scale: true,
-      duration: 2,
-      ease: "power1.inOut",
-    });
-
-    // ScrollTrigger.create({
-    //   trigger: ".header",
-    //   start: "top top",
-    //   end: "top top",
-    //   scrub: true,
-    //   endTrigger: "#heroLogo",
-
-    //   markers: true,
-    //   onUpdate: (s) => {
-    //     flip.progress(1 - s.progress);
-    //   },
-    // });
-
-    // const headerTween = gsap
-    //   .to(".header", {
-    //     yPercent: -100,
-    //     ease: "power1.inOut",
-    //     paused: true,
-    //   })
-    //   .reverse();
-
-    // ScrollTrigger.create({
-    //   trigger: "#heroLogo",
-    //   start: "top top",
-    //   end: () => `+=${document.body.clientHeight}`,
-    //   markers: {
-    //     indent: 200,
-    //   },
-    //   onUpdate: (s) => {
-    //     console.log(s.direction > 0);
-    //     headerTween.reversed(s.direction < 0);
-    //   },
-    // });
-  });
+  // ScrollTrigger.create({
+  //   trigger: "#heroLogo",
+  //   start: "top top",
+  //   end: () => `+=${document.body.clientHeight}`,
+  //   markers: {
+  //     indent: 200,
+  //   },
+  //   onUpdate: (s) => {
+  //     console.log(s.direction > 0);
+  //     headerTween.reversed(s.direction < 0);
+  //   },
+  // });
 
   // const lenis = new Lenis({
   //   autoRaf: true,
@@ -288,4 +269,51 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // blog.render();
+
+  let flipCtx;
+
+  function createTimeline() {
+    // Verwijder oude context als die er is (handig bij resize)
+    flipCtx && flipCtx.revert();
+
+    flipCtx = gsap.context(() => {
+      const logo = document.querySelector(".logo");
+      const originalContainer = document.querySelector(".original-container");
+      const newContainer = document.querySelector(".new-container");
+
+      const state = Flip.getState(logo);
+
+      (logo.parentNode === originalContainer
+        ? newContainer
+        : originalContainer
+      ).appendChild(logo);
+
+      // Maak een ScrollTrigger-timeline aan
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#flip-logo", // jouw section id
+          start: "top top",
+          end: "+=500", // scrollafstand van de animatie
+          scrub: true,
+          pin: true,
+          markers: true, // zet op false als je klaar bent
+        },
+      });
+
+      tl.add(
+        Flip.from(state, {
+          duration: 1,
+          ease: "power1.inOut",
+          scale: true,
+          nested: true,
+        })
+      );
+    });
+  }
+
+  // Initieel aanmaken
+  createTimeline();
+
+  // Responsief gedrag
+  window.addEventListener("resize", createTimeline);
 });
