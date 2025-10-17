@@ -15,7 +15,7 @@ let smoother = ScrollSmoother.create({
 });
 
 let rainbow = 0;
-window.addEventListener("click", (e) => {
+window.addEventListener("mouseEnter", (e) => {
   const particle = document.createElement("part");
   document.body.appendChild(particle);
 
@@ -269,10 +269,25 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // blog.render();
-
+  const bg = document.querySelector(".header .container .bg");
   const logo = document.querySelector(".logo"),
     originalContainer = document.querySelector(".original-container"),
     newContainer = document.querySelector(".new-container");
+  const midText = document.querySelector(".mid-text");
+
+  const split = SplitText.create(midText, {
+    type: "chars, words",
+    charsClass: "char",
+    wordsClass: "word",
+  });
+
+  gsap.set(midText, { visibility: "visible" });
+  gsap.set(split.chars, {
+    opacity: 0,
+    yPercent: 100,
+    rotateX: -90,
+    filter: "blur(10px)",
+  });
 
   const state = Flip.getState(logo);
 
@@ -281,13 +296,41 @@ document.addEventListener("DOMContentLoaded", function () {
     : originalContainer
   ).appendChild(logo);
 
-  Flip.from(state, {
-    // absolute: true,
-    scale: true,
-    duration: 1.2,
-    delay: 0.5,
-    nested: true,
-    stagger: "0.2",
-    ease: "power2.inOut",
-  });
+  const tl = gsap.timeline();
+
+  tl.add(
+    Flip.from(state, {
+      scale: true,
+      duration: 1.2,
+      delay: 0.5,
+      nested: true,
+      ease: "power2.inOut",
+    }),
+    0
+  );
+
+  tl.to(
+    bg,
+    {
+      delay: 0.5,
+      opacity: 1,
+      duration: 1.2,
+      ease: "power2.inOut",
+    },
+    0
+  );
+
+  tl.to(
+    split.chars,
+    {
+      opacity: 1,
+      yPercent: 20,
+      rotateX: 0,
+      filter: "blur(0px)",
+      stagger: 0.02, // bepaalt snelheid van na elkaar
+      duration: 1,
+      ease: "power2.inOut",
+    },
+    ">-0.6"
+  );
 });
