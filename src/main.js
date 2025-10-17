@@ -333,4 +333,14 @@ document.addEventListener("DOMContentLoaded", function () {
     },
     ">-0.6"
   );
+
+  ScrollTrigger.create({
+    trigger: ".hero",
+    start: "clamp(bottom bottom)",
+    end: "clamp(bottom top)",
+    scrub: true,
+    pin: ".header-hero",
+    pinSpacing: false,
+    markers: true,
+  });
 });

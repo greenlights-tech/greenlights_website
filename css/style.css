@@ -501,6 +501,43 @@ svg {
   font-weight: 800;
 }
 
+.images {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  align-items: flex-start;
+  justify-items: center;
+}
+
+img {
+  max-width: 100%;
+  height: 60vh;
+  object-fit: cover;
+}
+
+.follower {
+  width: 100px;
+  height: 100px;
+  background: white;
+  border-radius: 12px;
+  border: 2px solid #f39;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  font-size: 50px;
+  font-family: Staatliches, sans-serif;
+  color: #f39;
+  user-select: none;
+  opacity: 0;
+}
+
+.cursor {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #f39;
+}
+
 /* .child1 {
   /* width: 100%;
   height: auto; */
