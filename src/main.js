@@ -296,7 +296,10 @@ document.addEventListener("DOMContentLoaded", function () {
     : originalContainer
   ).appendChild(logo);
 
-  const tl = gsap.timeline();
+  const tl = gsap.timeline({
+    // Start de Scroll-logica pas als deze tijdlijn klaar is
+    onComplete: initScrollTransition,
+  });
 
   tl.add(
     Flip.from(state, {
@@ -334,13 +337,62 @@ document.addEventListener("DOMContentLoaded", function () {
     ">-0.6"
   );
 
-  ScrollTrigger.create({
-    trigger: ".hero",
-    start: "clamp(bottom bottom)",
-    end: "clamp(bottom top)",
-    scrub: true,
-    pin: ".header-hero",
-    pinSpacing: false,
-    markers: true,
-  });
+  function initScrollTransition() {
+    const hero = document.querySelector(".hero");
+    const teasersContainer = document.querySelector(".homepage-main");
+
+    // const heroHeight = hero.offsetHeight;
+
+    // gsap.set(teasersContainer, { y: heroHeight });
+    // CREËER HIER DE NIEUWE TIJDLIJN
+    const scrollTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: hero,
+        start: "bottom bottom",
+        scrub: 0.5,
+        pin: ".header-hero",
+        pinSpacing: false,
+        markers: true,
+      },
+    });
+
+    // Voeg de verticale beweging van de container toe aan de nieuwe tijdlijn
+    scrollTl.to(
+      teasersContainer,
+      {
+        y: 0,
+        ease: "none",
+      },
+      0
+    );
+  }
+
+  // ScrollTrigger.create({
+  //   trigger: ".hero",
+  //   start: "clamp(bottom bottom)",
+  //   end: "clamp(bottom top)",
+  //   scrub: true,
+  //   pin: ".header-hero",
+  //   pinSpacing: false,
+  //   markers: true,
+  // });
+
+  // gsap.defaults({
+  //   stagger: {
+  //     each: 1,
+  //     repeat: -1,
+  //     from: "random",
+  //   },
+  //   ease: "none",
+  // });
+
+  // gsap.to(".box:nth-child(even)", {
+  //   y: -hero.offsetHeight,
+  //   duration: 20,
+  // });
+
+  // gsap.to(".box:nth-child(odd)", {
+  //   y: -hero.offsetHeight,
+  //   duration: 30,
+  // });
 });
