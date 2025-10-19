@@ -1,4 +1,6 @@
 // import { blog } from "./blog.js";
+import { tsParticles } from "@tsparticles/engine";
+import { loadFireflyPreset } from "@tsparticles/preset-firefly";
 import { gsap } from "gsap";
 import { Flip } from "gsap/Flip";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -12,40 +14,54 @@ let smoother = ScrollSmoother.create({
   content: "#smooth-content",
   smooth: 2,
   effects: true,
-});
-
-let rainbow = 0;
-window.addEventListener("mouseEnter", (e) => {
-  const particle = document.createElement("part");
-  document.body.appendChild(particle);
-
-  rainbow += 2;
-
-  const size = Math.random() * 120 + 30;
-  gsap.set(particle, {
-    x: e.clientX - size / 2,
-    y: e.clientY - size / 2,
-    width: size,
-    height: size,
-    filter: `blur(${(1 - (size - 30) / 120) * 10}px)`,
-    backgroundColor: `hsl(${rainbow}, 70%, 50%)`,
-  });
-
-  gsap.to(particle, {
-    x: "+=random(-200, 200)",
-    y: "+=random(-200, 200)",
-    opacity: 0,
-    duration: "random(4, 7)",
-    ease: "power2.out",
-    onComplete: () => {
-      particle.remove();
-    },
-  });
+  normalizeScroll: true,
 });
 
 document.addEventListener("DOMContentLoaded", function () {
   // Store original URL to revert back to
   let originalUrl = window.location.pathname;
+
+  (async () => {
+    try {
+      await loadFireflyPreset(tsParticles);
+
+      // De code in het 'try' blok gaat hier verder nadat de preset is geladen
+      tsParticles.load({
+        id: "tsparticles",
+        options: {
+          preset: "firefly",
+          particles: {
+            color: {
+              // Verander de kleur van de deeltjes (bijv. naar geel)
+              value: "rgb(0, 230, 104)",
+            },
+
+            size: {
+              value: 3,
+            },
+          },
+          background: {
+            // Verander de achtergrondkleur (bijv. naar zwart)
+            color: {
+              value: "#464443",
+            },
+          },
+          fullScreen: {
+            enable: true,
+            zIndex: -1,
+          },
+        },
+      });
+    } catch (error) {
+      // Als er een probleem is met het laden van de preset
+      console.error("Fout bij het laden van de Firefly preset:", error);
+    }
+
+    // Sluitende accolade van de 'try/catch' is nu toegevoegd na tsParticles.load()
+    // en de sluitende accolade van de 'async' functie is hier.
+
+    // Sluitend haakje en puntkomma om de functie uit te voeren
+  })();
 
   // const flip = Flip.fit("#headerLogo", "#heroLogo", {
   //   scale: true,
@@ -296,10 +312,7 @@ document.addEventListener("DOMContentLoaded", function () {
     : originalContainer
   ).appendChild(logo);
 
-  const tl = gsap.timeline({
-    // Start de Scroll-logica pas als deze tijdlijn klaar is
-    onComplete: initScrollTransition,
-  });
+  const tl = gsap.timeline();
 
   tl.add(
     Flip.from(state, {
@@ -337,35 +350,40 @@ document.addEventListener("DOMContentLoaded", function () {
     ">-0.6"
   );
 
-  function initScrollTransition() {
-    const hero = document.querySelector(".hero");
-    const teasersContainer = document.querySelector(".homepage-main");
+  const teasersContainer = document.querySelector(".teasers-container");
+  const hero = document.querySelector(".hero");
+  const headerHero = document.querySelector(".header-hero");
 
-    // const heroHeight = hero.offsetHeight;
-
-    // gsap.set(teasersContainer, { y: heroHeight });
-    // CREËER HIER DE NIEUWE TIJDLIJN
-    const scrollTl = gsap.timeline({
+  gsap
+    .timeline({
       scrollTrigger: {
-        trigger: hero,
-        start: "bottom bottom",
-        scrub: 0.5,
-        pin: ".header-hero",
-        pinSpacing: false,
+        trigger: teasersContainer,
+        start: "top bottom", // Start wanneer de top van de teasers de bodem van de viewport raakt
+        end: "top top", // Einde wanneer de top van de teasers de top van de viewport raakt
+        scrub: true,
         markers: true,
+        pin: headerHero,
+        pinSpacing: false,
       },
-    });
+    })
 
-    // Voeg de verticale beweging van de container toe aan de nieuwe tijdlijn
-    scrollTl.to(
+    .to(
       teasersContainer,
       {
         y: 0,
         ease: "none",
       },
       0
+    )
+    .to(
+      midText,
+      {
+        opacity: 0,
+        ease: "power2.inOut",
+        duration: 0.3,
+      },
+      0
     );
-  }
 
   // ScrollTrigger.create({
   //   trigger: ".hero",

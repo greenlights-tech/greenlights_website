@@ -162,6 +162,7 @@ table {
   --color-bg: #444857;
   --color-bg: #3e414e;
   --color-bg: #686563;
+  --color-bg: #041819;
   --color-header: #33353f;
   --color-scrollbar: #2b2c34;
   --color-menu: #444857;
@@ -257,7 +258,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-tap-highlight-color: transparent;
-  background-color: black;
+  background-color: #041819;
   overflow-x: hidden;
   font-size: 16px;
   /* overflow: hidden; */
@@ -312,14 +313,16 @@ part {
   background-color: transparent;
 }
 
+canvas {
+  display: block;
+}
+
 #tsparticles {
-  height: 100vh;
   position: absolute;
   width: 100%;
+  height: 100%;
   z-index: -1;
-  height: 100vh !important;
-  width: 100vw !important;
-  inset: 0;
+  /* background-color: #464443; */
   /* top: 0;
   left: 0; */
   /* Hiermee komt hij achter alle elementen met z-index 0 of hoger */
@@ -342,10 +345,12 @@ part {
   min-height: 100vh;
   min-height: 100dvh;
   flex-flow: column nowrap;
-  flex-grow: 1;
+  /* flex-grow: 1; */
   border-bottom: none;
   /* border-radius: 0rem 1.5rem; */
-  background-color: #464443;
+  /* background-color: #527650; */
+
+  color: #f1efe0;
   /* overflow: hidden; */
 }
 
@@ -394,9 +399,9 @@ section.section {
 
 .header {
   height: 8rem;
-  top: 0;
+  /* top: 0;
   left: 0;
-  right: 0;
+  right: 0; */
   z-index: 10;
   /* background-color: #1e1e1e;
   background-color: #e0ff98;
@@ -411,12 +416,13 @@ section.section {
 .header .container .bg {
   position: absolute;
   inset: 0;
-  background-image: linear-gradient(
+  background-image: linear-gradient(to top, #686563, #686563 30%, #464443);
+  /* background-image: linear-gradient(
     to top,
     rgba(104, 101, 99, 0.5),
     rgba(104, 101, 99, 0.5) 30%,
     rgba(70, 68, 67, 0.5)
-  );
+  ); */
   opacity: 0;
 }
 
@@ -425,7 +431,7 @@ section.section {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 391px;
+  width: 40%;
   border: 1px dashed blue;
   background-color: transparent;
 }
@@ -469,8 +475,8 @@ nav {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  width: 782px;
-  height: 96px;
+  width: 60%;
+  height: auto;
   background-color: "transparent";
 }
 
@@ -530,7 +536,7 @@ img {
   height: 10vw;
 } */
 
-.follower {
+/* .follower {
   width: 100px;
   height: 100px;
   background: white;
@@ -552,7 +558,7 @@ img {
   height: 10px;
   border-radius: 50%;
   background: #f39;
-}
+} */
 
 /* .child1 {
   /* width: 100%;
@@ -617,7 +623,7 @@ img {
   margin-bottom: 2rem; */
 
 /* Flickering animation for VHS effect */
-/* .flicker {
+.flicker {
   animation: flicker 8s infinite;
 }
 
@@ -655,7 +661,7 @@ img {
   98% {
     opacity: 1;
   }
-} */
+}
 
 /* header {
   position: relative;
@@ -1028,12 +1034,18 @@ button {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 6rem 8rem;
-    padding-top: 5rem;
+    /* padding: 6rem 8rem; */
+    padding-left: 6rem;
+    padding-right: 6rem;
+    /* padding-top: 10rem;
+    padding-bottom: 4rem; */
+    padding-top: 8rem;
     background-color: transparent;
     flex-wrap: nowrap;
-    height: calc(100vh - var(--header-height));
+    /* height: calc(100vh - var(--header-height)); */
+    height: 100vh;
     /* border: 1px solid red; */
+    margin-bottom: 5rem;
     /* max-height: 100%; */
   }
   .buttons {
@@ -1064,7 +1076,7 @@ button {
     display: flex;
     justify-content: center;
     /* border: 1px solid purple; */
-    gap: 3.5rem;
+    /* gap: 3.5rem; */
     max-width: 100%;
     box-shadow: 18px 18px 16px 0 rgba(0, 0, 0, 0.3);
   }
@@ -1072,6 +1084,7 @@ button {
   .teasers-container-swiper {
     display: none;
   }
+
   .left:hover {
     flex: 1.1;
     background-size: auto 115%;
