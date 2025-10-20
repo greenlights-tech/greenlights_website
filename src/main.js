@@ -1,13 +1,19 @@
 // import { blog } from "./blog.js";
 import { tsParticles } from "@tsparticles/engine";
-import { loadFireflyPreset } from "@tsparticles/preset-firefly";
+import { loadFirePreset } from "@tsparticles/preset-fire";
 import { gsap } from "gsap";
 import { Flip } from "gsap/Flip";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { SplitText } from "gsap/SplitText";
-// import MorphSVGPlugin from "gsap/MorphSVGPlugin";
-gsap.registerPlugin(Flip, ScrollTrigger, ScrollSmoother, SplitText);
+import { MorphSVGPlugin } from "gsap/MorphSVGPlugin";
+gsap.registerPlugin(
+  Flip,
+  ScrollTrigger,
+  ScrollSmoother,
+  SplitText,
+  MorphSVGPlugin
+);
 
 let smoother = ScrollSmoother.create({
   wrapper: "#smooth-wrapper",
@@ -23,28 +29,58 @@ document.addEventListener("DOMContentLoaded", function () {
 
   (async () => {
     try {
-      await loadFireflyPreset(tsParticles);
+      await loadFirePreset(tsParticles);
 
       // De code in het 'try' blok gaat hier verder nadat de preset is geladen
       tsParticles.load({
         id: "tsparticles",
         options: {
-          preset: "firefly",
           particles: {
             color: {
-              // Verander de kleur van de deeltjes (bijv. naar geel)
-              value: "rgb(0, 230, 104)",
+              value: ["rgb(0, 230, 104)", "rgb(0, 230, 104)"],
+            },
+
+            number: {
+              value: 0, // Dit zorgt ervoor dat er geen deeltjes te zien zijn bij het laden
+              density: { enable: false },
             },
 
             size: {
               value: 3,
             },
-          },
-          background: {
-            // Verander de achtergrondkleur (bijv. naar zwart)
-            color: {
-              value: "#464443",
+            move: {
+              enable: true, // Zorg ervoor dat beweging is ingeschakeld
+              speed: 1, // PAS DEZE WAARDE AAN: Lagere waarde = langzamer, Hogere waarde = sneller
+              direction: "none",
+              random: true,
+              straight: false,
+              outModes: {
+                default: "out",
+              },
+              attract: {
+                enable: false,
+              },
             },
+          },
+          preset: "fire",
+          detectsOn: "canvas",
+
+          IHoverEvent: {
+            enable: false,
+          },
+
+          onClick: {
+            enable: true,
+            mode: "push",
+          },
+          resize: true,
+
+          background: {
+            color: {
+              value: "#303847",
+            },
+
+            image: " #303847",
           },
           fullScreen: {
             enable: true,
@@ -56,11 +92,6 @@ document.addEventListener("DOMContentLoaded", function () {
       // Als er een probleem is met het laden van de preset
       console.error("Fout bij het laden van de Firefly preset:", error);
     }
-
-    // Sluitende accolade van de 'try/catch' is nu toegevoegd na tsParticles.load()
-    // en de sluitende accolade van de 'async' functie is hier.
-
-    // Sluitend haakje en puntkomma om de functie uit te voeren
   })();
 
   // const flip = Flip.fit("#headerLogo", "#heroLogo", {
@@ -289,7 +320,25 @@ document.addEventListener("DOMContentLoaded", function () {
   const logo = document.querySelector(".logo"),
     originalContainer = document.querySelector(".original-container"),
     newContainer = document.querySelector(".new-container");
+  const hero = document.querySelector(".hero");
   const midText = document.querySelector(".mid-text");
+  // De twee vormen die je wilt morphen: de ene is de vorm van het logo, de andere het icoon.
+  // const logoPath = document.querySelector("#logoPath");
+  // const rectShape = document.querySelector("#rectId");
+  // const ellipseShape = document.querySelector("#ellipseId");
+  // const rect2Shape = document.querySelector("#rect2Id");
+  // const ellip2seShape = document.querySelector("#ellipse2Id");
+  // const logoGlow = document.querySelector(".logo-glow");
+
+  // MorphSVGPlugin.convertToPath("rect, ellipse");
+
+  // gsap.to("#logoPath", {
+  //   duration: 10,
+  //   morphSVG: ellipseShape,
+  //   repeat: 1,
+  //   yoyo: true,
+  //   repeatDelay: 0.2,
+  // });
 
   const split = SplitText.create(midText, {
     type: "chars, words",
@@ -305,7 +354,7 @@ document.addEventListener("DOMContentLoaded", function () {
     filter: "blur(10px)",
   });
 
-  const state = Flip.getState(logo);
+  const state = Flip.getState(logo, ".hero");
 
   (logo.parentNode === originalContainer
     ? newContainer
@@ -321,8 +370,21 @@ document.addEventListener("DOMContentLoaded", function () {
       delay: 0.5,
       nested: true,
       ease: "power2.inOut",
+      zIndex: 100,
     }),
     0
+  );
+
+  tl.to(
+    hero,
+    {
+      // backgroundColor: "#303847",
+      backgroundColor: "transparent",
+      duration: 1.2,
+      delay: 0.5,
+      ease: "power2.inOut",
+    },
+    0 // Start op hetzelfde moment als de Flip animatie
   );
 
   tl.to(
@@ -351,7 +413,7 @@ document.addEventListener("DOMContentLoaded", function () {
   );
 
   const teasersContainer = document.querySelector(".teasers-container");
-  const hero = document.querySelector(".hero");
+
   const headerHero = document.querySelector(".header-hero");
 
   gsap
@@ -384,6 +446,8 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       0
     );
+
+  // .to(morphAnimation, { time: 1 }, 0);
 
   // ScrollTrigger.create({
   //   trigger: ".hero",
