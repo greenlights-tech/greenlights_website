@@ -182,7 +182,7 @@ table {
   --nav-link-font-size: clamp(1rem, 1.5vw, 1rem);
 
   --font-primary: "Sanchez", "Manrope", "Gill Sans MT", sans-serif;
-  --font-secondary: "Manrope", "Gill Sans MT", sans-serif;
+  --font-secondary: "Inter", "Manrope", "Gill Sans MT", sans-serif;
   --font-tertiary: "Overpass Mono", "Gill Sans MT", sans-serif;
 
   --header-height: 8rem;
@@ -623,11 +623,66 @@ svg {
 }
 
 .mid-text h2 {
-  font-family: monospace;
+  font-family: "Inter";
   font-size: var(--h2-hero-font-size);
   color: #b9b9b9;
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.2;
+}
+
+/* TEST */
+
+.mwg_effect018 .scroll {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.mwg_effect018 .pin-height {
+  height: 500vh;
+}
+.mwg_effect018 .container {
+  height: 100vh;
+  display: flex;
+  align-items: center; /* Centering the cards inside the division */
+  justify-content: center; /* Centering the cards inside the division */
+  padding: 0 0 0 6vw;
+}
+.mwg_effect018 .card {
+  width: 18vw;
+  aspect-ratio: 0.75;
+  border-radius: 1vw;
+  margin: 0 0 0 -6vw;
+  border: 1px solid #606060;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #fff;
+  font: 500 normal 0.9vw / normal "IBM Plex Mono";
+  text-transform: uppercase;
+  padding: 0.8vw;
+  backdrop-filter: blur(6px);
+}
+.mwg_effect018 .card *:nth-child(1) {
+  text-align: right;
+}
+.mwg_effect018 .card *:nth-child(2) {
+  margin: 0 auto;
+}
+.mwg_effect018 .card:nth-child(1) img {
+  width: 9.5vw;
+}
+.mwg_effect018 .card:nth-child(2) img {
+  width: 7vw;
+}
+.mwg_effect018 .card:nth-child(3) img {
+  width: 7.5vw;
+}
+.mwg_effect018 .card:nth-child(4) img {
+  width: 8vw;
+}
+.mwg_effect018 .card:nth-child(5) img {
+  width: 5.5vw;
 }
 
 /* .images {
@@ -636,6 +691,8 @@ svg {
   align-items: flex-start;
   justify-items: center;
 }
+
+
 
 img {
   max-width: 100%;
@@ -992,10 +1049,10 @@ button {
 
 .left {
   background-image: url("../images/background6.avif");
-  /* background-color: rgb(32, 38, 51); */
-
-  /* box-shadow: 14px 2px 25px -8px rgba(0, 0, 0, 0.6) inset; */
 }
+/* background-color: rgb(32, 38, 51); */
+
+/* box-shadow: 14px 2px 25px -8px rgba(0, 0, 0, 0.6) inset; */
 
 .right {
   background-image: url("../images/background7-kopie.jpg");
@@ -1154,41 +1211,69 @@ button {
 /* Teasers desktop version */
 
 @media (min-width: 992px) {
+  .teasers-container .scroll2 {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .teasers-container .pin-height2 {
+    height: 500vh;
+  }
   .teasers-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     /* padding: 6rem 8rem; */
-    padding-left: 6rem;
-    padding-right: 6rem;
+    /* padding-left: 6rem;
+    padding-right: 6rem; */
     /* padding-top: 10rem;
     padding-bottom: 4rem; */
-    padding-top: 8rem;
+    /* padding-top: 8rem; */
     background-color: transparent;
-    flex-wrap: nowrap;
+    /* flex-wrap: nowrap; */
     /* height: calc(100vh - var(--header-height)); */
-    height: 100vh;
+    /* height: 100vh; */
     /* border: 1px solid red; */
-    margin-bottom: 5rem;
+    /* margin-bottom: 5rem; */
     /* max-height: 100%; */
   }
   .buttons {
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 5rem;
+    gap: 8rem;
     /* border: 1px solid orange; */
     width: 100%;
+    height: 100vh;
+    padding: 0 0 0 6vw;
   }
+
+  /* .mwg_effect018 .card {
+  width: 18vw;
+  aspect-ratio: 0.75;
+  border-radius: 1vw;
+  margin: 0 0 0 -6vw;
+  border: 1px solid #606060;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #fff;
+  font: 500 normal 0.9vw / normal "IBM Plex Mono";
+  text-transform: uppercase;
+  padding: 0.8vw;
+  backdrop-filter: blur(6px);
+} */
+
   .teaser {
-    transition: all 0.7s ease;
+    /* transition: all 0.7s ease; */
+    width: 30vw;
+    aspect-ratio: 1;
     /* flex: 0 0 calc(50% - 1.75rem); */
     flex: 1;
     cursor: pointer;
-    width: 100%;
-    background-size: auto 100%;
+    background-size: cover;
     background-color: var(--color-bg);
     background-color: #e7e8e9;
     border: 1px solid rgb(31, 31, 31);
@@ -1199,23 +1284,24 @@ button {
     background-position: center;
     color: var(--color-secondary);
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
     /* border: 1px solid purple; */
     /* gap: 3.5rem; */
-    max-width: 100%;
     box-shadow: 18px 18px 16px 0 rgba(0, 0, 0, 0.3);
+    padding: 0.8vw;
+    backdrop-filter: blur(6px);
   }
 
   .teasers-container-swiper {
     display: none;
   }
 
-  .left:hover {
+  /* .left:hover {
     flex: 1.1;
     background-size: auto 115%;
     background-color: var(--color-bg);
     border: 1px solid var(--color-primary);
-    /* box-shadow: 0 0 15px -5px var(--color-primary); */
     box-shadow: 18px 18px 16px 5px rgba(0, 0, 0, 0.3);
   }
 
@@ -1224,9 +1310,8 @@ button {
     background-size: auto 115%;
     background-color: var(--color-bg);
     border: 1px solid var(--color-primary);
-    /* box-shadow: 0 0 15px -5px #1ca45b; */
     box-shadow: 18px 18px 16px 5px rgba(0, 0, 0, 0.3);
-  }
+  } */
 
   /* .left:hover ~ .right {
     box-shadow: inset 100px 0px 100px 0px rgba(0, 0, 0, 0.4);

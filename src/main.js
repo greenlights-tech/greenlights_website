@@ -6,22 +6,17 @@ import { Flip } from "gsap/Flip";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { SplitText } from "gsap/SplitText";
-import { MorphSVGPlugin } from "gsap/MorphSVGPlugin";
-gsap.registerPlugin(
-  Flip,
-  ScrollTrigger,
-  ScrollSmoother,
-  SplitText,
-  MorphSVGPlugin
-);
+import { CustomEase } from "gsap/CustomEase";
+import Lenis from "lenis";
+gsap.registerPlugin(Flip, ScrollTrigger, ScrollSmoother, SplitText, CustomEase);
 
-let smoother = ScrollSmoother.create({
-  wrapper: "#smooth-wrapper",
-  content: "#smooth-content",
-  smooth: 2,
-  effects: true,
-  normalizeScroll: true,
-});
+// let smoother = ScrollSmoother.create({
+//   wrapper: "#smooth-wrapper",
+//   content: "#smooth-content",
+//   smooth: 2,
+//   effects: true,
+//   normalizeScroll: true,
+// });
 
 document.addEventListener("DOMContentLoaded", function () {
   // Store original URL to revert back to
@@ -136,13 +131,9 @@ document.addEventListener("DOMContentLoaded", function () {
   //   },
   // });
 
-  // const lenis = new Lenis({
-  //   autoRaf: true,
-  // });
-
-  // lenis.on("scroll", (e) => {
-  //   console.log(e);
-  // });
+  const lenis = new Lenis({
+    autoRaf: true,
+  });
 
   const ticker = document.querySelector(".ticker-content");
   ticker.style.transform = `translateX(${Math.random() * 100}%)`;
@@ -412,69 +403,217 @@ document.addEventListener("DOMContentLoaded", function () {
     ">-0.6"
   );
 
-  const teasersContainer = document.querySelector(".teasers-container");
+  const root2 = document.querySelector(".teasers-container");
+  const pinHeight2 = root2.querySelector(".pin-height2");
+  const container2 = root2.querySelector(".buttons");
+  const cards2 = root2.querySelectorAll(".teaser");
 
+  const teasersContainer = document.querySelector(".teasers-container");
   const headerHero = document.querySelector(".header-hero");
 
-  gsap
-    .timeline({
-      scrollTrigger: {
-        trigger: teasersContainer,
-        start: "top bottom", // Start wanneer de top van de teasers de bodem van de viewport raakt
-        end: "top top", // Einde wanneer de top van de teasers de top van de viewport raakt
-        scrub: true,
-        markers: true,
-        pin: headerHero,
-        pinSpacing: false,
+  gsap.to(".scroll2", {
+    autoAlpha: 0,
+    duration: 0.2,
+    scrollTrigger: {
+      trigger: root2,
+      start: "top top",
+      end: "top top-=1",
+      toggleActions: "play none reverse none",
+    },
+  });
+
+  ScrollTrigger.create({
+    trigger: pinHeight2,
+    start: "top top",
+    end: "bottom bottom",
+    pin: container2,
+    pinSpacing: false,
+    scrub: true,
+  });
+
+  gsap.set(cards2, {
+    yPercent: 50,
+    y: 0.5 * window.innerHeight,
+  });
+
+  const tlTest2 = gsap.timeline({
+    scrollTrigger: {
+      trigger: root2,
+      start: "top top",
+      end: "bottom bottom",
+      scrub: true,
+    },
+  });
+
+  tlTest2.to(
+    cards2,
+    {
+      yPercent: -50,
+      y: -0.5 * window.innerHeight,
+      duration: 1,
+      stagger: 0.12,
+      ease: CustomEase.create(
+        "custom",
+        "M0,0 C0.1,0.3 0.5,0.5 0.5,0.5 0.8,0.4 1,1 1,1"
+      ),
+    },
+    "step"
+  );
+  tlTest2.to(
+    cards2,
+    {
+      stagger: 0.12,
+      duration: 0.5,
+      ease: "power2.out",
+    },
+    "step"
+  );
+  tlTest2.to(
+    cards2,
+    {
+      rotation: 0,
+      stagger: 0.12,
+      duration: 0.5,
+      ease: "power2.in",
+    },
+    "step+=0.5"
+  );
+
+  // gsap
+  //   .timeline({
+  //     scrollTrigger: {
+  //       trigger: teasersContainer,
+  //       start: "top bottom",
+  //       end: "top top",
+  //       scrub: true,
+  //       markers: true,
+  //       pin: headerHero,
+  //       pinSpacing: false,
+  //     },
+  //   })
+
+  //   .to(
+  //     teasersContainer,
+  //     {
+  //       y: 0,
+  //       ease: "none",
+  //     },
+  //     0
+  //   )
+  //   .to(
+  //     midText,
+  //     {
+  //       opacity: 0,
+  //       ease: "power2.inOut",
+  //       duration: 0.3,
+  //     },
+  //     0
+  //   );
+
+  const root = document.querySelector(".mwg_effect018");
+  const pinHeight = root.querySelector(".pin-height");
+  const container = root.querySelector(".container");
+  const cards = root.querySelectorAll(".card");
+
+  gsap.to(".scroll", {
+    autoAlpha: 0,
+    duration: 0.2,
+    scrollTrigger: {
+      trigger: root,
+      start: "top top",
+      end: "top top-=1",
+      toggleActions: "play none reverse none",
+    },
+  });
+
+  ScrollTrigger.create({
+    trigger: pinHeight,
+    start: "top top",
+    end: "bottom bottom",
+    pin: container,
+    pinSpacing: false,
+    scrub: true,
+  });
+
+  gsap.set(cards, {
+    yPercent: 50,
+    y: 0.5 * window.innerHeight,
+  });
+
+  const tlTest = gsap.timeline({
+    scrollTrigger: {
+      trigger: root,
+      start: "top top",
+      end: "bottom bottom",
+      scrub: true,
+    },
+  });
+
+  tlTest.to(
+    cards,
+    {
+      yPercent: -50,
+      y: -0.5 * window.innerHeight,
+      duration: 1,
+      stagger: 0.12,
+      ease: CustomEase.create(
+        "custom",
+        "M0,0 C0,0 0.098,0.613 0.5,0.5 0.899,0.386 1,1 1,1 "
+      ),
+    },
+    "step"
+  );
+  tlTest.to(
+    cards,
+    {
+      rotation: () => {
+        return (Math.random() - 0.5) * 20;
       },
-    })
-
-    .to(
-      teasersContainer,
-      {
-        y: 0,
-        ease: "none",
-      },
-      0
-    )
-    .to(
-      midText,
-      {
-        opacity: 0,
-        ease: "power2.inOut",
-        duration: 0.3,
-      },
-      0
-    );
-
-  // .to(morphAnimation, { time: 1 }, 0);
-
-  // ScrollTrigger.create({
-  //   trigger: ".hero",
-  //   start: "clamp(bottom bottom)",
-  //   end: "clamp(bottom top)",
-  //   scrub: true,
-  //   pin: ".header-hero",
-  //   pinSpacing: false,
-  //   markers: true,
-  // });
-
-  // gsap.defaults({
-  //   stagger: {
-  //     each: 1,
-  //     repeat: -1,
-  //     from: "random",
-  //   },
-  //   ease: "none",
-  // });
-
-  // gsap.to(".box:nth-child(even)", {
-  //   y: -hero.offsetHeight,
-  //   duration: 20,
-  // });
-
-  // gsap.to(".box:nth-child(odd)", {
-  //   y: -hero.offsetHeight,
-  //   duration: 30,
-  // });
+      stagger: 0.12,
+      duration: 0.5,
+      ease: "power3.out",
+    },
+    "step"
+  );
+  tlTest.to(
+    cards,
+    {
+      rotation: 0,
+      stagger: 0.12,
+      duration: 0.5,
+      ease: "power3.in",
+    },
+    "step+=0.5"
+  );
 });
+
+// .to(morphAnimation, { time: 1 }, 0);
+
+// ScrollTrigger.create({
+//   trigger: ".hero",
+//   start: "clamp(bottom bottom)",
+//   end: "clamp(bottom top)",
+//   scrub: true,
+//   pin: ".header-hero",
+//   pinSpacing: false,
+//   markers: true,
+// });
+
+// gsap.defaults({
+//   stagger: {
+//     each: 1,
+//     repeat: -1,
+//     from: "random",
+//   },
+//   ease: "none",
+// });
+
+// gsap.to(".box:nth-child(even)", {
+//   y: -hero.offsetHeight,
+//   duration: 20,
+// });
+
+// gsap.to(".box:nth-child(odd)", {
+//   y: -hero.offsetHeight,
+//   duration: 30,
+// });
