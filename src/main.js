@@ -313,6 +313,8 @@ document.addEventListener("DOMContentLoaded", function () {
     newContainer = document.querySelector(".new-container");
   const hero = document.querySelector(".hero");
   const midText = document.querySelector(".mid-text");
+  const teasersContainer = document.querySelector(".teasers-container");
+  const headerHero = document.querySelector(".header-hero");
   // De twee vormen die je wilt morphen: de ene is de vorm van het logo, de andere het icoon.
   // const logoPath = document.querySelector("#logoPath");
   // const rectShape = document.querySelector("#rectId");
@@ -403,188 +405,36 @@ document.addEventListener("DOMContentLoaded", function () {
     ">-0.6"
   );
 
-  const root2 = document.querySelector(".teasers-container");
-  const pinHeight2 = root2.querySelector(".pin-height2");
-  const container2 = root2.querySelector(".buttons");
-  const cards2 = root2.querySelectorAll(".teaser");
-
-  const teasersContainer = document.querySelector(".teasers-container");
-  const headerHero = document.querySelector(".header-hero");
-
-  gsap.to(".scroll2", {
-    autoAlpha: 0,
-    duration: 0.2,
-    scrollTrigger: {
-      trigger: root2,
-      start: "top top",
-      end: "top top-=1",
-      toggleActions: "play none reverse none",
-    },
-  });
-
-  ScrollTrigger.create({
-    trigger: pinHeight2,
-    start: "top top",
-    end: "bottom bottom",
-    pin: container2,
-    pinSpacing: false,
-    scrub: true,
-  });
-
-  gsap.set(cards2, {
-    yPercent: 50,
-    y: 0.5 * window.innerHeight,
-  });
-
-  const tlTest2 = gsap.timeline({
-    scrollTrigger: {
-      trigger: root2,
-      start: "top top",
-      end: "bottom bottom",
-      scrub: true,
-    },
-  });
-
-  tlTest2.to(
-    cards2,
-    {
-      yPercent: -50,
-      y: -0.5 * window.innerHeight,
-      duration: 1,
-      stagger: 0.12,
-      ease: CustomEase.create(
-        "custom",
-        "M0,0 C0.1,0.3 0.5,0.5 0.5,0.5 0.8,0.4 1,1 1,1"
-      ),
-    },
-    "step"
-  );
-  tlTest2.to(
-    cards2,
-    {
-      stagger: 0.12,
-      duration: 0.5,
-      ease: "power2.out",
-    },
-    "step"
-  );
-  tlTest2.to(
-    cards2,
-    {
-      rotation: 0,
-      stagger: 0.12,
-      duration: 0.5,
-      ease: "power2.in",
-    },
-    "step+=0.5"
-  );
-
-  // gsap
-  //   .timeline({
-  //     scrollTrigger: {
-  //       trigger: teasersContainer,
-  //       start: "top bottom",
-  //       end: "top top",
-  //       scrub: true,
-  //       markers: true,
-  //       pin: headerHero,
-  //       pinSpacing: false,
-  //     },
-  //   })
-
-  //   .to(
-  //     teasersContainer,
-  //     {
-  //       y: 0,
-  //       ease: "none",
-  //     },
-  //     0
-  //   )
-  //   .to(
-  //     midText,
-  //     {
-  //       opacity: 0,
-  //       ease: "power2.inOut",
-  //       duration: 0.3,
-  //     },
-  //     0
-  //   );
-
-  const root = document.querySelector(".mwg_effect018");
-  const pinHeight = root.querySelector(".pin-height");
-  const container = root.querySelector(".container");
-  const cards = root.querySelectorAll(".card");
-
-  gsap.to(".scroll", {
-    autoAlpha: 0,
-    duration: 0.2,
-    scrollTrigger: {
-      trigger: root,
-      start: "top top",
-      end: "top top-=1",
-      toggleActions: "play none reverse none",
-    },
-  });
-
-  ScrollTrigger.create({
-    trigger: pinHeight,
-    start: "top top",
-    end: "bottom bottom",
-    pin: container,
-    pinSpacing: false,
-    scrub: true,
-  });
-
-  gsap.set(cards, {
-    yPercent: 50,
-    y: 0.5 * window.innerHeight,
-  });
-
-  const tlTest = gsap.timeline({
-    scrollTrigger: {
-      trigger: root,
-      start: "top top",
-      end: "bottom bottom",
-      scrub: true,
-    },
-  });
-
-  tlTest.to(
-    cards,
-    {
-      yPercent: -50,
-      y: -0.5 * window.innerHeight,
-      duration: 1,
-      stagger: 0.12,
-      ease: CustomEase.create(
-        "custom",
-        "M0,0 C0,0 0.098,0.613 0.5,0.5 0.899,0.386 1,1 1,1 "
-      ),
-    },
-    "step"
-  );
-  tlTest.to(
-    cards,
-    {
-      rotation: () => {
-        return (Math.random() - 0.5) * 20;
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: teasersContainer,
+        start: "top bottom",
+        end: "top top",
+        scrub: true,
+        // markers: true,
+        pin: headerHero,
+        pinSpacing: false,
       },
-      stagger: 0.12,
-      duration: 0.5,
-      ease: "power3.out",
-    },
-    "step"
-  );
-  tlTest.to(
-    cards,
-    {
-      rotation: 0,
-      stagger: 0.12,
-      duration: 0.5,
-      ease: "power3.in",
-    },
-    "step+=0.5"
-  );
+    })
+
+    .to(
+      teasersContainer,
+      {
+        y: 0,
+        ease: "none",
+      },
+      0
+    )
+    .to(
+      midText,
+      {
+        opacity: 0,
+        ease: "power2.inOut",
+        duration: 0.3,
+      },
+      0
+    );
 });
 
 // .to(morphAnimation, { time: 1 }, 0);
