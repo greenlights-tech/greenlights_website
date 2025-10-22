@@ -313,8 +313,18 @@ document.addEventListener("DOMContentLoaded", function () {
     newContainer = document.querySelector(".new-container");
   const hero = document.querySelector(".hero");
   const midText = document.querySelector(".mid-text");
+  const pin = document.querySelector(".pin");
   const teasersContainer = document.querySelector(".teasers-container");
   const headerHero = document.querySelector(".header-hero");
+  const teaserLeft = document.querySelector(
+    ".teasers-container .buttons .left"
+  );
+  const teaserRight = document.querySelector(
+    ".teasers-container .buttons .right"
+  );
+  const tagline = document.querySelector(
+    ".new-container-wrapper .tagline-wrapper .tagline"
+  );
   // De twee vormen die je wilt morphen: de ene is de vorm van het logo, de andere het icoon.
   // const logoPath = document.querySelector("#logoPath");
   // const rectShape = document.querySelector("#rectId");
@@ -333,10 +343,16 @@ document.addEventListener("DOMContentLoaded", function () {
   //   repeatDelay: 0.2,
   // });
 
+  // document.fonts.ready.then(() => {})
   const split = SplitText.create(midText, {
     type: "chars, words",
     charsClass: "char",
     wordsClass: "word",
+  });
+
+  const splitTagline = SplitText.create(tagline, {
+    type: "chars",
+    charsClass: "char",
   });
 
   gsap.set(midText, { visibility: "visible" });
@@ -359,82 +375,127 @@ document.addEventListener("DOMContentLoaded", function () {
   tl.add(
     Flip.from(state, {
       scale: true,
-      duration: 1.2,
+      duration: 1,
       delay: 0.5,
       nested: true,
       ease: "power2.inOut",
       zIndex: 100,
     }),
     0
-  );
-
-  tl.to(
-    hero,
-    {
-      // backgroundColor: "#303847",
-      backgroundColor: "transparent",
-      duration: 1.2,
-      delay: 0.5,
-      ease: "power2.inOut",
-    },
-    0 // Start op hetzelfde moment als de Flip animatie
-  );
+  ),
+    tl.to(
+      hero,
+      {
+        // backgroundColor: "#303847",
+        backgroundColor: "transparent",
+        duration: 1,
+        ease: "power2.inOut",
+      },
+      1.5 // Start op hetzelfde moment als de Flip animatie
+    );
 
   tl.to(
     bg,
     {
-      delay: 0.5,
       opacity: 1,
-      duration: 1.2,
-      ease: "power2.inOut",
-    },
-    0
-  );
-
-  tl.to(
-    split.chars,
-    {
-      opacity: 1,
-      yPercent: 20,
-      rotateX: 0,
-      filter: "blur(0px)",
-      stagger: 0.02, // bepaalt snelheid van na elkaar
       duration: 1,
       ease: "power2.inOut",
     },
-    ">-0.6"
-  );
+    1
+  ),
+    // gsap.set(tagline, { visibility: "visible" });
+    gsap.set(splitTagline.chars, {
+      opacity: 0,
+    });
+  tl.to(splitTagline.chars, {
+    opacity: 1,
+    duration: 1.5,
+    ease: "power2.out",
+    stagger: 0.05,
+  });
+
+  tl.to(
+    ".tagline-wrapper",
+    {
+      opacity: 1,
+      duration: 1,
+      ease: "none",
+    },
+    2
+  ),
+    tl.to(
+      split.chars,
+      {
+        opacity: 1,
+        yPercent: 20,
+        rotateX: 0,
+        filter: "blur(0px)",
+        stagger: 0.02, // bepaalt snelheid van na elkaar
+        duration: 1,
+        ease: "power2.out",
+      },
+      0.6
+    );
 
   gsap
     .timeline({
       scrollTrigger: {
         trigger: teasersContainer,
-        start: "top bottom",
-        end: "top top",
+        start: "clamp(top bottom)",
+        end: "clamp(center center)",
         scrub: true,
-        // markers: true,
-        pin: headerHero,
+        markers: true,
+        pin: pin,
         pinSpacing: false,
       },
     })
 
-    .to(
-      teasersContainer,
+    .from(
+      teaserLeft,
       {
-        y: 0,
-        ease: "none",
+        y: 300, // Of y: -300 als ze van boven moeten komen
+        ease: "power3.inOut",
       },
       0
     )
+
+    // 2. TEASER RIGHT: Start van een andere positie (100px omlaag) en komt omhoog
+    .from(
+      teaserRight,
+      {
+        y: 100,
+        ease: "power3.inOut",
+      },
+      0
+    )
+
     .to(
       midText,
       {
         opacity: 0,
         ease: "power2.inOut",
-        duration: 0.3,
+        duration: 3,
       },
       0
     );
+
+  let splitFooter;
+  SplitText.create(".secRow ul li a", {
+    type: "words, lines",
+    linesClass: "line",
+    autoSplit: true,
+    mask: "lines",
+    onSplit: (self) => {
+      splitFooter = gsap.from(self.lines, {
+        duration: 0.6,
+        yPercent: 100,
+        opacity: 0,
+        stagger: 0.1,
+        ease: "expo.out",
+      });
+      return splitFooter;
+    },
+  });
 });
 
 // .to(morphAnimation, { time: 1 }, 0);

@@ -34,7 +34,13 @@
                 <div class="container">
                   <div class="bg"></div>
                   <div class="left-placeholder"></div>
-                  <div class="new-container" data-flip-id="image"></div>
+                  <div class="new-container-wrapper">
+                    <div class="new-container" data-flip-id="image"></div>
+                    <div class="tagline-wrapper">
+                      <p class="tagline">Slimme instroom, blijvend resultaat</p>
+                    </div>
+                  </div>
+
                   <nav class="nav">
                     <ul class="menu">
                       <li></li>
@@ -106,17 +112,14 @@
                         </filter>
                       </defs>
                     </svg>
-
-                    <!-- <div class="tagline-wrapper">
-                      <p class="tagline">Slimme instroom, blijvend resultaat</p>
-                    </div> -->
                   </div>
                 </div>
+
                 <div class="mid-text">
-                  <h2>
-                    Wij geloven in de potentie van het individu. Wij bieden
-                    maatwerk en de juiste ondersteuning.
-                  </h2>
+                  <div class="pin">
+                    <h2>Wij geloven in de potentie van het individu</h2>
+                    <p>Wij bieden maatwerk en de juiste ondersteuning.</p>
+                  </div>
                 </div>
               </section>
             </section>
@@ -128,6 +131,7 @@
                     onclick="changeUrl('/solliciteren')"
                     id="openSolli"
                     class="teaser left"
+                    data-speed="clamp(0.5)"
                   >
                     <div class="centered">
                       <div class="centered-text">
@@ -143,6 +147,7 @@
                     onclick="changeUrl('/opdrachtgever')"
                     id="openOpdrachtgever"
                     class="teaser right"
+                    data-speed="clamp(3.1)"
                   >
                     <div class="centered">
                       <div class="centered-text">
@@ -162,7 +167,7 @@
                       <div
                         onclick="changeUrl('/solliciteren')"
                         id="openSolliMobile"
-                        class="teaser-swiper left"
+                        class="teaser-swiper leftSwiper"
                         aria-label="IT-talent — Ontdek opdrachten"
                       >
                         <div class="centered">
@@ -180,7 +185,7 @@
                       <div
                         onclick="changeUrl('/opdrachtgever')"
                         id="openOpdrachtgeverMobile"
-                        class="teaser-swiper right"
+                        class="teaser-swiper rightSwiper"
                         aria-label="Talentzoeker — Ontdek trainees"
                       >
                         <div class="centered">
@@ -722,19 +727,19 @@
                 <div class="secRow">
                   <ul>
                     <li>
-                      <span>Made With Gsap</span>
+                      <a href="">Made With Gsap</a>
                     </li>
                     <li>
-                      <span>Light Into Darkness Conference</span>
+                      <a href="">Light Into Darkness Conference</a>
                     </li>
                     <li>
-                      <span>Kara</span>
+                      <a href="">Kara</a>
                     </li>
                     <li>
-                      <span>Pink clothing</span>
+                      <a href="">Pink clothing</a>
                     </li>
                     <li>
-                      <span>Soundtrack® Record</span>
+                      <a href="">Soundtrack® Record</a>
                     </li>
                   </ul>
                 </div>
