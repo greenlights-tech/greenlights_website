@@ -131,345 +131,357 @@ document.addEventListener("DOMContentLoaded", function () {
   //   },
   // });
 
-  const lenis = new Lenis({
-    autoRaf: true,
-  });
+  document.fonts.ready.then(() => {
+    const lenis = new Lenis({
+      autoRaf: true,
+    });
 
-  const ticker = document.querySelector(".ticker-content");
-  ticker.style.transform = `translateX(${Math.random() * 100}%)`;
+    const ticker = document.querySelector(".ticker-content");
+    ticker.style.transform = `translateX(${Math.random() * 100}%)`;
 
-  document.getElementById("openSolli").addEventListener("click", function () {
-    document.querySelector(".sol-page").classList.add("active");
-    changeUrl("/sollicitatie");
-  });
-  // Slides sollicitatie page in from left (mobile)
-  document
-    .getElementById("openSolliMobile")
-    .addEventListener("click", function () {
+    document.getElementById("openSolli").addEventListener("click", function () {
       document.querySelector(".sol-page").classList.add("active");
       changeUrl("/sollicitatie");
     });
+    // Slides sollicitatie page in from left (mobile)
+    document
+      .getElementById("openSolliMobile")
+      .addEventListener("click", function () {
+        document.querySelector(".sol-page").classList.add("active");
+        changeUrl("/sollicitatie");
+      });
 
-  document
-    .querySelector(".sol-home-button-container")
-    .addEventListener("click", function () {
-      document.querySelector(".sol-page").classList.remove("active");
-      changeUrl(originalUrl);
+    document
+      .querySelector(".sol-home-button-container")
+      .addEventListener("click", function () {
+        document.querySelector(".sol-page").classList.remove("active");
+        changeUrl(originalUrl);
+      });
+
+    // Slides opdrachtgever page in from right
+    document
+      .getElementById("openOpdrachtgever")
+      .addEventListener("click", function () {
+        document.querySelector(".opd-page").classList.add("active");
+        changeUrl("/opdrachtgever");
+      });
+
+    // Slides opdrachtgever page in from right (mobile)
+    document
+      .getElementById("openOpdrachtgeverMobile")
+      .addEventListener("click", function () {
+        document.querySelector(".opd-page").classList.add("active");
+        changeUrl("/opdrachtgever");
+      });
+
+    document
+      .querySelector(".opd-home-button-container")
+      .addEventListener("click", function () {
+        document.querySelector(".opd-page").classList.remove("active");
+        changeUrl(originalUrl);
+      });
+
+    // Intersection Observer for animations on sections
+    const sections = document.querySelectorAll(
+      ".section-title, .section-content, .btn2"
+    );
+
+    const observerOptions = {
+      root: null,
+      rootMargin: "-50px -50px -50px -50px",
+      threshold: 0.1,
+    };
+
+    const observer = new IntersectionObserver(function (entries, observer) {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = 1;
+          entry.target.style.transform = "translateY(0)";
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach((section) => {
+      section.style.opacity = 0;
+      section.style.transform = "translateY(50px)";
+      section.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+      observer.observe(section);
     });
 
-  // Slides opdrachtgever page in from right
-  document
-    .getElementById("openOpdrachtgever")
-    .addEventListener("click", function () {
-      document.querySelector(".opd-page").classList.add("active");
-      changeUrl("/opdrachtgever");
-    });
+    // Modal handling
+    var modal = document.getElementById("sol-modal");
+    var opdModal = document.getElementById("opd-modal");
+    var span = document.getElementsByClassName("close")[0];
+    var opdSpan = document.querySelector("#opd-modal .close");
 
-  // Slides opdrachtgever page in from right (mobile)
-  document
-    .getElementById("openOpdrachtgeverMobile")
-    .addEventListener("click", function () {
-      document.querySelector(".opd-page").classList.add("active");
-      changeUrl("/opdrachtgever");
-    });
-
-  document
-    .querySelector(".opd-home-button-container")
-    .addEventListener("click", function () {
-      document.querySelector(".opd-page").classList.remove("active");
-      changeUrl(originalUrl);
-    });
-
-  // Intersection Observer for animations on sections
-  const sections = document.querySelectorAll(
-    ".section-title, .section-content, .btn2"
-  );
-
-  const observerOptions = {
-    root: null,
-    rootMargin: "-50px -50px -50px -50px",
-    threshold: 0.1,
-  };
-
-  const observer = new IntersectionObserver(function (entries, observer) {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = 1;
-        entry.target.style.transform = "translateY(0)";
-        observer.unobserve(entry.target);
+    document.addEventListener("click", function (event) {
+      if (
+        event.target.id === "sol-signup-button" ||
+        event.target.closest("#sol-signup-button")
+      ) {
+        modal.style.display = "flex";
+      } else if (
+        event.target.id === "opd-signup-button" ||
+        event.target.closest("#opd-signup-button")
+      ) {
+        opdModal.style.display = "flex";
       }
     });
-  }, observerOptions);
 
-  sections.forEach((section) => {
-    section.style.opacity = 0;
-    section.style.transform = "translateY(50px)";
-    section.style.transition = "opacity 0.5s ease, transform 0.5s ease";
-    observer.observe(section);
-  });
-
-  // Modal handling
-  var modal = document.getElementById("sol-modal");
-  var opdModal = document.getElementById("opd-modal");
-  var span = document.getElementsByClassName("close")[0];
-  var opdSpan = document.querySelector("#opd-modal .close");
-
-  document.addEventListener("click", function (event) {
-    if (
-      event.target.id === "sol-signup-button" ||
-      event.target.closest("#sol-signup-button")
-    ) {
-      modal.style.display = "flex";
-    } else if (
-      event.target.id === "opd-signup-button" ||
-      event.target.closest("#opd-signup-button")
-    ) {
-      opdModal.style.display = "flex";
+    if (span) {
+      span.onclick = function () {
+        modal.style.display = "none";
+      };
     }
-  });
 
-  if (span) {
-    span.onclick = function () {
-      modal.style.display = "none";
+    if (opdSpan) {
+      opdSpan.onclick = function () {
+        opdModal.style.display = "none";
+      };
+    }
+
+    let mouseDownOutside = false;
+
+    window.onmousedown = function (event) {
+      if (event.target == modal || event.target == opdModal) {
+        mouseDownOutside = true;
+      } else {
+        mouseDownOutside = false;
+      }
     };
-  }
 
-  if (opdSpan) {
-    opdSpan.onclick = function () {
-      opdModal.style.display = "none";
-    };
-  }
-
-  let mouseDownOutside = false;
-
-  window.onmousedown = function (event) {
-    if (event.target == modal || event.target == opdModal) {
-      mouseDownOutside = true;
-    } else {
+    window.onmouseup = function (event) {
+      if (event.target == modal && mouseDownOutside) {
+        modal.style.display = "none";
+      } else if (event.target == opdModal && mouseDownOutside) {
+        opdModal.style.display = "none";
+      }
       mouseDownOutside = false;
-    }
-  };
+    };
 
-  window.onmouseup = function (event) {
-    if (event.target == modal && mouseDownOutside) {
-      modal.style.display = "none";
-    } else if (event.target == opdModal && mouseDownOutside) {
-      opdModal.style.display = "none";
-    }
-    mouseDownOutside = false;
-  };
+    // Sol Form
+    const sollicitatieForm = document.getElementById("sollicitatieForm");
+    if (sollicitatieForm) {
+      sollicitatieForm.addEventListener("submit", function (e) {
+        e.preventDefault();
 
-  // Sol Form
-  const sollicitatieForm = document.getElementById("sollicitatieForm");
-  if (sollicitatieForm) {
-    sollicitatieForm.addEventListener("submit", function (e) {
-      e.preventDefault();
+        var formData = new FormData(this);
 
-      var formData = new FormData(this);
-
-      fetch("./php/sendsolemail.php", {
-        method: "POST",
-        body: formData,
-      })
-        .then((response) => response.text())
-        .then((data) => {
-          alert(data);
-          sollicitatieForm.reset();
+        fetch("./php/sendsolemail.php", {
+          method: "POST",
+          body: formData,
         })
-        .catch((error) => {
-          alert("Oops — something went wrong.");
-          console.error(error);
-        });
-    });
-  }
-  // Opd Form
-  const opdrachtgeverForm = document.getElementById("opdrachtgeverForm");
-  if (opdrachtgeverForm) {
-    opdrachtgeverForm.addEventListener("submit", function (e) {
-      e.preventDefault();
+          .then((response) => response.text())
+          .then((data) => {
+            alert(data);
+            sollicitatieForm.reset();
+          })
+          .catch((error) => {
+            alert("Oops — something went wrong.");
+            console.error(error);
+          });
+      });
+    }
+    // Opd Form
+    const opdrachtgeverForm = document.getElementById("opdrachtgeverForm");
+    if (opdrachtgeverForm) {
+      opdrachtgeverForm.addEventListener("submit", function (e) {
+        e.preventDefault();
 
-      var formData = new FormData(this);
+        var formData = new FormData(this);
 
-      fetch("./php/sendopdemail.php", {
-        method: "POST",
-        body: formData,
-      })
-        .then((response) => response.text())
-        .then((data) => {
-          alert(data);
-          opdrachtgeverForm.reset();
+        fetch("./php/sendopdemail.php", {
+          method: "POST",
+          body: formData,
         })
-        .catch((error) => {
-          alert("Oops — something went wrong.");
-          console.error(error);
-        });
+          .then((response) => response.text())
+          .then((data) => {
+            alert(data);
+            opdrachtgeverForm.reset();
+          })
+          .catch((error) => {
+            alert("Oops — something went wrong.");
+            console.error(error);
+          });
+      });
+    }
+
+    // blog.render();
+    const bg = document.querySelector(".header .container .bg");
+    const logo = document.querySelector(".logo"),
+      originalContainer = document.querySelector(".original-container"),
+      newContainer = document.querySelector(".new-container");
+    const hero = document.querySelector(".hero");
+    const midText = document.querySelector(".mid-text");
+    const pin = document.querySelector(".pin");
+    const teasersContainer = document.querySelector(".teasers-container");
+    const headerHero = document.querySelector(".header-hero");
+    const teaserLeft = document.querySelector(
+      ".teasers-container .buttons .left"
+    );
+    const teaserRight = document.querySelector(
+      ".teasers-container .buttons .right"
+    );
+    const tagline = document.querySelector(
+      ".new-container-wrapper .tagline-wrapper .tagline"
+    );
+    // De twee vormen die je wilt morphen: de ene is de vorm van het logo, de andere het icoon.
+    // const logoPath = document.querySelector("#logoPath");
+    // const rectShape = document.querySelector("#rectId");
+    // const ellipseShape = document.querySelector("#ellipseId");
+    // const rect2Shape = document.querySelector("#rect2Id");
+    // const ellip2seShape = document.querySelector("#ellipse2Id");
+    // const logoGlow = document.querySelector(".logo-glow");
+
+    // MorphSVGPlugin.convertToPath("rect, ellipse");
+
+    // gsap.to("#logoPath", {
+    //   duration: 10,
+    //   morphSVG: ellipseShape,
+    //   repeat: 1,
+    //   yoyo: true,
+    //   repeatDelay: 0.2,
+    // });
+
+    gsap.set(logo, { visibility: "visible" });
+
+    const split = SplitText.create(midText, {
+      type: "chars, words",
+      charsClass: "char",
+      wordsClass: "word",
     });
-  }
 
-  // blog.render();
-  const bg = document.querySelector(".header .container .bg");
-  const logo = document.querySelector(".logo"),
-    originalContainer = document.querySelector(".original-container"),
-    newContainer = document.querySelector(".new-container");
-  const hero = document.querySelector(".hero");
-  const midText = document.querySelector(".mid-text");
-  const pin = document.querySelector(".pin");
-  const teasersContainer = document.querySelector(".teasers-container");
-  const headerHero = document.querySelector(".header-hero");
-  const teaserLeft = document.querySelector(
-    ".teasers-container .buttons .left"
-  );
-  const teaserRight = document.querySelector(
-    ".teasers-container .buttons .right"
-  );
-  const tagline = document.querySelector(
-    ".new-container-wrapper .tagline-wrapper .tagline"
-  );
-  // De twee vormen die je wilt morphen: de ene is de vorm van het logo, de andere het icoon.
-  // const logoPath = document.querySelector("#logoPath");
-  // const rectShape = document.querySelector("#rectId");
-  // const ellipseShape = document.querySelector("#ellipseId");
-  // const rect2Shape = document.querySelector("#rect2Id");
-  // const ellip2seShape = document.querySelector("#ellipse2Id");
-  // const logoGlow = document.querySelector(".logo-glow");
+    const splitTagline = SplitText.create(tagline, {
+      type: "chars",
+      charsClass: "char",
+    });
 
-  // MorphSVGPlugin.convertToPath("rect, ellipse");
+    gsap.set(midText, { visibility: "visible" });
+    gsap.set(split.chars, {
+      opacity: 0,
+      yPercent: 100,
+      rotateX: -90,
+      filter: "blur(10px)",
+    });
 
-  // gsap.to("#logoPath", {
-  //   duration: 10,
-  //   morphSVG: ellipseShape,
-  //   repeat: 1,
-  //   yoyo: true,
-  //   repeatDelay: 0.2,
-  // });
+    const state = Flip.getState(logo, ".hero");
 
-  // document.fonts.ready.then(() => {})
-  const split = SplitText.create(midText, {
-    type: "chars, words",
-    charsClass: "char",
-    wordsClass: "word",
-  });
+    (logo.parentNode === originalContainer
+      ? newContainer
+      : originalContainer
+    ).appendChild(logo);
 
-  const splitTagline = SplitText.create(tagline, {
-    type: "chars",
-    charsClass: "char",
-  });
+    const tl = gsap.timeline();
 
-  gsap.set(midText, { visibility: "visible" });
-  gsap.set(split.chars, {
-    opacity: 0,
-    yPercent: 100,
-    rotateX: -90,
-    filter: "blur(10px)",
-  });
+    tl.add(
+      Flip.from(state, {
+        scale: true,
+        duration: 1.2,
+        nested: true,
+        ease: "power2.inOut",
+        zIndex: 100,
+      })
+    ),
+      tl.to(
+        hero,
+        {
+          // backgroundColor: "#303847",
+          backgroundColor: "transparent",
+          duration: 1,
+          ease: "power2.inOut",
+        },
+        1.5 // Start op hetzelfde moment als de Flip animatie
+      );
 
-  const state = Flip.getState(logo, ".hero");
-
-  (logo.parentNode === originalContainer
-    ? newContainer
-    : originalContainer
-  ).appendChild(logo);
-
-  const tl = gsap.timeline();
-
-  tl.add(
-    Flip.from(state, {
-      scale: true,
-      duration: 1,
-      delay: 0.5,
-      nested: true,
-      ease: "power2.inOut",
-      zIndex: 100,
-    }),
-    0
-  ),
     tl.to(
-      hero,
+      bg,
       {
-        // backgroundColor: "#303847",
-        backgroundColor: "transparent",
+        opacity: 1,
         duration: 1,
         ease: "power2.inOut",
       },
-      1.5 // Start op hetzelfde moment als de Flip animatie
-    );
-
-  tl.to(
-    bg,
-    {
+      1
+    ),
+      // gsap.set(tagline, { visibility: "visible" });
+      gsap.set(splitTagline.chars, {
+        opacity: 0,
+      });
+    tl.to(splitTagline.chars, {
       opacity: 1,
-      duration: 1,
-      ease: "power2.inOut",
-    },
-    1
-  ),
-    // gsap.set(tagline, { visibility: "visible" });
-    gsap.set(splitTagline.chars, {
-      opacity: 0,
+      duration: 1.5,
+      ease: "power2.out",
+      stagger: 0.05,
     });
-  tl.to(splitTagline.chars, {
-    opacity: 1,
-    duration: 1.5,
-    ease: "power2.out",
-    stagger: 0.05,
-  });
 
-  tl.to(
-    ".tagline-wrapper",
-    {
-      opacity: 1,
-      duration: 1,
-      ease: "none",
-    },
-    2
-  ),
     tl.to(
-      split.chars,
+      ".tagline-wrapper",
       {
         opacity: 1,
-        yPercent: 20,
-        rotateX: 0,
-        filter: "blur(0px)",
-        stagger: 0.02, // bepaalt snelheid van na elkaar
         duration: 1,
-        ease: "power2.out",
+        ease: "none",
       },
-      0.6
-    );
+      2
+    ),
+      tl.to(
+        split.chars,
+        {
+          opacity: 1,
+          yPercent: 20,
+          rotateX: 0,
+          filter: "blur(0px)",
+          stagger: 0.02, // bepaalt snelheid van na elkaar
+          duration: 1,
+          ease: "power2.out",
+        },
+        0.6
+      );
 
-  gsap
-    .timeline({
+    const tlScroll = gsap.timeline({
       scrollTrigger: {
         trigger: teasersContainer,
         start: "clamp(top bottom)",
         end: "clamp(center center)",
         scrub: true,
-        markers: true,
+        // markers: true,
         pin: pin,
         pinSpacing: false,
       },
-    })
+    });
 
-    .from(
+    tlScroll.from(
       teaserLeft,
       {
         y: 300, // Of y: -300 als ze van boven moeten komen
         ease: "power3.inOut",
       },
       0
-    )
+    );
 
     // 2. TEASER RIGHT: Start van een andere positie (100px omlaag) en komt omhoog
-    .from(
+    tlScroll.from(
       teaserRight,
       {
         y: 100,
         ease: "power3.inOut",
       },
       0
-    )
+    );
 
-    .to(
+    tlScroll.to(teaserLeft, { scale: 1 });
+    tlScroll.to(teaserLeft, { scale: 1.1 });
+
+    tlScroll.to(teaserRight, { scale: 1 });
+    tlScroll.to(teaserRight, { scale: 1.1 });
+
+    // gsap.to(teaserRight, {
+    //   rotation: 5,
+    //   ease: "none",
+    //   duration: 4,
+    //   repeat: +1,
+    // });
+
+    tlScroll.to(
       midText,
       {
         opacity: 0,
@@ -479,22 +491,23 @@ document.addEventListener("DOMContentLoaded", function () {
       0
     );
 
-  let splitFooter;
-  SplitText.create(".secRow ul li a", {
-    type: "words, lines",
-    linesClass: "line",
-    autoSplit: true,
-    mask: "lines",
-    onSplit: (self) => {
-      splitFooter = gsap.from(self.lines, {
-        duration: 0.6,
-        yPercent: 100,
-        opacity: 0,
-        stagger: 0.1,
-        ease: "expo.out",
-      });
-      return splitFooter;
-    },
+    let splitFooter;
+    SplitText.create(".secRow ul li a", {
+      type: "words, lines",
+      linesClass: "line",
+      autoSplit: true,
+      mask: "lines",
+      onSplit: (self) => {
+        splitFooter = gsap.from(self.lines, {
+          duration: 0.6,
+          yPercent: 100,
+          opacity: 0,
+          stagger: 0.1,
+          ease: "expo.out",
+        });
+        return splitFooter;
+      },
+    });
   });
 });
 
