@@ -136,8 +136,8 @@ document.addEventListener("DOMContentLoaded", function () {
       autoRaf: true,
     });
 
-    const ticker = document.querySelector(".ticker-content");
-    ticker.style.transform = `translateX(${Math.random() * 100}%)`;
+    // const ticker = document.querySelector(".ticker-content");
+    // ticker.style.transform = `translateX(${Math.random() * 100}%)`;
 
     document.getElementById("openSolli").addEventListener("click", function () {
       document.querySelector(".sol-page").classList.add("active");
@@ -314,7 +314,10 @@ document.addEventListener("DOMContentLoaded", function () {
       newContainer = document.querySelector(".new-container");
     const hero = document.querySelector(".hero");
     const midText = document.querySelector(".mid-text");
-    const pin = document.querySelector(".pin");
+    const teaser = document.querySelector(
+      ".teasers-container .buttons .teaser"
+    );
+    const pin = document.querySelector(".header-hero .pin");
     const teasersContainer = document.querySelector(".teasers-container");
     const headerHero = document.querySelector(".header-hero");
     const teaserLeft = document.querySelector(
@@ -430,49 +433,90 @@ document.addEventListener("DOMContentLoaded", function () {
           yPercent: 20,
           rotateX: 0,
           filter: "blur(0px)",
-          stagger: 0.02, // bepaalt snelheid van na elkaar
+          stagger: 0.02,
           duration: 1,
           ease: "power2.out",
         },
         0.6
       );
 
-    const tlScroll = gsap.timeline({
-      scrollTrigger: {
-        trigger: teasersContainer,
-        start: "clamp(top bottom)",
-        end: "clamp(center center)",
-        scrub: true,
-        // markers: true,
-        pin: pin,
-        pinSpacing: false,
-      },
-    });
+    // tl.to(teaser, {
+    //   z: 0,
+    //   ease: "none",
+    //   duration: 2,
+    // });
 
-    tlScroll.from(
+    tl.fromTo(
       teaserLeft,
       {
-        y: 300, // Of y: -300 als ze van boven moeten komen
-        ease: "power3.inOut",
+        scale: 0,
       },
-      0
-    );
+      {
+        scale: 1, // Making the image appear at the back
+        ease: "back.out", // With a slight bounce effect
+        duration: 1,
+      },
+      1
+    ); // Means the animation starts at the beginning of the previous tween
 
-    // 2. TEASER RIGHT: Start van een andere positie (100px omlaag) en komt omhoog
-    tlScroll.from(
+    tl.fromTo(
       teaserRight,
       {
-        y: 100,
-        ease: "power3.inOut",
+        scale: 0,
       },
-      0
-    );
+      {
+        scale: 1, // Making the image appear at the back
+        ease: "back.out", // With a slight bounce effect
+        duration: 1,
+      },
+      1
+    ); // Means the animation starts at the beginning of the previous tween
 
-    tlScroll.to(teaserLeft, { scale: 1 });
-    tlScroll.to(teaserLeft, { scale: 1.1 });
+    // const tlScroll = gsap.timeline({
+    //   scrollTrigger: {
+    //     trigger: teasersContainer,
+    //     start: "clamp(top bottom)",
+    //     end: "clamp(center center)",
+    //     scrub: true,
+    //     pin: pin,
+    //     pinSpacing: false,
+    //   },
+    // });
 
-    tlScroll.to(teaserRight, { scale: 1 });
-    tlScroll.to(teaserRight, { scale: 1.1 });
+    // tlScroll.to(
+    //   midText,
+    //   {
+    //     opacity: 0,
+    //     ease: "power2.inOut",
+    //     duration: 3,
+    //   },
+    //   0
+    // );
+
+    // tlScroll.from(
+    //   teaserLeft,
+    //   {
+    //     y: 300,
+    //     ease: "power3.inOut",
+    //   },
+    //   0
+    // );
+
+    // 2. TEASER RIGHT: Start van een andere positie (100px omlaag) en komt omhoog
+    // tlScroll.from(
+    //   teaserRight,
+    //   {
+    //     y: 100,
+    //     ease: "power3.inOut",
+    //   },
+    //   0
+    // );
+
+    // tlScroll.to(teaserLeft, { scale: 1 });
+    // tlScroll.to(teaserLeft, { scale: 1.1 });
+
+    // tlScroll.to(teaserRight, { scale: 1 });
+    // tlScroll.to(teaserRight, { scale: 1.1 });
 
     // gsap.to(teaserRight, {
     //   rotation: 5,
@@ -481,15 +525,47 @@ document.addEventListener("DOMContentLoaded", function () {
     //   repeat: +1,
     // });
 
-    tlScroll.to(
-      midText,
-      {
-        opacity: 0,
-        ease: "power2.inOut",
-        duration: 3,
-      },
-      0
-    );
+    // const half = content.clientWidth / 2
+    // const wrap = gsap.utils.wrap(-half, 0);
+
+    // const sentence1 = document.querySelector(
+    //   ".container-mid-text .sentence1 p"
+    // );
+
+    // const sentence2 = document.querySelector(
+    //   ".container-mid-text .sentence2 p"
+    // );
+
+    // gsap.to(sentence1, {
+    //   x: -sentence1.offsetWidth / 2,
+    //   ease: "none",
+    //   duration: 120,
+    //   repeat: -1,
+    // });
+
+    // gsap.to(sentence2, {
+    //   x: +sentence1.offsetWidth / 2,
+    //   ease: "none",
+    //   duration: 120,
+    //   repeat: -1,
+    // });
+
+    // const infoContent = document.querySelector(
+    //   ".info-container .info-title .info-content"
+    // );
+
+    // let skewSetter = gsap.quickTo(infoContent, "skewY"),
+    //   clamp = gsap.utils.clamp(-20, 20);
+
+    // ScrollSmoother.create({
+    //   wrapper: "#wrapper",
+    //   content: "#content",
+    //   smooth: 2,
+    //   speed: 3,
+    //   effects: true,
+    //   onUpdate: (self) => skewSetter(clamp(self.getVelocity() / -50)),
+    //   onStop: () => skewSetter(0),
+    // });
 
     let splitFooter;
     SplitText.create(".secRow ul li a", {
@@ -508,6 +584,50 @@ document.addEventListener("DOMContentLoaded", function () {
         return splitFooter;
       },
     });
+  });
+
+  const container = document.querySelector(".info-container-hoe .container");
+  const cardsContainer = container.querySelector(".cards");
+  const cards = document.querySelectorAll(".card");
+  const distance = cardsContainer.clientWidth - window.innerWidth;
+
+  // 1. HORIZONTALE SCROLL TWEEN (CONTAINER)
+  const scrollTween = gsap.to(cardsContainer, {
+    x: -distance, // Schuif de container de berekende afstand naar links
+    ease: "none",
+    scrollTrigger: {
+      trigger: container,
+      pin: true,
+      scrub: true,
+      start: "top top",
+      end: "+=" + distance,
+    },
+  });
+
+  // 2. STAGGER EFFECT VOOR ELKE KAART
+  cards.forEach((card, index) => {
+    gsap.fromTo(
+      card,
+      {
+        x: 100,
+      },
+      {
+        // Eindpositie: hun normale positie
+        x: 0,
+        ease: "none",
+        scrollTrigger: {
+          trigger: card,
+          containerAnimation: scrollTween,
+
+          // Start de animatie van de kaart vroeg (bij 120%) en eindig wanneer
+          // de kaart het scherm verlaat (-20%).
+          // Je kunt de 120% en -20% aanpassen om de 'afstand' van de stagger te verfijnen.
+          start: "left 120%",
+          end: "right -20%",
+          scrub: true,
+        },
+      }
+    );
   });
 });
 
