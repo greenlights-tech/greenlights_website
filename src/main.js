@@ -586,6 +586,28 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+  const infoContent = document.querySelector(".info-container .info-content");
+
+  const splitInfoPage = SplitText.create(infoContent, {
+    type: "lines",
+    linesClass: "line",
+    mask: "lines",
+  });
+
+  gsap.set(infoContent, { visibility: "visible" });
+  gsap.set(splitInfoPage.lines, {
+    yPercent: 100,
+    opacity: 0,
+  });
+
+  gsap.to(splitInfoPage.lines, {
+    yPercent: 0,
+    opacity: 1,
+    duration: 0.75,
+    stagger: 0.1,
+    ease: "power1.out",
+  });
+
   const container = document.querySelector(".info-container-hoe .container");
   const cardsContainer = container.querySelector(".cards");
   const cards = document.querySelectorAll(".card");
