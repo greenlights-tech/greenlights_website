@@ -314,12 +314,6 @@ document.addEventListener("DOMContentLoaded", function () {
       newContainer = document.querySelector(".new-container");
     const hero = document.querySelector(".hero");
     const midText = document.querySelector(".mid-text");
-    const teaser = document.querySelector(
-      ".teasers-container .buttons .teaser"
-    );
-    const pin = document.querySelector(".header-hero .pin");
-    const teasersContainer = document.querySelector(".teasers-container");
-    const headerHero = document.querySelector(".header-hero");
     const teaserLeft = document.querySelector(
       ".teasers-container .buttons .left"
     );
@@ -349,24 +343,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
     gsap.set(logo, { visibility: "visible" });
 
-    const split = SplitText.create(midText, {
-      type: "chars, words",
-      charsClass: "char",
-      wordsClass: "word",
-    });
+    // const split = SplitText.create(midText, {
+    //   type: "chars, words",
+    //   charsClass: "char",
+    //   wordsClass: "word",
+    // });
 
     const splitTagline = SplitText.create(tagline, {
       type: "chars",
       charsClass: "char",
     });
 
-    gsap.set(midText, { visibility: "visible" });
-    gsap.set(split.chars, {
-      opacity: 0,
-      yPercent: 100,
-      rotateX: -90,
-      filter: "blur(10px)",
-    });
+    // gsap.set(midText, { visibility: "visible" });
+    // gsap.set(split.chars, {
+    //   opacity: 0,
+    //   yPercent: 100,
+    //   rotateX: -90,
+    //   filter: "blur(10px)",
+    // });
 
     const state = Flip.getState(logo, ".hero");
 
@@ -383,7 +377,7 @@ document.addEventListener("DOMContentLoaded", function () {
         duration: 1.2,
         nested: true,
         ease: "power2.inOut",
-        zIndex: 100,
+        zIndex: 1000,
       })
     ),
       tl.to(
@@ -426,38 +420,38 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       2
     ),
-      tl.to(
-        split.chars,
+      // tl.to(
+      //   split.chars,
+      //   {
+      //     opacity: 1,
+      //     yPercent: 20,
+      //     rotateX: 0,
+      //     filter: "blur(0px)",
+      //     stagger: 0.02,
+      //     duration: 1,
+      //     ease: "power2.out",
+      //   },
+      //   0.6
+      // );
+
+      // tl.to(teaser, {
+      //   z: 0,
+      //   ease: "none",
+      //   duration: 2,
+      // });
+
+      tl.fromTo(
+        teaserLeft,
         {
-          opacity: 1,
-          yPercent: 20,
-          rotateX: 0,
-          filter: "blur(0px)",
-          stagger: 0.02,
-          duration: 1,
-          ease: "power2.out",
+          scale: 0,
         },
-        0.6
-      );
-
-    // tl.to(teaser, {
-    //   z: 0,
-    //   ease: "none",
-    //   duration: 2,
-    // });
-
-    tl.fromTo(
-      teaserLeft,
-      {
-        scale: 0,
-      },
-      {
-        scale: 1, // Making the image appear at the back
-        ease: "back.out", // With a slight bounce effect
-        duration: 1,
-      },
-      1
-    ); // Means the animation starts at the beginning of the previous tween
+        {
+          scale: 1, // Making the image appear at the back
+          ease: "back.out", // With a slight bounce effect
+          duration: 1,
+        },
+        1
+      ); // Means the animation starts at the beginning of the previous tween
 
     tl.fromTo(
       teaserRight,
@@ -586,71 +580,113 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  const infoContent = document.querySelector(".info-container .info-content");
+  const root = document.querySelector(".info-container-effect");
+  const pinHeight = root.querySelector(".pin-height");
+  const container = root.querySelector(".container");
+  const alinea = root.querySelectorAll(".alinea");
 
-  const splitInfoPage = SplitText.create(infoContent, {
-    type: "lines",
-    linesClass: "line",
-    mask: "lines",
+  const splitInfoPagee = SplitText.create(alinea, {
+    type: "words", // ⬅️ DIT IS DE BELANGRIJKSTE AANPASSING
+    wordsClass: "word", // Vervangt linesClass
+    mask: "words",
   });
 
-  gsap.set(infoContent, { visibility: "visible" });
-  gsap.set(splitInfoPage.lines, {
+  // gsap.set(infoContent, { visibility: "visible" });
+  gsap.set(splitInfoPagee.words, {
     yPercent: 100,
     opacity: 0,
   });
 
-  gsap.to(splitInfoPage.lines, {
-    yPercent: 0,
-    opacity: 1,
-    duration: 0.75,
-    stagger: 0.1,
-    ease: "power1.out",
+  ScrollTrigger.create({
+    trigger: pinHeight, // Listens to pin-height
+    start: "top top",
+    end: "bottom bottom",
+    pin: container, // The pinned section
   });
 
-  const container = document.querySelector(".info-container-hoe .container");
-  const cardsContainer = container.querySelector(".cards");
-  const cards = document.querySelectorAll(".card");
-  const distance = cardsContainer.clientWidth - window.innerWidth;
-
-  // 1. HORIZONTALE SCROLL TWEEN (CONTAINER)
-  const scrollTween = gsap.to(cardsContainer, {
-    x: -distance, // Schuif de container de berekende afstand naar links
-    ease: "none",
+  const tlInfo = gsap.timeline({
     scrollTrigger: {
-      trigger: container,
-      pin: true,
-      scrub: true,
+      // All tweens of my timeline will have the same scrollTrigger properties
+      trigger: pinHeight,
       start: "top top",
-      end: "+=" + distance,
+      end: "bottom bottom",
+      scrub: true, // Progresses with the scroll
     },
   });
 
-  // 2. STAGGER EFFECT VOOR ELKE KAART
-  cards.forEach((card, index) => {
-    gsap.fromTo(
-      card,
-      {
-        x: 100,
-      },
-      {
-        // Eindpositie: hun normale positie
-        x: 0,
-        ease: "none",
-        scrollTrigger: {
-          trigger: card,
-          containerAnimation: scrollTween,
-
-          // Start de animatie van de kaart vroeg (bij 120%) en eindig wanneer
-          // de kaart het scherm verlaat (-20%).
-          // Je kunt de 120% en -20% aanpassen om de 'afstand' van de stagger te verfijnen.
-          start: "left 120%",
-          end: "right -20%",
-          scrub: true,
-        },
-      }
-    );
+  tlInfo.to(splitInfoPagee.words, {
+    yPercent: 0,
+    opacity: 1,
+    duration: 0.75,
+    stagger: 0.5,
+    ease: "power1.out",
   });
+});
+
+// const infoContent = document.querySelector(".first-alinea");
+
+// const splitInfoPage = SplitText.create(infoContent, {
+//   type: "lines",
+//   linesClass: "line",
+//   mask: "lines",
+// });
+
+// gsap.set(infoContent, { visibility: "visible" });
+// gsap.set(splitInfoPage.lines, {
+//   yPercent: 100,
+//   opacity: 0,
+// });
+
+// gsap.to(splitInfoPage.lines, {
+//   yPercent: 0,
+//   opacity: 1,
+//   duration: 0.75,
+//   stagger: 0.1,
+//   ease: "power1.out",
+// });
+
+const container = document.querySelector(".info-container-hoe .container");
+const cardsContainer = container.querySelector(".cards");
+const cards = document.querySelectorAll(".card");
+const distance = cardsContainer.clientWidth - window.innerWidth;
+
+// 1. HORIZONTALE SCROLL TWEEN (CONTAINER)
+const scrollTween = gsap.to(cardsContainer, {
+  x: -distance, // Schuif de container de berekende afstand naar links
+  ease: "none",
+  scrollTrigger: {
+    trigger: container,
+    pin: true,
+    scrub: true,
+    start: "top top",
+    end: "+=" + distance,
+  },
+});
+
+// 2. STAGGER EFFECT VOOR ELKE KAART
+cards.forEach((card, index) => {
+  gsap.fromTo(
+    card,
+    {
+      x: 100,
+    },
+    {
+      // Eindpositie: hun normale positie
+      x: 0,
+      ease: "none",
+      scrollTrigger: {
+        trigger: card,
+        containerAnimation: scrollTween,
+
+        // Start de animatie van de kaart vroeg (bij 120%) en eindig wanneer
+        // de kaart het scherm verlaat (-20%).
+        // Je kunt de 120% en -20% aanpassen om de 'afstand' van de stagger te verfijnen.
+        start: "left 120%",
+        end: "right -20%",
+        scrub: true,
+      },
+    }
+  );
 });
 
 // .to(morphAnimation, { time: 1 }, 0);

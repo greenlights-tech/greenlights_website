@@ -619,10 +619,6 @@ nav {
   visibility: hidden;
 }
 
-.original-container {
-  border: 1px solid green;
-}
-
 /* .logo-glow {
 
   position: absolute;
@@ -658,15 +654,17 @@ nav {
 } */
 
 .logo {
-  z-index: 10;
+  z-index: 100;
 }
 
 .child1 {
   width: 100%;
   height: 100%;
+  /* voor het behouden van de korrels/ filter van het svg bestand na de gsap flip*/
+  will-change: transform, filter;
 }
 
-.container-mid-text {
+/* .container-mid-text {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -674,9 +672,9 @@ nav {
   gap: 2rem;
   z-index: -1;
   visibility: hidden;
-}
+} */
 
-.sentence {
+/* .sentence {
   overflow: hidden;
 }
 
@@ -684,13 +682,12 @@ nav {
   display: flex;
   white-space: nowrap;
   gap: 3rem;
-
   height: auto;
   will-change: transform;
-  /* border: 1px solid yellow; */
-}
+  border: 1px solid yellow;
+} */
 
-.glyph {
+/* .glyph {
   width: 25vw;
   height: auto;
   filter: saturate(1);
@@ -713,62 +710,9 @@ nav {
   color: #b9b9b9;
   font-weight: 700;
   line-height: 1.2;
-}
+} */
 
 /* TEST */
-
-.mwg_effect018 .scroll {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.mwg_effect018 .pin-height {
-  height: 500vh;
-}
-.mwg_effect018 .container {
-  height: 100vh;
-  display: flex;
-  align-items: center; /* Centering the cards inside the division */
-  justify-content: center; /* Centering the cards inside the division */
-  padding: 0 0 0 6vw;
-}
-.mwg_effect018 .card {
-  width: 18vw;
-  aspect-ratio: 0.75;
-  border-radius: 1vw;
-  margin: 0 0 0 -6vw;
-  border: 1px solid #606060;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  color: #fff;
-  font: 500 normal 0.9vw / normal "IBM Plex Mono";
-  text-transform: uppercase;
-  padding: 0.8vw;
-  backdrop-filter: blur(6px);
-}
-.mwg_effect018 .card *:nth-child(1) {
-  text-align: right;
-}
-.mwg_effect018 .card *:nth-child(2) {
-  margin: 0 auto;
-}
-.mwg_effect018 .card:nth-child(1) img {
-  width: 9.5vw;
-}
-.mwg_effect018 .card:nth-child(2) img {
-  width: 7vw;
-}
-.mwg_effect018 .card:nth-child(3) img {
-  width: 7.5vw;
-}
-.mwg_effect018 .card:nth-child(4) img {
-  width: 8vw;
-}
-.mwg_effect018 .card:nth-child(5) img {
-  width: 5.5vw;
-}
 
 /* .images {
   display: grid;
@@ -1949,32 +1893,14 @@ button {
   flex-direction: column;
   align-items: flex-start;
   padding-top: 50px;
+  height: 100vh;
   justify-content: center;
   position: relative;
   transition: all 0.5s ease;
   font-family: "Inter", sans-serif;
   text-align: right;
-  color: var(--color-tertiary);
-  /* background: repeating-linear-gradient(
-      23deg,
-      rgb(235, 235, 235) 0px,
-      rgb(235, 235, 235) 5px,
-      rgb(237, 237, 237) 6px,
-      rgb(237, 237, 237) 11px,
-      rgb(237, 237, 237) 12px
-    ),
-    linear-gradient(
-      to right,
-      rgb(226, 226, 226) 0%,
-      rgba(226, 226, 226, 1) 45%,
-      rgba(226, 226, 226, 0.5) 75%
-    ),
-    url("/images/background1.jpg");
-  background-repeat: no-repeat, no-repeat, no-repeat;
-  background-size: cover, 100% 100%, cover;
-  background-position: center center, left top, right top;
-  background-attachment: fixed, scroll, fixed;
-  background-blend-mode: overlay, normal, normal; */
+  color: white;
+  border: 1px solid red;
 }
 
 .info-page .info-container:nth-child(odd) {
@@ -2030,14 +1956,47 @@ button {
   max-width: 800px;
   opacity: 0.9;
   margin-bottom: 2rem;
-  transform: translateY(0);
-  transition: transform 0.5s ease, opacity 0.5s ease;
+  /* transform: translateY(0);
+  transition: transform 0.5s ease, opacity 0.5s ease; */
 }
+
+.info-container-wie {
+  height: 100vh;
+  border: 1px solid green;
+}
+
+.info-content-wie {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  /* padding: 0vw 5vw;
+  column-gap: 10vw; */
+  text-align: left;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  width: 100%;
+  border: 1px solid yellow;
+}
+
+.info-title-wie {
+  font-size: 2.5rem;
+  text-transform: capitalize;
+  margin-bottom: 2rem;
+  color: var(--color-primary);
+  text-transform: uppercase;
+}
+
+/* .alinea {
+  width: 100%;
+} */
+
+/* .pin-height {
+  height: 100vh;
+} */
 
 .sol-content:hover,
 .opd-content:hover,
 .info-content:hover {
-  transform: translateY(-5px);
   opacity: 1;
 }
 
@@ -2746,4 +2705,51 @@ button {
   font: 500 1vw "IBM Plex Mono";
   color: #d1d4cb;
   line-height: 1.5;
+}
+
+.info-container-effect .pin-height {
+  height: 400vh;
+  /* border: 1px solid red; */
+}
+.info-container-effect .container {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - var(--header-height));
+  border: 1px solid red;
+}
+
+.alineas {
+  display: flex;
+  width: 100%;
+}
+
+.info-container-effect .alinea {
+  position: relative;
+  overflow: hidden;
+  flex: 1;
+  display: inline-block;
+  padding-left: 4vw;
+  padding-right: 4vw;
+  flex-wrap: wrap;
+  gap: 0.4em;
+  font-size: 1.1rem;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  line-height: 1.5;
+  /* border: 1px solid green; */
+}
+
+.info-container-effect .first {
+  position: relative;
+  overflow: hidden;
+  flex: 1;
+  display: inline-block;
+  padding-left: 4vw;
+  padding-right: 4vw;
+  flex-wrap: wrap;
+  font-size: 1.1rem;
+  font-weight: 500;
+  font-family: "Inter", sans-serif;
+  line-height: 1.5;
+  /* border: 1px solid green; */
 }
