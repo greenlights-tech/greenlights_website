@@ -10,6 +10,10 @@ import { CustomEase } from "gsap/CustomEase";
 import Lenis from "lenis";
 gsap.registerPlugin(Flip, ScrollTrigger, ScrollSmoother, SplitText, CustomEase);
 
+function changeUrl(path, title = null) {
+  window.history.pushState(null, title, path);
+}
+
 // let smoother = ScrollSmoother.create({
 //   wrapper: "#smooth-wrapper",
 //   content: "#smooth-content",
@@ -139,10 +143,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // const ticker = document.querySelector(".ticker-content");
     // ticker.style.transform = `translateX(${Math.random() * 100}%)`;
 
-    document.getElementById("openSolli").addEventListener("click", function () {
-      document.querySelector(".sol-page").classList.add("active");
-      changeUrl("/sollicitatie");
-    });
+    // document.getElementById("openSolli").addEventListener("click", function () {
+    //   document.querySelector(".sol-page").classList.add("active");
+    //   changeUrl("/sollicitatie");
+    // });
     // Slides sollicitatie page in from left (mobile)
     document
       .getElementById("openSolliMobile")
@@ -159,12 +163,12 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
     // Slides opdrachtgever page in from right
-    document
-      .getElementById("openOpdrachtgever")
-      .addEventListener("click", function () {
-        document.querySelector(".opd-page").classList.add("active");
-        changeUrl("/opdrachtgever");
-      });
+    // document
+    //   .getElementById("openOpdrachtgever")
+    //   .addEventListener("click", function () {
+    //     document.querySelector(".opd-page").classList.add("active");
+    //     changeUrl("/opdrachtgever");
+    //   });
 
     // Slides opdrachtgever page in from right (mobile)
     document
@@ -343,24 +347,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
     gsap.set(logo, { visibility: "visible" });
 
-    // const split = SplitText.create(midText, {
-    //   type: "chars, words",
-    //   charsClass: "char",
-    //   wordsClass: "word",
-    // });
+    const split = SplitText.create(midText, {
+      type: "chars, words",
+      charsClass: "char",
+      wordsClass: "word",
+    });
 
     const splitTagline = SplitText.create(tagline, {
       type: "chars",
       charsClass: "char",
     });
 
-    // gsap.set(midText, { visibility: "visible" });
-    // gsap.set(split.chars, {
-    //   opacity: 0,
-    //   yPercent: 100,
-    //   rotateX: -90,
-    //   filter: "blur(10px)",
-    // });
+    gsap.set(midText, { visibility: "visible" });
+    gsap.set(split.chars, {
+      opacity: 0,
+      yPercent: 100,
+      rotateX: -90,
+      filter: "blur(10px)",
+    });
 
     const state = Flip.getState(logo, ".hero");
 
@@ -420,38 +424,38 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       2
     ),
-      // tl.to(
-      //   split.chars,
-      //   {
-      //     opacity: 1,
-      //     yPercent: 20,
-      //     rotateX: 0,
-      //     filter: "blur(0px)",
-      //     stagger: 0.02,
-      //     duration: 1,
-      //     ease: "power2.out",
-      //   },
-      //   0.6
-      // );
-
-      // tl.to(teaser, {
-      //   z: 0,
-      //   ease: "none",
-      //   duration: 2,
-      // });
-
-      tl.fromTo(
-        teaserLeft,
+      tl.to(
+        split.chars,
         {
-          scale: 0,
-        },
-        {
-          scale: 1, // Making the image appear at the back
-          ease: "back.out", // With a slight bounce effect
+          opacity: 1,
+          yPercent: 20,
+          rotateX: 0,
+          filter: "blur(0px)",
+          stagger: 0.02,
           duration: 1,
+          ease: "power2.out",
         },
-        1
-      ); // Means the animation starts at the beginning of the previous tween
+        0.6
+      );
+
+    // tl.to(teaser, {
+    //   z: 0,
+    //   ease: "none",
+    //   duration: 2,
+    // });
+
+    tl.fromTo(
+      teaserLeft,
+      {
+        scale: 0,
+      },
+      {
+        scale: 1,
+        ease: "back.out",
+        duration: 1,
+      },
+      1
+    );
 
     tl.fromTo(
       teaserRight,
@@ -459,12 +463,46 @@ document.addEventListener("DOMContentLoaded", function () {
         scale: 0,
       },
       {
-        scale: 1, // Making the image appear at the back
-        ease: "back.out", // With a slight bounce effect
+        scale: 1,
+        ease: "back.out",
         duration: 1,
       },
       1
-    ); // Means the animation starts at the beginning of the previous tween
+    );
+
+    const solPage = document.querySelector(".sol-page");
+
+    gsap.set(solPage, { xPercent: -100, visibility: "visible" });
+
+    document
+      .getElementById("openSolli")
+      .addEventListener("click", function (event) {
+        gsap.to(solPage, {
+          xPercent: 0, // Schuift de pagina naar 0% (zichtbaar)
+          duration: 0.8,
+          ease: "power3.inOut",
+          onStart: () => {
+            solPage.classList.add("active");
+          },
+        });
+      });
+
+    const opdPage = document.querySelector(".opd-page");
+
+    gsap.set(opdPage, { xPercent: 100, visibility: "visible" });
+
+    document
+      .getElementById("openOpdrachtgever")
+      .addEventListener("click", function (event) {
+        gsap.to(opdPage, {
+          xPercent: 0, // Schuift de pagina naar 0% (zichtbaar)
+          duration: 0.8,
+          ease: "power3.inOut",
+          onStart: () => {
+            opdPage.classList.add("active");
+          },
+        });
+      });
 
     // const tlScroll = gsap.timeline({
     //   scrollTrigger: {
@@ -561,65 +599,110 @@ document.addEventListener("DOMContentLoaded", function () {
     //   onStop: () => skewSetter(0),
     // });
 
-    let splitFooter;
-    SplitText.create(".secRow ul li a", {
-      type: "words, lines",
-      linesClass: "line",
-      autoSplit: true,
-      mask: "lines",
-      onSplit: (self) => {
-        splitFooter = gsap.from(self.lines, {
-          duration: 0.6,
-          yPercent: 100,
-          opacity: 0,
-          stagger: 0.1,
-          ease: "expo.out",
-        });
-        return splitFooter;
-      },
+    // let splitFooter;
+    // SplitText.create(".secRow ul li a", {
+    //   type: "words, lines",
+    //   linesClass: "line",
+    //   autoSplit: true,
+    //   mask: "lines",
+    //   onSplit: (self) => {
+    //     splitFooter = gsap.from(self.lines, {
+    //       duration: 0.6,
+    //       yPercent: 100,
+    //       opacity: 0,
+    //       stagger: 0.1,
+    //       ease: "expo.out",
+    //     });
+    //     return splitFooter;
+    //   },
+    // });
+
+    const root = document.querySelector(".homepage .info-container-effect");
+    const pinHeight = root.querySelector(".info-container-effect .pin-height");
+    const infoContainer = document.querySelector(".info-container");
+    const alinea = document.querySelectorAll(".alinea");
+
+    const splitInfoPagee = SplitText.create(alinea, {
+      type: "words", // ⬅️ DIT IS DE BELANGRIJKSTE AANPASSING
+      wordsClass: "word", // Vervangt linesClass
+      mask: "words",
     });
-  });
 
-  const root = document.querySelector(".info-container-effect");
-  const pinHeight = root.querySelector(".pin-height");
-  const container = root.querySelector(".container");
-  const alinea = root.querySelectorAll(".alinea");
+    // gsap.set(infoContent, { visibility: "visible" });
+    gsap.set(splitInfoPagee.words, {
+      yPercent: 100,
+      opacity: 0,
+    });
 
-  const splitInfoPagee = SplitText.create(alinea, {
-    type: "words", // ⬅️ DIT IS DE BELANGRIJKSTE AANPASSING
-    wordsClass: "word", // Vervangt linesClass
-    mask: "words",
-  });
-
-  // gsap.set(infoContent, { visibility: "visible" });
-  gsap.set(splitInfoPagee.words, {
-    yPercent: 100,
-    opacity: 0,
-  });
-
-  ScrollTrigger.create({
-    trigger: pinHeight, // Listens to pin-height
-    start: "top top",
-    end: "bottom bottom",
-    pin: container, // The pinned section
-  });
-
-  const tlInfo = gsap.timeline({
-    scrollTrigger: {
-      // All tweens of my timeline will have the same scrollTrigger properties
-      trigger: pinHeight,
+    ScrollTrigger.create({
+      trigger: pinHeight, // Listens to pin-height
       start: "top top",
       end: "bottom bottom",
-      scrub: true, // Progresses with the scroll
-    },
-  });
+      pin: infoContainer, // The pinned section
+      pinSpacing: false,
+    });
 
-  tlInfo.to(splitInfoPagee.words, {
-    yPercent: 0,
-    opacity: 1,
-    duration: 0.75,
-    stagger: 0.5,
-    ease: "power1.out",
+    const tlInfo = gsap.timeline({
+      scrollTrigger: {
+        // All tweens of my timeline will have the same scrollTrigger properties
+        trigger: pinHeight,
+        start: "top top",
+        end: "bottom bottom",
+        scrub: true, // Progresses with the scroll
+      },
+    });
+
+    tlInfo.to(splitInfoPagee.words, {
+      yPercent: 0,
+      opacity: 1,
+      duration: 0.75,
+      stagger: 0.5,
+      ease: "power1.out",
+    });
+
+    const container = document.querySelector(".info-container-hoe .container");
+    const cardsContainer = container.querySelector(".cards");
+    const cards = document.querySelectorAll(".card");
+    const distance = cardsContainer.clientWidth - window.innerWidth;
+
+    // 1. HORIZONTALE SCROLL TWEEN (CONTAINER)
+    const scrollTween = gsap.to(cardsContainer, {
+      x: -distance, // Schuif de container de berekende afstand naar links
+      ease: "none",
+      scrollTrigger: {
+        trigger: container,
+        pin: true,
+        scrub: true,
+        start: "top top",
+        end: "+=" + distance,
+      },
+    });
+
+    // 2. STAGGER EFFECT VOOR ELKE KAART
+    cards.forEach((card, index) => {
+      gsap.fromTo(
+        card,
+        {
+          x: 100,
+        },
+        {
+          // Eindpositie: hun normale positie
+          x: 0,
+          ease: "none",
+          scrollTrigger: {
+            trigger: card,
+            containerAnimation: scrollTween,
+
+            // Start de animatie van de kaart vroeg (bij 120%) en eindig wanneer
+            // de kaart het scherm verlaat (-20%).
+            // Je kunt de 120% en -20% aanpassen om de 'afstand' van de stagger te verfijnen.
+            start: "left 120%",
+            end: "right -20%",
+            scrub: true,
+          },
+        }
+      );
+    });
   });
 });
 
@@ -644,50 +727,6 @@ document.addEventListener("DOMContentLoaded", function () {
 //   stagger: 0.1,
 //   ease: "power1.out",
 // });
-
-const container = document.querySelector(".info-container-hoe .container");
-const cardsContainer = container.querySelector(".cards");
-const cards = document.querySelectorAll(".card");
-const distance = cardsContainer.clientWidth - window.innerWidth;
-
-// 1. HORIZONTALE SCROLL TWEEN (CONTAINER)
-const scrollTween = gsap.to(cardsContainer, {
-  x: -distance, // Schuif de container de berekende afstand naar links
-  ease: "none",
-  scrollTrigger: {
-    trigger: container,
-    pin: true,
-    scrub: true,
-    start: "top top",
-    end: "+=" + distance,
-  },
-});
-
-// 2. STAGGER EFFECT VOOR ELKE KAART
-cards.forEach((card, index) => {
-  gsap.fromTo(
-    card,
-    {
-      x: 100,
-    },
-    {
-      // Eindpositie: hun normale positie
-      x: 0,
-      ease: "none",
-      scrollTrigger: {
-        trigger: card,
-        containerAnimation: scrollTween,
-
-        // Start de animatie van de kaart vroeg (bij 120%) en eindig wanneer
-        // de kaart het scherm verlaat (-20%).
-        // Je kunt de 120% en -20% aanpassen om de 'afstand' van de stagger te verfijnen.
-        start: "left 120%",
-        end: "right -20%",
-        scrub: true,
-      },
-    }
-  );
-});
 
 // .to(morphAnimation, { time: 1 }, 0);
 
