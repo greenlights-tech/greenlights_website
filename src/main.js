@@ -4,11 +4,10 @@ import { loadFirePreset } from "@tsparticles/preset-fire";
 import { gsap } from "gsap";
 import { Flip } from "gsap/Flip";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { SplitText } from "gsap/SplitText";
 import { CustomEase } from "gsap/CustomEase";
 import Lenis from "lenis";
-gsap.registerPlugin(Flip, ScrollTrigger, ScrollSmoother, SplitText, CustomEase);
+gsap.registerPlugin(Flip, ScrollTrigger, SplitText, CustomEase);
 
 function changeUrl(path, title = null) {
   window.history.pushState(null, title, path);
@@ -23,6 +22,23 @@ function changeUrl(path, title = null) {
 // });
 
 document.addEventListener("DOMContentLoaded", function () {
+  // Initialize a new Lenis instance for smooth scrolling
+  const lenis = new Lenis();
+
+  lenis.stop();
+
+  // Synchronize Lenis scrolling with GSAP's ScrollTrigger plugin
+  lenis.on("scroll", ScrollTrigger.update);
+
+  // Add Lenis's requestAnimationFrame (raf) method to GSAP's ticker
+  // This ensures Lenis's smooth scroll animation updates on each GSAP tick
+  gsap.ticker.add((time) => {
+    lenis.raf(time * 1000); // Convert time from seconds to milliseconds
+  });
+
+  // Disable lag smoothing in GSAP to prevent any delay in scroll animations
+  gsap.ticker.lagSmoothing(0);
+
   // Store original URL to revert back to
   let originalUrl = window.location.pathname;
 
@@ -136,10 +152,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // });
 
   document.fonts.ready.then(() => {
-    const lenis = new Lenis({
-      autoRaf: true,
-    });
-
     // const ticker = document.querySelector(".ticker-content");
     // ticker.style.transform = `translateX(${Math.random() * 100}%)`;
 
@@ -148,19 +160,19 @@ document.addEventListener("DOMContentLoaded", function () {
     //   changeUrl("/sollicitatie");
     // });
     // Slides sollicitatie page in from left (mobile)
-    document
-      .getElementById("openSolliMobile")
-      .addEventListener("click", function () {
-        document.querySelector(".sol-page").classList.add("active");
-        changeUrl("/sollicitatie");
-      });
+    // document
+    //   .getElementById("openSolliMobile")
+    //   .addEventListener("click", function () {
+    //     document.querySelector(".sol-page").classList.add("active");
+    //     changeUrl("/sollicitatie");
+    //   });
 
-    document
-      .querySelector(".sol-home-button-container")
-      .addEventListener("click", function () {
-        document.querySelector(".sol-page").classList.remove("active");
-        changeUrl(originalUrl);
-      });
+    // document
+    //   .querySelector(".sol-home-button-container")
+    //   .addEventListener("click", function () {
+    //     document.querySelector(".sol-page").classList.remove("active");
+    //     changeUrl(originalUrl);
+    //   });
 
     // Slides opdrachtgever page in from right
     // document
@@ -171,19 +183,19 @@ document.addEventListener("DOMContentLoaded", function () {
     //   });
 
     // Slides opdrachtgever page in from right (mobile)
-    document
-      .getElementById("openOpdrachtgeverMobile")
-      .addEventListener("click", function () {
-        document.querySelector(".opd-page").classList.add("active");
-        changeUrl("/opdrachtgever");
-      });
+    // document
+    //   .getElementById("openOpdrachtgeverMobile")
+    //   .addEventListener("click", function () {
+    //     document.querySelector(".opd-page").classList.add("active");
+    //     changeUrl("/opdrachtgever");
+    //   });
 
-    document
-      .querySelector(".opd-home-button-container")
-      .addEventListener("click", function () {
-        document.querySelector(".opd-page").classList.remove("active");
-        changeUrl(originalUrl);
-      });
+    // document
+    //   .querySelector(".opd-home-button-container")
+    //   .addEventListener("click", function () {
+    //     document.querySelector(".opd-page").classList.remove("active");
+    //     changeUrl(originalUrl);
+    //   });
 
     // Intersection Observer for animations on sections
     const sections = document.querySelectorAll(
@@ -382,6 +394,12 @@ document.addEventListener("DOMContentLoaded", function () {
         nested: true,
         ease: "power2.inOut",
         zIndex: 1000,
+        // onStart: () => {
+        //   if (lenis) {
+        //     lenis.stop();
+        //     console.log("Lenis scroll geblokkeerd bij start van Flip.");
+        //   }
+        // },
       })
     ),
       tl.to(
@@ -477,6 +495,18 @@ document.addEventListener("DOMContentLoaded", function () {
     document
       .getElementById("openSolli")
       .addEventListener("click", function (event) {
+        if (lenis) {
+          lenis.start();
+        }
+        // Add Lenis's requestAnimationFrame (raf) method to GSAP's ticker
+        // This ensures Lenis's smooth scroll animation updates on each GSAP tick
+        // gsap.ticker.add((time) => {
+        //   lenis.raf(time * 1000); // Convert time from seconds to milliseconds
+        // });
+
+        // Disable lag smoothing in GSAP to prevent any delay in scroll animations
+        // gsap.ticker.lagSmoothing(0);
+
         gsap.to(solPage, {
           xPercent: 0, // Schuift de pagina naar 0% (zichtbaar)
           duration: 0.8,
@@ -494,6 +524,18 @@ document.addEventListener("DOMContentLoaded", function () {
     document
       .getElementById("openOpdrachtgever")
       .addEventListener("click", function (event) {
+        if (lenis) {
+          lenis.start();
+        }
+        // Add Lenis's requestAnimationFrame (raf) method to GSAP's ticker
+        // This ensures Lenis's smooth scroll animation updates on each GSAP tick
+        // gsap.ticker.add((time) => {
+        //   lenis.raf(time * 1000); // Convert time from seconds to milliseconds
+        // });
+
+        // Disable lag smoothing in GSAP to prevent any delay in scroll animations
+        // gsap.ticker.lagSmoothing(0);
+
         gsap.to(opdPage, {
           xPercent: 0, // Schuift de pagina naar 0% (zichtbaar)
           duration: 0.8,

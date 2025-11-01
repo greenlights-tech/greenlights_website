@@ -212,11 +212,24 @@ table {
   box-sizing: border-box;
 }
 
-html {
+/* html {
   scrollbar-gutter: auto;
   scrollbar-color: #888 var(--color-bg);
   scrollbar-width: normal;
   background: transparent;
+} */
+
+body::-webkit-scrollbar,
+html::-webkit-scrollbar {
+  display: none;
+  width: 0; /* Zorgt ervoor dat de ruimte ook verdwijnt */
+}
+
+/* 2. Verbergt de scrollbar in Internet Explorer, Edge, en Firefox */
+body,
+html {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 /* =========================================
@@ -225,24 +238,24 @@ html {
 */
 
 /* Breedte van de scrollbar */
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 0.75rem;
-}
+} */
 
 /* Achtergrond van de scrollbar (de 'track') */
-::-webkit-scrollbar-track {
+/* ::-webkit-scrollbar-track {
   background-color: var(--color-bg);
-}
+} */
 
 /* De schuifbalk zelf (de 'thumb') */
-::-webkit-scrollbar-thumb {
+/* ::-webkit-scrollbar-thumb {
   background-color: #888;
   border-radius: 6px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background-color: #888;
-}
+} */
 
 /* html,
 body {
