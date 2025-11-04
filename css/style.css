@@ -478,6 +478,7 @@ section.section {
   background-color: transparent;
   padding-top: 1.5rem;
   padding-bottom: 1rem;
+  cursor: pointer;
 }
 
 .tagline-wrapper {
@@ -490,9 +491,7 @@ section.section {
   /* border: 1px solid red; */
 }
 .tagline {
-  font-weight: 600;
-  font-size: var(--sublogo-font-size);
-  text-shadow: 0 0 5px rgba(100, 100, 100, 0.5);
+  font-weight: 400;
   text-transform: uppercase;
   white-space: nowrap;
   border: 1px solid var(--color-primary);
@@ -503,13 +502,12 @@ section.section {
   padding-left: 0.75em;
   padding-right: 0.75em;
   text-align: center;
-  letter-spacing: clamp(0em, 0.15vw, 0em);
+  letter-spacing: 0em;
   font-family: "MS Gothic", "Courier New", monospace;
+  font-size: var(--sublogo-font-size);
   color: #bec6ab;
   color: #b9b9b9;
-  margin: 0;
   /* visibility: hidden; */
-  overflow: visible;
   /* opacity: 0; */
 }
 
@@ -1786,7 +1784,13 @@ button {
   will-change: transform;
   /* padding: 0 100vw; */
   background-color: #303847;
+  /* background-color: #d9dadb; */
   visibility: hidden;
+  /* color: #202b40; */
+  font-size: 1.1rem;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  line-height: 1.5;
 }
 
 .opd-page {
@@ -1801,6 +1805,10 @@ button {
   /* padding: 0 100vw; */
   background-color: #303847;
   visibility: hidden;
+  font-size: 1.1rem;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  line-height: 1.5;
 }
 /* .sol-page {
   position: fixed;
@@ -2716,11 +2724,12 @@ button {
 /* Over ons */
 
 .info-container-effect .pin-height {
-  height: 400vh;
+  height: 500vh;
   /* border: 1px solid red; */
 }
 .info-container-effect .info-container {
   display: flex;
+  position: relative;
   flex-direction: column;
   height: 100vh;
   /* border: 1px solid red; */
@@ -2732,22 +2741,21 @@ button {
 }
 
 .info-container-effect .alinea {
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
   overflow: hidden;
-  flex: 1;
-  display: inline-block;
-  padding-left: 4vw;
-  padding-right: 4vw;
-  flex-wrap: wrap;
-  gap: 0.4em;
-  font-size: 1.1rem;
+
+  font-size: 2.1rem;
   font-family: "Inter", sans-serif;
   font-weight: 500;
   line-height: 1.5;
   /* border: 1px solid green; */
 }
 
-.info-container-effect .first {
+/* .info-container-effect .first {
   position: relative;
   overflow: hidden;
   flex: 1;
@@ -2759,8 +2767,7 @@ button {
   font-weight: 500;
   font-family: "Inter", sans-serif;
   line-height: 1.5;
-  /* border: 1px solid green; */
-}
+} */
 
 .info-container-missie {
   width: 100%;
