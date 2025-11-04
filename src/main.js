@@ -155,10 +155,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // const ticker = document.querySelector(".ticker-content");
     // ticker.style.transform = `translateX(${Math.random() * 100}%)`;
 
-    // document.getElementById("openSolli").addEventListener("click", function () {
-    //   document.querySelector(".sol-page").classList.add("active");
-    //   changeUrl("/sollicitatie");
-    // });
     // Slides sollicitatie page in from left (mobile)
     // document
     //   .getElementById("openSolliMobile")
@@ -167,34 +163,12 @@ document.addEventListener("DOMContentLoaded", function () {
     //     changeUrl("/sollicitatie");
     //   });
 
-    // document
-    //   .querySelector(".sol-home-button-container")
-    //   .addEventListener("click", function () {
-    //     document.querySelector(".sol-page").classList.remove("active");
-    //     changeUrl(originalUrl);
-    //   });
-
-    // Slides opdrachtgever page in from right
-    // document
-    //   .getElementById("openOpdrachtgever")
-    //   .addEventListener("click", function () {
-    //     document.querySelector(".opd-page").classList.add("active");
-    //     changeUrl("/opdrachtgever");
-    //   });
-
     // Slides opdrachtgever page in from right (mobile)
     // document
     //   .getElementById("openOpdrachtgeverMobile")
     //   .addEventListener("click", function () {
     //     document.querySelector(".opd-page").classList.add("active");
     //     changeUrl("/opdrachtgever");
-    //   });
-
-    // document
-    //   .querySelector(".opd-home-button-container")
-    //   .addEventListener("click", function () {
-    //     document.querySelector(".opd-page").classList.remove("active");
-    //     changeUrl(originalUrl);
     //   });
 
     // Intersection Observer for animations on sections
@@ -498,14 +472,6 @@ document.addEventListener("DOMContentLoaded", function () {
         if (lenis) {
           lenis.start();
         }
-        // Add Lenis's requestAnimationFrame (raf) method to GSAP's ticker
-        // This ensures Lenis's smooth scroll animation updates on each GSAP tick
-        // gsap.ticker.add((time) => {
-        //   lenis.raf(time * 1000); // Convert time from seconds to milliseconds
-        // });
-
-        // Disable lag smoothing in GSAP to prevent any delay in scroll animations
-        // gsap.ticker.lagSmoothing(0);
 
         gsap.to(solPage, {
           xPercent: 0, // Schuift de pagina naar 0% (zichtbaar)
@@ -527,14 +493,6 @@ document.addEventListener("DOMContentLoaded", function () {
         if (lenis) {
           lenis.start();
         }
-        // Add Lenis's requestAnimationFrame (raf) method to GSAP's ticker
-        // This ensures Lenis's smooth scroll animation updates on each GSAP tick
-        // gsap.ticker.add((time) => {
-        //   lenis.raf(time * 1000); // Convert time from seconds to milliseconds
-        // });
-
-        // Disable lag smoothing in GSAP to prevent any delay in scroll animations
-        // gsap.ticker.lagSmoothing(0);
 
         gsap.to(opdPage, {
           xPercent: 0, // Schuift de pagina naar 0% (zichtbaar)
@@ -544,6 +502,41 @@ document.addEventListener("DOMContentLoaded", function () {
             opdPage.classList.add("active");
           },
         });
+      });
+
+    // Functie om de navigatie naar Home af te handelen
+    function closePage(pageElement, targetX) {
+      // Blokkeer de scroll terwijl de overgang plaatsvindt
+      if (lenis) {
+        lenis.stop();
+      }
+
+      // Schuif de pagina uit beeld
+      gsap.to(pageElement, {
+        xPercent: targetX,
+        duration: 0.8,
+        ease: "power3.inOut",
+        onComplete: () => {
+          // Verwijder de 'active' class na de animatie
+          pageElement.classList.remove("active");
+        },
+      });
+    }
+
+    // Listener voor de solPage home button
+    document
+      .getElementById("closeSolli")
+      .addEventListener("click", function (event) {
+        event.preventDefault();
+        closePage(solPage, -100); // SOL pagina schuift naar links (-100%)
+      });
+
+    // Listener voor de opdPage home button
+    document
+      .getElementById("closeOpdrachtgever")
+      .addEventListener("click", function (event) {
+        event.preventDefault();
+        closePage(opdPage, 100); // OPD pagina schuift naar rechts (100%)
       });
 
     // const tlScroll = gsap.timeline({
