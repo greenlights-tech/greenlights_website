@@ -2732,7 +2732,7 @@ button {
   position: relative;
   flex-direction: column;
   height: 100vh;
-  /* border: 1px solid red; */
+  border: 1px solid red;
 }
 
 .alineas {

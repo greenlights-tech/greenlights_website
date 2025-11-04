@@ -299,9 +299,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // blog.render();
     const bg = document.querySelector(".header .container .bg");
-    const logo = document.querySelector(".logo"),
-      originalContainer = document.querySelector(".original-container"),
-      newContainer = document.querySelector(".new-container");
+    const logo = document.querySelector(".logo");
+    const originalContainer = document.querySelector(".original-container");
+    const newContainer = document.querySelector(".new-container");
     const hero = document.querySelector(".hero");
     const midText = document.querySelector(".mid-text");
     const teaserLeft = document.querySelector(
@@ -503,6 +503,25 @@ document.addEventListener("DOMContentLoaded", function () {
           },
         });
       });
+
+    newContainer.addEventListener("click", function () {
+      // Stop de Lenis scroll direct
+      if (lenis) {
+        lenis.stop();
+      }
+
+      // 1. Controleer en sluit de solpage
+      if (solPage && solPage.classList.contains("active")) {
+        closePage(solPage, -100);
+      }
+
+      // 2. Controleer en sluit de opdpage
+      if (opdPage && opdPage.classList.contains("active")) {
+        closePage(opdPage, 100);
+      }
+    });
+
+    // Functie om de navigatie naar de Homepage af te handelen
 
     // Functie om de navigatie naar Home af te handelen
     function closePage(pageElement, targetX) {
