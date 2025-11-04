@@ -402,7 +402,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     tl.to(splitTagline.chars, {
       opacity: 1,
-      duration: 1.5,
+      duration: 1,
       ease: "power2.out",
       stagger: 0.05,
     });
@@ -423,7 +423,7 @@ document.addEventListener("DOMContentLoaded", function () {
           yPercent: 20,
           rotateX: 0,
           filter: "blur(0px)",
-          stagger: 0.02,
+          stagger: 0.01,
           duration: 1,
           ease: "power2.out",
         },
@@ -446,7 +446,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ease: "back.out",
         duration: 1,
       },
-      1
+      2
     );
 
     tl.fromTo(
@@ -459,7 +459,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ease: "back.out",
         duration: 1,
       },
-      1
+      2
     );
 
     const solPage = document.querySelector(".sol-page");
@@ -475,7 +475,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         gsap.to(solPage, {
           xPercent: 0, // Schuift de pagina naar 0% (zichtbaar)
-          duration: 0.8,
+          duration: 1.5,
           ease: "power3.inOut",
           onStart: () => {
             solPage.classList.add("active");
@@ -496,7 +496,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         gsap.to(opdPage, {
           xPercent: 0, // Schuift de pagina naar 0% (zichtbaar)
-          duration: 0.8,
+          duration: 1.5,
           ease: "power3.inOut",
           onStart: () => {
             opdPage.classList.add("active");
@@ -675,39 +675,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const pinHeight = root.querySelector(".info-container-effect .pin-height");
     const infoContainer = document.querySelector(".info-container");
     const alinea = document.querySelectorAll(".alinea");
-    const alinea1 = document.querySelector(".first.alinea");
-    const alinea2 = document.querySelector(".second.alinea");
-    const alinea3 = document.querySelector(".third.alinea");
 
-    // Controleer of alle elementen gevonden zijn voordat we doorgaan
-    if (!alinea1 || !alinea2 || !alinea3) {
-      console.error(
-        "Niet alle alinea-elementen zijn gevonden. Controleer de selectors."
-      );
-      return;
-    }
-
-    // 1. Split de tekst van elke alinea afzonderlijk
-    const splitAlinea1 = SplitText.create(alinea1, {
-      type: "words",
-      wordsClass: "word-1",
+    const splitInfoPagee = SplitText.create(alinea, {
+      type: "words", // ⬅️ DIT IS DE BELANGRIJKSTE AANPASSING
+      wordsClass: "word", // Vervangt linesClass
       mask: "words",
     });
 
-    const splitAlinea2 = SplitText.create(alinea2, {
-      type: "words",
-      wordsClass: "word-2",
-      mask: "words",
-    });
-
-    const splitAlinea3 = SplitText.create(alinea3, {
-      type: "words",
-      wordsClass: "word-3",
-      mask: "words",
-    });
-
-    // 2. Stel de beginstaat in: alle woorden moeten verborgen zijn voor het reveal effect
-    gsap.set([splitAlinea1.words, splitAlinea2.words, splitAlinea3.words], {
+    // gsap.set(infoContent, { visibility: "visible" });
+    gsap.set(splitInfoPagee.words, {
       yPercent: 100,
       opacity: 0,
     });
@@ -730,43 +706,7 @@ document.addEventListener("DOMContentLoaded", function () {
       },
     });
 
-    tlInfo.to(splitAlinea1.words, {
-      yPercent: 0,
-      opacity: 1,
-      duration: 0.75,
-      stagger: 0.5,
-      ease: "power1.out",
-    });
-
-    // Alinea 1 fadet uit (hele container)
-    tlInfo.to(
-      alinea1,
-      {
-        opacity: 0,
-        duration: 2,
-      },
-      `+=3`
-    );
-
-    tlInfo.to(splitAlinea2.words, {
-      yPercent: 0,
-      opacity: 1,
-      duration: 0.75,
-      stagger: 0.5,
-      ease: "power1.out",
-    });
-
-    // Alinea 1 fadet uit (hele container)
-    tlInfo.to(
-      alinea2,
-      {
-        opacity: 0,
-        duration: 2,
-      },
-      `+=3`
-    );
-
-    tlInfo.to(splitAlinea3.words, {
+    tlInfo.to(splitInfoPagee.words, {
       yPercent: 0,
       opacity: 1,
       duration: 0.75,
