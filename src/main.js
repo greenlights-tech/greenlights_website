@@ -1,4 +1,4 @@
-// import { blog } from "./blog.js";
+import { blog } from "./blog.js";
 import { tsParticles } from "@tsparticles/engine";
 import { loadFirePreset } from "@tsparticles/preset-fire";
 import { gsap } from "gsap";
@@ -46,7 +46,6 @@ document.addEventListener("DOMContentLoaded", function () {
     try {
       await loadFirePreset(tsParticles);
 
-      // De code in het 'try' blok gaat hier verder nadat de preset is geladen
       tsParticles.load({
         id: "tsparticles",
         options: {
@@ -64,8 +63,8 @@ document.addEventListener("DOMContentLoaded", function () {
               value: 3,
             },
             move: {
-              enable: true, // Zorg ervoor dat beweging is ingeschakeld
-              speed: 1, // PAS DEZE WAARDE AAN: Lagere waarde = langzamer, Hogere waarde = sneller
+              enable: true,
+              speed: 1,
               direction: "none",
               random: true,
               straight: false,
@@ -104,7 +103,6 @@ document.addEventListener("DOMContentLoaded", function () {
         },
       });
     } catch (error) {
-      // Als er een probleem is met het laden van de preset
       console.error("Fout bij het laden van de Firefly preset:", error);
     }
   })();
@@ -297,7 +295,8 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
 
-    // blog.render();
+    blog.render();
+
     const bg = document.querySelector(".header .container .bg");
     const logo = document.querySelector(".logo");
     const originalContainer = document.querySelector(".original-container");
@@ -313,7 +312,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const tagline = document.querySelector(
       ".new-container-wrapper .tagline-wrapper .tagline"
     );
-    // De twee vormen die je wilt morphen: de ene is de vorm van het logo, de andere het icoon.
+
     // const logoPath = document.querySelector("#logoPath");
     // const rectShape = document.querySelector("#rectId");
     // const ellipseShape = document.querySelector("#ellipseId");
@@ -384,7 +383,7 @@ document.addEventListener("DOMContentLoaded", function () {
           duration: 1,
           ease: "power2.inOut",
         },
-        1.5 // Start op hetzelfde moment als de Flip animatie
+        1.5
       );
 
     tl.to(
@@ -510,18 +509,16 @@ document.addEventListener("DOMContentLoaded", function () {
         lenis.stop();
       }
 
-      // 1. Controleer en sluit de solpage
+      // Controleer en sluit de solpage
       if (solPage && solPage.classList.contains("active")) {
         closePage(solPage, -100);
       }
 
-      // 2. Controleer en sluit de opdpage
+      // Controleer en sluit de opdpage
       if (opdPage && opdPage.classList.contains("active")) {
         closePage(opdPage, 100);
       }
     });
-
-    // Functie om de navigatie naar de Homepage af te handelen
 
     // Functie om de navigatie naar Home af te handelen
     function closePage(pageElement, targetX) {
@@ -677,8 +674,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const alinea = document.querySelectorAll(".alinea");
 
     const splitInfoPagee = SplitText.create(alinea, {
-      type: "words", // ⬅️ DIT IS DE BELANGRIJKSTE AANPASSING
-      wordsClass: "word", // Vervangt linesClass
+      type: "words",
+      wordsClass: "word",
       mask: "words",
     });
 
@@ -689,20 +686,19 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     ScrollTrigger.create({
-      trigger: pinHeight, // Listens to pin-height
+      trigger: pinHeight,
       start: "top top",
       end: "bottom bottom",
-      pin: infoContainer, // The pinned section
+      pin: infoContainer,
       pinSpacing: false,
     });
 
     const tlInfo = gsap.timeline({
       scrollTrigger: {
-        // All tweens of my timeline will have the same scrollTrigger properties
         trigger: pinHeight,
         start: "top top",
         end: "bottom bottom",
-        scrub: true, // Progresses with the scroll
+        scrub: true,
       },
     });
 
@@ -719,7 +715,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const cards = document.querySelectorAll(".card");
     const distance = cardsContainer.clientWidth - window.innerWidth;
 
-    // 1. HORIZONTALE SCROLL TWEEN (CONTAINER)
+    // HORIZONTALE SCROLL TWEEN (CONTAINER)
     const scrollTween = gsap.to(cardsContainer, {
       x: -distance, // Schuif de container de berekende afstand naar links
       ease: "none",
@@ -732,7 +728,7 @@ document.addEventListener("DOMContentLoaded", function () {
       },
     });
 
-    // 2. STAGGER EFFECT VOOR ELKE KAART
+    // STAGGER EFFECT VOOR ELKE KAART
     cards.forEach((card, index) => {
       gsap.fromTo(
         card,
@@ -746,10 +742,6 @@ document.addEventListener("DOMContentLoaded", function () {
           scrollTrigger: {
             trigger: card,
             containerAnimation: scrollTween,
-
-            // Start de animatie van de kaart vroeg (bij 120%) en eindig wanneer
-            // de kaart het scherm verlaat (-20%).
-            // Je kunt de 120% en -20% aanpassen om de 'afstand' van de stagger te verfijnen.
             start: "left 120%",
             end: "right -20%",
             scrub: true,

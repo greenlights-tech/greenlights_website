@@ -359,6 +359,7 @@ canvas {
   border-bottom: none;
   /* animation: animateGlow 10s ease infinite; */
   color: #f1efe0;
+  color: #fff;
 }
 
 .container-whatsapp-knop {
@@ -649,6 +650,7 @@ nav {
   font-family: sans-serif;
   font-size: 2rem;
   color: #b9b9b9;
+  color: #fff;
   font-weight: 400;
   line-height: 1.2;
 }
@@ -1045,6 +1047,7 @@ button {
   font-weight: 500 normal;
   color: #b9b9b9;
   color: #f1efe0;
+  color: #fff;
   background-color: #121212;
   padding: 1.75rem 1.75rem;
   border-radius: 2px;
