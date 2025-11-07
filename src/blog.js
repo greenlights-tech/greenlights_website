@@ -1,27 +1,66 @@
+import { article1Content } from "./articles/article1";
+import { article2Content } from "./articles/article2";
+import { article3Content } from "./articles/article3";
+import { article4Content } from "./articles/article4";
+import { article5Content } from "./articles/article5";
+import { article6Content } from "./articles/article6";
+
 const blog = (function () {
   const articles = [
     {
-      id: 1,
-      header: "Groene Innovaties",
-      image: "./../images/blog/article1.jpg",
-      text: "Ontdek hoe groene technologieën de wereld veranderen en duurzame oplossingen bieden voor de toekomst.",
-      date: "2025-01-01",
+      id: article1Content.id,
+      header: article1Content.title,
+      image: article1Content.image,
+      text: article1Content.text,
+      date: article1Content.date,
     },
     {
-      id: 2,
-      header: "Tech Nieuws",
-      image: "./../images/blog/article2.png",
-      text: "Laatste updates over software, apps en gadgets die je dagelijks leven makkelijker maken.",
-      date: "2025-01-04",
+      id: article2Content.id,
+      header: article2Content.title,
+      image: article2Content.image,
+      text: article2Content.text,
+      date: article2Content.date,
+    },
+    {
+      id: article3Content.id,
+      header: article3Content.title,
+      image: article3Content.image,
+      text: article3Content.text,
+      date: article3Content.date,
+    },
+    {
+      id: article4Content.id,
+      header: article4Content.title,
+      image: article4Content.image,
+      text: article4Content.text,
+      date: article4Content.date,
+    },
+    {
+      id: article5Content.id,
+      header: article5Content.title,
+      image: article5Content.image,
+      text: article5Content.text,
+      date: article5Content.date,
+    },
+    {
+      id: article6Content.id,
+      header: article6Content.title,
+      image: article6Content.image,
+      text: article6Content.text,
+      date: article6Content.date,
     },
   ];
 
   const blogGrid = document.querySelector(".blog-grid");
+  const gridSizer = document.createElement('div');
+  gridSizer.classList.add('grid-sizer');
+  blogGrid.prepend(gridSizer);
+
   const msnry = new Masonry(blogGrid, {
     itemSelector: ".grid-item",
-    columnWidth: 240,
-    gutter: 20,
-    fitWidth: true,
+    columnWidth: ".grid-sizer",
+    percentPosition: true,
+    fitWidth: false,
   });
 
   function render() {
@@ -37,6 +76,7 @@ const blog = (function () {
 
       const articleText = document.createElement("p");
       articleText.textContent = article.text;
+      articleText.style.whiteSpace = "pre-line";
 
       const articleDate = document.createElement("small");
       articleDate.textContent = new Date(article.date).toLocaleDateString(
