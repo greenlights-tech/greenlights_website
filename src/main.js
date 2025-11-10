@@ -312,6 +312,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const tagline = document.querySelector(
       ".new-container-wrapper .tagline-wrapper .tagline"
     );
+    const textLeft = teaserLeft.querySelector(".centered");
+    const textRight = teaserRight.querySelector(".centered");
 
     // const logoPath = document.querySelector("#logoPath");
     // const rectShape = document.querySelector("#rectId");
@@ -367,34 +369,27 @@ document.addEventListener("DOMContentLoaded", function () {
         nested: true,
         ease: "power2.inOut",
         zIndex: 1000,
-        // onStart: () => {
-        //   if (lenis) {
-        //     lenis.stop();
-        //     console.log("Lenis scroll geblokkeerd bij start van Flip.");
-        //   }
-        // },
       })
     ),
+      // tl.to(
+      //   hero,
+      //   {
+      //     backgroundColor: "transparent",
+      //     duration: 1,
+      //     ease: "power2.inOut",
+      //   },
+      //   1.5
+      // );
+
       tl.to(
-        hero,
+        bg,
         {
-          // backgroundColor: "#303847",
-          backgroundColor: "transparent",
+          opacity: 1,
           duration: 1,
           ease: "power2.inOut",
         },
-        1.5
-      );
-
-    tl.to(
-      bg,
-      {
-        opacity: 1,
-        duration: 1,
-        ease: "power2.inOut",
-      },
-      1
-    ),
+        1
+      ),
       // gsap.set(tagline, { visibility: "visible" });
       gsap.set(splitTagline.chars, {
         opacity: 0,
@@ -413,7 +408,7 @@ document.addEventListener("DOMContentLoaded", function () {
         duration: 1,
         ease: "none",
       },
-      2
+      1
     ),
       tl.to(
         split.chars,
@@ -429,12 +424,6 @@ document.addEventListener("DOMContentLoaded", function () {
         0.6
       );
 
-    // tl.to(teaser, {
-    //   z: 0,
-    //   ease: "none",
-    //   duration: 2,
-    // });
-
     tl.fromTo(
       teaserLeft,
       {
@@ -442,8 +431,8 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       {
         scale: 1,
-        ease: "back.out",
-        duration: 1,
+        ease: "expo.out",
+        duration: 2,
       },
       2
     );
@@ -455,11 +444,49 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       {
         scale: 1,
-        ease: "back.out",
-        duration: 1,
+        ease: "expo.out",
+        duration: 2,
       },
       2
     );
+
+    // Functie voor schaalvergroting bij HOVER IN
+    function handleHoverIn(element) {
+      gsap.to(element, {
+        scale: 1.1,
+        duration: 0.4,
+        ease: "power1.inOut",
+      });
+    }
+
+    // Functie voor schaalverkleining bij HOVER UIT
+    function handleHoverOut(element) {
+      gsap.to(element, {
+        scale: 1,
+        duration: 0.4,
+        ease: "power1.inOut",
+      });
+    }
+
+    tl.eventCallback("onComplete", () => {
+      // Koppelt de hover-events pas als de intro-animatie klaar is
+
+      teaserLeft.addEventListener("mouseover", () => handleHoverIn(teaserLeft));
+      teaserLeft.addEventListener("mouseout", () => handleHoverOut(teaserLeft));
+
+      teaserRight.addEventListener("mouseover", () =>
+        handleHoverIn(teaserRight)
+      );
+      teaserRight.addEventListener("mouseout", () =>
+        handleHoverOut(teaserRight)
+      );
+    });
+
+    // tl.to(midText, {
+    //   opacity: 0,
+    //   ease: "power2.inOut",
+    //   duration: 3,
+    // });
 
     const solPage = document.querySelector(".sol-page");
 
