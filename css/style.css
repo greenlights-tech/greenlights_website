@@ -479,7 +479,7 @@ section.section {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 80%;
   /* border: 1px dashed blue; */
   background-color: transparent;
   padding-top: 1.5rem;
@@ -644,11 +644,11 @@ nav {
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-  width: 40%;
+  width: 80%;
   text-align: center;
   pointer-events: none;
   visibility: hidden;
-  margin-top: 2rem;
+  /* border: 1px solid red; */
 }
 
 .mid-text h2 {
@@ -657,7 +657,7 @@ nav {
   /* text-transform: uppercase; */
   color: #b9b9b9;
   font-weight: 400;
-  font: 500 normal 2.5rem "Inter", sans-serif;
+  font: 500 normal 2rem "Inter", sans-serif;
   letter-spacing: -0.05em;
   line-height: 1.2;
 }
@@ -1040,23 +1040,12 @@ button {
   justify-content: center;
   align-items: center;
   text-align: center;
-  gap: clamp(0.25rem, 2vw, 0.5rem);
-}
-
-.centered-hoofdtext {
-  font-family: var(--font-tertiary);
-  font-size: var(--h3-font-size);
-  color: #b9b9b9;
-  font-weight: 600;
-  text-transform: uppercase;
-  /* text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4), 0px 8px 13px rgba(0, 0, 0, 0.1),
-    0px 18px 23px rgba(0, 0, 0, 0.1); */
 }
 
 .centered-subtext {
   font-family: var(--font-secondary);
   font-size: var(--h4-font-size);
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   font-weight: 800 normal;
   color: #b9b9b9;
   background-color: transparent;
@@ -1196,7 +1185,9 @@ button {
     padding-top: 8rem; */
     /* background-color: transparent; */
     flex-wrap: nowrap;
-    height: 200vh;
+    /* border: 1px solid yellow; */
+    margin-bottom: 5rem;
+    margin-top: 2rem;
   }
 
   .buttons {
@@ -1221,7 +1212,7 @@ button {
   .teaser {
     position: relative;
     /* max-width: 100%; */
-    width: 25vw;
+    width: 23vw;
     /* object-fit: cover; */
     /* mask: linear-gradient(black 70%, transparent 100%); */
     /* transition: all 0.7s ease; */

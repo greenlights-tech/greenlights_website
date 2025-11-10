@@ -410,32 +410,32 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       1
     ),
-      tl.to(
-        split.chars,
-        {
-          opacity: 1,
-          yPercent: 20,
-          rotateX: 0,
-          filter: "blur(0px)",
-          stagger: 0.01,
-          duration: 1,
-          ease: "power2.out",
-        },
-        0.6
-      );
+      // tl.to(
+      //   split.chars,
+      //   {
+      //     opacity: 1,
+      //     yPercent: 20,
+      //     rotateX: 0,
+      //     filter: "blur(0px)",
+      //     stagger: 0.01,
+      //     duration: 1,
+      //     ease: "power2.out",
+      //   },
+      //   0.6
+      // );
 
-    tl.fromTo(
-      teaserLeft,
-      {
-        scale: 0,
-      },
-      {
-        scale: 1,
-        ease: "expo.out",
-        duration: 2,
-      },
-      2
-    );
+      tl.fromTo(
+        teaserLeft,
+        {
+          scale: 0,
+        },
+        {
+          scale: 1,
+          ease: "expo.out",
+          duration: 2,
+        },
+        2
+      );
 
     tl.fromTo(
       teaserRight,
@@ -457,6 +457,17 @@ document.addEventListener("DOMContentLoaded", function () {
         duration: 0.4,
         ease: "power1.inOut",
       });
+      // 💡 NIEUW: Animeer de midText karakters zichtbaar bij hover
+      gsap.to(split.chars, {
+        opacity: 1,
+        yPercent: 20,
+        rotateX: 0,
+        filter: "blur(0px)",
+        stagger: 0.01,
+        duration: 1,
+        ease: "power2.out",
+        overwrite: true,
+      });
     }
 
     // Functie voor schaalverkleining bij HOVER UIT
@@ -465,6 +476,16 @@ document.addEventListener("DOMContentLoaded", function () {
         scale: 1,
         duration: 0.4,
         ease: "power1.inOut",
+      });
+      gsap.to(split.chars, {
+        opacity: 0,
+        yPercent: 100, // Terug naar de verborgen positie
+        rotateX: -90, // Terug naar de gedraaide staat
+        filter: "blur(10px)",
+        stagger: 0.01,
+        duration: 0.3,
+        ease: "power1.in",
+        overwrite: true,
       });
     }
 
