@@ -295,14 +295,15 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
 
-    blog.render();
+    // blog.render();
 
     const bg = document.querySelector(".header .container .bg");
     const logo = document.querySelector(".logo");
     const originalContainer = document.querySelector(".original-container");
     const newContainer = document.querySelector(".new-container");
     const hero = document.querySelector(".hero");
-    const midText = document.querySelector(".mid-text");
+    const midTextSolli = document.querySelector(".mid-text-sollicitant");
+    const midTextOpdr = document.querySelector(".mid-text-opdrachtgever");
     const teaserLeft = document.querySelector(
       ".teasers-container .buttons .left"
     );
@@ -314,6 +315,9 @@ document.addEventListener("DOMContentLoaded", function () {
     );
     const textLeft = teaserLeft.querySelector(".centered");
     const textRight = teaserRight.querySelector(".centered");
+    const color1 = document.querySelector("#color1");
+    const color2 = document.querySelector("#color2");
+    const logoSVG = document.querySelector(".child1"); // De hoofds-SVG
 
     // const logoPath = document.querySelector("#logoPath");
     // const rectShape = document.querySelector("#rectId");
@@ -332,97 +336,173 @@ document.addEventListener("DOMContentLoaded", function () {
     //   repeatDelay: 0.2,
     // });
 
-    gsap.set(logo, { visibility: "visible" });
+    // Initialisatie: Logo op 0.2 opacity
+    gsap.set(logoSVG, { visibility: "visible", opacity: 0.4 });
 
-    const split = SplitText.create(midText, {
-      type: "chars, words",
-      charsClass: "char",
-      wordsClass: "word",
+    // Initialisatie: Zet de Gradiënt op Zwart (bijv. #333 en #000)
+    gsap.set(color1, {
+      opacity: 0.1,
+      "stop-color": "#333333",
     });
+    gsap.set(color2, {
+      opacity: 0.1,
+      "stop-color": "#000000",
+    });
+
+    gsap.set(logoSVG, { visibility: "visible" });
 
     const splitTagline = SplitText.create(tagline, {
       type: "chars",
       charsClass: "char",
     });
 
-    gsap.set(midText, { visibility: "visible" });
-    gsap.set(split.chars, {
+    // de mid-text-sollicitant splitsen in woorden en characters
+
+    const splitMidTextSolli = SplitText.create(midTextSolli, {
+      type: "chars, words",
+      charsClass: "char",
+      wordsClass: "word",
+    });
+
+    gsap.set(midTextSolli, { visibility: "visible" });
+    gsap.set(splitMidTextSolli.chars, {
       opacity: 0,
       yPercent: 100,
       rotateX: -90,
       filter: "blur(10px)",
     });
 
-    const state = Flip.getState(logo, ".hero");
+    // de mid-text-opdrachtgever splitsen in woorden en characters
 
-    (logo.parentNode === originalContainer
-      ? newContainer
-      : originalContainer
-    ).appendChild(logo);
+    const splitMidTextOpdr = SplitText.create(midTextOpdr, {
+      type: "chars, words",
+      charsClass: "char",
+      wordsClass: "word",
+    });
+
+    gsap.set(midTextOpdr, { visibility: "visible" });
+    gsap.set(splitMidTextOpdr.chars, {
+      opacity: 0,
+      yPercent: 100,
+      rotateX: -90,
+      filter: "blur(10px)",
+    });
+
+    gsap.set([teaserLeft, teaserRight], {
+      scale: 0,
+      opacity: 0,
+      visibility: "hidden", // Zorgt dat ze onzichtbaar zijn bij het laden
+    });
 
     const tl = gsap.timeline();
 
-    tl.add(
-      Flip.from(state, {
-        scale: true,
-        duration: 1.2,
-        nested: true,
-        ease: "power2.inOut",
-        zIndex: 1000,
-      })
-    ),
-      // tl.to(
-      //   hero,
-      //   {
-      //     backgroundColor: "transparent",
-      //     duration: 1,
-      //     ease: "power2.inOut",
-      //   },
-      //   1.5
-      // );
+    $(".switch input").on("change", function () {
+      const state = Flip.getState(logo, ".hero");
+
+      (logo.parentNode === originalContainer
+        ? newContainer
+        : originalContainer
+      ).appendChild(logo);
 
       tl.to(
-        bg,
+        logoSVG,
+        {
+          opacity: 1,
+          duration: 0.3,
+          ease: "power2.out",
+        },
+        0
+      );
+      // Animeer de stop-kleuren terug naar groen
+      tl.to(
+        color1,
+        {
+          opacity: 1,
+          "stop-color": "#20FF85", // Groen 1
+          duration: 0.1,
+          ease: "power1.out",
+        },
+        0 // Start tegelijk
+      );
+
+      tl.to(
+        color2,
+        {
+          opacity: 1,
+          ease: "power2.out",
+          "stop-color": "#00D661", // Groen 2
+          duration: 0.1,
+          ease: "power1.out",
+        },
+        0 // Start tegelijk
+      );
+
+      tl.add(
+        Flip.from(state, {
+          scale: true,
+          duration: 1.2,
+          nested: true,
+          ease: "power2.inOut",
+          zIndex: 1000,
+        })
+      ),
+        // tl.to(
+        //   hero,
+        //   {
+        //     backgroundColor: "transparent",
+        //     duration: 1,
+        //     ease: "power2.inOut",
+        //   },
+        //   1.5
+        // );
+
+        tl.to(
+          bg,
+          {
+            opacity: 1,
+            duration: 1,
+            ease: "power2.inOut",
+          },
+          1
+        ),
+        // gsap.set(tagline, { visibility: "visible" });
+        gsap.set(splitTagline.chars, {
+          opacity: 0,
+        });
+      tl.to(splitTagline.chars, {
+        opacity: 1,
+        duration: 1,
+        ease: "power2.out",
+        stagger: 0.05,
+      });
+
+      tl.to(
+        ".tagline-wrapper",
         {
           opacity: 1,
           duration: 1,
-          ease: "power2.inOut",
+          ease: "none",
         },
         1
       ),
-      // gsap.set(tagline, { visibility: "visible" });
-      gsap.set(splitTagline.chars, {
-        opacity: 0,
-      });
-    tl.to(splitTagline.chars, {
-      opacity: 1,
-      duration: 1,
-      ease: "power2.out",
-      stagger: 0.05,
-    });
+        // tl.to(
+        //   split.chars,
+        //   {
+        //     opacity: 1,
+        //     yPercent: 20,
+        //     rotateX: 0,
+        //     filter: "blur(0px)",
+        //     stagger: 0.01,
+        //     duration: 1,
+        //     ease: "power2.out",
+        //   },
+        //   0.6
+        // );
 
-    tl.to(
-      ".tagline-wrapper",
-      {
-        opacity: 1,
-        duration: 1,
-        ease: "none",
-      },
-      1
-    ),
-      // tl.to(
-      //   split.chars,
-      //   {
-      //     opacity: 1,
-      //     yPercent: 20,
-      //     rotateX: 0,
-      //     filter: "blur(0px)",
-      //     stagger: 0.01,
-      //     duration: 1,
-      //     ease: "power2.out",
-      //   },
-      //   0.6
-      // );
+        gsap.set([teaserLeft, teaserRight], {
+          visibility: "visible",
+          opacity: 1,
+        });
 
       tl.fromTo(
         teaserLeft,
@@ -437,70 +517,104 @@ document.addEventListener("DOMContentLoaded", function () {
         2
       );
 
-    tl.fromTo(
-      teaserRight,
-      {
-        scale: 0,
-      },
-      {
-        scale: 1,
-        ease: "expo.out",
-        duration: 2,
-      },
-      2
-    );
-
-    // Functie voor schaalvergroting bij HOVER IN
-    function handleHoverIn(element) {
-      gsap.to(element, {
-        scale: 1.1,
-        duration: 0.4,
-        ease: "power1.inOut",
-      });
-      // 💡 NIEUW: Animeer de midText karakters zichtbaar bij hover
-      gsap.to(split.chars, {
-        opacity: 1,
-        yPercent: 20,
-        rotateX: 0,
-        filter: "blur(0px)",
-        stagger: 0.01,
-        duration: 1,
-        ease: "power2.out",
-        overwrite: true,
-      });
-    }
-
-    // Functie voor schaalverkleining bij HOVER UIT
-    function handleHoverOut(element) {
-      gsap.to(element, {
-        scale: 1,
-        duration: 0.4,
-        ease: "power1.inOut",
-      });
-      gsap.to(split.chars, {
-        opacity: 0,
-        yPercent: 100, // Terug naar de verborgen positie
-        rotateX: -90, // Terug naar de gedraaide staat
-        filter: "blur(10px)",
-        stagger: 0.01,
-        duration: 0.3,
-        ease: "power1.in",
-        overwrite: true,
-      });
-    }
-
-    tl.eventCallback("onComplete", () => {
-      // Koppelt de hover-events pas als de intro-animatie klaar is
-
-      teaserLeft.addEventListener("mouseover", () => handleHoverIn(teaserLeft));
-      teaserLeft.addEventListener("mouseout", () => handleHoverOut(teaserLeft));
-
-      teaserRight.addEventListener("mouseover", () =>
-        handleHoverIn(teaserRight)
+      tl.fromTo(
+        teaserRight,
+        {
+          scale: 0,
+        },
+        {
+          scale: 1,
+          ease: "expo.out",
+          duration: 2,
+        },
+        2
       );
-      teaserRight.addEventListener("mouseout", () =>
-        handleHoverOut(teaserRight)
-      );
+
+      // Functie voor schaalvergroting bij HOVER IN
+      function handleHoverIn(element) {
+        // 1. Bepaal welke midText-karakters geanimeerd moeten worden
+        let charsToAnimate;
+
+        if (element === teaserLeft) {
+          // Als we over de linker teaser hooveren, gebruik Solli tekst
+          charsToAnimate = splitMidTextSolli.chars;
+        } else if (element === teaserRight) {
+          // Als we over de rechter teaser hooveren, gebruik Opdr tekst
+          charsToAnimate = splitMidTextOpdr.chars;
+        } else {
+          // Valbeveiliging
+          return;
+        }
+        gsap.to(element, {
+          scale: 1.1,
+          duration: 0.4,
+          ease: "power1.inOut",
+        });
+        // Animeer de midText karakters zichtbaar bij hover
+        gsap.to(charsToAnimate, {
+          opacity: 1,
+          yPercent: 20,
+          rotateX: 0,
+          filter: "blur(0px)",
+          stagger: 0.01,
+          duration: 1,
+          ease: "power2.out",
+          overwrite: true,
+        });
+      }
+
+      // Functie voor schaalverkleining bij HOVER UIT
+      function handleHoverOut(element) {
+        // 1. Bepaal welke midText-karakters geanimeerd moeten worden
+        let charsToAnimate;
+
+        if (element === teaserLeft) {
+          // Als we van de linker teaser afgaan, gebruik Solli tekst
+          charsToAnimate = splitMidTextSolli.chars;
+        } else if (element === teaserRight) {
+          // Als we van de rechter teaser afgaan, gebruik Opdr tekst
+          charsToAnimate = splitMidTextOpdr.chars;
+        } else {
+          return;
+        }
+        gsap.to(element, {
+          scale: 1,
+          duration: 0.4,
+          ease: "power1.inOut",
+        });
+        // MidText karakters animatie: 'Van Boven naar Beneden'
+        gsap.to(charsToAnimate, {
+          opacity: 0,
+          yPercent: 180,
+          rotateX: 90,
+          filter: "blur(10px)",
+          stagger: {
+            each: 0.01,
+            from: "start", // START de animatie vanaf het eerste karakter
+          },
+          duration: 0.5,
+          ease: "power2.in",
+          overwrite: true,
+        });
+      }
+
+      tl.eventCallback("onComplete", () => {
+        // Koppelt de hover-events pas als de intro-animatie klaar is
+
+        teaserLeft.addEventListener("mouseover", () =>
+          handleHoverIn(teaserLeft)
+        );
+        teaserLeft.addEventListener("mouseout", () =>
+          handleHoverOut(teaserLeft)
+        );
+
+        teaserRight.addEventListener("mouseover", () =>
+          handleHoverIn(teaserRight)
+        );
+        teaserRight.addEventListener("mouseout", () =>
+          handleHoverOut(teaserRight)
+        );
+      });
     });
 
     // tl.to(midText, {

@@ -270,7 +270,7 @@ body {
 } */
 
 body {
-  color: var(--color-secondary);
+  color: #b9b9b9;
   /* --sb-track-color: rgb(235, 235, 235);
   --sb-thumb-color: var(--color-primary); */
   /* --sb-size: 14px; */
@@ -364,7 +364,7 @@ canvas {
   /* flex-grow: 1; */
   /* animation: animateGlow 10s ease infinite; */
   color: #f1efe0;
-  color: #fff;
+  color: #b9b9b9;
 }
 
 .container-whatsapp-knop {
@@ -609,6 +609,64 @@ nav {
   height: 100%;
 }
 
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 80px;
+  height: 37px;
+  border-radius: 37px;
+  background-color: #f3f4f4;
+  cursor: pointer;
+  transition: all 0.3s;
+  overflow: hidden;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
+}
+.switch input {
+  display: none;
+}
+.switch input:checked + div {
+  left: calc(80px - 32px);
+  box-shadow: 0px 0px 0px white;
+}
+.switch div {
+  position: absolute;
+  width: 27px;
+  height: 27px;
+  border-radius: 27px;
+  background-color: white;
+  top: 5px;
+  left: 5px;
+  box-shadow: 0px 0px 1px rgb(150, 150, 150);
+  transition: all 0.3s;
+}
+.switch div:before,
+.switch div:after {
+  position: absolute;
+  content: "ON";
+  width: calc(80px - 40px);
+  height: 37px;
+  line-height: 37px;
+  font-family: "Varela Round";
+  font-size: 14px;
+  font-weight: bold;
+  top: -5px;
+}
+.switch div:before {
+  content: "OFF";
+  color: rgb(120, 120, 120);
+  left: 100%;
+}
+.switch div:after {
+  content: "ON";
+  right: 100%;
+  color: white;
+}
+
+.switch-checked {
+  background-color: #e74c3c;
+  box-shadow: none;
+}
+
 /* .container-mid-text {
   display: flex;
   flex-direction: column;
@@ -638,7 +696,7 @@ nav {
   filter: saturate(1);
 } */
 
-.mid-text {
+.mid-text-sollicitant {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -651,15 +709,59 @@ nav {
   /* border: 1px solid red; */
 }
 
-.mid-text h2 {
+.mid-text-sollicitant h2 {
   font-family: "IBM Plex Mono";
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   /* text-transform: uppercase; */
   color: #b9b9b9;
   font-weight: 400;
-  font: 500 normal 2rem "Inter", sans-serif;
+  font: 500 normal 1.75rem "Inter", sans-serif;
   letter-spacing: -0.05em;
   line-height: 1.2;
+}
+
+.mid-text-opdrachtgever {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  width: 80%;
+  text-align: center;
+  pointer-events: none;
+  visibility: hidden;
+  /* border: 1px solid red; */
+}
+
+.mid-text-opdrachtgever h2 {
+  font-family: "IBM Plex Mono";
+  font-size: 1.5rem;
+  /* text-transform: uppercase; */
+  color: #b9b9b9;
+  font-weight: 400;
+  font: 500 normal 1.75rem "Inter", sans-serif;
+  letter-spacing: -0.05em;
+  line-height: 1.2;
+}
+
+.mid-text-sollicitant,
+.mid-text-opdrachtgever {
+  position: absolute; /* Zorgt voor de overlapping en absolute plaatsing t.o.v. .hero */
+
+  /* Horizontaal centreren */
+  left: 50%;
+  transform: translateX(-50%);
+
+  /* Verticaal plaatsen: 
+       Plaats het element helemaal onderaan (bottom: 0) */
+  top: 0;
+
+  /* Gebruik padding op deze elementen om de gewenste 5rem ruimte erboven te creëren */
+  padding-top: 2rem;
+
+  /* Zorg dat de breedte niet te ver uitloopt, maar centreert */
+  max-width: 80%; /* Pas dit aan naar wens */
+  text-align: center;
 }
 
 /* TEST */
@@ -1057,6 +1159,7 @@ button {
   text-transform: uppercase;
   white-space: nowrap;
   padding: 0.5rem 2rem;
+  color: var(--color-primary);
 }
 
 .centered,
@@ -1069,6 +1172,8 @@ button {
 
 .highlight {
   color: var(--color-primary);
+  color: #03e29c;
+  color: #02a16f;
   /* text-shadow: 0 0 2px #1ca45b; */
 }
 
@@ -1186,8 +1291,7 @@ button {
     /* background-color: transparent; */
     flex-wrap: nowrap;
     /* border: 1px solid yellow; */
-    margin-bottom: 5rem;
-    margin-top: 2rem;
+    margin-top: 3rem;
   }
 
   .buttons {
@@ -1212,7 +1316,7 @@ button {
   .teaser {
     position: relative;
     /* max-width: 100%; */
-    width: 23vw;
+    width: 25vw;
     /* object-fit: cover; */
     /* mask: linear-gradient(black 70%, transparent 100%); */
     /* transition: all 0.7s ease; */
@@ -1233,6 +1337,12 @@ button {
 
     /* max-width: 100%; */
     box-shadow: 18px 18px 16px 0 rgba(0, 0, 0, 0.3);
+  }
+
+  .teasers-container .buttons .left,
+  .teasers-container .buttons .right {
+    opacity: 0;
+    visibility: hidden;
   }
 
   .teasers-container-swiper {
@@ -1868,7 +1978,6 @@ button {
 .opd-container {
   display: flex;
   flex-direction: column;
-  color: white;
   align-items: flex-end;
 }
 
@@ -2724,7 +2833,7 @@ button {
 .card-content p {
   display: flex;
   font: 500 1vw "Inter";
-  color: #d1d4cb;
+  color: #b9b9b9;
   line-height: 1.5;
 }
 
@@ -2759,7 +2868,7 @@ button {
   font-family: "Inter", sans-serif;
   font-weight: 500;
   line-height: 1.5;
-  color: #fff;
+  color: #b9b9b9;
   /* border: 1px solid green; */
 }
 
@@ -2775,11 +2884,55 @@ button {
   font-weight: 500;
   font-family: "Inter", sans-serif;
   line-height: 1.5;
-  color: #fff;
+  color: #b9b9b9;
 }
 
 .info-container-missie {
   width: 100%;
   height: 100vh;
   border: 1px solid green;
+}
+
+/*
+  ========================================
+  Artikelen section
+  ========================================
+*/
+
+.artikelen-container {
+  width: 100%;
+  height: 100vh;
+  border: 1px solid yellow;
+}
+
+.artikelen {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 32px; /* Dit is je 'gap={8}' in de oude code */
+  /* Gebruik hier de 90% breedte van de parent */
+  width: 90%;
+  margin: 0 auto; /* mx="auto" */
+  justify-content: flex-start;
+  background-color: transparent;
+  border: 0.5px solid gray;
+  backdrop-filter: blur(6px);
+  border: 1px solid red;
+}
+
+.artikel {
+  flex: 0 0 100%;
+}
+
+@media (min-width: 768px) {
+  .artikelen {
+    width: 80%;
+  }
+  .artikel {
+    /* Formule voor 3 kolommen met een gap van 32px:
+           100% / 3 - (2 * 32px / 3) = 33.333% - 21.333px */
+    flex: 0 0 calc(33.333% - 21.333px);
+    border: 1px solid green;
+  }
 }

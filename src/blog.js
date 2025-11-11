@@ -1,3 +1,5 @@
+// blog.render staat nu als comment in main.js
+// // en in index.html staat de <section id="blog"> als comment zodat de blogs niet getoond worden voor deze live versie
 import { article1Content } from "./articles/article1";
 import { article2Content } from "./articles/article2";
 import { article3Content } from "./articles/article3";
@@ -6,6 +8,15 @@ import { article5Content } from "./articles/article5";
 import { article6Content } from "./articles/article6";
 
 const blog = (function () {
+  const blogGrid = document.querySelector(".blog-grid");
+
+  // Toegevoegd omdat Blog momenteel niet getoond wordt en je anders een foutmelding krijgt
+  if (!blogGrid) {
+    // Retourneert een object met een lege render functie,
+    // zodat de aanroep elders (blog.render()) geen fout geeft.
+    return { render: () => {} };
+  }
+
   const articles = [
     {
       id: article1Content.id,
@@ -51,9 +62,8 @@ const blog = (function () {
     },
   ];
 
-  const blogGrid = document.querySelector(".blog-grid");
-  const gridSizer = document.createElement('div');
-  gridSizer.classList.add('grid-sizer');
+  const gridSizer = document.createElement("div");
+  gridSizer.classList.add("grid-sizer");
   blogGrid.prepend(gridSizer);
 
   const msnry = new Masonry(blogGrid, {
