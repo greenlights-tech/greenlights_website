@@ -336,44 +336,20 @@ document.addEventListener("DOMContentLoaded", function () {
     //   repeatDelay: 0.2,
     // });
 
-    const icon2 = document.querySelector(".icon2");
-
-    // Maak een oneindige 'zweef'-animatie
-    gsap.to(icon2, {
-      // Beweeg het 10 pixels omhoog en omlaag
-      y: 10,
-
-      // Voeg een kleine draaiing toe voor een organischer effect (optioneel)
-      rotation: 0.5,
-
-      // Duur van de beweging (van boven naar beneden, of vice versa)
-      duration: 3,
-
-      // Zorgt voor een vloeiende, zachte beweging
-      ease: "sine.inOut",
-
-      // Laat de animatie heen en weer gaan (yoyo-effect)
-      yoyo: true,
-
-      // Herhaal oneindig (-1)
-      repeat: -1,
-
-      // Start de animatie met een lichte willekeurige vertraging om meerdere iconen te desynchroniseren (optioneel)
-      delay: gsap.utils.random(0, 1),
-    });
+    const icon2 = document.querySelector(".hero .icon2");
 
     // Initialisatie: Logo op 0.2 opacity
     gsap.set(logoSVG, { visibility: "visible", opacity: 0.4 });
 
     // Initialisatie: Zet de Gradiënt op Zwart (bijv. #333 en #000)
-    // gsap.set(color1, {
-    //   opacity: 0.1,
-    //   "stop-color": "#000",
-    // });
-    // gsap.set(color2, {
-    //   opacity: 0.1,
-    //   "stop-color": "#000000",
-    // });
+    gsap.set(color1, {
+      opacity: 0.1,
+      "stop-color": "#000",
+    });
+    gsap.set(color2, {
+      opacity: 0.1,
+      "stop-color": "#000000",
+    });
 
     const splitTagline = SplitText.create(tagline, {
       type: "chars",
@@ -418,11 +394,46 @@ document.addEventListener("DOMContentLoaded", function () {
       visibility: "hidden", // Zorgt dat ze onzichtbaar zijn bij het laden
     });
 
-    const switchButton = $(".switch");
+    const switchButton = $(".switch input");
 
     const tl = gsap.timeline();
 
+    const zweefTL = gsap.timeline({ repeat: -1, yoyo: true });
+
+    // Start de rustige zweefanimatie (oneindig, totdat er geklikt wordt)
+    zweefTL.to(icon2, {
+      y: -20,
+
+      // Voeg een kleine draaiing toe voor een organischer effect (optioneel)
+      rotation: 0.5,
+
+      // Duur van de beweging (van boven naar beneden, of vice versa)
+      duration: 3,
+
+      // Zorgt voor een vloeiende, zachte beweging
+      ease: "sine.inOut",
+
+      // Laat de animatie heen en weer gaan (yoyo-effect)
+      yoyo: true,
+
+      // Herhaal oneindig (-1)
+      repeat: -1,
+      delay: gsap.utils.random(0, 1),
+    });
+
     switchButton.one("change", function () {
+      // 1. Stop de initiële, oneindige zweefanimatie
+      zweefTL.kill();
+      tl.to(
+        icon2,
+        {
+          scale: 0,
+          duration: 0.5, // Snel
+          ease: "none",
+        },
+        0 // Start direct bij de klik
+      );
+
       const state = Flip.getState(logo, ".hero");
 
       (logo.parentNode === originalContainer
@@ -434,7 +445,7 @@ document.addEventListener("DOMContentLoaded", function () {
         logoSVG,
         {
           // STARTWAARDEN (FROM)
-          opacity: 0.1, // Start Onzichtbaar
+          opacity: 0.4, // Start Onzichtbaar
           filter: "none", // Start zonder gloed
         },
         {
@@ -444,7 +455,7 @@ document.addEventListener("DOMContentLoaded", function () {
           duration: 0.3,
           ease: "power2.inOut",
         },
-        0 // Start direct
+        0.5 // Start direct
       );
       // Animeer de stop-kleuren terug naar groen
       tl.to(
@@ -455,7 +466,7 @@ document.addEventListener("DOMContentLoaded", function () {
           duration: 0.3,
           ease: "power1.out",
         },
-        0 // Start tegelijk
+        0.5 // Start tegelijk
       );
 
       tl.to(
@@ -467,7 +478,7 @@ document.addEventListener("DOMContentLoaded", function () {
           duration: 0.3,
           ease: "power1.out",
         },
-        0 // Start tegelijk
+        0.5 // Start tegelijk
       );
 
       tl.to(
