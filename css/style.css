@@ -163,7 +163,9 @@ button {
 
 :root {
   /* ===== COLORS =====*/
-  --color-primary: rgb(0, 230, 104);
+  /* --color-primary: rgb(0, 230, 104); */
+  --color-primary: #20ff85;
+  /* --color-primary: #00dc82; */
   --color-bg: rgba(37, 44, 59);
   --color-bg: #444857;
   --color-bg: #3e414e;
@@ -178,7 +180,7 @@ button {
   /* ===== FONTSIZE */
   --hero-logo-font-size: clamp(3rem, 4vw, 7rem);
   --logo-font-size: clamp(2rem, 4vw, 3.5rem);
-  --sublogo-font-size: clamp(0.75rem, 1vw, 0.875rem);
+  --sublogo-font-size: clamp(0.75rem, 1vw, 1.5rem);
   --h2-hero-font-size: clamp(1rem, calc(3rem + 2vw), 5rem);
   --h2-hero-font-size: clamp(1rem, 4vw, 3rem);
   --h2-font-size: clamp(2rem, 4vw, 3rem);
@@ -458,7 +460,8 @@ section.section {
   position: absolute;
   inset: 0;
   background-image: linear-gradient(to top, #686563, #686563 30%, #464443);
-  background-image: linear-gradient(to top, #374051, #252b37 50%, #191d24);
+  background-image: linear-gradient(to top, #374051, #232832 50%, #191d24);
+
   /* background-image: linear-gradient(
     to top,
     rgba(104, 101, 99, 0.5),
@@ -501,8 +504,9 @@ section.section {
   text-transform: uppercase;
   white-space: nowrap;
   border: 1px solid var(--color-primary);
-  box-shadow: inset 0 0 15px -5px var(--color-primary),
-    0 0 15px -5px var(--color-primary);
+  /* box-shadow: inset 0 0 15px -5px var(--color-primary),
+    0 0 15px -5px var(--color-primary); */
+  box-shadow: 0px 0px 4px #00dc8083, 0px 0px 8px #00dc8083;
   padding-top: 0.5em;
   padding-bottom: 0.5em;
   padding-left: 0.75em;
@@ -609,93 +613,6 @@ nav {
   height: 100%;
 }
 
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 80px;
-  height: 37px;
-  border-radius: 37px;
-  background-color: #f3f4f4;
-  cursor: pointer;
-  transition: all 0.3s;
-  overflow: hidden;
-  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
-}
-.switch input {
-  display: none;
-}
-.switch input:checked + div {
-  left: calc(80px - 32px);
-  box-shadow: 0px 0px 0px white;
-}
-.switch div {
-  position: absolute;
-  width: 27px;
-  height: 27px;
-  border-radius: 27px;
-  background-color: white;
-  top: 5px;
-  left: 5px;
-  box-shadow: 0px 0px 1px rgb(150, 150, 150);
-  transition: all 0.3s;
-}
-.switch div:before,
-.switch div:after {
-  position: absolute;
-  content: "ON";
-  width: calc(80px - 40px);
-  height: 37px;
-  line-height: 37px;
-  font-family: "Varela Round";
-  font-size: 14px;
-  font-weight: bold;
-  top: -5px;
-}
-.switch div:before {
-  content: "OFF";
-  color: rgb(120, 120, 120);
-  left: 100%;
-}
-.switch div:after {
-  content: "ON";
-  right: 100%;
-  color: white;
-}
-
-.switch-checked {
-  background-color: #e74c3c;
-  box-shadow: none;
-}
-
-/* .container-mid-text {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  width: max-content;
-  gap: 2rem;
-  z-index: -1;
-  visibility: hidden;
-} */
-
-/* .sentence {
-  overflow: hidden;
-}
-
-.sentence p {
-  display: flex;
-  white-space: nowrap;
-  gap: 3rem;
-  height: auto;
-  will-change: transform;
-  border: 1px solid yellow;
-} */
-
-/* .glyph {
-  width: 25vw;
-  height: auto;
-  filter: saturate(1);
-} */
-
 .mid-text-sollicitant {
   display: flex;
   flex-direction: column;
@@ -763,6 +680,102 @@ nav {
   max-width: 80%; /* Pas dit aan naar wens */
   text-align: center;
 }
+
+.icon2-wrapper {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  height: auto;
+  background-color: "transparent";
+  /* visibility: hidden; */
+}
+
+.icon2 {
+  width: 20rem;
+  height: 20rem;
+}
+
+.switch-container {
+  display: flex;
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  height: auto;
+  background-color: "transparent";
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 100px; /* 50px * 2 */
+  height: 54px; /* 27px * 2 */
+  border-radius: 54px; /* 27px * 2 */
+  cursor: pointer;
+  transition: all 0.3s;
+  overflow: hidden;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
+  /* background-image: linear-gradient(
+    45deg,
+    hsl(223, 10%, 20%),
+    hsl(223, 10%, 10%)
+  ); */
+  background-color: hsl(223, 10%, 10%);
+}
+.switch input {
+  display: none;
+}
+.switch input:checked + div {
+  /* (100% - 50px) -> 100% minus de nieuwe breedte van het binnenste balletje */
+  left: calc(100% - 50px);
+}
+.switch div {
+  position: absolute;
+  width: 50px; /* 25px * 2 */
+  height: 50px; /* 25px * 2 */
+  border-radius: 50px; /* 25px * 2 */
+  background-image: linear-gradient(
+    45deg,
+    hsl(223, 10%, 20%),
+    hsl(223, 10%, 10%)
+  );
+  top: 2px; /* 1px * 2 */
+  left: 0px;
+  transition: all 0.4s;
+}
+
+/* .container-mid-text {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  width: max-content;
+  gap: 2rem;
+  z-index: -1;
+  visibility: hidden;
+} */
+
+/* .sentence {
+  overflow: hidden;
+}
+
+.sentence p {
+  display: flex;
+  white-space: nowrap;
+  gap: 3rem;
+  height: auto;
+  will-change: transform;
+  border: 1px solid yellow;
+} */
+
+/* .glyph {
+  width: 25vw;
+  height: auto;
+  filter: saturate(1);
+} */
 
 /* TEST */
 
@@ -1159,7 +1172,8 @@ button {
   text-transform: uppercase;
   white-space: nowrap;
   padding: 0.5rem 2rem;
-  color: var(--color-primary);
+  /* color: var(--color-primary);
+  color: #20ff85; */
 }
 
 .centered,

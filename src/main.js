@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
           background: {
             color: {
-              value: "#303847",
+              value: "#333a47ff",
             },
 
             image: " #303847",
@@ -336,20 +336,44 @@ document.addEventListener("DOMContentLoaded", function () {
     //   repeatDelay: 0.2,
     // });
 
+    const icon2 = document.querySelector(".icon2");
+
+    // Maak een oneindige 'zweef'-animatie
+    gsap.to(icon2, {
+      // Beweeg het 10 pixels omhoog en omlaag
+      y: 10,
+
+      // Voeg een kleine draaiing toe voor een organischer effect (optioneel)
+      rotation: 0.5,
+
+      // Duur van de beweging (van boven naar beneden, of vice versa)
+      duration: 3,
+
+      // Zorgt voor een vloeiende, zachte beweging
+      ease: "sine.inOut",
+
+      // Laat de animatie heen en weer gaan (yoyo-effect)
+      yoyo: true,
+
+      // Herhaal oneindig (-1)
+      repeat: -1,
+
+      // Start de animatie met een lichte willekeurige vertraging om meerdere iconen te desynchroniseren (optioneel)
+      delay: gsap.utils.random(0, 1),
+    });
+
     // Initialisatie: Logo op 0.2 opacity
     gsap.set(logoSVG, { visibility: "visible", opacity: 0.4 });
 
     // Initialisatie: Zet de Gradiënt op Zwart (bijv. #333 en #000)
-    gsap.set(color1, {
-      opacity: 0.1,
-      "stop-color": "#333333",
-    });
-    gsap.set(color2, {
-      opacity: 0.1,
-      "stop-color": "#000000",
-    });
-
-    gsap.set(logoSVG, { visibility: "visible" });
+    // gsap.set(color1, {
+    //   opacity: 0.1,
+    //   "stop-color": "#000",
+    // });
+    // gsap.set(color2, {
+    //   opacity: 0.1,
+    //   "stop-color": "#000000",
+    // });
 
     const splitTagline = SplitText.create(tagline, {
       type: "chars",
@@ -394,9 +418,11 @@ document.addEventListener("DOMContentLoaded", function () {
       visibility: "hidden", // Zorgt dat ze onzichtbaar zijn bij het laden
     });
 
+    const switchButton = $(".switch");
+
     const tl = gsap.timeline();
 
-    $(".switch input").on("change", function () {
+    switchButton.one("change", function () {
       const state = Flip.getState(logo, ".hero");
 
       (logo.parentNode === originalContainer
@@ -404,14 +430,21 @@ document.addEventListener("DOMContentLoaded", function () {
         : originalContainer
       ).appendChild(logo);
 
-      tl.to(
+      tl.fromTo(
         logoSVG,
         {
-          opacity: 1,
-          duration: 0.3,
-          ease: "power2.out",
+          // STARTWAARDEN (FROM)
+          opacity: 0.1, // Start Onzichtbaar
+          filter: "none", // Start zonder gloed
         },
-        0
+        {
+          // EINDWAARDEN (TO)
+          opacity: 1,
+          filter: "drop-shadow(0 0 3px #00dc82)",
+          duration: 0.3,
+          ease: "power2.inOut",
+        },
+        0 // Start direct
       );
       // Animeer de stop-kleuren terug naar groen
       tl.to(
@@ -419,7 +452,7 @@ document.addEventListener("DOMContentLoaded", function () {
         {
           opacity: 1,
           "stop-color": "#20FF85", // Groen 1
-          duration: 0.1,
+          duration: 0.3,
           ease: "power1.out",
         },
         0 // Start tegelijk
@@ -431,12 +464,21 @@ document.addEventListener("DOMContentLoaded", function () {
           opacity: 1,
           ease: "power2.out",
           "stop-color": "#00D661", // Groen 2
-          duration: 0.1,
+          duration: 0.3,
           ease: "power1.out",
         },
         0 // Start tegelijk
       );
 
+      tl.to(
+        logoSVG,
+        {
+          filter: "drop-shadow(0 0 1px #00dc82)",
+          duration: 1.2,
+          ease: "power2.inOut",
+        },
+        1 // Start op tijdstip 1, tegelijk met de Flip-animatie
+      );
       tl.add(
         Flip.from(state, {
           scale: true,
@@ -444,37 +486,52 @@ document.addEventListener("DOMContentLoaded", function () {
           nested: true,
           ease: "power2.inOut",
           zIndex: 1000,
-        })
+        }),
+        1
       ),
-        // tl.to(
-        //   hero,
-        //   {
-        //     backgroundColor: "transparent",
-        //     duration: 1,
-        //     ease: "power2.inOut",
-        //   },
-        //   1.5
-        // );
-
         tl.to(
-          bg,
+          switchButton,
           {
-            opacity: 1,
-            duration: 1,
-            ease: "power2.inOut",
+            opacity: 0,
+            scale: 0.5,
+            duration: 0.3,
+            ease: "power2.out",
           },
-          1
-        ),
+          0.7 // Start tegelijk met de Flip
+        );
+      // tl.to(
+      //   hero,
+      //   {
+      //     backgroundColor: "transparent",
+      //     duration: 1,
+      //     ease: "power2.inOut",
+      //   },
+      //   1.5
+      // );
+
+      tl.to(
+        bg,
+        {
+          opacity: 1,
+          duration: 1,
+          ease: "power2.inOut",
+        },
+        2
+      ),
         // gsap.set(tagline, { visibility: "visible" });
         gsap.set(splitTagline.chars, {
           opacity: 0,
         });
-      tl.to(splitTagline.chars, {
-        opacity: 1,
-        duration: 1,
-        ease: "power2.out",
-        stagger: 0.05,
-      });
+      tl.to(
+        splitTagline.chars,
+        {
+          opacity: 1,
+          duration: 1,
+          ease: "power2.out",
+          stagger: 0.05,
+        },
+        2
+      );
 
       tl.to(
         ".tagline-wrapper",
@@ -483,7 +540,7 @@ document.addEventListener("DOMContentLoaded", function () {
           duration: 1,
           ease: "none",
         },
-        1
+        2
       ),
         // tl.to(
         //   split.chars,
@@ -514,7 +571,7 @@ document.addEventListener("DOMContentLoaded", function () {
           ease: "expo.out",
           duration: 2,
         },
-        2
+        3
       );
 
       tl.fromTo(
@@ -527,7 +584,7 @@ document.addEventListener("DOMContentLoaded", function () {
           ease: "expo.out",
           duration: 2,
         },
-        2
+        3
       );
 
       // Functie voor schaalvergroting bij HOVER IN
