@@ -658,6 +658,38 @@ document.addEventListener("DOMContentLoaded", function () {
         closePage(opdPage, 100); // OPD pagina schuift naar rechts (100%)
       });
 
+    // const half = content.clientWidth / 2;
+    // const wrap = gsap.utils.wrap(-half, 0);
+
+    // const sentence1 = document.querySelector(
+    //   ".checkmark-container .paragraph-first"
+    // );
+
+    // gsap.to(sentence1, {
+    //   x: -sentence1.clientWidth / 2,
+    //   ease: "none",
+    //   duration: 3,
+    //   repeat: -1,
+    // });
+
+    //   let splitCheckmarks;
+    // SplitText.create(".checkmark-container p", {
+    //   type: "words, lines",
+    //   linesClass: "line",
+    //   autoSplit: true,
+    //   mask: "lines",
+    //   onSplit: (self) => {
+    //     splitCheckmarks = gsap.from(self.lines, {
+    //       duration: 0.6,
+    //       yPercent: 100,
+    //       opacity: 0,
+    //       stagger: 0.1,
+    //       ease: "expo.out",
+    //     });
+    //     return splitCheckmarks;
+    //   },
+    // });
+
     // const tlScroll = gsap.timeline({
     //   scrollTrigger: {
     //     trigger: teasersContainer,
@@ -711,31 +743,6 @@ document.addEventListener("DOMContentLoaded", function () {
     //   repeat: +1,
     // });
 
-    // const half = content.clientWidth / 2
-    // const wrap = gsap.utils.wrap(-half, 0);
-
-    // const sentence1 = document.querySelector(
-    //   ".container-mid-text .sentence1 p"
-    // );
-
-    // const sentence2 = document.querySelector(
-    //   ".container-mid-text .sentence2 p"
-    // );
-
-    // gsap.to(sentence1, {
-    //   x: -sentence1.offsetWidth / 2,
-    //   ease: "none",
-    //   duration: 120,
-    //   repeat: -1,
-    // });
-
-    // gsap.to(sentence2, {
-    //   x: +sentence1.offsetWidth / 2,
-    //   ease: "none",
-    //   duration: 120,
-    //   repeat: -1,
-    // });
-
     // const infoContent = document.querySelector(
     //   ".info-container .info-title .info-content"
     // );
@@ -751,24 +758,6 @@ document.addEventListener("DOMContentLoaded", function () {
     //   effects: true,
     //   onUpdate: (self) => skewSetter(clamp(self.getVelocity() / -50)),
     //   onStop: () => skewSetter(0),
-    // });
-
-    // let splitFooter;
-    // SplitText.create(".secRow ul li a", {
-    //   type: "words, lines",
-    //   linesClass: "line",
-    //   autoSplit: true,
-    //   mask: "lines",
-    //   onSplit: (self) => {
-    //     splitFooter = gsap.from(self.lines, {
-    //       duration: 0.6,
-    //       yPercent: 100,
-    //       opacity: 0,
-    //       stagger: 0.1,
-    //       ease: "expo.out",
-    //     });
-    //     return splitFooter;
-    //   },
     // });
 
     const root = document.querySelector(".homepage .info-container-effect");
@@ -854,56 +843,3 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
-
-// const infoContent = document.querySelector(".first-alinea");
-
-// const splitInfoPage = SplitText.create(infoContent, {
-//   type: "lines",
-//   linesClass: "line",
-//   mask: "lines",
-// });
-
-// gsap.set(infoContent, { visibility: "visible" });
-// gsap.set(splitInfoPage.lines, {
-//   yPercent: 100,
-//   opacity: 0,
-// });
-
-// gsap.to(splitInfoPage.lines, {
-//   yPercent: 0,
-//   opacity: 1,
-//   duration: 0.75,
-//   stagger: 0.1,
-//   ease: "power1.out",
-// });
-
-// .to(morphAnimation, { time: 1 }, 0);
-
-// ScrollTrigger.create({
-//   trigger: ".hero",
-//   start: "clamp(bottom bottom)",
-//   end: "clamp(bottom top)",
-//   scrub: true,
-//   pin: ".header-hero",
-//   pinSpacing: false,
-//   markers: true,
-// });
-
-// gsap.defaults({
-//   stagger: {
-//     each: 1,
-//     repeat: -1,
-//     from: "random",
-//   },
-//   ease: "none",
-// });
-
-// gsap.to(".box:nth-child(even)", {
-//   y: -hero.offsetHeight,
-//   duration: 20,
-// });
-
-// gsap.to(".box:nth-child(odd)", {
-//   y: -hero.offsetHeight,
-//   duration: 30,
-// });

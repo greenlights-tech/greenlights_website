@@ -1886,32 +1886,55 @@ button {
 }
 
 /* BUTTON TERUG NAAR HOMEPAGE */
+.sol-home-button-wrapper,
+.opd-home-button-wrapper {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  /* border: 1px solid yellow; */
+}
 
+.sol-title,
+.opd-title {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--color-primary);
+  font-family: "Inter";
+  /* border: 1px solid yellow; */
+  line-height: 1;
+}
 .sol-home-button-container,
 .opd-home-button-container {
-  display: flex;
-  align-items: center;
-  width: 100%;
+  /* margin: 40px;
+  height: 80px;
+  width: 80px; */
   border-radius: 100%;
   border: 0px solid var(--color-primary);
-  padding: 5px;
   /* padding-bottom: 10px; */
   color: var(--color-primary);
   z-index: inherit;
   font-size: 50px;
+  display: flex;
+  align-items: center;
   cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: 2rem;
+  margin-top: 1rem;
+  /* border: 1px solid red; */
 }
 
 .sol-home-button-container {
-  justify-content: flex-end;
   margin-right: 4rem;
 }
 
 .opd-home-button-container {
-  justify-content: flex-start;
   margin-left: 4rem;
+}
+
+.sol-home-button-wrapper {
+  justify-content: flex-end;
+}
+
+.opd-home-button-wrapper {
+  justify-content: flex-start;
 }
 
 .sol-home-button,
@@ -1924,34 +1947,17 @@ button {
   border: 0px solid var(--color-primary);
   border-radius: 0%;
   clip-path: polygon(60% 0%, 85% 0%, 35% 50%, 85% 100%, 60% 100%, 10% 50%);
-  transition: all 0.3s ease;
+  /* transition: all 0.3s ease; */
 }
 
-.sol-home-button-container:hover {
+/* .sol-home-button-container:hover {
   color: var(--color-tertiary);
   border: 0px solid var(--color-tertiary);
   transform: translateX(-10px);
-}
-
-.sol-home-button-container:hover .sol-home-button {
-  background-color: var(--color-tertiary);
-}
+} */
 
 .opd-home-button {
   transform: rotate(180deg);
-}
-
-.info-back-arrow:hover {
-  color: var(--color-secondary);
-  transform: translateX(-10px);
-}
-
-.opd-home-button-container:hover {
-  transform: translateX(10px);
-}
-
-.opd-home-button-container:hover .opd-home-button {
-  background-color: var(--color-secondary);
 }
 
 .meer-weten-pijl-container {
@@ -2002,6 +2008,7 @@ button {
 .sol-content {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   width: 50%;
   border: 1px solid green;
   margin-bottom: 2rem;
@@ -2011,6 +2018,12 @@ button {
   margin-bottom: 1rem;
   font-weight: 600;
   color: var(--color-primary);
+}
+
+.checkmarks-container {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
 }
 
 .checkmark-container {
@@ -2056,12 +2069,13 @@ button {
 }
 
 .sol-title,
-.opd-title,
-.info-title {
+.opd-title {
   font-size: 2.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   color: var(--color-primary);
   font-family: "Inter";
+  /* border: 1px solid yellow; */
+  line-height: 1;
 }
 
 .checkmark {
@@ -2072,49 +2086,18 @@ button {
   margin: 0px 10px 0px 5px;
   border-bottom: 5px solid var(--color-primary);
   border-right: 5px solid var(--color-primary);
-}
-
-.linkedin-logo {
-  width: 30px;
-  height: 30px;
-  background: url("https://www.pagetraffic.com/blog/wp-content/uploads/2022/09/linkedin-blue-logo-icon.png")
-    no-repeat center / cover;
-  position: absolute;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  z-index: var(--z-logo);
-  right: 5vh;
-  bottom: 5vh;
-}
-
-.linkedin-logo::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-color: white;
-  opacity: 1;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  pointer-events: none;
-  -webkit-mask-image: url("https://www.pagetraffic.com/blog/wp-content/uploads/2022/09/linkedin-blue-logo-icon.png");
-  mask-image: url("https://www.pagetraffic.com/blog/wp-content/uploads/2022/09/linkedin-blue-logo-icon.png");
-  mask-size: cover;
-  mask-repeat: no-repeat;
-  mask-position: center;
-  z-index: var(--z-logo);
-}
-
-.linkedin-logo:hover {
-  transform: scale(1.1);
-}
-
-.linkedin-logo:hover::after {
-  background-color: var(--color-primary);
+  margin-right: 1rem;
 }
 
 .button-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.button-container h4 {
+  text-transform: uppercase;
+  font: 500 1rem "IBM Plex Mono";
 }
 
 .sol-signup-button {
@@ -2165,6 +2148,7 @@ button {
 
 .sol-signup-button-text {
   text-transform: uppercase;
+  font: 500 1rem "IBM Plex Mono";
   z-index: 2;
   position: relative;
 }
@@ -2360,26 +2344,8 @@ button {
   color: white;
 }
 
-.info-back-arrow {
-  margin: 50px;
-  height: 80px;
-  width: 80px;
-  border-radius: 100%;
-  position: absolute;
-  padding: 5px;
-  color: var(--color-primary);
-  z-index: var(--z-logo);
-  font-size: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transform: scale(1);
-  transition: all 0.3s ease;
-}
-
 /* ANIMATIONS */
-@keyframes fadeUp {
+/* @keyframes fadeUp {
   0% {
     opacity: 0;
     transform: translateY(30px);
@@ -2435,7 +2401,7 @@ button {
     opacity: 0;
     transform: rotate(45deg) translate(20px, 20px);
   }
-}
+} */
 
 @media (max-width: 768px) {
   .arrow span {
@@ -2458,50 +2424,6 @@ button {
 
   .sol-content {
     font-size: 1rem;
-  }
-
-  /* .logo-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1vh;
-    color: var(--color-secondary);
-    text-align: center;
-    pointer-events: none;
-    z-index: var(--z-logo);
-    position: fixed;
-    width: 100%;
-    padding: 5% 10% 10% 10%;
-    top: 1%;
-    left: 50%;
-    transform: translateX(-50%);
-  } */
-
-  /* .title {
-    font-size: 15vw;
-  }
-
-  .tagline {
-    font-size: 2.6vw;
-  } */
-
-  .info-back-arrow {
-    margin-top: 35px;
-    margin-left: 35px;
-  }
-
-  .info-page .info-container:nth-child(1) {
-    padding-top: 35%;
-  }
-
-  .sol-home-button-container {
-    margin: 5px;
-    left: 75%;
-  }
-
-  .opd-home-button-container {
-    margin: 5px;
-    right: 75%;
   }
 }
 
