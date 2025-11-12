@@ -1,4 +1,4 @@
-import { blog } from "./blog.js";
+// import { blog } from "./blog.js";
 import { gsap } from "gsap";
 import { Flip } from "gsap/Flip";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -40,67 +40,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // Store original URL to revert back to
   let originalUrl = window.location.pathname;
 
-  // const flip = Flip.fit("#headerLogo", "#heroLogo", {
-  //   scale: true,
-  //   duration: 1,
-  //   fitChild: ".child1",
-  //   ease: "power1.inOut",
-  // });
-  // flip.pause(1);
-
-  // ScrollTrigger.create({
-  //   trigger: ".header",
-  //   start: "top top",
-  //   end: "top top",
-  //   scrub: true,
-  //   endTrigger: "#heroLogo",
-
-  //   markers: true,
-  //   onUpdate: (s) => {
-  //     flip.progress(1 - s.progress);
-  //   },
-  // });
-
-  // const headerTween = gsap
-  //   .to(".header", {
-  //     yPercent: -100,
-  //     ease: "power1.inOut",
-  //     paused: true,
-  //   })
-  //   .reverse();
-
-  // ScrollTrigger.create({
-  //   trigger: "#heroLogo",
-  //   start: "top top",
-  //   end: () => `+=${document.body.clientHeight}`,
-  //   markers: {
-  //     indent: 200,
-  //   },
-  //   onUpdate: (s) => {
-  //     console.log(s.direction > 0);
-  //     headerTween.reversed(s.direction < 0);
-  //   },
-  // });
-
   document.fonts.ready.then(() => {
     // const ticker = document.querySelector(".ticker-content");
     // ticker.style.transform = `translateX(${Math.random() * 100}%)`;
-
-    // Slides sollicitatie page in from left (mobile)
-    // document
-    //   .getElementById("openSolliMobile")
-    //   .addEventListener("click", function () {
-    //     document.querySelector(".sol-page").classList.add("active");
-    //     changeUrl("/sollicitatie");
-    //   });
-
-    // Slides opdrachtgever page in from right (mobile)
-    // document
-    //   .getElementById("openOpdrachtgeverMobile")
-    //   .addEventListener("click", function () {
-    //     document.querySelector(".opd-page").classList.add("active");
-    //     changeUrl("/opdrachtgever");
-    //   });
 
     // Intersection Observer for animations on sections
     const sections = document.querySelectorAll(
