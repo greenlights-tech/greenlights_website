@@ -1,5 +1,4 @@
 import { blog } from "./blog.js";
-import { loadFirePreset } from "@tsparticles/preset-fire";
 import { gsap } from "gsap";
 import { Flip } from "gsap/Flip";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -40,71 +39,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Store original URL to revert back to
   let originalUrl = window.location.pathname;
-
-  (async () => {
-    try {
-      await loadFirePreset(tsParticles);
-
-      tsParticles.load({
-        id: "tsparticles",
-        options: {
-          particles: {
-            color: {
-              value: ["rgb(0, 230, 104)", "rgb(0, 230, 104)"],
-            },
-
-            number: {
-              value: 0, // Dit zorgt ervoor dat er geen deeltjes te zien zijn bij het laden
-              density: { enable: false },
-            },
-
-            size: {
-              value: 3,
-            },
-            move: {
-              enable: true,
-              speed: 1,
-              direction: "none",
-              random: true,
-              straight: false,
-              outModes: {
-                default: "out",
-              },
-              attract: {
-                enable: false,
-              },
-            },
-          },
-          preset: "fire",
-          detectsOn: "canvas",
-
-          IHoverEvent: {
-            enable: false,
-          },
-
-          onClick: {
-            enable: true,
-            mode: "push",
-          },
-          resize: true,
-
-          background: {
-            color: {
-              value: "#333a47ff",
-            },
-
-            image: " #303847",
-          },
-          fullScreen: {
-            enable: true,
-            zIndex: -1,
-          },
-        },
-      });
-    } catch (error) {
-      console.error("Fout bij het laden van de Firefly preset:", error);
-    }
-  })();
 
   // const flip = Flip.fit("#headerLogo", "#heroLogo", {
   //   scale: true,
