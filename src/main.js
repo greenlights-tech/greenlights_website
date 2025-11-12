@@ -1,5 +1,4 @@
 import { blog } from "./blog.js";
-import { tsParticles } from "@tsparticles/engine";
 import { loadFirePreset } from "@tsparticles/preset-fire";
 import { gsap } from "gsap";
 import { Flip } from "gsap/Flip";
@@ -298,7 +297,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // blog.render();
 
     const bg = document.querySelector(".header .container .bg");
-    const logo = document.querySelector(".logo");
+    const logo = document.querySelector(".child1");
     const originalContainer = document.querySelector(".original-container");
     const newContainer = document.querySelector(".new-container");
     const hero = document.querySelector(".hero");
@@ -313,11 +312,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const tagline = document.querySelector(
       ".new-container-wrapper .tagline-wrapper .tagline"
     );
-    const textLeft = teaserLeft.querySelector(".centered");
-    const textRight = teaserRight.querySelector(".centered");
+
     const color1 = document.querySelector("#color1");
     const color2 = document.querySelector("#color2");
-    const logoSVG = document.querySelector(".child1"); // De hoofds-SVG
 
     // const logoPath = document.querySelector("#logoPath");
     // const rectShape = document.querySelector("#rectId");
@@ -339,16 +336,16 @@ document.addEventListener("DOMContentLoaded", function () {
     const icon2 = document.querySelector(".hero .icon2");
 
     // Initialisatie: Logo op 0.2 opacity
-    gsap.set(logoSVG, { visibility: "visible", opacity: 0.4 });
+    gsap.set(logo, { visibility: "visible" });
 
     // Initialisatie: Zet de Gradiënt op Zwart (bijv. #333 en #000)
     gsap.set(color1, {
       opacity: 0.1,
-      "stop-color": "#000",
+      "stop-color": "#00000057",
     });
     gsap.set(color2, {
       opacity: 0.1,
-      "stop-color": "#000000",
+      "stop-color": "#00000057",
     });
 
     const splitTagline = SplitText.create(tagline, {
@@ -394,7 +391,7 @@ document.addEventListener("DOMContentLoaded", function () {
       visibility: "hidden", // Zorgt dat ze onzichtbaar zijn bij het laden
     });
 
-    const switchButton = $(".switch input");
+    const switchButton = $(".switch");
 
     const tl = gsap.timeline();
 
@@ -424,17 +421,19 @@ document.addEventListener("DOMContentLoaded", function () {
     switchButton.one("change", function () {
       // 1. Stop de initiële, oneindige zweefanimatie
       zweefTL.kill();
+
       tl.to(
         icon2,
         {
           scale: 0,
-          duration: 0.5, // Snel
+          duration: 0.5,
           ease: "none",
+          zIndex: -1,
         },
-        0 // Start direct bij de klik
+        0
       );
 
-      const state = Flip.getState(logo, ".hero");
+      const state = Flip.getState(logo);
 
       (logo.parentNode === originalContainer
         ? newContainer
@@ -442,15 +441,13 @@ document.addEventListener("DOMContentLoaded", function () {
       ).appendChild(logo);
 
       tl.fromTo(
-        logoSVG,
+        logo,
         {
           // STARTWAARDEN (FROM)
-          opacity: 0.4, // Start Onzichtbaar
           filter: "none", // Start zonder gloed
         },
         {
           // EINDWAARDEN (TO)
-          opacity: 1,
           filter: "drop-shadow(0 0 3px #00dc82)",
           duration: 0.3,
           ease: "power2.inOut",
@@ -482,7 +479,7 @@ document.addEventListener("DOMContentLoaded", function () {
       );
 
       tl.to(
-        logoSVG,
+        logo,
         {
           filter: "drop-shadow(0 0 1px #00dc82)",
           duration: 1.2,
