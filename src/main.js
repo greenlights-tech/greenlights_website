@@ -273,29 +273,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const zweefTL = gsap.timeline({ repeat: -1, yoyo: true });
 
-    // Start de rustige zweefanimatie (oneindig, totdat er geklikt wordt)
+    // Start de zweefanimatie (oneindig, totdat er geklikt wordt)
     zweefTL.to(icon2, {
       y: -20,
-
-      // Voeg een kleine draaiing toe voor een organischer effect (optioneel)
       rotation: 0.5,
-
-      // Duur van de beweging (van boven naar beneden, of vice versa)
       duration: 3,
-
-      // Zorgt voor een vloeiende, zachte beweging
       ease: "sine.inOut",
-
-      // Laat de animatie heen en weer gaan (yoyo-effect)
       yoyo: true,
-
       // Herhaal oneindig (-1)
       repeat: -1,
       delay: gsap.utils.random(0, 1),
     });
 
     switchButton.one("change", function () {
-      // 1. Stop de initiële, oneindige zweefanimatie
+      // Stop de oneindige zweefanimatie
       zweefTL.kill();
 
       tl.to(
@@ -564,8 +555,25 @@ document.addEventListener("DOMContentLoaded", function () {
     //   duration: 3,
     // });
 
-    const solPage = document.querySelector(".sol-page");
+    const whatsappButton = document.querySelector(".container-whatsapp-knop");
+    gsap.set(whatsappButton, { opacity: 0, scale: 0.5, visibility: "hidden" });
 
+    // const zweefWhatsappTL = gsap.timeline({
+    //   paused: true,
+    //   repeat: -1,
+    //   yoyo: true,
+    // });
+
+    // 2. Definieer de zweefanimatie voor de whatsappButton
+    // zweefWhatsappTL.to(whatsappButton, {
+    //   y: -5,
+    //   rotation: 0.5,
+    //   duration: 3,
+    //   ease: "sine.inOut",
+    //   delay: gsap.utils.random(0, 1),
+    // });
+
+    const solPage = document.querySelector(".sol-page");
     gsap.set(solPage, { xPercent: -100, visibility: "visible" });
 
     document
@@ -581,6 +589,10 @@ document.addEventListener("DOMContentLoaded", function () {
           ease: "power3.inOut",
           onStart: () => {
             solPage.classList.add("active");
+          },
+          onComplete: () => {
+            // Zodra de SOL-pagina volledig zichtbaar is, toon de knop met bounce
+            showBounceButton(whatsappButton);
           },
         });
       });
@@ -603,8 +615,50 @@ document.addEventListener("DOMContentLoaded", function () {
           onStart: () => {
             opdPage.classList.add("active");
           },
+          onComplete: () => {
+            // Zodra de OPD-pagina volledig zichtbaar is, toon de knop met bounce
+            showBounceButton(whatsappButton);
+          },
         });
       });
+
+    /**
+     * Functie om de knop met een bounce-animatie zichtbaar te maken
+     * @param {HTMLElement} element - De WhatsApp knop container
+     */
+    function showBounceButton(element) {
+      // Stop eventuele lopende animaties op het element
+      gsap.killTweensOf(element);
+
+      gsap.fromTo(
+        element,
+        {
+          opacity: 0,
+          scale: 0.5,
+          y: 50, // Begin iets lager
+          visibility: "visible", // Zorg dat het zichtbaar wordt
+        },
+        {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 0.4, // Snelle animatie
+          ease: "power2.in",
+        }
+      );
+    }
+
+    // function startFloatingAnimation(element) {
+
+    //   gsap.to(element, {
+    //     y: -40,
+    //     rotation: 0.5,
+    //     duration: 2,
+    //     ease: "sine.inOut",
+    //     yoyo: true,
+    //     repeat: -1,
+    //   });
+    // }
 
     newContainer.addEventListener("click", function () {
       // Stop de Lenis scroll direct
@@ -630,6 +684,9 @@ document.addEventListener("DOMContentLoaded", function () {
         lenis.stop();
       }
 
+      // Verberg de WhatsApp-knop terwijl de pagina wegschuift
+      hideButton(whatsappButton);
+
       // Schuif de pagina uit beeld
       gsap.to(pageElement, {
         xPercent: targetX,
@@ -638,6 +695,30 @@ document.addEventListener("DOMContentLoaded", function () {
         onComplete: () => {
           // Verwijder de 'active' class na de animatie
           pageElement.classList.remove("active");
+        },
+      });
+    }
+
+    /**
+     * Functie om de knop vloeiend te verbergen
+     * @param {HTMLElement} element - De WhatsApp knop container
+     */
+    function hideButton(element) {
+      // zweefWhatsappTL.pause(0);
+
+      // Stop eventuele lopende animaties op het element
+      gsap.killTweensOf(element);
+
+      // Fade out en schaal de knop omlaag
+      gsap.to(element, {
+        opacity: 0,
+        scale: 0.5,
+        y: 50, // Schuif de knop iets naar beneden terwijl hij verdwijnt
+        duration: 0.4, // Snelle animatie
+        ease: "power2.in",
+        onComplete: () => {
+          // Maak de knop helemaal onzichtbaar na de animatie
+          gsap.set(element, { visibility: "hidden" });
         },
       });
     }

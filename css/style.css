@@ -344,14 +344,106 @@ body {
   background-color: #303847;
 }
 
-.container-whatsapp-knop {
+/* .container-whatsapp-knop {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
   z-index: 100;
+} */
+
+/* .container-whatsapp-knop {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 100;
+  padding: 1em 1.5em;
+  font: 500 0.825rem "IBM Plex Mono";
+  text-decoration: none;
+  background-color: transparent;
+  border-radius: 50%;
+  background-clip: padding-box;
+  border-style: solid;
+  border-width: 3px;
+  border-image-slice: 1;
+  margin-top: 1rem;
+} */
+
+/* .whatsapp-knop:focus {
+  outline: none;
+  border-color: none;
+} */
+
+/* .sol-signup-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+} */
+
+.whatsapp-gradient {
+  transition: all 0.4s ease-in-out;
+  color: #fff;
+  background: linear-gradient(to right, #20ff85, #02a16f);
+  position: relative;
+  overflow: hidden;
 }
 
-.whatsapp-knop {
+.container-whatsapp-knop {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 2rem;
+  z-index: 100;
+  padding: 1em 1.5em;
+  /* background: linear-gradient(to right, #20ff85, #02a16f); */
+  padding: 0.825em 1.5em;
+  text-wrap: nowrap;
+  font: 500 normal 1rem "IBM Plex Mono";
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  border-radius: 2rem;
+  visibility: hidden;
+}
+
+.container-whatsapp-knop a {
+  font: 500 normal 1rem "IBM Plex Mono";
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  /* border: 1px solid red; */
+}
+
+.wrapper-whatsapp-knop {
+  z-index: 2;
+  position: relative;
+}
+
+.container-whatsapp-knop::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  opacity: 0;
+  transition: all 0.4s ease-in-out;
+  background: linear-gradient(to right, #02a16f, #20ff85);
+  z-index: 1;
+}
+
+.container-whatsapp-knop:hover::before,
+.container-whatsapp-knop:active::before {
+  opacity: 1;
+}
+
+/* .wrapper-whatsapp-knop {
+  text-transform: uppercase;
+  font: 500 1rem "IBM Plex Mono";
+  z-index: 2;
+  position: relative;
+} */
+
+/* .whatsapp-knop {
   border-radius: 50%;
   width: 4.5rem;
   height: 4.5rem;
@@ -361,15 +453,16 @@ body {
   background-color: transparent;
   border: 0.5px solid gray;
   backdrop-filter: blur(6px);
-}
+} */
 
-.whatsapp-knop:hover {
+/* .whatsapp-knop:hover {
   background-color: rgba(128, 128, 128, 0.134);
-}
+} */
 
 .whatsapp-icon {
-  width: 2rem;
-  height: 2rem;
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.75rem;
 }
 
 /*
@@ -1866,6 +1959,7 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
+
   position: absolute;
   top: 0;
   left: 0;
@@ -1896,10 +1990,12 @@ button {
 
 .sol-title,
 .opd-title {
+  display: flex;
+  width: 50%;
   font-size: 2.5rem;
+  font-family: "IBM Plex Mono";
   margin-bottom: 1.5rem;
   color: var(--color-primary);
-  font-family: "Inter";
   /* border: 1px solid yellow; */
   line-height: 1;
 }
@@ -1913,7 +2009,6 @@ button {
   /* padding-bottom: 10px; */
   color: var(--color-primary);
   z-index: inherit;
-  font-size: 50px;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -1960,57 +2055,12 @@ button {
   transform: rotate(180deg);
 }
 
-.meer-weten-pijl-container {
-  display: flex;
-  margin: 40px;
-  height: 80px;
-  width: 80px;
-  border-radius: 100%;
-  border: 0px solid var(--color-primary);
-  padding: 5px;
-  /* padding-bottom: 10px; */
-  color: var(--color-primary);
-  z-index: inherit;
-  font-size: 50px;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-/* .opd-home-button-container {
-  right: 87%;
-  left: 0%;
-} */
-
-.meer-weten-pijl {
-  margin-right: -7px;
-  margin-left: -7px;
-  height: 35px;
-  width: 35px;
-  background: linear-gradient(to right, #20ff85, #02a16f);
-  border: 0px solid var(--color-primary);
-  border-radius: 0%;
-  clip-path: polygon(60% 0%, 85% 0%, 35% 50%, 85% 100%, 60% 100%, 10% 50%);
-  transition: all 0.3s ease;
-}
-
-.meer-weten-pijl-container:hover {
-  color: var(--color-tertiary);
-  border: 0px solid var(--color-tertiary);
-  transform: translateX(-10px);
-}
-
-.meer-weten-pijl-container:hover .meer-weten-pijl {
-  background-color: var(--color-tertiary);
-}
-
 .sol-content {
+  /* border: 1px solid green; */
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   width: 50%;
-  border: 1px solid green;
+  /* border: 1px solid green; */
   margin-bottom: 2rem;
 }
 
@@ -2020,7 +2070,7 @@ button {
   color: var(--color-primary);
 }
 
-.checkmarks-container {
+/* .checkmarks-container {
   display: flex;
   flex-direction: column;
   width: 50%;
@@ -2028,7 +2078,7 @@ button {
 
 .checkmark-container {
   display: flex;
-}
+} */
 
 .opd-page {
   /* padding: 0 120vw; */
@@ -2058,7 +2108,7 @@ button {
   display: flex;
   flex-direction: column;
   width: 50%;
-  border: 1px solid green;
+  /* border: 1px solid green; */
   margin-bottom: 2rem;
 }
 
@@ -2069,11 +2119,15 @@ button {
 }
 
 .sol-title,
-.opd-title {
+.opd-title,
+.info-title,
+.info-title-wie {
+  font-family: "IBM Plex Mono";
   font-size: 2.5rem;
+  font-weight: 400;
   margin-bottom: 1.5rem;
   color: var(--color-primary);
-  font-family: "Inter";
+  text-transform: uppercase;
   /* border: 1px solid yellow; */
   line-height: 1;
 }
@@ -2089,7 +2143,17 @@ button {
   margin-right: 1rem;
 }
 
-.button-container {
+.sol-button-wrapper,
+.opd-button-wrapper {
+  position: absolute;
+  bottom: 1.5rem;
+  display: flex;
+  gap: 5rem;
+  /* border: 1px solid red; */
+}
+
+.opd-button-wrapper .button-container,
+.sol-button-wrapper .button-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2100,58 +2164,86 @@ button {
   font: 500 1rem "IBM Plex Mono";
 }
 
+.meer-weten-container h4 {
+  text-transform: uppercase;
+  font: 500 1rem "IBM Plex Mono";
+}
+
 .sol-signup-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid yellow;
+}
+
+.sol-signup-button {
+  padding: 1em 1.5em;
+  font: 500 0.825rem "IBM Plex Mono";
+  /* text-transform: uppercase; */
+  text-decoration: none;
+  background-color: transparent;
+  color: #fff;
+  border-width: 3px;
+  border-image-slice: 1;
+  margin-top: 1rem;
+  border-image-source: linear-gradient(to right, #20ff85, #02a16f);
+  cursor: pointer;
+}
+
+.sol-signup-button:focus {
+  outline: none;
+  border-color: none;
+}
+
+.meer-weten-container {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.btn--gradient {
-  transition: all 0.4s ease-in-out;
-  color: #fff;
+.meer-weten-pijl-container {
+  display: flex;
+  /* margin: 40px; */
+  height: 80px;
+  width: 80px;
+  border-radius: 100%;
+  border: 0px solid var(--color-primary);
+  padding: 5px;
+  /* padding-bottom: 10px; */
+  color: var(--color-primary);
+  z-index: inherit;
+  font-size: 50px;
+  align-items: center;
+  justify-content: center;
+  /* cursor: pointer; */
+  /* transition: all 0.3s ease; */
+  transform: rotate(270deg);
+}
+
+/* .opd-home-button-container {
+  right: 87%;
+  left: 0%;
+} */
+
+.meer-weten-pijl {
+  margin-right: -7px;
+  margin-left: -7px;
+  height: 35px;
+  width: 35px;
   background: linear-gradient(to right, #20ff85, #02a16f);
-  position: relative;
-  overflow: hidden;
+  border: 0px solid var(--color-primary);
+  border-radius: 0%;
+  clip-path: polygon(60% 0%, 85% 0%, 35% 50%, 85% 100%, 60% 100%, 10% 50%);
+  transition: all 0.3s ease;
 }
 
-.sol-signup-button {
-  background: linear-gradient(to right, #20ff85, #02a16f);
-  padding: 0.825em 1.5em;
-  text-wrap: nowrap;
-  font: 500 normal 1rem "IBM Plex Mono";
-  text-transform: uppercase;
-  text-decoration: none;
-  cursor: pointer;
-  border: none;
-  border-radius: 2px;
-  margin-top: 1rem;
-  margin-bottom: 2rem;
+/* .meer-weten-pijl-container:hover {
+  transform: translateX(-10px);
 }
 
-.sol-signup-button::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  opacity: 0;
-  transition: all 0.4s ease-in-out;
-  background: linear-gradient(to right, #02a16f, #20ff85);
-  z-index: 1;
-}
-
-.sol-signup-button:hover::before,
-.sol-signup-button:active::before {
-  opacity: 1;
-}
-
-.sol-signup-button-text {
-  text-transform: uppercase;
-  font: 500 1rem "IBM Plex Mono";
-  z-index: 2;
-  position: relative;
-}
+.meer-weten-pijl-container:hover .meer-weten-pijl {
+  background-color: var(--color-tertiary);
+} */
 
 .opd-close-button,
 .info-close-button {
@@ -2540,8 +2632,8 @@ button {
 }
 
 .info-title-test h2 {
-  font-family: "Inter";
-  font: 500 normal 6vw / normal "LayGrotesk";
+  font-family: "IBM Plex Mono";
+  font: 500 normal 6vw / normal "IBM Plex Mono";
   color: rgb(0, 230, 104);
   line-height: 1.2;
   text-transform: uppercase;
@@ -2646,25 +2738,26 @@ button {
 .info-container-effect .info-container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  border: 1px solid red;
+  align-items: center;
+  justify-content: flex-start;
+  height: 200vh;
+  /* border: 1px solid red; */
 }
 
 .alineas {
   display: flex;
-  width: 100%;
+  flex-direction: column;
+  width: 50%;
+  border: 1px solid yellow;
 }
 
 .info-container-effect .alinea {
   position: relative;
   overflow: hidden;
   flex: 1;
-  display: inline-block;
-  padding-left: 4vw;
-  padding-right: 4vw;
   flex-wrap: wrap;
   gap: 0.4em;
-  font-size: 1.1rem;
+  font-size: 1.5rem;
   font-family: "Inter", sans-serif;
   font-weight: 500;
   line-height: 1.5;
@@ -2676,20 +2769,23 @@ button {
   position: relative;
   overflow: hidden;
   flex: 1;
-  display: inline-block;
-  padding-left: 4vw;
-  padding-right: 4vw;
   flex-wrap: wrap;
-  font-size: 1.1rem;
+  font-size: 1.5rem;
   font-weight: 500;
   font-family: "Inter", sans-serif;
   line-height: 1.5;
   color: #b9b9b9;
 }
 
-.info-container-missie {
+/* .info-title-wie {
+} */
+
+.info-container-missievisie {
+  display: flex;
   width: 100%;
-  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  height: 150vh;
   border: 1px solid green;
 }
 
