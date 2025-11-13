@@ -2752,34 +2752,31 @@ button {
   align-items: center;
   justify-content: flex-start;
   height: 100vh;
-  /* border: 1px solid red; */
+  border: 1px solid black;
 }
 
 .alineas {
   display: flex;
+  flex-direction: column;
   width: 100%;
-  padding: 4rem;
-  gap: 5rem;
+
   /* border: 1px solid yellow; */
 }
 
 .info-container-effect .alinea {
   position: relative;
   overflow: hidden;
-  flex: 1;
   flex-wrap: wrap;
   font-size: 1.125rem;
   font-family: "Inter", sans-serif;
   font-weight: 500;
   line-height: 1.5;
   color: #b9b9b9;
-  /* border: 1px solid green; */
 }
 
 .info-container-effect .first {
   position: relative;
   overflow: hidden;
-  flex: 1;
   flex-wrap: wrap;
   font-size: 1.125rem;
   font-weight: 500;
@@ -2787,10 +2784,50 @@ button {
   line-height: 1.5;
   color: #b9b9b9;
   /* border: 1px solid green; */
+  /* border: 1px solid green; */
+}
+
+.info-container-effect .second {
+  margin-top: 2rem;
+}
+
+.info-container-effect .third {
+  margin-top: 2rem;
 }
 
 /* .info-title-wie {
 } */
+
+@media (min-width: 768px) {
+  .info-container-effect .info-container {
+    flex-direction: column;
+
+    /* border: 1px solid red; */
+  }
+
+  .alineas {
+    flex-direction: row;
+    padding: 4rem;
+    gap: 5rem;
+    /* border: 1px solid yellow; */
+  }
+
+  .info-container-effect .alinea {
+    flex: 1;
+    /* border: 1px solid green; */
+  }
+
+  .info-container-effect .first {
+    flex: 1;
+  }
+  .info-container-effect .second {
+    margin-top: 5rem;
+  }
+
+  .info-container-effect .third {
+    margin-top: 10rem;
+  }
+}
 
 .info-container-missievisie {
   display: flex;
@@ -2798,7 +2835,7 @@ button {
   align-items: center;
   justify-content: center;
   height: 150vh;
-  /* border: 1px solid green; */
+  border: 1px solid green;
 }
 
 /*
