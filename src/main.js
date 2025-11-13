@@ -267,6 +267,8 @@ document.addEventListener("DOMContentLoaded", function () {
       filter: "blur(10px)",
     });
 
+    let solliTextTL = null; // Timeline voor linker teaser (Solli) tekst
+    let opdrTextTL = null; // Timeline voor rechter teaser (Opdr) tekst
     let textAnimationTL = null;
     let swiper = null;
     let prevIndex = -1;
@@ -582,68 +584,120 @@ document.addEventListener("DOMContentLoaded", function () {
       function handleHoverIn(element) {
         // 1. Bepaal welke midText-karakters geanimeerd moeten worden
         let charsToAnimate;
+        let targetTL;
 
         if (element === teaserLeft) {
-          // Als we over de linker teaser hooveren, gebruik Solli tekst
+          // Als je over de linker teaser hovert, gebruik Solli tekst
           charsToAnimate = splitMidTextSolli.chars;
+          targetTL = solliTextTL;
         } else if (element === teaserRight) {
-          // Als we over de rechter teaser hooveren, gebruik Opdr tekst
+          // Als je over de rechter teaser hovert, gebruik Opdr tekst
           charsToAnimate = splitMidTextOpdr.chars;
+          targetTL = opdrTextTL;
         } else {
-          // Valbeveiliging
           return;
         }
+
+        // Stop de vorige timeline
+        if (targetTL) {
+          targetTL.kill();
+        }
+
+        // Maak een nieuwe timeline aan
+        targetTL = gsap.timeline({ defaults: { overwrite: true } });
+
+        // Animatie voor de teaser (schaal vergroting)
+        // Deze hoeft niet in de timeline,
+        // maar moet de vorige TL wel stoppen (done via overwrite: true in TL)
         gsap.to(element, {
           scale: 1.1,
           duration: 0.4,
           ease: "power1.inOut",
-        });
-        // Animeer de midText karakters zichtbaar bij hover
-        gsap.to(charsToAnimate, {
-          opacity: 1,
-          yPercent: 20,
-          rotateX: 0,
-          filter: "blur(0px)",
-          stagger: 0.01,
-          duration: 1,
-          ease: "power2.out",
           overwrite: true,
         });
+        // Animatie voor de tekst (verschijnen)
+        targetTL.to(
+          charsToAnimate,
+          {
+            opacity: 1,
+            yPercent: 20,
+            rotateX: 0,
+            filter: "blur(0px)",
+            stagger: 0.01,
+            duration: 1,
+            ease: "power2.out",
+            overwrite: true,
+          },
+          0
+        );
+
+        // De nieuwe timeline opslaan
+        if (element === teaserLeft) {
+          solliTextTL = targetTL;
+        } else {
+          opdrTextTL = targetTL;
+        }
       }
 
       // Functie voor schaalverkleining bij HOVER UIT
       function handleHoverOut(element) {
-        // 1. Bepaal welke midText-karakters geanimeerd moeten worden
+        // Bepaal welke midText-karakters geanimeerd moeten worden
         let charsToAnimate;
+        let targetTL;
 
         if (element === teaserLeft) {
-          // Als we van de linker teaser afgaan, gebruik Solli tekst
+          // Als je van de linker teaser afgaat, gebruik Solli tekst
           charsToAnimate = splitMidTextSolli.chars;
+          targetTL = solliTextTL;
         } else if (element === teaserRight) {
-          // Als we van de rechter teaser afgaan, gebruik Opdr tekst
+          // Als je  van de rechter teaser afgaat, gebruik Opdr tekst
           charsToAnimate = splitMidTextOpdr.chars;
+          targetTL = opdrTextTL;
         } else {
           return;
         }
+
+        // Stop de vorige timeline
+        if (targetTL) {
+          targetTL.kill();
+        }
+
+        // Maak een nieuwe timeline aan
+        targetTL = gsap.timeline({ defaults: { overwrite: true } });
+
+        // Animatie voor de teaser (schaal verkleining)
         gsap.to(element, {
           scale: 1,
           duration: 0.4,
           ease: "power1.inOut",
-        });
-        // MidText karakters animatie: 'Van Boven naar Beneden'
-        gsap.to(charsToAnimate, {
-          opacity: 0,
-          yPercent: 180,
-          rotateX: 90,
-          filter: "blur(10px)",
-          stagger: {
-            each: 0.01,
-            from: "start", // START de animatie vanaf het eerste karakter
-          },
-          duration: 0.5,
-          ease: "power2.in",
           overwrite: true,
         });
+
+        // Animatie voor de Tekst (verdwijnen)
+        targetTL.to(
+          charsToAnimate,
+          {
+            opacity: 0,
+            yPercent: 180,
+            rotateX: 90,
+            filter: "blur(10px)",
+            stagger: {
+              each: 0.01,
+              from: "start", // START de animatie vanaf het eerste karakter
+            },
+            duration: 0.5,
+            ease: "power2.in",
+            overwrite: true,
+          },
+          0
+        );
+
+        // Sla de nieuwe timeline op
+        if (element === teaserLeft) {
+          solliTextTL = targetTL;
+        } else {
+          opdrTextTL = targetTL;
+        }
       }
 
       tl.eventCallback("onComplete", () => {
