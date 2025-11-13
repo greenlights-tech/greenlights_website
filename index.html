@@ -7,20 +7,12 @@
     <link href="./css/style.css" type="text/css" rel="stylesheet" />
     <link rel="stylesheet" href="./css/blog.css" />
     <link href="/icon2.svg" type="image/svg+xml" rel="icon" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /> -->
     <link
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Overpass+Mono:wght@300..700&family=Sanchez:ital@0;1&display=swap"
       rel="stylesheet"
     />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-    />
-    <!-- <link
-      rel="stylesheet"
-      href="https://unpkg.com/lenis@1.3.11/dist/lenis.css"
-    /> -->
   </head>
 
   <body>
@@ -544,7 +536,7 @@
             </div>
             <div class="mid-text-opdrachtgever">
               <h2>
-                Wij versnellen digitale ambities door het juiste IT-talent te
+                Wij versnellen digitale ambities door passend IT-talent te
                 koppelen
               </h2>
             </div>
@@ -577,6 +569,45 @@
                     </div>
                   </button>
                 </div>
+              </div>
+            </section>
+
+            <section class="teasers-container-swiper">
+              <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide">
+                    <div
+                      id="openSolliMobile"
+                      class="teaser-swiper leftSwiper left"
+                      aria-label="IT-talent — Ontdek opdrachten"
+                    >
+                      <div class="centered">
+                        <div class="centered-text">
+                          <p class="centered-subtext">
+                            Ontdek <span class="highlight">opdrachten</span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="swiper-slide">
+                    <div
+                      id="openOpdrachtgeverMobile"
+                      class="teaser-swiper rightSwiper right"
+                      aria-label="Talentzoeker — Ontdek trainees"
+                    >
+                      <div class="centered">
+                        <div class="centered-text">
+                          <p class="centered-subtext">
+                            Ontdek <span class="highlight">trainees</span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-pagination" aria-hidden="true"></div>
               </div>
             </section>
 
@@ -729,48 +760,6 @@
           </section>
         </section>
         <!-- <section class="spacer"></section> -->
-        <main>
-          <section class="teasers-container-swiper">
-            <div class="swiper mySwiper">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                  <div
-                    id="openSolliMobile"
-                    class="teaser-swiper leftSwiper"
-                    aria-label="IT-talent — Ontdek opdrachten"
-                  >
-                    <div class="centered">
-                      <div class="centered-text">
-                        <h3 class="centered-hoofdtext">IT-talent</h3>
-                        <p class="centered-subtext">
-                          Ontdek <span class="highlight">opdrachten</span>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="swiper-slide">
-                  <div
-                    id="openOpdrachtgeverMobile"
-                    class="teaser-swiper rightSwiper"
-                    aria-label="Talentzoeker — Ontdek trainees"
-                  >
-                    <div class="centered">
-                      <div class="centered-text">
-                        <h3 class="centered-hoofdtext">Talentzoeker</h3>
-                        <p class="centered-subtext">
-                          Ontdek <span class="highlight">trainees</span>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-pagination" aria-hidden="true"></div>
-            </div>
-          </section>
-        </main>
 
         <!-- <footer>
                    <div class="footer-links">
@@ -1206,41 +1195,6 @@
         </a>
       </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script>
-      let swiper = null;
-
-      function initSwiper() {
-        if (window.innerWidth < 992 && !swiper) {
-          swiper = new Swiper(".mySwiper", {
-            effect: "coverflow",
-            grabCursor: true,
-            centeredSlides: true,
-            slidesPerView: "auto",
-            coverflowEffect: {
-              rotate: 50,
-              stretch: 0,
-              depth: 100,
-              modifier: 1,
-              slideShadows: true,
-            },
-            pagination: {
-              el: ".swiper-pagination",
-              clickable: true,
-            },
-          });
-        } else if (window.innerWidth >= 992 && swiper) {
-          // Swiper weer uitschakelen als scherm breed wordt
-          swiper.destroy(true, true);
-          swiper = null;
-        }
-      }
-
-      initSwiper();
-
-      window.addEventListener("resize", initSwiper);
-    </script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
     <script src="./src/main.js" type="module"></script>

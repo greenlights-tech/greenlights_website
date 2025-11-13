@@ -5,6 +5,11 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 import { CustomEase } from "gsap/CustomEase";
 import Lenis from "lenis";
+import Swiper from "swiper/bundle";
+import { Navigation, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 gsap.registerPlugin(Flip, ScrollTrigger, SplitText, CustomEase);
 
 function changeUrl(path, title = null) {
@@ -179,6 +184,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const hero = document.querySelector(".hero");
     const midTextSolli = document.querySelector(".mid-text-sollicitant");
     const midTextOpdr = document.querySelector(".mid-text-opdrachtgever");
+    const swiperContainer = document.querySelector(".teasers-container-swiper");
     const teaserLeft = document.querySelector(
       ".teasers-container .buttons .left"
     );
@@ -260,6 +266,116 @@ document.addEventListener("DOMContentLoaded", function () {
       rotateX: -90,
       filter: "blur(10px)",
     });
+
+    let textAnimationTL = null;
+    let swiper = null;
+    let prevIndex = -1;
+
+    function initSwiper() {
+      if (window.innerWidth < 992 && !swiper) {
+        swiper = new Swiper(".mySwiper", {
+          effect: "coverflow",
+          grabCursor: true,
+          centeredSlides: true,
+          slidesPerView: "auto",
+          coverflowEffect: {
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows: true,
+          },
+          pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+          },
+        });
+
+        // de slideChange event listener koppelen
+        swiper.on("slideChange", function () {
+          const activeIndex = swiper.activeIndex;
+          const solliChars = splitMidTextSolli.chars;
+          const opdrChars = splitMidTextOpdr.chars;
+
+          // Stop en vernietig de lopende timeline van de vorige animatie
+          if (textAnimationTL) {
+            textAnimationTL.kill();
+          }
+
+          // Maak een nieuwe Timeline
+          textAnimationTL = gsap.timeline({ defaults: { overwrite: true } });
+
+          let prevCharsToAnimate;
+          let currentCharsToAnimate;
+
+          // Logica voor de VERDWIJNENDE tekst (Slide out)
+          if (prevIndex !== -1 && prevIndex !== activeIndex) {
+            prevCharsToAnimate = prevIndex === 0 ? solliChars : opdrChars;
+
+            // Voeg de verdwijn-animatie toe aan de Timeline
+            textAnimationTL.to(
+              prevCharsToAnimate,
+              {
+                opacity: 0,
+                yPercent: 180,
+                rotateX: 90,
+                filter: "blur(10px)",
+                stagger: {
+                  each: 0.01,
+                  from: "start",
+                },
+                duration: 0.5,
+                ease: "power2.in",
+              },
+              0
+            ); // Start op tijd 0 van de timeline
+          }
+
+          // Logica voor de verschijnende tekst (Slide in)
+          currentCharsToAnimate = activeIndex === 0 ? solliChars : opdrChars;
+
+          // Zorg dat de verschijnende tekst klaar staat voor de animatie (niet zichtbaar)
+          // Dit moet direct (set), voordat de animatie start.
+          gsap.set(currentCharsToAnimate, {
+            opacity: 0,
+            yPercent: 180,
+            rotateX: 90,
+            filter: "blur(10px)",
+          });
+
+          // Voeg de verschijn-animatie toe aan de Timeline
+          // Gebruik '<' om te zorgen dat deze animatie START wanneer de vorige (verdwijn) animatie stopt.
+          // Omdat de "verdwijn" stap de vorige slide is, wil je dat deze nieuwe animatie direct (of bijna direct) daarna start.
+          textAnimationTL.to(
+            currentCharsToAnimate,
+            {
+              opacity: 1,
+              yPercent: 20,
+              rotateX: 0,
+              filter: "blur(0px)",
+              stagger: 0.01,
+              duration: 1,
+              ease: "power2.out",
+            },
+            prevIndex !== -1 ? 0.1 : 0
+          ); // Start de verschijning iets later als er een verdwijning is
+
+          // Update de vorige index voor de volgende slideChange
+          prevIndex = activeIndex;
+        });
+
+        // Start het event direct na initialisatie om de tekst van slide 0 te tonen
+        swiper.emit("slideChange");
+      } else if (window.innerWidth >= 992 && swiper) {
+        // Swiper weer uitschakelen als scherm breed wordt
+        swiper.destroy(true, true);
+        swiper = null;
+      }
+    }
+
+    initSwiper();
+
+    window.addEventListener("resize", initSwiper);
 
     gsap.set([teaserLeft, teaserRight], {
       scale: 0,
@@ -374,15 +490,6 @@ document.addEventListener("DOMContentLoaded", function () {
           },
           0.7 // Start tegelijk met de Flip
         );
-      // tl.to(
-      //   hero,
-      //   {
-      //     backgroundColor: "transparent",
-      //     duration: 1,
-      //     ease: "power2.inOut",
-      //   },
-      //   1.5
-      // );
 
       tl.to(
         bg,
@@ -416,51 +523,60 @@ document.addEventListener("DOMContentLoaded", function () {
           ease: "none",
         },
         2
-      ),
-        // tl.to(
-        //   split.chars,
-        //   {
-        //     opacity: 1,
-        //     yPercent: 20,
-        //     rotateX: 0,
-        //     filter: "blur(0px)",
-        //     stagger: 0.01,
-        //     duration: 1,
-        //     ease: "power2.out",
-        //   },
-        //   0.6
-        // );
+      );
 
+      const isLargeScreen = window.innerWidth >= 992;
+
+      if (isLargeScreen) {
         gsap.set([teaserLeft, teaserRight], {
           visibility: "visible",
           opacity: 1,
         });
 
-      tl.fromTo(
-        teaserLeft,
-        {
-          scale: 0,
-        },
-        {
-          scale: 1,
-          ease: "expo.out",
-          duration: 2,
-        },
-        3
-      );
+        tl.fromTo(
+          teaserLeft,
+          {
+            scale: 0,
+          },
+          {
+            scale: 1,
+            ease: "expo.out",
+            duration: 2,
+          },
+          3
+        );
 
-      tl.fromTo(
-        teaserRight,
-        {
+        tl.fromTo(
+          teaserRight,
+          {
+            scale: 0,
+          },
+          {
+            scale: 1,
+            ease: "expo.out",
+            duration: 2,
+          },
+          3
+        );
+      } else {
+        //Swiper container zichtbaar maken
+        gsap.set(swiperContainer, {
+          visibility: "visible",
+          opacity: 0,
           scale: 0,
-        },
-        {
-          scale: 1,
-          ease: "expo.out",
-          duration: 2,
-        },
-        3
-      );
+        });
+
+        tl.to(
+          swiperContainer,
+          {
+            opacity: 1,
+            scale: 1,
+            ease: "expo.out",
+            duration: 2,
+          },
+          3
+        );
+      }
 
       // Functie voor schaalvergroting bij HOVER IN
       function handleHoverIn(element) {
@@ -840,6 +956,20 @@ document.addEventListener("DOMContentLoaded", function () {
     //   onUpdate: (self) => skewSetter(clamp(self.getVelocity() / -50)),
     //   onStop: () => skewSetter(0),
     // });
+
+    // tl.to(
+    //   split.chars,
+    //   {
+    //     opacity: 1,
+    //     yPercent: 20,
+    //     rotateX: 0,
+    //     filter: "blur(0px)",
+    //     stagger: 0.01,
+    //     duration: 1,
+    //     ease: "power2.out",
+    //   },
+    //   0.6
+    // );
 
     const root = document.querySelector(".homepage .info-container-effect");
     const pinHeight = root.querySelector(".info-container-effect .pin-height");
