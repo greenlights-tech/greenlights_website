@@ -274,6 +274,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const solPage = document.querySelector(".sol-page");
     const opdPage = document.querySelector(".opd-page");
 
+    gsap.set([teaserLeft, teaserRight, swiperContainer], {
+      scale: 0,
+      opacity: 0,
+      visibility: "hidden", // Zorgt dat ze onzichtbaar zijn bij het laden
+    });
+
     function initSwiper() {
       if (window.innerWidth < 992 && !swiper) {
         swiper = new Swiper(".mySwiper", {
@@ -315,6 +321,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 onComplete: () => {
                   // Zodra de SOL-pagina volledig zichtbaar is, toon de knop met bounce
                   showBounceButton(whatsappButton);
+                  // Start de scroll nadat de overgang klaar is
+                  if (lenis) {
+                    lenis.start();
+                  }
                 },
               });
             } else if (index === 1) {
@@ -330,6 +340,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 onComplete: () => {
                   // Zodra de OPD-pagina volledig zichtbaar is, toon de knop met bounce
                   showBounceButton(whatsappButton);
+                  // Start de scroll nadat de overgang klaar is
+                  if (lenis) {
+                    lenis.start();
+                  }
                 },
               });
             }
@@ -379,7 +393,7 @@ document.addEventListener("DOMContentLoaded", function () {
           // Logica voor de verschijnende tekst (Slide in)
           currentCharsToAnimate = activeIndex === 0 ? solliChars : opdrChars;
 
-          // Zorg dat de verschijnende tekst klaar staat voor de animatie (niet zichtbaar)
+          // Zorgt dat de verschijnende tekst klaar staat voor de animatie (niet zichtbaar)
           // Dit moet direct (set), voordat de animatie start.
           gsap.set(currentCharsToAnimate, {
             opacity: 0,
@@ -388,7 +402,7 @@ document.addEventListener("DOMContentLoaded", function () {
             filter: "blur(10px)",
           });
 
-          // Voeg de verschijn-animatie toe aan de Timeline
+          // Voegt de verschijn-animatie toe aan de Timeline
           // Gebruik '<' om te zorgen dat deze animatie START wanneer de vorige (verdwijn) animatie stopt.
           // Omdat de "verdwijn" stap de vorige slide is, wil je dat deze nieuwe animatie direct (of bijna direct) daarna start.
           textAnimationTL.to(
@@ -419,12 +433,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     window.addEventListener("resize", initSwiper);
-
-    gsap.set([teaserLeft, teaserRight, swiperContainer], {
-      scale: 0,
-      opacity: 0,
-      visibility: "hidden", // Zorgt dat ze onzichtbaar zijn bij het laden
-    });
 
     const switchButton = $(".switch");
 
@@ -794,7 +802,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .getElementById("openSolli")
       .addEventListener("click", function (event) {
         if (lenis) {
-          lenis.start();
+          lenis.stop();
         }
 
         gsap.to(solPage, {
@@ -807,6 +815,10 @@ document.addEventListener("DOMContentLoaded", function () {
           onComplete: () => {
             // Zodra de SOL-pagina volledig zichtbaar is, toon de knop met bounce
             showBounceButton(whatsappButton);
+            if (lenis) {
+              // Start de scroll op nadat de overgang klaar is
+              lenis.start();
+            }
           },
         });
       });
@@ -816,8 +828,9 @@ document.addEventListener("DOMContentLoaded", function () {
     document
       .getElementById("openOpdrachtgever")
       .addEventListener("click", function (event) {
+        // Blokkeer de scroll terwijl de overgang plaatsvindt
         if (lenis) {
-          lenis.start();
+          lenis.stop();
         }
 
         gsap.to(opdPage, {
@@ -830,6 +843,10 @@ document.addEventListener("DOMContentLoaded", function () {
           onComplete: () => {
             // Zodra de OPD-pagina volledig zichtbaar is, toon de knop met bounce
             showBounceButton(whatsappButton);
+            if (lenis) {
+              // Start de scroll op nadat de overgang klaar is
+              lenis.start();
+            }
           },
         });
       });
@@ -907,6 +924,11 @@ document.addEventListener("DOMContentLoaded", function () {
         onComplete: () => {
           // Verwijder de 'active' class na de animatie
           pageElement.classList.remove("active");
+          // ✅ STOP LENIS NU (OF EERDER) OM DE HOMEPAGE STATISCH TE MAKEN
+          if (lenis) {
+            // Stop de scroll op de homepage nadat de overgang klaar is
+            lenis.stop();
+          }
         },
       });
     }
