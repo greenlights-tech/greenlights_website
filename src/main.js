@@ -235,12 +235,11 @@ document.addEventListener("DOMContentLoaded", function () {
       charsClass: "char",
     });
 
-    // de mid-text-sollicitant splitsen in woorden en characters
+    // de mid-text-sollicitant splitsen in characters
 
     const splitMidTextSolli = SplitText.create(midTextSolli, {
-      type: "chars, words",
+      type: "chars",
       charsClass: "char",
-      wordsClass: "word",
     });
 
     gsap.set(midTextSolli, { visibility: "visible" });
@@ -251,12 +250,11 @@ document.addEventListener("DOMContentLoaded", function () {
       filter: "blur(10px)",
     });
 
-    // de mid-text-opdrachtgever splitsen in woorden en characters
+    // de mid-text-opdrachtgever splitsen in characters
 
     const splitMidTextOpdr = SplitText.create(midTextOpdr, {
-      type: "chars, words",
+      type: "chars",
       charsClass: "char",
-      wordsClass: "word",
     });
 
     gsap.set(midTextOpdr, { visibility: "visible" });
@@ -272,6 +270,9 @@ document.addEventListener("DOMContentLoaded", function () {
     let textAnimationTL = null;
     let swiper = null;
     let prevIndex = -1;
+
+    const solPage = document.querySelector(".sol-page");
+    const opdPage = document.querySelector(".opd-page");
 
     function initSwiper() {
       if (window.innerWidth < 992 && !swiper) {
@@ -291,6 +292,48 @@ document.addEventListener("DOMContentLoaded", function () {
             el: ".swiper-pagination",
             clickable: true,
           },
+        });
+
+        // Event listener om de pagina te openen bij klik op een slide
+        swiper.slides.forEach((slide, index) => {
+          slide.addEventListener("click", function () {
+            // Stop Lenis scroll bij klik
+            if (lenis) {
+              lenis.stop();
+            }
+
+            // Slide 0 is Solli, Slide 1 is Opdrachtgever
+            if (index === 0) {
+              // Open de solPage
+              gsap.to(solPage, {
+                xPercent: 0,
+                duration: 1.5,
+                ease: "power3.inOut",
+                onStart: () => {
+                  solPage.classList.add("active");
+                },
+                onComplete: () => {
+                  // Zodra de SOL-pagina volledig zichtbaar is, toon de knop met bounce
+                  showBounceButton(whatsappButton);
+                },
+              });
+            } else if (index === 1) {
+              // Opdrachtgever
+              // Open de opdPage
+              gsap.to(opdPage, {
+                xPercent: 0,
+                duration: 1.5,
+                ease: "power3.inOut",
+                onStart: () => {
+                  opdPage.classList.add("active");
+                },
+                onComplete: () => {
+                  // Zodra de OPD-pagina volledig zichtbaar is, toon de knop met bounce
+                  showBounceButton(whatsappButton);
+                },
+              });
+            }
+          });
         });
 
         // de slideChange event listener koppelen
@@ -375,11 +418,9 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    initSwiper();
-
     window.addEventListener("resize", initSwiper);
 
-    gsap.set([teaserLeft, teaserRight], {
+    gsap.set([teaserLeft, teaserRight, swiperContainer], {
       scale: 0,
       opacity: 0,
       visibility: "hidden", // Zorgt dat ze onzichtbaar zijn bij het laden
@@ -701,6 +742,10 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       tl.eventCallback("onComplete", () => {
+        // 1. Initialiseer de Swiper (als het een klein scherm is)
+        // De initSwiper() functie bevat al de logica om te controleren
+        // of de Swiper gestart moet worden (en start dan de slideChange/tekstanimation)
+        initSwiper();
         // Koppelt de hover-events pas als de intro-animatie klaar is
 
         teaserLeft.addEventListener("mouseover", () =>
@@ -743,7 +788,6 @@ document.addEventListener("DOMContentLoaded", function () {
     //   delay: gsap.utils.random(0, 1),
     // });
 
-    const solPage = document.querySelector(".sol-page");
     gsap.set(solPage, { xPercent: -100, visibility: "visible" });
 
     document
@@ -766,8 +810,6 @@ document.addEventListener("DOMContentLoaded", function () {
           },
         });
       });
-
-    const opdPage = document.querySelector(".opd-page");
 
     gsap.set(opdPage, { xPercent: 100, visibility: "visible" });
 
@@ -981,19 +1023,6 @@ document.addEventListener("DOMContentLoaded", function () {
     //   0
     // );
 
-    // tlScroll.to(teaserLeft, { scale: 1 });
-    // tlScroll.to(teaserLeft, { scale: 1.1 });
-
-    // tlScroll.to(teaserRight, { scale: 1 });
-    // tlScroll.to(teaserRight, { scale: 1.1 });
-
-    // gsap.to(teaserRight, {
-    //   rotation: 5,
-    //   ease: "none",
-    //   duration: 4,
-    //   repeat: +1,
-    // });
-
     // const infoContent = document.querySelector(
     //   ".info-container .info-title .info-content"
     // );
@@ -1030,14 +1059,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const infoContainer = document.querySelector(".info-container");
     const alinea = document.querySelectorAll(".alinea");
 
-    const splitInfoPagee = SplitText.create(alinea, {
+    const splitInfoPage = SplitText.create(alinea, {
       type: "words",
       wordsClass: "word",
       mask: "words",
     });
 
     // gsap.set(infoContent, { visibility: "visible" });
-    gsap.set(splitInfoPagee.words, {
+    gsap.set(splitInfoPage.words, {
       yPercent: 100,
       opacity: 0,
     });
@@ -1059,7 +1088,7 @@ document.addEventListener("DOMContentLoaded", function () {
       },
     });
 
-    tlInfo.to(splitInfoPagee.words, {
+    tlInfo.to(splitInfoPage.words, {
       yPercent: 0,
       opacity: 1,
       duration: 0.75,
