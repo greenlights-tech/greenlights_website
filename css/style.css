@@ -186,7 +186,10 @@ button {
   --h2-font-size: clamp(2rem, 4vw, 3rem);
   --h3-font-size: clamp(1.75rem, 4vw, 2.5rem);
   --subh3-font-size: clamp(1rem, 4vw, 1.25rem);
+  --card-title-font-size: clamp(1.125rem, 4vw, 1.25rem);
+  --title-font-size: clamp(1.75rem, 4vw, 2.5rem);
   --h4-font-size: clamp(1rem, 1vw, 1.25rem);
+  --p-font-size: clamp(1rem, 1vw, 1.25rem);
   --nav-link-font-size: clamp(1rem, 1.5vw, 1rem);
 
   --font-primary: "Sanchez", "Manrope", "Gill Sans MT", sans-serif;
@@ -543,8 +546,9 @@ section.section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 25%;
+  width: 70%;
 }
+
 .new-container {
   display: flex;
   justify-content: center;
@@ -608,6 +612,12 @@ nav {
   gap: 1rem;
 }
 
+@media (min-width: 768px) {
+  .new-container-wrapper {
+    width: 25%;
+  }
+}
+
 /*
   ========================================
   Hero section
@@ -622,7 +632,8 @@ nav {
   justify-content: center;
   height: calc(100vh - var(--header-height));
   /* border: 2px solid blue; */
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .original-container {
@@ -1255,20 +1266,13 @@ button {
 
 /* CONTAINER */
 
-.teasers-wrapper-swiper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  /* border: 1px solid yellow; */
-}
-
 .teasers-container-swiper {
   display: block;
   padding-top: 2rem;
   padding-bottom: 2rem;
+  width: 100%;
   background-color: transparent;
-  /* border: 1px solid white; */
+  border: 1px solid white;
   visibility: hidden;
 }
 
@@ -1282,8 +1286,9 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
   justify-content: center;
-  /* border: 3px solid black; */
+  border: 3px solid black;
   position: relative;
   --swiper-pagination-color: #1ca45b;
 }
@@ -1307,6 +1312,7 @@ button {
 
 .teasers-container-swiper .swiper-wrapper {
   align-items: stretch;
+  width: 80%;
 }
 
 .teasers-container-swiper .swiper-slide {
@@ -1963,7 +1969,6 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-
   position: absolute;
   top: 0;
   left: 0;
@@ -1977,7 +1982,7 @@ button {
   visibility: hidden;
   /* color: #202b40; */
   /* color: #151515; */
-  font-size: 1.125rem;
+  font-size: var(--p-font-size);
   font-family: "Inter", sans-serif;
   font-weight: 500;
   line-height: 1.5;
@@ -2003,8 +2008,8 @@ button {
 .opd-title {
   display: flex;
   width: 50%;
-  font-size: 2.5rem;
-  font-family: "IBM Plex Mono";
+  font-size: var(--title-font-size);
+  font-family: "IBM Plex Mono", sans-serif;
   margin-bottom: 1.5rem;
   color: var(--color-primary);
   /* border: 1px solid yellow; */
@@ -2109,7 +2114,7 @@ button {
   visibility: hidden;
   /* color: #202b40; */
   /* color: #151515; */
-  font-size: 1.125rem;
+  font-size: var(--p-font-size);
   font-family: "Inter", sans-serif;
   font-weight: 500;
   line-height: 1.5;
@@ -2133,8 +2138,8 @@ button {
 .opd-title,
 .info-title,
 .info-title-wie {
-  font-family: "IBM Plex Mono";
-  font-size: 2.5rem;
+  font-family: "IBM Plex Mono", sans-serif;
+  font-size: var(--title-font-size);
   font-weight: 400;
   margin-bottom: 1.5rem;
   color: var(--color-primary);
@@ -2523,15 +2528,6 @@ button {
   .arrow-container {
     margin: 20px;
   }
-
-  .sol-title,
-  .opd-title {
-    font-size: 1.7rem;
-  }
-
-  .sol-content {
-    font-size: 1rem;
-  }
 }
 
 /* INFO PAGINA */
@@ -2594,38 +2590,6 @@ button {
   padding-bottom: 1rem;
 }
 
-.tagline-wrapper-infopage {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-  overflow: visible;
-  /* border: 1px solid red; */
-}
-.tagline-infopage {
-  font-weight: 600;
-  font-size: var(--sublogo-font-size);
-  text-shadow: 0 0 5px rgba(100, 100, 100, 0.5);
-  text-transform: uppercase;
-  white-space: nowrap;
-  border: 1px solid var(--color-primary);
-  box-shadow: inset 0 0 15px -5px var(--color-primary),
-    0 0 15px -5px var(--color-primary);
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
-  padding-left: 0.75em;
-  padding-right: 0.75em;
-  text-align: center;
-  letter-spacing: clamp(0em, 0.15vw, 0em);
-  font-family: "MS Gothic", "Courier New", monospace;
-  color: #bec6ab;
-  color: #b9b9b9;
-  margin: 0;
-  /* visibility: hidden; */
-  overflow: visible;
-  /* opacity: 0; */
-}
-
 .info-container-hoe .scroll {
   position: fixed;
   top: 50%;
@@ -2682,7 +2646,6 @@ button {
   width: 100%;
   /* background-color: #303847; */
   /* temp */
-  font-size: 1vw;
   /* border: 1px solid green; */
 }
 
@@ -2734,12 +2697,13 @@ button {
   text-align: center;
   font-weight: 800;
   color: var(--color-primary);
-  font-size: 1.25rem;
+  font-size: var(--card-title-font-size);
 }
 
 .card-content p {
   display: flex;
-  font: 500 1vw "Inter";
+  font-family: "Inter", sans-serif;
+  font-size: var(--p-font-size);
   color: #b9b9b9;
   line-height: 1.5;
 }
@@ -2771,7 +2735,7 @@ button {
   position: relative;
   overflow: hidden;
   flex-wrap: wrap;
-  font-size: 1.125rem;
+  font-size: var(--p-font-size);
   font-family: "Inter", sans-serif;
   font-weight: 500;
   line-height: 1.5;
@@ -2782,7 +2746,7 @@ button {
   position: relative;
   overflow: hidden;
   flex-wrap: wrap;
-  font-size: 1.125rem;
+  font-size: var(--p-font-size);
   font-weight: 500;
   font-family: "Inter", sans-serif;
   line-height: 1.5;
@@ -2840,6 +2804,10 @@ button {
   justify-content: center;
   height: 150vh;
   border: 1px solid green;
+}
+
+.info-missievisie-svg {
+  width: 70%;
 }
 
 /*

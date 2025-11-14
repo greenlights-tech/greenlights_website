@@ -195,6 +195,33 @@ document.addEventListener("DOMContentLoaded", function () {
       ".new-container-wrapper .tagline-wrapper .tagline"
     );
 
+    const solPage = document.querySelector(".sol-page");
+    const opdPage = document.querySelector(".opd-page");
+    const infoContainerEffect = document.querySelector(
+      ".info-container-effect"
+    );
+    const infoContainerMV = document.querySelector(
+      ".info-container-missievisie"
+    );
+    const infoContainerHoe = document.querySelector(".info-container-hoe");
+    const footerContainer = document.querySelector(".footer-container");
+
+    // Verberg de content direct bij het laden van de pagina
+    gsap.set(
+      [
+        solPage,
+        opdPage,
+        infoContainerEffect,
+        infoContainerMV,
+        infoContainerHoe,
+        footerContainer,
+      ],
+      {
+        opacity: 0,
+        visibility: "hidden",
+      }
+    );
+
     const color1 = document.querySelector("#color1");
     const color2 = document.querySelector("#color2");
 
@@ -271,14 +298,32 @@ document.addEventListener("DOMContentLoaded", function () {
     let swiper = null;
     let prevIndex = -1;
 
-    const solPage = document.querySelector(".sol-page");
-    const opdPage = document.querySelector(".opd-page");
-
     gsap.set([teaserLeft, teaserRight, swiperContainer], {
       scale: 0,
       opacity: 0,
       visibility: "hidden", // Zorgt dat ze onzichtbaar zijn bij het laden
     });
+
+    /**
+     * Functie om de extra scrollbare secties te onthullen na een klik.
+     */
+    function revealHiddenContent() {
+      gsap.to(
+        [
+          infoContainerEffect,
+          infoContainerMV,
+          infoContainerHoe,
+          footerContainer,
+        ],
+        {
+          opacity: 1,
+          visibility: "visible",
+          duration: 1.0,
+          ease: "power2.out",
+          stagger: 0.2,
+        }
+      );
+    }
 
     function initSwiper() {
       if (window.innerWidth < 992 && !swiper) {
@@ -313,6 +358,7 @@ document.addEventListener("DOMContentLoaded", function () {
               // Open de solPage
               gsap.to(solPage, {
                 xPercent: 0,
+                visibility: "visible",
                 duration: 1.5,
                 ease: "power3.inOut",
                 onStart: () => {
@@ -321,6 +367,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 onComplete: () => {
                   // Zodra de SOL-pagina volledig zichtbaar is, toon de knop met bounce
                   showBounceButton(whatsappButton);
+                  revealHiddenContent(); // Onthul de scrollbare content
                   // Start de scroll nadat de overgang klaar is
                   if (lenis) {
                     lenis.start();
@@ -332,6 +379,7 @@ document.addEventListener("DOMContentLoaded", function () {
               // Open de opdPage
               gsap.to(opdPage, {
                 xPercent: 0,
+                visibility: "visible",
                 duration: 1.5,
                 ease: "power3.inOut",
                 onStart: () => {
@@ -340,6 +388,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 onComplete: () => {
                   // Zodra de OPD-pagina volledig zichtbaar is, toon de knop met bounce
                   showBounceButton(whatsappButton);
+                  revealHiddenContent(); // Onthul de scrollbare content
                   // Start de scroll nadat de overgang klaar is
                   if (lenis) {
                     lenis.start();
@@ -429,10 +478,22 @@ document.addEventListener("DOMContentLoaded", function () {
         // Swiper weer uitschakelen als scherm breed wordt
         swiper.destroy(true, true);
         swiper = null;
+
+        // 1. Reset de tekst die door de Swiper-animatie is getoond.
+        // Dit dwingt de tekst om weer onzichtbaar te zijn op desktop.
+        gsap.set([splitMidTextSolli.chars, splitMidTextOpdr.chars], {
+          opacity: 0,
+          yPercent: 100, // Zorg dat de Y-positie ook gereset wordt
+          rotateX: -90,
+          filter: "blur(10px)",
+        });
       }
     }
 
-    window.addEventListener("resize", initSwiper);
+    gsap.set(solPage, { xPercent: -100, opacity: 1 });
+    gsap.set(opdPage, { xPercent: 100, opacity: 1 });
+
+    // window.addEventListener("resize", initSwiper);
 
     const switchButton = $(".switch");
 
@@ -455,6 +516,12 @@ document.addEventListener("DOMContentLoaded", function () {
     switchButton.one("change", function () {
       // Stop de oneindige zweefanimatie
       zweefTL.kill();
+
+      // initSwiper();
+
+      // 2. Koppel de resize-listener nu pas, zodat de Swiper
+      // reageert op verdere wijzigingen na de initiële activatie.
+      window.addEventListener("resize", initSwiper);
 
       tl.to(
         icon2,
@@ -796,8 +863,6 @@ document.addEventListener("DOMContentLoaded", function () {
     //   delay: gsap.utils.random(0, 1),
     // });
 
-    gsap.set(solPage, { xPercent: -100, visibility: "visible" });
-
     document
       .getElementById("openSolli")
       .addEventListener("click", function (event) {
@@ -807,6 +872,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         gsap.to(solPage, {
           xPercent: 0, // Schuift de pagina naar 0% (zichtbaar)
+          visibility: "visible",
           duration: 1.5,
           ease: "power3.inOut",
           onStart: () => {
@@ -819,11 +885,10 @@ document.addEventListener("DOMContentLoaded", function () {
               // Start de scroll op nadat de overgang klaar is
               lenis.start();
             }
+            revealHiddenContent(); // Onthul de scrollbare content
           },
         });
       });
-
-    gsap.set(opdPage, { xPercent: 100, visibility: "visible" });
 
     document
       .getElementById("openOpdrachtgever")
@@ -835,6 +900,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         gsap.to(opdPage, {
           xPercent: 0, // Schuift de pagina naar 0% (zichtbaar)
+          visibility: "visible",
           duration: 1.5,
           ease: "power3.inOut",
           onStart: () => {
@@ -847,6 +913,7 @@ document.addEventListener("DOMContentLoaded", function () {
               // Start de scroll op nadat de overgang klaar is
               lenis.start();
             }
+            revealHiddenContent(); // Onthul de scrollbare content
           },
         });
       });
