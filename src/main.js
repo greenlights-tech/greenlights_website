@@ -385,7 +385,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Event listener om de pagina te openen bij klik op een slide
       swiper.slides.forEach((slide, index) => {
-        slide.addEventListener("click", function () {
+        const teaserElement = slide.querySelector(".teaser-swiper");
+
+        teaserElement.addEventListener("click", function () {
           // De logica voor het openen van solPage en opdPage
 
           // Stop Lenis scroll bij klik
@@ -508,10 +510,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         swiper.emit("slideChange");
       } else {
-        // --- DESKTOP HOVER INSTELLING ---
-
-        // Zorg ervoor dat eventuele eerdere slideChange listeners worden verwijderd
-        // als de gebruiker resize van mobiel naar desktop.
+        // DESKTOP HOVER INSTELLING
         swiper.off("slideChange");
 
         // Roep de functie aan die de HOVER events koppelt
@@ -530,10 +529,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Functie voor schaalvergroting bij HOVER IN
     function handleHoverIn(element, index) {
-      // 'element' is nu de Swiper slide (bijv. swiper.slides[0])
+      // 'element' is nu de Swiper slide
       // 'index' is de slide index (0 of 1)
 
-      // 1. Bepaal welke midText-karakters geanimeerd moeten worden
+      // Bepaal welke midText-karakters geanimeerd moeten worden
       let charsToAnimate;
       let targetTL;
 
@@ -655,30 +654,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function setupHoverEffects() {
       // We koppelen de hover-events aan de Swiper slides
-      const slideSolli = swiper.slides[0];
-      const slideOpdr = swiper.slides[1];
+      // const slideSolli = swiper.slides[0];
+      // const slideOpdr = swiper.slides[1];
 
-      // We gebruiken handleHoverIn/Out, maar nu moet je de juiste 'chars' (tekst)
-      // en elementen meegeven als parameters.
-
-      // Aanname: je handleHoverIn/Out werkt met het parent element (de slide)
-      // en weet welke tekst daarbij hoort (Solli of Opdr).
-      // Als je de oude 'teaserLeft' en 'teaserRight' variabelen niet meer gebruikt,
-      // moet je de handleHover functies aanpassen om de slide als input te nemen.
+      const teaserSolli = document.querySelector(".left");
+      const teaserOpdr = document.querySelector(".right");
 
       // Voeg de listeners toe aan de slides
-      slideSolli.addEventListener("mouseover", () =>
-        handleHoverIn(slideSolli, 0)
+      teaserSolli.addEventListener("mouseover", () =>
+        handleHoverIn(teaserSolli, 0)
       );
-      slideSolli.addEventListener("mouseout", () =>
-        handleHoverOut(slideSolli, 0)
+      teaserSolli.addEventListener("mouseout", () =>
+        handleHoverOut(teaserSolli, 0)
       );
 
-      slideOpdr.addEventListener("mouseover", () =>
-        handleHoverIn(slideOpdr, 1)
+      teaserOpdr.addEventListener("mouseover", () =>
+        handleHoverIn(teaserOpdr, 1)
       );
-      slideOpdr.addEventListener("mouseout", () =>
-        handleHoverOut(slideOpdr, 1)
+      teaserOpdr.addEventListener("mouseout", () =>
+        handleHoverOut(teaserOpdr, 1)
       );
     }
 

@@ -1396,7 +1396,7 @@ button {
 
 @media (min-width: 480px) {
   .teasers-container-swiper {
-    width: 80%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1404,12 +1404,22 @@ button {
     flex-wrap: nowrap;
     margin-top: 3rem;
   }
-  .mySwiper {
-    width: 80%;
-    margin: 5rem;
-  }
+
   .hero {
     padding-bottom: 6rem;
+  }
+  .swiper-slide {
+    margin-top: 0rem;
+    margin-bottom: 0rem;
+    /* padding-left: 5rem;
+    padding-right: 5rem; */
+  }
+  .mySwiper {
+    width: 80%;
+  }
+  .teaser-swiper {
+    cursor: pointer;
+    margin: 5rem;
   }
 }
 
