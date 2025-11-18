@@ -1394,7 +1394,7 @@ button {
   }
 } */
 
-@media (min-width: 480px) {
+@media (min-width: 992px) {
   .teasers-container-swiper {
     width: 100%;
     display: flex;

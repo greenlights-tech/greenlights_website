@@ -206,6 +206,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const infoContainerHoe = document.querySelector(".info-container-hoe");
     const footerContainer = document.querySelector(".footer-container");
 
+    let introAnimationCompleted = false;
+    let resizeTimeout;
+
     // Verberg de content direct bij het laden van de pagina
     gsap.set(
       [
@@ -332,7 +335,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (swiper) return;
 
       swiper = new Swiper(".mySwiper", {
-        zoom: true,
+        zoom: false,
         effect: "coverflow",
         grabCursor: true,
         centeredSlides: true,
@@ -356,7 +359,7 @@ document.addEventListener("DOMContentLoaded", function () {
             centeredSlides: false,
             effect: "slide",
             coverflowEffect: undefined,
-            spaceBetween: 100,
+            spaceBetween: 50,
           },
         },
       });
@@ -839,7 +842,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       tl.eventCallback("onComplete", () => {
         setupSwiperEffects();
-
+        introAnimationCompleted = true;
         // Koppelt de hover-events pas als de intro-animatie klaar is
       });
     });
