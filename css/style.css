@@ -569,6 +569,7 @@ section.section {
   z-index: 10;
   overflow: visible;
   opacity: 0;
+  padding-bottom: 1rem;
   /* border: 1px solid red; */
 }
 .tagline {
@@ -695,6 +696,10 @@ nav {
   }
 }
 
+.mid-text-container {
+  display: flex;
+}
+
 .mid-text-sollicitant {
   display: flex;
   flex-direction: column;
@@ -705,7 +710,7 @@ nav {
   text-align: center;
   pointer-events: none;
   visibility: hidden;
-  /* border: 1px solid red; */
+  border: 1px solid red;
 }
 
 .mid-text-sollicitant h2 {
@@ -757,7 +762,7 @@ nav {
 
   /* Gebruik padding op deze elementen om de gewenste 5rem ruimte erboven te creëren */
   padding-top: 2rem;
-
+  padding-bottom: 2rem;
   /* Zorg dat de breedte niet te ver uitloopt, maar centreert */
   max-width: 80%; /* Pas dit aan naar wens */
   text-align: center;
@@ -782,6 +787,12 @@ nav {
   z-index: -1;
 }
 
+@media (min-width: 768px) {
+  .mid-text-sollicitant h2,
+  .mid-text-opdrachtgever h2 {
+    text-wrap: nowrap;
+  }
+}
 @media (min-width: 992px) {
   .icon2-wrapper {
     width: 30%;
@@ -1281,11 +1292,13 @@ button {
 
 .teasers-container-swiper {
   display: block;
+  position: absolute;
   padding-top: 2rem;
+  margin-top: 5rem;
   padding-bottom: 2rem;
-  width: 100%;
+  width: 90%;
   background-color: transparent;
-  border: 1px solid white;
+  /* border: 1px solid white; */
   visibility: hidden;
 }
 
@@ -1301,7 +1314,7 @@ button {
   align-items: center;
   width: 100%;
   justify-content: center;
-  border: 3px solid black;
+  /* border: 3px solid black; */
   position: relative;
   --swiper-pagination-color: #1ca45b;
 }
@@ -1347,7 +1360,6 @@ button {
   color: var(--color-secondary);
   display: flex;
   justify-content: center;
-  width: 25vw;
   flex: 1 1 auto;
   height: auto;
   aspect-ratio: 1 / 1;
@@ -1378,6 +1390,12 @@ button {
     min-height: 40vh;
   }
 } */
+
+@media (min-width: 480px) {
+  .teasers-container-swiper {
+    width: 80%;
+  }
+}
 
 /* Teasers desktop version */
 
@@ -2591,60 +2609,6 @@ button {
 /* .info-page {
   border: 3px solid yellow;
 } */
-
-.header-infopage {
-  height: 7.5rem;
-  z-index: 10;
-  /* background-color: #1e1e1e;
-  background-color: #e0ff98;
-  background-color: #686563; */
-  width: 100%;
-  /* flex-shrink: 0; */
-
-  /* border: 1px solid yellow; */
-  /* background-color: rgba(70, 68, 67, 0.5); */
-  background-image: linear-gradient(to top, #686563, #686563 30%, #464443);
-  background-image: linear-gradient(to top, #374051, #252b37 50%, #191d24);
-}
-
-.header-infopage .container-infopage {
-  height: 100%;
-  display: flex;
-  position: relative;
-  justify-content: center;
-  margin: 0 auto;
-  padding: 0 0rem;
-  /* border: 1px dashed red; */
-
-  /* background-image: linear-gradient(
-    to top,
-    rgba(104, 101, 99, 0.5),
-    rgba(104, 101, 99, 0.5) 30%,
-    rgba(70, 68, 67, 0.5)
-  ); */
-}
-
-.new-container-wrapper-infopage {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* border: 1px solid red; */
-  width: 100%;
-  text-decoration: none;
-
-  /* 2. Zorgt dat de link de tekstkleur van de ouder erft */
-  color: inherit;
-}
-.new-container-infopage {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  /* border: 1px dashed blue; */
-  background-color: transparent;
-  padding-top: 1.5rem;
-  padding-bottom: 1rem;
-}
 
 .info-container-hoe .scroll {
   position: fixed;
