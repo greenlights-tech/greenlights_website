@@ -185,12 +185,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const midTextSolli = document.querySelector(".mid-text-sollicitant");
     const midTextOpdr = document.querySelector(".mid-text-opdrachtgever");
     const swiperContainer = document.querySelector(".teasers-container-swiper");
-    const teaserLeft = document.querySelector(
-      ".teasers-container .buttons .left"
-    );
-    const teaserRight = document.querySelector(
-      ".teasers-container .buttons .right"
-    );
+    // const teaserLeft = document.querySelector(
+    //   ".teasers-container .buttons .left"
+    // );
+    // const teaserRight = document.querySelector(
+    //   ".teasers-container .buttons .right"
+    // );
     const tagline = document.querySelector(
       ".new-container-wrapper .tagline-wrapper .tagline"
     );
@@ -298,7 +298,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let swiper = null;
     let prevIndex = -1;
 
-    gsap.set([teaserLeft, teaserRight, swiperContainer], {
+    gsap.set([swiperContainer], {
       scale: 0,
       opacity: 0,
       visibility: "hidden", // Zorgt dat ze onzichtbaar zijn bij het laden
@@ -328,29 +328,38 @@ document.addEventListener("DOMContentLoaded", function () {
     // De GSAP-variabelen voor de animaties blijven hier buiten, ze zijn in de tweede functie nodig.
 
     function initSwiper() {
-      if (window.innerWidth < 992 && !swiper) {
-        swiper = new Swiper(".mySwiper", {
-          effect: "coverflow",
-          grabCursor: true,
-          centeredSlides: true,
-          slidesPerView: "auto",
-          coverflowEffect: {
-            rotate: 50,
-            stretch: 0,
-            depth: 100,
-            modifier: 1,
-            slideShadows: true,
+      // Dit voorkomt herinitialisatie bij resize
+      if (swiper) return;
+
+      swiper = new Swiper(".mySwiper", {
+        zoom: true,
+        effect: "coverflow",
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: "auto",
+        coverflowEffect: {
+          rotate: 50,
+          stretch: 0,
+          depth: 100,
+          modifier: 1,
+          slideShadows: true,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        breakpoints: {
+          // Wanneer de viewport breedte 992px of groter is:
+          992: {
+            // Instellingen voor Desktop
+            slidesPerView: 2, // Twee slides naast elkaar
+            centeredSlides: false,
+            effect: "slide",
+            coverflowEffect: undefined,
+            spaceBetween: 100,
           },
-          pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-          },
-        });
-      } else if (window.innerWidth >= 992 && swiper) {
-        // Swiper weer uitschakelen als scherm breed wordt
-        swiper.destroy(true, true);
-        swiper = null;
-      }
+        },
+      });
     }
 
     initSwiper();
@@ -371,11 +380,13 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!swiper) {
         return; // Stop de uitvoering van de functie als swiper null is
       }
+
+      const isLargeScreen = window.innerWidth >= 992;
+
       // Event listener om de pagina te openen bij klik op een slide
       swiper.slides.forEach((slide, index) => {
         slide.addEventListener("click", function () {
-          // De volledige logica voor het openen van solPage en opdPage
-          // ... (De code die je al had voor het openen van de pagina's)
+          // De logica voor het openen van solPage en opdPage
 
           // Stop Lenis scroll bij klik
           if (lenis) {
@@ -424,77 +435,251 @@ document.addEventListener("DOMContentLoaded", function () {
         });
       });
 
-      // de slideChange event listener koppelen (Tekst animatie)
-      swiper.on("slideChange", function () {
-        const activeIndex = swiper.activeIndex;
-        const solliChars = splitMidTextSolli.chars;
-        const opdrChars = splitMidTextOpdr.chars;
+      if (!isLargeScreen) {
+        // de slideChange event listener koppelen (Tekst animatie)
+        swiper.on("slideChange", function () {
+          const activeIndex = swiper.activeIndex;
+          const solliChars = splitMidTextSolli.chars;
+          const opdrChars = splitMidTextOpdr.chars;
 
-        // Stop en vernietig de lopende timeline van de vorige animatie
-        if (textAnimationTL) {
-          textAnimationTL.kill();
-        }
+          // Stop en vernietig de lopende timeline van de vorige animatie
+          if (textAnimationTL) {
+            textAnimationTL.kill();
+          }
 
-        // Maak een nieuwe Timeline
-        textAnimationTL = gsap.timeline({ defaults: { overwrite: true } });
+          // Maak een nieuwe Timeline
+          textAnimationTL = gsap.timeline({ defaults: { overwrite: true } });
 
-        let prevCharsToAnimate;
-        let currentCharsToAnimate;
+          let prevCharsToAnimate;
+          let currentCharsToAnimate;
 
-        // Logica voor de VERDWIJNENDE tekst
-        if (prevIndex !== -1 && prevIndex !== activeIndex) {
-          prevCharsToAnimate = prevIndex === 0 ? solliChars : opdrChars;
+          // Logica voor de VERDWIJNENDE tekst
+          if (prevIndex !== -1 && prevIndex !== activeIndex) {
+            prevCharsToAnimate = prevIndex === 0 ? solliChars : opdrChars;
 
-          // Voeg de verdwijn-animatie toe
-          textAnimationTL.to(
-            prevCharsToAnimate,
-            {
-              opacity: 0,
-              yPercent: 180,
-              rotateX: 90,
-              filter: "blur(10px)",
-              stagger: {
-                each: 0.01,
-                from: "start",
+            // Voeg de verdwijn-animatie toe
+            textAnimationTL.to(
+              prevCharsToAnimate,
+              {
+                opacity: 0,
+                yPercent: 180,
+                rotateX: 90,
+                filter: "blur(10px)",
+                stagger: {
+                  each: 0.01,
+                  from: "start",
+                },
+                duration: 0.5,
+                ease: "power2.in",
               },
-              duration: 0.5,
-              ease: "power2.in",
+              0
+            );
+          }
+
+          // Logica voor de verschijnende tekst
+          currentCharsToAnimate = activeIndex === 0 ? solliChars : opdrChars;
+
+          // Zorgt dat de verschijnende tekst klaar staat voor de animatie
+          gsap.set(currentCharsToAnimate, {
+            opacity: 0,
+            yPercent: 180,
+            rotateX: 90,
+            filter: "blur(10px)",
+          });
+
+          // Voegt de verschijn-animatie toe
+          textAnimationTL.to(
+            currentCharsToAnimate,
+            {
+              opacity: 1,
+              yPercent: 20,
+              rotateX: 0,
+              filter: "blur(0px)",
+              stagger: 0.01,
+              duration: 1,
+              ease: "power2.out",
             },
-            0
+            prevIndex !== -1 ? 0.1 : 0
           );
-        }
 
-        // Logica voor de verschijnende tekst
-        currentCharsToAnimate = activeIndex === 0 ? solliChars : opdrChars;
+          // Update de vorige index
+          prevIndex = activeIndex;
+        });
 
-        // Zorgt dat de verschijnende tekst klaar staat voor de animatie
-        gsap.set(currentCharsToAnimate, {
+        swiper.emit("slideChange");
+      } else {
+        // --- DESKTOP HOVER INSTELLING ---
+
+        // Zorg ervoor dat eventuele eerdere slideChange listeners worden verwijderd
+        // als de gebruiker resize van mobiel naar desktop.
+        swiper.off("slideChange");
+
+        // Roep de functie aan die de HOVER events koppelt
+        setupHoverEffects();
+
+        // Nu moet de tekst, die eventueel zichtbaar was op mobiel,
+        // direct gereset worden naar de verborgen GSAP 'set' staat.
+        gsap.set([splitMidTextSolli.chars, splitMidTextOpdr.chars], {
+          opacity: 0,
+          yPercent: 100, // of de waarde die je in je GSAP.set hebt
+          rotateX: -90,
+          filter: "blur(10px)",
+        });
+      }
+    }
+
+    // Functie voor schaalvergroting bij HOVER IN
+    function handleHoverIn(element, index) {
+      // 'element' is nu de Swiper slide (bijv. swiper.slides[0])
+      // 'index' is de slide index (0 of 1)
+
+      // 1. Bepaal welke midText-karakters geanimeerd moeten worden
+      let charsToAnimate;
+      let targetTL;
+
+      if (index === 0) {
+        // Slide 0 (Solli)
+        charsToAnimate = splitMidTextSolli.chars;
+        targetTL = solliTextTL;
+      } else if (index === 1) {
+        // Slide 1 (Opdrachtgever)
+        charsToAnimate = splitMidTextOpdr.chars;
+        targetTL = opdrTextTL;
+      } else {
+        return; // Mocht er een onverwachte slide zijn
+      }
+
+      // Stop de vorige timeline
+      if (targetTL) {
+        targetTL.kill();
+      }
+
+      // Maak een nieuwe timeline aan
+      targetTL = gsap.timeline({ defaults: { overwrite: true } });
+
+      // Animatie voor de teaser (schaal vergroting)
+      gsap.to(element, {
+        scale: 1.1,
+        duration: 0.4,
+        ease: "power1.inOut",
+        overwrite: true,
+      });
+
+      // Animatie voor de tekst (verschijnen)
+      targetTL.to(
+        charsToAnimate,
+        {
+          opacity: 1,
+          yPercent: 20,
+          rotateX: 0,
+          filter: "blur(0px)",
+          stagger: 0.01,
+          duration: 1,
+          ease: "power2.out",
+          overwrite: true,
+        },
+        0
+      );
+
+      // De nieuwe timeline opslaan
+      if (index === 0) {
+        solliTextTL = targetTL;
+      } else {
+        opdrTextTL = targetTL;
+      }
+    }
+
+    // Functie voor schaalverkleining bij HOVER UIT
+    function handleHoverOut(element, index) {
+      // 'element' is de Swiper slide (bijv. swiper.slides[0])
+      // 'index' is de slide index (0 of 1)
+
+      // Bepaal welke midText-karakters geanimeerd moeten worden
+      let charsToAnimate;
+      let targetTL;
+
+      if (index === 0) {
+        // Slide 0 (Solli)
+        charsToAnimate = splitMidTextSolli.chars;
+        targetTL = solliTextTL;
+      } else if (index === 1) {
+        // Slide 1 (Opdrachtgever)
+        charsToAnimate = splitMidTextOpdr.chars;
+        targetTL = opdrTextTL;
+      } else {
+        return;
+      }
+
+      // Stop de vorige timeline
+      if (targetTL) {
+        targetTL.kill();
+      }
+
+      // Maak een nieuwe timeline aan
+      targetTL = gsap.timeline({ defaults: { overwrite: true } });
+
+      // Animatie voor de teaser (schaal verkleining)
+      gsap.to(element, {
+        scale: 1,
+        duration: 0.4,
+        ease: "power1.inOut",
+        overwrite: true,
+      });
+
+      // Animatie voor de Tekst (verdwijnen)
+      targetTL.to(
+        charsToAnimate,
+        {
           opacity: 0,
           yPercent: 180,
           rotateX: 90,
           filter: "blur(10px)",
-        });
-
-        // Voegt de verschijn-animatie toe
-        textAnimationTL.to(
-          currentCharsToAnimate,
-          {
-            opacity: 1,
-            yPercent: 20,
-            rotateX: 0,
-            filter: "blur(0px)",
-            stagger: 0.01,
-            duration: 1,
-            ease: "power2.out",
+          stagger: {
+            each: 0.01,
+            from: "start", // START de animatie vanaf het eerste karakter
           },
-          prevIndex !== -1 ? 0.1 : 0
-        );
+          duration: 0.5,
+          ease: "power2.in",
+          overwrite: true,
+        },
+        0
+      );
 
-        // Update de vorige index
-        prevIndex = activeIndex;
-      });
+      // Sla de nieuwe timeline op
+      if (index === 0) {
+        solliTextTL = targetTL;
+      } else {
+        opdrTextTL = targetTL;
+      }
+    }
 
-      swiper.emit("slideChange");
+    function setupHoverEffects() {
+      // We koppelen de hover-events aan de Swiper slides
+      const slideSolli = swiper.slides[0];
+      const slideOpdr = swiper.slides[1];
+
+      // We gebruiken handleHoverIn/Out, maar nu moet je de juiste 'chars' (tekst)
+      // en elementen meegeven als parameters.
+
+      // Aanname: je handleHoverIn/Out werkt met het parent element (de slide)
+      // en weet welke tekst daarbij hoort (Solli of Opdr).
+      // Als je de oude 'teaserLeft' en 'teaserRight' variabelen niet meer gebruikt,
+      // moet je de handleHover functies aanpassen om de slide als input te nemen.
+
+      // Voeg de listeners toe aan de slides
+      slideSolli.addEventListener("mouseover", () =>
+        handleHoverIn(slideSolli, 0)
+      );
+      slideSolli.addEventListener("mouseout", () =>
+        handleHoverOut(slideSolli, 0)
+      );
+
+      slideOpdr.addEventListener("mouseover", () =>
+        handleHoverIn(slideOpdr, 1)
+      );
+      slideOpdr.addEventListener("mouseout", () =>
+        handleHoverOut(slideOpdr, 1)
+      );
     }
 
     // window.addEventListener("resize", initSwiper);
@@ -641,37 +826,6 @@ document.addEventListener("DOMContentLoaded", function () {
         2
       );
 
-      gsap.set([teaserLeft, teaserRight], {
-        visibility: "visible",
-        opacity: 1,
-      });
-
-      tl.fromTo(
-        teaserLeft,
-        {
-          scale: 0,
-        },
-        {
-          scale: 1,
-          ease: "expo.out",
-          duration: 2,
-        },
-        3
-      );
-
-      tl.fromTo(
-        teaserRight,
-        {
-          scale: 0,
-        },
-        {
-          scale: 1,
-          ease: "expo.out",
-          duration: 2,
-        },
-        3
-      );
-
       gsap.set(swiperContainer, {
         visibility: "visible",
         opacity: 0,
@@ -689,144 +843,10 @@ document.addEventListener("DOMContentLoaded", function () {
         3
       );
 
-      // Functie voor schaalvergroting bij HOVER IN
-      function handleHoverIn(element) {
-        // 1. Bepaal welke midText-karakters geanimeerd moeten worden
-        let charsToAnimate;
-        let targetTL;
-
-        if (element === teaserLeft) {
-          // Als je over de linker teaser hovert, gebruik Solli tekst
-          charsToAnimate = splitMidTextSolli.chars;
-          targetTL = solliTextTL;
-        } else if (element === teaserRight) {
-          // Als je over de rechter teaser hovert, gebruik Opdr tekst
-          charsToAnimate = splitMidTextOpdr.chars;
-          targetTL = opdrTextTL;
-        } else {
-          return;
-        }
-
-        // Stop de vorige timeline
-        if (targetTL) {
-          targetTL.kill();
-        }
-
-        // Maak een nieuwe timeline aan
-        targetTL = gsap.timeline({ defaults: { overwrite: true } });
-
-        // Animatie voor de teaser (schaal vergroting)
-        // Deze hoeft niet in de timeline,
-        // maar moet de vorige TL wel stoppen (done via overwrite: true in TL)
-        gsap.to(element, {
-          scale: 1.1,
-          duration: 0.4,
-          ease: "power1.inOut",
-          overwrite: true,
-        });
-        // Animatie voor de tekst (verschijnen)
-        targetTL.to(
-          charsToAnimate,
-          {
-            opacity: 1,
-            yPercent: 20,
-            rotateX: 0,
-            filter: "blur(0px)",
-            stagger: 0.01,
-            duration: 1,
-            ease: "power2.out",
-            overwrite: true,
-          },
-          0
-        );
-
-        // De nieuwe timeline opslaan
-        if (element === teaserLeft) {
-          solliTextTL = targetTL;
-        } else {
-          opdrTextTL = targetTL;
-        }
-      }
-
-      // Functie voor schaalverkleining bij HOVER UIT
-      function handleHoverOut(element) {
-        // Bepaal welke midText-karakters geanimeerd moeten worden
-        let charsToAnimate;
-        let targetTL;
-
-        if (element === teaserLeft) {
-          // Als je van de linker teaser afgaat, gebruik Solli tekst
-          charsToAnimate = splitMidTextSolli.chars;
-          targetTL = solliTextTL;
-        } else if (element === teaserRight) {
-          // Als je  van de rechter teaser afgaat, gebruik Opdr tekst
-          charsToAnimate = splitMidTextOpdr.chars;
-          targetTL = opdrTextTL;
-        } else {
-          return;
-        }
-
-        // Stop de vorige timeline
-        if (targetTL) {
-          targetTL.kill();
-        }
-
-        // Maak een nieuwe timeline aan
-        targetTL = gsap.timeline({ defaults: { overwrite: true } });
-
-        // Animatie voor de teaser (schaal verkleining)
-        gsap.to(element, {
-          scale: 1,
-          duration: 0.4,
-          ease: "power1.inOut",
-          overwrite: true,
-        });
-
-        // Animatie voor de Tekst (verdwijnen)
-        targetTL.to(
-          charsToAnimate,
-          {
-            opacity: 0,
-            yPercent: 180,
-            rotateX: 90,
-            filter: "blur(10px)",
-            stagger: {
-              each: 0.01,
-              from: "start", // START de animatie vanaf het eerste karakter
-            },
-            duration: 0.5,
-            ease: "power2.in",
-            overwrite: true,
-          },
-          0
-        );
-
-        // Sla de nieuwe timeline op
-        if (element === teaserLeft) {
-          solliTextTL = targetTL;
-        } else {
-          opdrTextTL = targetTL;
-        }
-      }
-
       tl.eventCallback("onComplete", () => {
         setupSwiperEffects();
 
         // Koppelt de hover-events pas als de intro-animatie klaar is
-
-        teaserLeft.addEventListener("mouseover", () =>
-          handleHoverIn(teaserLeft)
-        );
-        teaserLeft.addEventListener("mouseout", () =>
-          handleHoverOut(teaserLeft)
-        );
-
-        teaserRight.addEventListener("mouseover", () =>
-          handleHoverIn(teaserRight)
-        );
-        teaserRight.addEventListener("mouseout", () =>
-          handleHoverOut(teaserRight)
-        );
       });
     });
 
@@ -853,61 +873,6 @@ document.addEventListener("DOMContentLoaded", function () {
     //   ease: "sine.inOut",
     //   delay: gsap.utils.random(0, 1),
     // });
-
-    document
-      .getElementById("openSolli")
-      .addEventListener("click", function (event) {
-        if (lenis) {
-          lenis.stop();
-        }
-
-        gsap.to(solPage, {
-          xPercent: 0, // Schuift de pagina naar 0% (zichtbaar)
-          visibility: "visible",
-          duration: 1.5,
-          ease: "power3.inOut",
-          onStart: () => {
-            solPage.classList.add("active");
-          },
-          onComplete: () => {
-            // Zodra de SOL-pagina volledig zichtbaar is, toon de knop met bounce
-            showBounceButton(whatsappButton);
-            if (lenis) {
-              // Start de scroll op nadat de overgang klaar is
-              lenis.start();
-            }
-            revealHiddenContent(); // Onthul de scrollbare content
-          },
-        });
-      });
-
-    document
-      .getElementById("openOpdrachtgever")
-      .addEventListener("click", function (event) {
-        // Blokkeer de scroll terwijl de overgang plaatsvindt
-        if (lenis) {
-          lenis.stop();
-        }
-
-        gsap.to(opdPage, {
-          xPercent: 0, // Schuift de pagina naar 0% (zichtbaar)
-          visibility: "visible",
-          duration: 1.5,
-          ease: "power3.inOut",
-          onStart: () => {
-            opdPage.classList.add("active");
-          },
-          onComplete: () => {
-            // Zodra de OPD-pagina volledig zichtbaar is, toon de knop met bounce
-            showBounceButton(whatsappButton);
-            if (lenis) {
-              // Start de scroll op nadat de overgang klaar is
-              lenis.start();
-            }
-            revealHiddenContent(); // Onthul de scrollbare content
-          },
-        });
-      });
 
     /**
      * Functie om de knop met een bounce-animatie zichtbaar te maken
@@ -991,6 +956,21 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
 
+    // Listener voor de solPage home button
+    document
+      .getElementById("closeSolli")
+      .addEventListener("click", function (event) {
+        event.preventDefault();
+        closePage(solPage, -100); // SOL pagina schuift naar links (-100%)
+      }); // Listener voor de opdPage home button
+
+    document
+      .getElementById("closeOpdrachtgever")
+      .addEventListener("click", function (event) {
+        event.preventDefault();
+        closePage(opdPage, 100);
+      });
+
     /**
      * Functie om de knop vloeiend te verbergen
      * @param {HTMLElement} element - De WhatsApp knop container
@@ -1014,22 +994,6 @@ document.addEventListener("DOMContentLoaded", function () {
         },
       });
     }
-
-    // Listener voor de solPage home button
-    document
-      .getElementById("closeSolli")
-      .addEventListener("click", function (event) {
-        event.preventDefault();
-        closePage(solPage, -100); // SOL pagina schuift naar links (-100%)
-      });
-
-    // Listener voor de opdPage home button
-    document
-      .getElementById("closeOpdrachtgever")
-      .addEventListener("click", function (event) {
-        event.preventDefault();
-        closePage(opdPage, 100); // OPD pagina schuift naar rechts (100%)
-      });
 
     // const half = content.clientWidth / 2;
     // const wrap = gsap.utils.wrap(-half, 0);
