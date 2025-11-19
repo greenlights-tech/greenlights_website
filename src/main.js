@@ -1035,7 +1035,7 @@ document.addEventListener("DOMContentLoaded", function () {
             markers: true,
             invalidateOnRefresh: true,
           },
-          ease: "none",
+          ease: "power1.in",
           scale: () => 1 - (cards.length - index) * 0.025,
         });
 
