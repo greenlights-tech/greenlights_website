@@ -924,96 +924,138 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
 
+    //  const infoContent = document.querySelector(
+    //     ".info-container-effect .info-container .alineas .first"
+    //   );
+    //   const splitInfoPage2 = SplitText.create(infoContent, {
+    //     type: "lines",
+    //     linesClass: "line",
+    //     mask: "lines",
+    //   });
+
+    //   gsap.set(infoContent, { visibility: "visible" });
+    //   gsap.set(splitInfoPage2.lines, {
+    //     yPercent: 100,
+    //     opacity: 0,
+    //   });
+
+    //  tlInfo.to(splitInfoPage.lines, {
+    //     yPercent: 0,
+    //     opacity: 1,
+    //     duration: 0.75,
+    //     stagger: 0.1,
+    //     ease: "power1.out",
+    //   });
+
     // -------------------------- ScrollTrigger Secties --------------------------
-    function initScrollTriggers() {
+
+    function initInfoSection() {
       const root = document.querySelector(".homepage .info-container-effect");
       const pinHeight = root.querySelector(
         ".info-container-effect .pin-height"
       );
       const infoContainer = document.querySelector(".info-container");
+
       const alinea = document.querySelectorAll(".alinea");
-      const splitInfoPage = SplitText.create(alinea, {
-        type: "words",
-        wordsClass: "word",
-        mask: "words",
-      });
 
-      gsap.set(splitInfoPage.words, {
-        yPercent: 100,
-        opacity: 0,
-      });
+      if (window.innerWidth >= 992) {
+        const splitInfoPage = SplitText.create(alinea, {
+          type: "words",
+          wordsClass: "word",
+          mask: "words",
+        });
+        gsap.set(splitInfoPage.words, {
+          yPercent: 100,
+          opacity: 0,
+        });
 
-      ScrollTrigger.create({
-        trigger: pinHeight,
-        start: "top top",
-        end: "bottom bottom",
-        pin: infoContainer,
-        pinSpacing: false,
-      });
-
-      const tlInfo = gsap.timeline({
-        scrollTrigger: {
+        ScrollTrigger.create({
           trigger: pinHeight,
           start: "top top",
           end: "bottom bottom",
-          scrub: true,
-        },
-      });
+          pin: infoContainer,
+          pinSpacing: false,
+        });
 
-      tlInfo.to(splitInfoPage.words, {
-        yPercent: 0,
-        opacity: 1,
-        duration: 0.75,
-        stagger: 0.5,
-        ease: "power1.out",
-      });
-
-      // Horizontale scroll sectie
-      const container = document.querySelector(
-        ".info-container-hoe .container"
-      );
-      const cardsContainer = container.querySelector(".cards");
-      const cards = document.querySelectorAll(".card");
-      const distance = cardsContainer.clientWidth - window.innerWidth;
-
-      const scrollTween = gsap.to(cardsContainer, {
-        x: -distance, // Schuif de container de berekende afstand naar links
-        ease: "none",
-        scrollTrigger: {
-          trigger: container,
-          pin: true,
-          scrub: true,
-          start: "top top",
-          end: "+=" + distance,
-        },
-      });
-
-      // STAGGER EFFECT VOOR ELKE KAART
-      cards.forEach((card, index) => {
-        gsap.fromTo(
-          card,
-          {
-            x: 100,
+        const tlInfo = gsap.timeline({
+          scrollTrigger: {
+            trigger: pinHeight,
+            start: "top top",
+            end: "bottom bottom",
+            scrub: true,
           },
-          {
-            // Eindpositie: hun normale positie
-            x: 0,
-            ease: "none",
-            scrollTrigger: {
-              trigger: card,
-              containerAnimation: scrollTween,
-              start: "left 120%",
-              end: "right -20%",
-              scrub: true,
+        });
+
+        tlInfo.to(splitInfoPage.words, {
+          yPercent: 0,
+          opacity: 1,
+          duration: 0.75,
+          stagger: 0.5,
+          ease: "power1.out",
+        });
+      } else {
+        const infoContent = document.querySelectorAll(".alinea-mobile");
+        infoContent.forEach((el) => {
+          // Split in lines
+          SplitText.create(el, {
+            type: "lines",
+            linesClass: "line",
+            mask: "lines",
+            autoSplit: true,
+            onSplit: (self) => {
+              // Animatie per regel
+              gsap.from(self.lines, {
+                yPercent: 100,
+                opacity: 0,
+                duration: 0.6,
+                stagger: 0.1,
+                ease: "expo.out",
+                scrollTrigger: {
+                  trigger: el,
+                  start: "top 80%", // wanneer de animatie start
+                },
+              });
             },
-          }
-        );
+          });
+        });
+      }
+    }
+
+    function initCardSection() {
+      const cards = gsap.utils.toArray(".card");
+      const cardsContainer = document.querySelector(".info-container-hoe");
+
+      cards.forEach((card, index) => {
+        gsap.to(card, {
+          scrollTrigger: {
+            trigger: card,
+            start: () => `top bottom-=100`,
+            end: () => `top top-=100`,
+            scrub: true,
+            markers: true,
+            invalidateOnRefresh: true,
+          },
+          ease: "none",
+          scale: () => 1 - (cards.length - index) * 0.025,
+        });
+
+        ScrollTrigger.create({
+          trigger: card,
+          start: "center center",
+          pin: true,
+          pinSpacing: false,
+          markers: true,
+          endTrigger: cardsContainer,
+          end: "bottom bottom",
+          invalidateOnRefresh: true,
+        });
       });
     }
     initStates();
     initSwiper();
     startIntroAnimation();
-    initScrollTriggers();
+    initInfoSection();
+    initCardSection();
   });
 });
 

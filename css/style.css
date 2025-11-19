@@ -394,7 +394,6 @@ body {
   position: fixed;
   bottom: 1.5rem;
   right: 2rem;
-  z-index: 100;
   padding: 1em 1.5em;
   /* background: linear-gradient(to right, #20ff85, #02a16f); */
   padding: 0.825em 1.5em;
@@ -405,6 +404,7 @@ body {
   border: none;
   border-radius: 2rem;
   visibility: hidden;
+  z-index: 1000;
 }
 
 .container-whatsapp-knop a {
@@ -413,6 +413,7 @@ body {
   align-items: center;
   text-decoration: none;
   color: inherit;
+
   /* border: 1px solid red; */
 }
 
@@ -486,10 +487,10 @@ body {
   border: 1px solid yellow;
 } */
 
-section.section {
+/* section.section {
   width: 100%;
   height: 100vh;
-}
+} */
 
 .header .container {
   height: 100%;
@@ -633,8 +634,8 @@ nav {
   justify-content: center;
   min-height: calc(100vh - var(--header-height));
   border: 2px solid blue;
-  overflow-x: hidden;
-  overflow-y: hidden;
+  /* overflow-x: hidden;
+  overflow-y: hidden; */
 }
 
 .original-container {
@@ -1944,7 +1945,6 @@ button {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
   will-change: transform;
   /* padding: 0 100vw; */
   background-color: #303847;
@@ -1960,6 +1960,7 @@ button {
   min-height: calc(100vh - var(--header-height));
   max-height: none;
   overflow-y: auto;
+  z-index: 100;
   /* border: 1px solid red; */
 }
 
@@ -1981,7 +1982,7 @@ button {
 .sol-title,
 .opd-title {
   display: flex;
-  width: 80%;
+  width: 70%;
   font-size: var(--title-font-size);
   font-family: "IBM Plex Mono", sans-serif;
   margin-bottom: 1.5rem;
@@ -2042,7 +2043,7 @@ button {
   /* border: 1px solid green; */
   display: flex;
   flex-direction: column;
-  width: 90%;
+  width: 80%;
   /* border: 1px solid green; */
   margin-bottom: 0.25rem;
 }
@@ -2087,12 +2088,13 @@ button {
   min-height: calc(100vh - var(--header-height));
   max-height: none;
   overflow-y: auto;
+  z-index: 100;
 }
 
 .opd-content {
   display: flex;
   flex-direction: column;
-  width: 90%;
+  width: 80%;
   /* border: 1px solid green; */
   margin-bottom: 0.25rem;
 }
@@ -2236,7 +2238,7 @@ button {
 @media (min-width: 376px) {
   .sol-content,
   .opd-content {
-    width: 80%;
+    width: 70%;
     margin-bottom: 2rem;
   }
   .sol-home-button-container,
@@ -2262,6 +2264,10 @@ button {
 }
 
 @media (min-width: 992px) {
+  .sol-page,
+  .opd-page {
+    top: 7.5rem; /* header hoogte */
+  }
   .sol-home-button-wrapper,
   .opd-home-button-wrapper {
     display: flex;
@@ -2554,12 +2560,12 @@ button {
   border: 3px solid yellow;
 } */
 
-.info-container-hoe .scroll {
+/* .info-container-hoe .scroll {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
+} */
 
 .info-title-test {
   position: absolute;
@@ -2598,41 +2604,40 @@ button {
 } */
 
 .info-container-hoe {
-  overflow: hidden;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 10rem;
+  border: 1px solid blue;
 }
 
 .info-container-hoe .container {
   display: flex;
-  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  /* flex-direction: column;
   justify-content: center;
   height: 100vh;
-  width: 100%;
+  width: 100%; */
   /* background-color: #303847; */
   /* temp */
-  /* border: 1px solid green; */
+  border: 1px solid green;
 }
 
-.cards {
-  display: flex;
-  width: max-content;
-  /* white-space: nowrap; */
-  gap: 1vw;
-  will-change: transform;
-  padding: 0 120vw;
-}
+/* .cards {
+  margin-left: 100px;
+} */
 
 .card {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: relative;
-  width: 30vw;
-  aspect-ratio: 1;
+  aspect-ratio: 1/1;
   border-radius: 2vw;
-  /* overflow: hidden; */
-  object-fit: cover;
+  margin-bottom: 3rem;
   background-color: #232934;
   background-color: transparent;
   backdrop-filter: blur(30px);
@@ -2643,7 +2648,7 @@ button {
 .card-content {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   align-items: center;
   padding: 2rem;
   height: 100%;
@@ -2672,26 +2677,40 @@ button {
   line-height: 1.5;
 }
 
+.card {
+  height: 90%;
+  width: 90%;
+  margin-bottom: 3rem;
+  background-color: #232934;
+  background-color: transparent;
+  backdrop-filter: blur(30px);
+  border: 1px solid var(--color-primary);
+  border: 1px solid rgb(211, 199, 185);
+}
+
+.container2 {
+  margin-top: 40px;
+  background: transparent;
+  width: 100%;
+  height: 400px;
+}
+
 /* Over ons */
 
-.info-container-effect .pin-height {
-  height: 500vh;
-  /* border: 1px solid red; */
-}
 .info-container-effect .info-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   /* border: 1px solid black; */
 }
 
 .alineas {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 80%;
 
   /* border: 1px solid yellow; */
 }
@@ -2732,6 +2751,14 @@ button {
 } */
 
 @media (min-width: 992px) {
+  .card {
+    height: 400px;
+    width: 400px;
+  }
+  .info-container-effect .pin-height {
+    height: 500vh;
+    /* border: 1px solid red; */
+  }
   .info-container-effect .info-container {
     flex-direction: column;
 
@@ -2742,6 +2769,7 @@ button {
     flex-direction: row;
     padding: 4rem;
     gap: 5rem;
+    width: 100%;
     /* border: 1px solid yellow; */
   }
 
@@ -2767,12 +2795,29 @@ button {
   width: 100%;
   align-items: center;
   justify-content: center;
-  height: 150vh;
+  height: auto;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
   /* border: 1px solid green; */
 }
 
 .info-missievisie-svg {
-  width: 70%;
+  width: 100%;
+}
+
+@media (min-width: 992px) {
+  .info-missievisie-svg {
+    width: 70%;
+  }
+  .info-container-missievisie {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    padding-bottom: 4rem;
+    /* border: 1px solid green; */
+  }
 }
 
 /*
