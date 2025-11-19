@@ -2751,10 +2751,26 @@ button {
 /* .info-title-wie {
 } */
 
+.card1 {
+  background-color: #02a16f;
+}
+.card2 {
+  background-color: rgb(94, 94, 94);
+}
+.card3 {
+  background-color: #e0ff98;
+}
+.card4 {
+  background-color: #4a94f9;
+}
+.card5 {
+  background-color: #cdcdcd;
+}
+
 @media (min-width: 992px) {
   .card {
-    height: 400px;
-    width: 400px;
+    height: 40%;
+    width: 40%;
   }
   .info-container-effect .pin-height {
     height: 500vh;
