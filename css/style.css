@@ -569,7 +569,7 @@ section.section {
   z-index: 10;
   overflow: visible;
   opacity: 0;
-  padding-bottom: 1rem;
+  /* padding-bottom: 1rem; */
   /* border: 1px solid red; */
 }
 .tagline {
@@ -631,8 +631,8 @@ nav {
   position: relative;
   align-items: center;
   justify-content: center;
-  height: calc(100vh - var(--header-height));
-  /* border: 2px solid blue; */
+  min-height: calc(100vh - var(--header-height));
+  border: 2px solid blue;
   overflow-x: hidden;
   overflow-y: hidden;
 }
@@ -696,21 +696,12 @@ nav {
   }
 }
 
-.mid-text-container {
-  display: flex;
-}
-
 .mid-text-sollicitant {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
-  width: 80%;
+  width: 100%;
   text-align: center;
   pointer-events: none;
   visibility: hidden;
-  border: 1px solid red;
+  border: 1px solid black;
 }
 
 .mid-text-sollicitant h2 {
@@ -725,16 +716,11 @@ nav {
 }
 
 .mid-text-opdrachtgever {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
-  width: 80%;
+  width: 100%;
   text-align: center;
   pointer-events: none;
   visibility: hidden;
-  /* border: 1px solid red; */
+  border: 1px solid red;
 }
 
 .mid-text-opdrachtgever h2 {
@@ -750,22 +736,16 @@ nav {
 
 .mid-text-sollicitant,
 .mid-text-opdrachtgever {
-  position: absolute; /* Zorgt voor de overlapping en absolute plaatsing t.o.v. .hero */
-
-  /* Horizontaal centreren */
+  position: absolute;
   left: 50%;
   transform: translateX(-50%);
-
-  /* Verticaal plaatsen: 
-       Plaats het element helemaal onderaan (bottom: 0) */
   top: 0;
-
   /* Gebruik padding op deze elementen om de gewenste 5rem ruimte erboven te creëren */
   padding-top: 2rem;
   padding-bottom: 2rem;
   /* Zorg dat de breedte niet te ver uitloopt, maar centreert */
-  max-width: 80%; /* Pas dit aan naar wens */
   text-align: center;
+  width: 70%;
 }
 
 .icon2-wrapper {
@@ -1291,16 +1271,18 @@ button {
 /* CONTAINER */
 
 .teasers-container-swiper {
-  display: block;
-  position: absolute;
-  padding-top: 2rem;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: flex-start;
+  /* padding-top: 2rem;
   margin-top: 5rem;
-  padding-bottom: 2rem;
+  padding-bottom: 2rem; */
   width: 100%;
   background-color: transparent;
-  /* border: 1px solid white; */
+  border: 1px solid white;
   visibility: hidden;
-  height: auto;
+  height: calc(100vh - var(--header-height));
 }
 
 /* SWIPER */
@@ -1402,12 +1384,12 @@ button {
     justify-content: center;
     align-items: center;
     flex-wrap: nowrap;
-    margin-top: 3rem;
+    /* margin-top: 3rem; */
   }
 
-  .hero {
+  /* .hero {
     padding-bottom: 6rem;
-  }
+  } */
   .swiper-slide {
     margin-top: 0rem;
     margin-bottom: 0rem;
@@ -1415,11 +1397,11 @@ button {
     padding-right: 5rem; */
   }
   .mySwiper {
-    width: 80%;
+    width: 60%;
   }
   .teaser-swiper {
     cursor: pointer;
-    margin: 5rem;
+    margin: 3rem;
   }
 }
 
@@ -1975,6 +1957,9 @@ button {
   font-family: "Inter", sans-serif;
   font-weight: 500;
   line-height: 1.5;
+  min-height: calc(100vh - var(--header-height));
+  max-height: none;
+  overflow-y: auto;
   /* border: 1px solid red; */
 }
 
@@ -2087,7 +2072,6 @@ button {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
   will-change: transform;
   /* padding: 0 100vw; */
   background-color: #303847;
@@ -2100,6 +2084,9 @@ button {
   font-family: "Inter", sans-serif;
   font-weight: 500;
   line-height: 1.5;
+  min-height: calc(100vh - var(--header-height));
+  max-height: none;
+  overflow-y: auto;
 }
 
 .opd-content {
@@ -2290,7 +2277,6 @@ button {
   .sol-button-wrapper,
   .opd-button-wrapper {
     flex-direction: row;
-    position: absolute;
     bottom: 1.5rem;
     gap: 5rem;
     margin-top: 0rem;

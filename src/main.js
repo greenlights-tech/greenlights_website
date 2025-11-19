@@ -6,9 +6,8 @@ import { SplitText } from "gsap/SplitText";
 import { CustomEase } from "gsap/CustomEase";
 import Lenis from "lenis";
 import Swiper from "swiper/bundle";
-import { Navigation, Pagination } from "swiper/modules";
+import { Pagination } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/navigation";
 import "swiper/css/pagination";
 gsap.registerPlugin(Flip, ScrollTrigger, SplitText, CustomEase);
 
@@ -190,7 +189,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const logo = document.querySelector(".child1");
     const originalContainer = document.querySelector(".original-container");
     const newContainer = document.querySelector(".new-container");
-    const hero = document.querySelector(".hero");
     const midTextSolli = document.querySelector(".mid-text-sollicitant");
     const midTextOpdr = document.querySelector(".mid-text-opdrachtgever");
     const swiperContainer = document.querySelector(".teasers-container-swiper");
@@ -212,6 +210,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const icon2 = document.querySelector(".hero .icon2");
     const switchButton = $(".switch");
     const whatsappButton = document.querySelector(".container-whatsapp-knop");
+
     // ---------- Split text voor tagline en mid texts ----------
     const splitTagline = SplitText.create(tagline, {
       type: "chars",
@@ -250,6 +249,9 @@ document.addEventListener("DOMContentLoaded", function () {
       gsap.set(color2, {
         opacity: 0.1,
         "stop-color": "#00000057",
+      });
+      gsap.set(splitTagline.chars, {
+        opacity: 0,
       });
       gsap.set(midTextSolli, { visibility: "visible" });
       gsap.set(splitMidTextSolli.chars, {
@@ -444,20 +446,16 @@ document.addEventListener("DOMContentLoaded", function () {
           },
           2
         ),
-          // gsap.set(tagline, { visibility: "visible" });
-          gsap.set(splitTagline.chars, {
-            opacity: 0,
-          });
-        tl.to(
-          splitTagline.chars,
-          {
-            opacity: 1,
-            duration: 1,
-            ease: "power2.out",
-            stagger: 0.05,
-          },
-          2
-        );
+          tl.to(
+            splitTagline.chars,
+            {
+              opacity: 1,
+              duration: 1,
+              ease: "power2.out",
+              stagger: 0.05,
+            },
+            2
+          );
 
         tl.to(
           ".tagline-wrapper",
@@ -1015,6 +1013,7 @@ document.addEventListener("DOMContentLoaded", function () {
     initStates();
     initSwiper();
     startIntroAnimation();
+    initScrollTriggers();
   });
 });
 
