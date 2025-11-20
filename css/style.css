@@ -186,11 +186,11 @@ button {
   --h2-font-size: clamp(2rem, 4vw, 3rem);
   --h3-font-size: clamp(1.75rem, 4vw, 2.5rem);
   --subh3-font-size: clamp(1rem, 4vw, 1.25rem);
-  --card-title-font-size: clamp(1.125rem, 4vw, 1.25rem);
+  --card-title-font-size: clamp(1.25rem, 4vw, 2.5rem);
   --home-buttons-font-size: clamp(1.125rem, 4vw, 1.125rem);
   --title-font-size: clamp(1.75rem, 4vw, 2.5rem);
   --h4-font-size: clamp(1rem, 1vw, 1.25rem);
-  --p-font-size: clamp(1rem, 1.5vw, 1.25rem);
+  --p-font-size: clamp(1rem, 1.5vw, 2rem);
   --nav-link-font-size: clamp(1rem, 1.5vw, 1rem);
 
   --font-primary: "Sanchez", "Manrope", "Gill Sans MT", sans-serif;
@@ -2150,6 +2150,8 @@ button {
 
 .info-title-wie {
   margin-top: 5rem;
+  width: 70%;
+  line-height: 1.5;
 }
 
 .checkmark {
@@ -2677,10 +2679,13 @@ button {
 .card-content {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
-  padding: 2rem;
+  /* padding: 2rem; */
+  gap: 1rem;
+  width: 80%;
   height: 100%;
+  will-change: transform;
 }
 
 .card-content span {
@@ -2696,6 +2701,7 @@ button {
   font-weight: 800;
   color: var(--color-primary);
   font-size: var(--card-title-font-size);
+  line-height: 1.1;
 }
 
 .card-content p {
@@ -2725,7 +2731,18 @@ button {
   height: 400px;
 }
 
+@media (min-width: 992px) {
+  .card-content {
+    width: 70%;
+  }
+}
+
 /* Over ons */
+
+.info-container-effect .pin-height {
+  height: 400vh;
+  /* border: 1px solid red; */
+}
 
 .info-container-effect .info-container {
   display: flex;
@@ -2781,19 +2798,33 @@ button {
 } */
 
 .card1 {
-  background-color: #02a16f;
+  background-color: #2f7e65;
 }
 .card2 {
-  background-color: rgb(94, 94, 94);
-}
-.card3 {
   background-color: #e0ff98;
 }
-.card4 {
+.card3 {
   background-color: #4a94f9;
 }
+.card4 {
+  background-color: rgb(153, 153, 153);
+}
 .card5 {
-  background-color: #cdcdcd;
+  background-color: #02a16f;
+}
+
+.card p {
+  color: rgb(228, 228, 228);
+}
+.card2 p {
+  color: rgb(114, 114, 114);
+}
+
+.card3 h3 {
+  color: #20ff85;
+}
+.card3 p {
+  color: #264a7c;
 }
 
 @media (min-width: 992px) {
@@ -2802,12 +2833,12 @@ button {
     width: 40%;
   }
   .info-container-effect .pin-height {
-    height: 500vh;
+    height: 400vh;
     /* border: 1px solid red; */
   }
   .info-container-effect .info-container {
     flex-direction: column;
-
+    height: 100vh;
     /* border: 1px solid red; */
   }
 

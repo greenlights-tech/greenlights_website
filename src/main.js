@@ -965,9 +965,8 @@ document.addEventListener("DOMContentLoaded", function () {
       );
       const infoContainer = document.querySelector(".info-container");
 
-      const alinea = document.querySelectorAll(".alinea");
-
       if (window.innerWidth >= 992) {
+        const alinea = document.querySelectorAll(".alinea");
         const splitInfoPage = SplitText.create(alinea, {
           type: "words",
           wordsClass: "word",
@@ -1022,7 +1021,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 ease: "expo.out",
                 scrollTrigger: {
                   trigger: el,
-                  start: "top 80%", // wanneer de animatie start
+                  start: "top 80%",
                 },
               });
             },
