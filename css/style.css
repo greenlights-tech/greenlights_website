@@ -187,6 +187,7 @@ button {
   --h3-font-size: clamp(1.75rem, 4vw, 2.5rem);
   --subh3-font-size: clamp(1rem, 4vw, 1.25rem);
   --card-title-font-size: clamp(1.125rem, 4vw, 1.25rem);
+  --home-buttons-font-size: clamp(1.125rem, 4vw, 1.125rem);
   --title-font-size: clamp(1.75rem, 4vw, 2.5rem);
   --h4-font-size: clamp(1rem, 1vw, 1.25rem);
   --p-font-size: clamp(1rem, 1.5vw, 1.25rem);
@@ -697,6 +698,25 @@ nav {
   }
 }
 
+.mid-text-container {
+  /* position: relative;
+  width: 100%;
+  height: 100%; */
+  display: grid;
+
+  /* Center de inhoud zowel horizontaal als verticaal binnen de container */
+  place-items: center;
+
+  /* Maak de container zo breed als de parent */
+  width: 100%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  /* Laat de hoogte bepalen door de inhoud (height: 100% kan problematisch zijn) */
+  /* De container neemt nu de hoogte van de overlappende elementen. */
+  height: auto;
+  border: 1px solid red;
+}
+
 .mid-text-sollicitant {
   width: 100%;
   text-align: center;
@@ -732,18 +752,19 @@ nav {
   font-weight: 400;
   font: 500 normal 1.75rem "Inter", sans-serif;
   letter-spacing: -0.05em;
-  line-height: 1.2;
+  line-height: 1.5;
 }
 
 .mid-text-sollicitant,
 .mid-text-opdrachtgever {
-  position: absolute;
+  /* position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  top: 0;
+  top: 50%; */
+  grid-area: 1 / 1 / 2 / 2;
   /* Gebruik padding op deze elementen om de gewenste 5rem ruimte erboven te creëren */
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  /* padding-top: 2rem;
+  padding-bottom: 2rem; */
   /* Zorg dat de breedte niet te ver uitloopt, maar centreert */
   text-align: center;
   width: 70%;
@@ -769,12 +790,16 @@ nav {
 }
 
 @media (min-width: 768px) {
+}
+@media (min-width: 992px) {
+  .mid-text-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
   .mid-text-sollicitant h2,
   .mid-text-opdrachtgever h2 {
     text-wrap: nowrap;
   }
-}
-@media (min-width: 992px) {
   .icon2-wrapper {
     width: 30%;
   }
@@ -1199,6 +1224,7 @@ button {
 
 .left {
   background-image: url("../images/background6.avif");
+  position: relative;
 }
 /* background-color: rgb(32, 38, 51); */
 
@@ -1206,48 +1232,42 @@ button {
 
 .right {
   background-image: url("../images/background7-kopie.jpg");
+  position: relative;
 }
 
-.centered {
-  /* Dit positioneert het tekstvak absoluut over de knop */
-  position: absolute;
+/* Dit positioneert het tekstvak absoluut over de knop */
+/* position: absolute;
   top: 50%;
   left: 50%;
-  /* Centreert het element zelf ten opzichte van 50%/50% */
-  transform: translate(-50%, -50%);
-  /* display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center; */
-  /* transition: all 0.7s ease; */
-  /* background-color: rgb(0, 230, 104, 0); */
-}
+  transform: translate(-50%, -50%); */
 
 .centered-text {
   font-weight: 400;
-  display: flex;
-  flex-direction: column;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   justify-content: center;
   align-items: center;
   text-align: center;
+  /* border: 1px solid green; */
+  will-change: transform;
 }
 
 .centered-subtext {
   font-family: var(--font-secondary);
-  font-size: var(--h4-font-size);
-  font-size: 1.125rem;
+  font-size: var(--home-buttons-font-size);
   font-weight: 800 normal;
   color: #b9b9b9;
   background-color: transparent;
   border: 0.5px solid gray;
   backdrop-filter: blur(6px);
   /* background-color: #b9b9b9; */
-  padding: 1.75rem 1.75rem;
   border-radius: 0.25rem;
   text-transform: uppercase;
   white-space: nowrap;
-  padding: 0.5rem 2rem;
+  padding: 0.5em 2em;
+  will-change: transform;
   /* color: var(--color-primary);
   color: #20ff85; */
 }
@@ -1273,15 +1293,16 @@ button {
 
 .teasers-container-swiper {
   display: flex;
+  flex-direction: column;
   position: relative;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-around;
   /* padding-top: 2rem;
   margin-top: 5rem;
   padding-bottom: 2rem; */
   width: 100%;
   background-color: transparent;
-  /* border: 1px solid white; */
+  border: 1px solid white;
   visibility: hidden;
   height: calc(100vh - var(--header-height));
 }
@@ -1294,13 +1315,14 @@ button {
   align-items: center;
   width: 100%;
   justify-content: center;
-  /* border: 3px solid black; */
+  border: 3px solid black;
   position: relative;
   --swiper-pagination-color: #1ca45b;
+  overflow: visible !important;
 }
 
 .mySwiper .swiper-wrapper {
-  /* border: 1px solid yellow; */
+  border: 1px solid yellow;
   width: 100%;
 }
 
@@ -1308,9 +1330,10 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid yellow; */
-  padding: 3rem;
-  margin: 5rem;
+  border: 1px solid purple;
+  width: 100%;
+  /* padding: 3rem;
+  margin: 5rem; */
 }
 
 /* WRAPPER & SLIDES */
@@ -1321,7 +1344,8 @@ button {
 
 .teasers-container-swiper .swiper-wrapper {
   /* align-items: stretch; */
-  width: 50%;
+  width: 80%;
+  border: 1px solid white;
 }
 
 .teasers-container-swiper .swiper-slide {
@@ -1329,8 +1353,7 @@ button {
   justify-content: center;
   align-items: center;
   width: 100%;
-  max-width: 100%;
-  /* border: 1px solid black; */
+  border: 1px solid black;
 }
 
 /* .swiper-slide {
@@ -1354,6 +1377,7 @@ button {
   box-shadow: 18px 18px 16px 0 rgba(0, 0, 0, 0.3);
   background-size: auto 100%;
   border-radius: 2vw;
+  will-change: transform;
   /* border: 1px solid purple; */
 }
 
@@ -1377,6 +1401,11 @@ button {
   }
 } */
 
+@media (min-width: 768px) {
+  .teasers-container-swiper .swiper-wrapper {
+    width: 60%;
+  }
+}
 @media (min-width: 992px) {
   .teasers-container-swiper {
     width: 100%;
@@ -1957,7 +1986,7 @@ button {
   font-family: "Inter", sans-serif;
   font-weight: 500;
   line-height: 1.5;
-  min-height: calc(100vh - var(--header-height));
+  min-height: 100vh;
   max-height: none;
   overflow-y: auto;
   z-index: 100;
@@ -2085,7 +2114,7 @@ button {
   font-family: "Inter", sans-serif;
   font-weight: 500;
   line-height: 1.5;
-  min-height: calc(100vh - var(--header-height));
+  min-height: 100vh;
   max-height: none;
   overflow-y: auto;
   z-index: 100;
@@ -2394,7 +2423,7 @@ button {
 .modal {
   display: none;
   position: fixed;
-  z-index: var(--z-popup);
+  z-index: 101;
   left: 0;
   top: 0;
   width: 100%;
@@ -2415,7 +2444,7 @@ button {
   height: auto;
   top: 0px;
   right: 0;
-  transform: translateX(0%);
+  /* transform: translateX(0%); */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   animation: slideIn 1s ease;
 }

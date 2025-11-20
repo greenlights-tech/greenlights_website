@@ -215,14 +215,17 @@ document.addEventListener("DOMContentLoaded", function () {
     const splitTagline = SplitText.create(tagline, {
       type: "chars",
       charsClass: "char",
+      autoSplit: true,
     });
     const splitMidTextSolli = SplitText.create(midTextSolli, {
       type: "chars",
       charsClass: "char",
+      autoSplit: true,
     });
     const splitMidTextOpdr = SplitText.create(midTextOpdr, {
       type: "chars",
       charsClass: "char",
+      autoSplit: true,
     });
 
     // --------- Init GSAP States ----------
@@ -555,6 +558,12 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
       if (!isLargeScreen) {
+        gsap.set([splitMidTextSolli.chars, splitMidTextOpdr.chars], {
+          opacity: 0,
+          yPercent: 180,
+          rotateX: 90,
+          filter: "blur(10px)",
+        });
         // de slideChange event listener koppelen (Tekst animatie)
         swiper.on("slideChange", function () {
           const activeIndex = swiper.activeIndex;
@@ -703,7 +712,7 @@ document.addEventListener("DOMContentLoaded", function () {
         scale: 1.1,
         duration: 0.4,
         ease: "power1.inOut",
-        overwrite: true,
+        // overwrite: true,
       });
 
       // Animatie voor de tekst (verschijnen)
@@ -717,7 +726,7 @@ document.addEventListener("DOMContentLoaded", function () {
           stagger: 0.01,
           duration: 1,
           ease: "power2.out",
-          overwrite: true,
+          // overwrite: true,
         },
         0
       );
@@ -963,6 +972,7 @@ document.addEventListener("DOMContentLoaded", function () {
           type: "words",
           wordsClass: "word",
           mask: "words",
+          // autoSplit: true,
         });
         gsap.set(splitInfoPage.words, {
           yPercent: 100,
