@@ -232,8 +232,8 @@ document.addEventListener("DOMContentLoaded", function () {
     function initStates() {
       gsap.set(
         [
-          solPage,
-          opdPage,
+          // solPage,
+          // opdPage,
           infoContainerEffect,
           infoContainerMV,
           infoContainerHoe,
@@ -288,8 +288,8 @@ document.addEventListener("DOMContentLoaded", function () {
         visibility: "hidden",
       });
 
-      gsap.set(solPage, { xPercent: -100, opacity: 1 });
-      gsap.set(opdPage, { xPercent: 100, opacity: 1 });
+      // gsap.set(solPage, { xPercent: -100, opacity: 1 });
+      // gsap.set(opdPage, { xPercent: 100, opacity: 1 });
     }
 
     // --------- Swiper ----------
@@ -507,50 +507,48 @@ document.addEventListener("DOMContentLoaded", function () {
       swiper.slides.forEach((slide, index) => {
         const teaserElement = slide.querySelector(".teaser-swiper");
 
-        teaserElement.addEventListener("click", function () {
-          // De logica voor het openen van solPage en opdPage
+        teaserElement.addEventListener("click", function (e) {
+          if (lenis) lenis.stop();
 
-          // Stop Lenis scroll bij klik
-          if (lenis) {
-            lenis.stop();
-          }
+          // Bepaal positie van klik op de teaser
+          const rect = e.target.getBoundingClientRect();
+          const centerX = rect.left + rect.width / 2;
+          const centerY = rect.top + rect.height / 2;
 
-          // Slide 0 is Solli, Slide 1 is Opdrachtgever
+          const xPercent = (centerX / window.innerWidth) * 100;
+          const yPercent = (centerY / window.innerHeight) * 100;
+
+          solPage.style.setProperty("--clipX", `${xPercent}%`);
+          solPage.style.setProperty("--clipY", `${yPercent}%`);
+          opdPage.style.setProperty("--clipX", `${xPercent}%`);
+          opdPage.style.setProperty("--clipY", `${yPercent}%`);
+
+          // Slide 0 → solPage openen
           if (index === 0) {
-            // Open de solPage
             gsap.to(solPage, {
-              xPercent: 0,
-              visibility: "visible",
-              duration: 1.5,
+              duration: 1.4,
+              "--clipSize": "160%",
               ease: "power3.inOut",
-              onStart: () => {
-                solPage.classList.add("active");
-              },
+              onStart: () => solPage.classList.add("active"),
               onComplete: () => {
                 showBounceButton(whatsappButton);
                 revealHiddenContent();
-                if (lenis) {
-                  lenis.start();
-                }
+                if (lenis) lenis.start();
               },
             });
-          } else if (index === 1) {
-            // Opdrachtgever
-            // Open de opdPage
+          }
+
+          // Slide 1 → opdPage openen
+          else if (index === 1) {
             gsap.to(opdPage, {
-              xPercent: 0,
-              visibility: "visible",
-              duration: 1.5,
+              duration: 1.4,
+              "--clipSize": "160%",
               ease: "power3.inOut",
-              onStart: () => {
-                opdPage.classList.add("active");
-              },
+              onStart: () => opdPage.classList.add("active"),
               onComplete: () => {
                 showBounceButton(whatsappButton);
                 revealHiddenContent();
-                if (lenis) {
-                  lenis.start();
-                }
+                if (lenis) lenis.start();
               },
             });
           }
@@ -851,45 +849,29 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     newContainer.addEventListener("click", function () {
-      // Stop de Lenis scroll direct
-      if (lenis) {
-        lenis.stop();
+      if (solPage.classList.contains("active")) {
+        closePage(solPage);
       }
-
-      // Controleer en sluit de solpage
-      if (solPage && solPage.classList.contains("active")) {
-        closePage(solPage, -100);
-      }
-
-      // Controleer en sluit de opdpage
-      if (opdPage && opdPage.classList.contains("active")) {
-        closePage(opdPage, 100);
+      if (opdPage.classList.contains("active")) {
+        closePage(opdPage);
       }
     });
 
-    // Functie om de navigatie naar Home af te handelen
-    function closePage(pageElement, targetX) {
-      // Blokkeer de scroll terwijl de overgang plaatsvindt
-      if (lenis) {
-        lenis.stop();
-      }
+    function closePage(pageElement) {
+      if (lenis) lenis.stop();
 
-      // Verberg de WhatsApp-knop terwijl de pagina wegschuift
       hideButton(whatsappButton);
 
-      // Schuif de pagina uit beeld
       gsap.to(pageElement, {
-        xPercent: targetX,
-        duration: 0.8,
+        "--clipSize": "0%", // circle krimpt terug naar 0
+        duration: 1.1,
         ease: "power3.inOut",
         onComplete: () => {
-          // Verwijder de 'active' class na de animatie
           pageElement.classList.remove("active");
-          // ✅ STOP LENIS NU (OF EERDER) OM DE HOMEPAGE STATISCH TE MAKEN
-          if (lenis) {
-            // Stop de scroll op de homepage nadat de overgang klaar is
-            lenis.stop();
-          }
+
+          // reset voor volgende opening
+          pageElement.style.setProperty("--clipSize", "0%");
+          if (lenis) lenis.stop();
         },
       });
     }
@@ -897,16 +879,16 @@ document.addEventListener("DOMContentLoaded", function () {
     // Listener voor de solPage home button
     document
       .getElementById("closeSolli")
-      .addEventListener("click", function (event) {
-        event.preventDefault();
-        closePage(solPage, -100); // SOL pagina schuift naar links (-100%)
-      }); // Listener voor de opdPage home button
+      .addEventListener("click", function (e) {
+        e.preventDefault();
+        closePage(solPage);
+      });
 
     document
       .getElementById("closeOpdrachtgever")
-      .addEventListener("click", function (event) {
-        event.preventDefault();
-        closePage(opdPage, 100);
+      .addEventListener("click", function (e) {
+        e.preventDefault();
+        closePage(opdPage);
       });
 
     /**

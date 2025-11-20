@@ -1973,13 +1973,14 @@ button {
   position: absolute;
   top: 0;
   left: 0;
+
   width: 100%;
   will-change: transform;
   /* padding: 0 100vw; */
   background-color: #303847;
   /* background-color: #9597a7; */
   /* background-color: #d9dadb; */
-  visibility: hidden;
+  /* visibility: hidden; */
   /* color: #202b40; */
   /* color: #151515; */
   font-size: var(--p-font-size);
@@ -1988,8 +1989,14 @@ button {
   line-height: 1.5;
   min-height: 100vh;
   max-height: none;
-  overflow-y: auto;
+  overflow: hidden;
   z-index: 100;
+  /* --clip: 0%;
+  clip-path: circle(0%); */
+  --clipX: 50%;
+  --clipY: 50%;
+  --clipSize: 0%;
+  clip-path: circle(var(--clipSize) at var(--clipX) var(--clipY));
   /* border: 1px solid red; */
 }
 
@@ -2107,7 +2114,7 @@ button {
   background-color: #303847;
   /* background-color: #9597a7; */
   /* background-color: #d9dadb; */
-  visibility: hidden;
+  /* visibility: hidden; */
   /* color: #202b40; */
   /* color: #151515; */
   font-size: var(--p-font-size);
@@ -2116,8 +2123,14 @@ button {
   line-height: 1.5;
   min-height: 100vh;
   max-height: none;
-  overflow-y: auto;
+  overflow: hidden;
   z-index: 100;
+  /* --clip: 0%;
+  clip-path: circle(0%); */
+  --clipX: 50%;
+  --clipY: 50%;
+  --clipSize: 0%;
+  clip-path: circle(var(--clipSize) at var(--clipX) var(--clipY));
 }
 
 .opd-content {
@@ -2295,10 +2308,6 @@ button {
 }
 
 @media (min-width: 992px) {
-  .sol-page,
-  .opd-page {
-    top: 7.5rem; /* header hoogte */
-  }
   .sol-home-button-wrapper,
   .opd-home-button-wrapper {
     display: flex;
