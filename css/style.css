@@ -795,10 +795,7 @@ nav {
   .mid-text-container {
     padding-top: 2rem;
     padding-bottom: 2rem;
-  }
-  .mid-text-sollicitant h2,
-  .mid-text-opdrachtgever h2 {
-    text-wrap: nowrap;
+    width: 100%;
   }
   .icon2-wrapper {
     width: 30%;

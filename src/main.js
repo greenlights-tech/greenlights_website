@@ -216,14 +216,17 @@ document.addEventListener("DOMContentLoaded", function () {
       charsClass: "char",
       autoSplit: true,
     });
+    // Als je split met characters gebruikt, altijd ook words erbij zetten omdat hij anders woorden afbreekt bij schermresizing
     const splitMidTextSolli = SplitText.create(midTextSolli, {
-      type: "chars",
+      type: "chars, words",
       charsClass: "char",
+      wordsClass: "word",
       // autoSplit: true,
     });
-    const splitMidTextOpdr = SplitText.create(midTextOpdr, {
-      type: "chars",
+    let splitMidTextOpdr = SplitText.create(midTextOpdr, {
+      type: "chars, words",
       charsClass: "char",
+      wordsClass: "word",
       // autoSplit: true,
     });
 
