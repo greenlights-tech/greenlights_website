@@ -789,8 +789,8 @@ nav {
   z-index: -1;
 }
 
-@media (min-width: 768px) {
-}
+/* @media (min-width: 768px) {
+} */
 @media (min-width: 992px) {
   .mid-text-container {
     padding-top: 2rem;
