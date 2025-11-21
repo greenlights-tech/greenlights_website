@@ -1973,7 +1973,6 @@ button {
   position: absolute;
   top: 0;
   left: 0;
-
   width: 100%;
   will-change: transform;
   /* padding: 0 100vw; */
@@ -1989,14 +1988,9 @@ button {
   line-height: 1.5;
   min-height: 100vh;
   max-height: none;
-  overflow: hidden;
+  overflow-y: auto;
+  visibility: hidden;
   z-index: 100;
-  /* --clip: 0%;
-  clip-path: circle(0%); */
-  --clipX: 50%;
-  --clipY: 50%;
-  --clipSize: 0%;
-  clip-path: circle(var(--clipSize) at var(--clipX) var(--clipY));
   /* border: 1px solid red; */
 }
 
@@ -2123,14 +2117,9 @@ button {
   line-height: 1.5;
   min-height: 100vh;
   max-height: none;
-  overflow: hidden;
+  overflow-y: auto;
+  visibility: hidden;
   z-index: 100;
-  /* --clip: 0%;
-  clip-path: circle(0%); */
-  --clipX: 50%;
-  --clipY: 50%;
-  --clipSize: 0%;
-  clip-path: circle(var(--clipSize) at var(--clipX) var(--clipY));
 }
 
 .opd-content {

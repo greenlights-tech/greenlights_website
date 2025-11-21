@@ -232,8 +232,8 @@ document.addEventListener("DOMContentLoaded", function () {
     function initStates() {
       gsap.set(
         [
-          // solPage,
-          // opdPage,
+          solPage,
+          opdPage,
           infoContainerEffect,
           infoContainerMV,
           infoContainerHoe,
@@ -288,8 +288,8 @@ document.addEventListener("DOMContentLoaded", function () {
         visibility: "hidden",
       });
 
-      // gsap.set(solPage, { xPercent: -100, opacity: 1 });
-      // gsap.set(opdPage, { xPercent: 100, opacity: 1 });
+      gsap.set(solPage, { xPercent: -100, opacity: 1 });
+      gsap.set(opdPage, { xPercent: 100, opacity: 1 });
     }
 
     // --------- Swiper ----------
@@ -298,18 +298,11 @@ document.addEventListener("DOMContentLoaded", function () {
       if (swiper) return swiper;
 
       swiper = new Swiper(".mySwiper", {
-        zoom: false,
-        effect: "coverflow",
-        grabCursor: true,
-        centeredSlides: true,
+        // grabCursor: true,
+        // centeredSlides: true,
         slidesPerView: "auto",
-        coverflowEffect: {
-          rotate: 50,
-          stretch: 0,
-          depth: 100,
-          modifier: 1,
-          slideShadows: true,
-        },
+        spaceBetween: 24,
+
         pagination: {
           el: ".swiper-pagination",
           clickable: true,
@@ -319,17 +312,14 @@ document.addEventListener("DOMContentLoaded", function () {
           992: {
             // Instellingen voor Desktop
             slidesPerView: 2, // Twee slides naast elkaar
-            centeredSlides: false,
-            effect: "slide",
-            coverflowEffect: undefined,
             spaceBetween: 50,
           },
         },
       });
-      swiper.on("resize", () => swiper.update());
-      window.addEventListener("resize", () => swiper.update());
+      // swiper.on("resize", () => swiper.update());
+      // window.addEventListener("resize", () => swiper.update());
 
-      return swiper;
+      // return swiper;
     }
 
     // --------- Intro Animatie ----------
@@ -507,27 +497,15 @@ document.addEventListener("DOMContentLoaded", function () {
       swiper.slides.forEach((slide, index) => {
         const teaserElement = slide.querySelector(".teaser-swiper");
 
-        teaserElement.addEventListener("click", function (e) {
+        teaserElement.addEventListener("click", function () {
           if (lenis) lenis.stop();
-
-          // Bepaal positie van klik op de teaser
-          const rect = e.target.getBoundingClientRect();
-          const centerX = rect.left + rect.width / 2;
-          const centerY = rect.top + rect.height / 2;
-
-          const xPercent = (centerX / window.innerWidth) * 100;
-          const yPercent = (centerY / window.innerHeight) * 100;
-
-          solPage.style.setProperty("--clipX", `${xPercent}%`);
-          solPage.style.setProperty("--clipY", `${yPercent}%`);
-          opdPage.style.setProperty("--clipX", `${xPercent}%`);
-          opdPage.style.setProperty("--clipY", `${yPercent}%`);
 
           // Slide 0 → solPage openen
           if (index === 0) {
             gsap.to(solPage, {
-              duration: 1.4,
-              "--clipSize": "160%",
+              xPercent: 0,
+              visibility: "visible",
+              duration: 1.5,
               ease: "power3.inOut",
               onStart: () => solPage.classList.add("active"),
               onComplete: () => {
@@ -541,8 +519,9 @@ document.addEventListener("DOMContentLoaded", function () {
           // Slide 1 → opdPage openen
           else if (index === 1) {
             gsap.to(opdPage, {
-              duration: 1.4,
-              "--clipSize": "160%",
+              xPercent: 0,
+              visibility: "visible",
+              duration: 1.5,
               ease: "power3.inOut",
               onStart: () => opdPage.classList.add("active"),
               onComplete: () => {
@@ -849,29 +828,45 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     newContainer.addEventListener("click", function () {
-      if (solPage.classList.contains("active")) {
-        closePage(solPage);
+      // Stop de Lenis scroll direct
+      if (lenis) {
+        lenis.stop();
       }
-      if (opdPage.classList.contains("active")) {
-        closePage(opdPage);
+
+      // Controleer en sluit de solpage
+      if (solPage && solPage.classList.contains("active")) {
+        closePage(solPage, -100);
+      }
+
+      // Controleer en sluit de opdpage
+      if (opdPage && opdPage.classList.contains("active")) {
+        closePage(opdPage, 100);
       }
     });
 
-    function closePage(pageElement) {
-      if (lenis) lenis.stop();
+    // Functie om de navigatie naar Home af te handelen
+    function closePage(pageElement, targetX) {
+      // Blokkeer de scroll terwijl de overgang plaatsvindt
+      if (lenis) {
+        lenis.stop();
+      }
 
+      // Verberg de WhatsApp-knop terwijl de pagina wegschuift
       hideButton(whatsappButton);
 
+      // Schuif de pagina uit beeld
       gsap.to(pageElement, {
-        "--clipSize": "0%", // circle krimpt terug naar 0
-        duration: 1.1,
+        xPercent: targetX,
+        duration: 0.8,
         ease: "power3.inOut",
         onComplete: () => {
+          // Verwijder de 'active' class na de animatie
           pageElement.classList.remove("active");
-
-          // reset voor volgende opening
-          pageElement.style.setProperty("--clipSize", "0%");
-          if (lenis) lenis.stop();
+          // ✅ STOP LENIS NU (OF EERDER) OM DE HOMEPAGE STATISCH TE MAKEN
+          if (lenis) {
+            // Stop de scroll op de homepage nadat de overgang klaar is
+            lenis.stop();
+          }
         },
       });
     }
@@ -879,16 +874,16 @@ document.addEventListener("DOMContentLoaded", function () {
     // Listener voor de solPage home button
     document
       .getElementById("closeSolli")
-      .addEventListener("click", function (e) {
-        e.preventDefault();
-        closePage(solPage);
-      });
+      .addEventListener("click", function (event) {
+        event.preventDefault();
+        closePage(solPage, -100); // SOL pagina schuift naar links (-100%)
+      }); // Listener voor de opdPage home button
 
     document
       .getElementById("closeOpdrachtgever")
-      .addEventListener("click", function (e) {
-        e.preventDefault();
-        closePage(opdPage);
+      .addEventListener("click", function (event) {
+        event.preventDefault();
+        closePage(opdPage, 100);
       });
 
     /**
