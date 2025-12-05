@@ -1,8 +1,8 @@
-export const article1Content = {
+export const articleContent = {
   id: 1,
   title: "Werken in Cybersecurity: Waarom Het Veel Meer Is Dan Hacken",
   image: "./../images/blog/article1.jpg",
-  date: "2025-01-24",
+  date: "24-01-2027",
   text: `
   Cybersecurity. Bij het woord alleen al zie je ze al voor je: hackers in donkere hoodies, schermen vol groene code en een constante digitale oorlog tussen goed en kwaad. Spannend, zeker. Realistisch? Nauwelijks.
 

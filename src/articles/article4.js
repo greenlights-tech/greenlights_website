@@ -1,8 +1,8 @@
-export const article4Content = {
+export const articleContent = {
     id: 4,
     title: "Wat is een traineeship?",
     image: "./../images/blog/article4.jpg",
-    date: "2025-01-27",
+    date: "27-03-2025",
     text: `
     In de zoektocht naar een nieuwe baan zie je ze vaak langskomen: traineeships. Dit kan in alle vormen en maten; je hebt Rijkstraineeships bij de overheid, interne traineeships bij allerlei bedrijven van verzekeraars tot banken, en een groot aanbod aan IT-Traineeships. Maar wat houd een traineeship eigenlijk in, wat is de waarde van een traineeship in de huidige arbeidsmarkt, wat zijn de voordelen voor jou als werkzoekende en hoe sluit Greenlights hierop aan? In dit artikel wordt daar meer over verteld.
 

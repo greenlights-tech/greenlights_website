@@ -1,4 +1,4 @@
-// import { blog } from "./blog.js";
+import { blog } from "./blog.js";
 import { gsap } from "gsap";
 import { Flip } from "gsap/Flip";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -173,7 +173,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // blog.render();
+  blog.render(); // uit commenten is volgens mij onnodig door de: "if (!blogGrid) { return 'leeg object' }" die je hebt toegevoegd. geld ook voor de import { blog } from "./blog.js";
+  // makkelijst is denk om alleen de blog section in html uit te commenten
 
   document.fonts.ready.then(() => {
     // ---------- Globale variabelen ----------
