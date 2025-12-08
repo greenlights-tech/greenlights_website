@@ -6,14 +6,10 @@ import { SplitText } from "gsap/SplitText";
 import { CustomEase } from "gsap/CustomEase";
 import Lenis from "lenis";
 import Swiper from "swiper/bundle";
-import { Pagination } from "swiper/modules";
+// import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 gsap.registerPlugin(Flip, ScrollTrigger, SplitText, CustomEase);
-
-function changeUrl(path, title = null) {
-  window.history.pushState(null, title, path);
-}
 
 // let smoother = ScrollSmoother.create({
 //   wrapper: "#smooth-wrapper",
@@ -40,9 +36,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Disable lag smoothing in GSAP to prevent any delay in scroll animations
   gsap.ticker.lagSmoothing(0);
-
-  // Store original URL to revert back to
-  let originalUrl = window.location.pathname;
 
   // const ticker = document.querySelector(".ticker-content");
   // ticker.style.transform = `translateX(${Math.random() * 100}%)`;
@@ -78,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Modal handling
   var modal = document.getElementById("sol-modal");
   var opdModal = document.getElementById("opd-modal");
-  var span = document.getElementsByClassName("close")[0];
+  var span = document.getElementsByclassName("close")[0];
   var opdSpan = document.querySelector("#opd-modal .close");
 
   document.addEventListener("click", function (event) {
@@ -213,20 +206,20 @@ document.addEventListener("DOMContentLoaded", function () {
     // ---------- Split text voor tagline en mid texts ----------
     const splitTagline = SplitText.create(tagline, {
       type: "chars",
-      charsClass: "char",
+      charsclassName: "char",
       autoSplit: true,
     });
     // Als je split met characters gebruikt, altijd ook words erbij zetten omdat hij anders woorden afbreekt bij schermresizing
     const splitMidTextSolli = SplitText.create(midTextSolli, {
       type: "chars, words",
-      charsClass: "char",
-      wordsClass: "word",
+      charsclassName: "char",
+      wordsclassName: "word",
       // autoSplit: true,
     });
     let splitMidTextOpdr = SplitText.create(midTextOpdr, {
       type: "chars, words",
-      charsClass: "char",
-      wordsClass: "word",
+      charsclassName: "char",
+      wordsclassName: "word",
       // autoSplit: true,
     });
 
@@ -392,7 +385,6 @@ document.addEventListener("DOMContentLoaded", function () {
           color2,
           {
             opacity: 1,
-            ease: "power2.out",
             "stop-color": "#00D661", // Groen 2
             duration: 0.3,
             ease: "power1.out",
@@ -505,7 +497,7 @@ document.addEventListener("DOMContentLoaded", function () {
               visibility: "visible",
               duration: 1.5,
               ease: "power3.inOut",
-              onStart: () => solPage.classList.add("active"),
+              onStart: () => solPage.classNameList.add("active"),
               onComplete: () => {
                 showBounceButton(whatsappButton);
                 revealHiddenContent();
@@ -521,7 +513,7 @@ document.addEventListener("DOMContentLoaded", function () {
               visibility: "visible",
               duration: 1.5,
               ease: "power3.inOut",
-              onStart: () => opdPage.classList.add("active"),
+              onStart: () => opdPage.classNameList.add("active"),
               onComplete: () => {
                 showBounceButton(whatsappButton);
                 revealHiddenContent();
@@ -935,12 +927,12 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       // Controleer en sluit de solpage
-      if (solPage && solPage.classList.contains("active")) {
+      if (solPage && solPage.classNameList.contains("active")) {
         closePage(solPage, -100);
       }
 
       // Controleer en sluit de opdpage
-      if (opdPage && opdPage.classList.contains("active")) {
+      if (opdPage && opdPage.classNameList.contains("active")) {
         closePage(opdPage, 100);
       }
     });
@@ -961,8 +953,8 @@ document.addEventListener("DOMContentLoaded", function () {
         duration: 0.8,
         ease: "power3.inOut",
         onComplete: () => {
-          // Verwijder de 'active' class na de animatie
-          pageElement.classList.remove("active");
+          // Verwijder de 'active' className na de animatie
+          pageElement.classNameList.remove("active");
           // ✅ STOP LENIS NU (OF EERDER) OM DE HOMEPAGE STATISCH TE MAKEN
           if (lenis) {
             // Stop de scroll op de homepage nadat de overgang klaar is
@@ -1016,7 +1008,7 @@ document.addEventListener("DOMContentLoaded", function () {
     //   );
     //   const splitInfoPage2 = SplitText.create(infoContent, {
     //     type: "lines",
-    //     linesClass: "line",
+    //     linesclassName: "line",
     //     mask: "lines",
     //   });
 
@@ -1047,7 +1039,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const alinea = document.querySelectorAll(".alinea");
         const splitInfoPage = SplitText.create(alinea, {
           type: "words",
-          wordsClass: "word",
+          wordsclassName: "word",
           mask: "words",
           // autoSplit: true,
         });
@@ -1086,7 +1078,7 @@ document.addEventListener("DOMContentLoaded", function () {
           // Split in lines
           SplitText.create(el, {
             type: "lines",
-            linesClass: "line",
+            linesclassName: "line",
             mask: "lines",
             autoSplit: true,
             onSplit: (self) => {
@@ -1181,7 +1173,7 @@ document.addEventListener("DOMContentLoaded", function () {
 //   let splitCheckmarks;
 // SplitText.create(".checkmark-container p", {
 //   type: "words, lines",
-//   linesClass: "line",
+//   linesclassName: "line",
 //   autoSplit: true,
 //   mask: "lines",
 //   onSplit: (self) => {

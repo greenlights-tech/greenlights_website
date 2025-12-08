@@ -63,7 +63,7 @@ const blog = (function () {
   ];
 
   const gridSizer = document.createElement("div");
-  gridSizer.classList.add("grid-sizer");
+  gridSizer.classNameList.add("grid-sizer");
   blogGrid.prepend(gridSizer);
 
   const msnry = new Masonry(blogGrid, {
@@ -76,7 +76,7 @@ const blog = (function () {
   function render() {
     articles.forEach((article) => {
       const articleElement = document.createElement("div");
-      articleElement.classList.add("grid-item");
+      articleElement.classNameList.add("grid-item");
 
       const articleImg = document.createElement("img");
       articleImg.src = article.image;
