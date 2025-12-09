@@ -321,14 +321,15 @@ body {
 } */
 
 #root {
-  /* display: flex; */
-  /* flex-direction: column; */
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   position: relative;
-  min-height: 100vh;
+  min-height: auto;
   z-index: 1;
   width: 100%;
   background-color: transparent;
+  border: 1px solid red;
 }
 
 .homepage {
@@ -339,13 +340,18 @@ body {
   background-color: transparent;
   /* background-color: green; */
   display: flex;
-  width: 100%;
   flex-flow: column nowrap;
+  justify-content: center;
+  position: relative;
+  min-height: auto;
+  z-index: 1;
+  width: 100%;
   /* flex-grow: 1; */
   /* animation: animateGlow 10s ease infinite; */
   color: #f1efe0;
   color: #b9b9b9;
   background-color: #303847;
+  border: 1px solid blue;
 }
 
 /* .container-whatsapp-knop {
@@ -1221,7 +1227,7 @@ button {
 /* Teasers universele instellingen */
 
 .left {
-  background-image: url("../images/background6.avif");
+  background-image: url("../assets/background6.avif");
   position: relative;
 }
 /* background-color: rgb(32, 38, 51); */
@@ -1229,7 +1235,7 @@ button {
 /* box-shadow: 14px 2px 25px -8px rgba(0, 0, 0, 0.6) inset; */
 
 .right {
-  background-image: url("../images/background7-kopie.jpg");
+  background-image: url("../assets/background7-kopie.jpg");
   position: relative;
 }
 

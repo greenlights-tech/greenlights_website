@@ -1,28 +1,4 @@
-import { gsap } from "gsap";
-import { useEffect, useRef } from "react";
-
-export const FloatingIcon = () => {
-  const iconRef = useRef(null);
-
-  useEffect(() => {
-    const icon = iconRef.current;
-
-    gsap.set(icon, { visibility: "visible", y: 0, rotation: 0 });
-
-    const floatTL = gsap.timeline({ repeat: -1, yoyo: true });
-    floatTL.to(icon, {
-      y: -20,
-      rotation: 0.5,
-      duration: 3,
-      ease: "sine.inOut",
-      repeat: -1,
-      yoyo: true,
-      delay: gsap.utils.random(0, 1),
-    });
-
-    return () => floatTL.kill();
-  }, []);
-
+export const Icon = () => {
   return (
     <div className="icon2-wrapper">
       <svg
