@@ -4,7 +4,7 @@ import { Flip } from "gsap/Flip";
 import Swiper, { Pagination } from "swiper";
 
 gsap.registerPlugin(SplitText, Flip);
-Swiper.use([Pagination]);
+// Swiper.use([Pagination]);
 
 export function initAnimations({ elements }) {
   document.fonts.ready.then(() => {

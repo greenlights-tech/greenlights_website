@@ -200,7 +200,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const color1 = document.querySelector("#color1");
     const color2 = document.querySelector("#color2");
     const icon2 = document.querySelector(".hero .icon2");
-    const switchButton = $(".switch");
+    const switchButton = document.querySelector(".switch");
     const whatsappButton = document.querySelector(".container-whatsapp-knop");
 
     // ---------- Split text voor tagline en mid texts ----------
@@ -333,7 +333,7 @@ document.addEventListener("DOMContentLoaded", function () {
         delay: gsap.utils.random(0, 1),
       });
 
-      switchButton.one("change", function () {
+      switchButton?.addEventListener("change", () => {
         // Stop de oneindige zweefanimatie
         zweefTL.kill();
 

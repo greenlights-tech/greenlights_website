@@ -7,7 +7,7 @@ export const elements = {
   midTextOpdr: document.querySelector(".mid-text-opdrachtgever"),
   swiperContainer: document.querySelector(".teasers-container-swiper"),
   icon2: document.querySelector(".hero .icon2"),
-  switchButton: $(".switch"),
+  switchButton: document.querySelector(".switch"),
   tagline: document.querySelector(
     ".new-container-wrapper .tagline-wrapper .tagline"
   ),

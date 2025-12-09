@@ -24,7 +24,7 @@ export const FloatingIcon = () => {
   }, []);
 
   return (
-    <div ref={iconRef} className="icon2-wrapper">
+    <div className="icon2-wrapper">
       <svg
         className="icon2"
         width="259"

@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useState } from "react";
 
 const SwitchContext = createContext();
 
@@ -11,4 +11,4 @@ export const SwitchProvider = ({ children }) => {
   );
 };
 
-export const useSwitch = () => useContext(SwitchContext);
+// export const useSwitch = () => useContext(SwitchContext);
