@@ -313,6 +313,50 @@ export const HomePage = () => {
     { dependencies: [endX], scope: container }
   );
 
+  // --- Hover effecten (pointerenter/pointerleave) ---
+  useEffect(() => {
+    const leftSwiper = document.querySelector(".leftSwiper");
+    const rightSwiper = document.querySelector(".rightSwiper");
+    if (!leftSwiper || !rightSwiper) return;
+
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 768px)", () => {
+      // LEFT HOVER IN
+      const onLeftEnter = () =>
+        gsap.to(leftSwiper, {
+          scale: 1.1,
+          duration: 0.4,
+          ease: "power1.inOut",
+        });
+      const onLeftLeave = () =>
+        gsap.to(leftSwiper, { scale: 1, duration: 0.4, ease: "power1.inOut" });
+
+      leftSwiper.addEventListener("pointerenter", onLeftEnter);
+      leftSwiper.addEventListener("pointerleave", onLeftLeave);
+
+      // RIGHT HOVER IN
+      const onRightEnter = () =>
+        gsap.to(rightSwiper, {
+          scale: 1.1,
+          duration: 0.4,
+          ease: "power1.inOut",
+        });
+      const onRightLeave = () =>
+        gsap.to(rightSwiper, { scale: 1, duration: 0.4, ease: "power1.inOut" });
+
+      rightSwiper.addEventListener("pointerenter", onRightEnter);
+      rightSwiper.addEventListener("pointerleave", onRightLeave);
+
+      return () => {
+        leftSwiper.removeEventListener("pointerenter", onLeftEnter);
+        leftSwiper.removeEventListener("pointerleave", onLeftLeave);
+        rightSwiper.removeEventListener("pointerenter", onRightEnter);
+        rightSwiper.removeEventListener("pointerleave", onRightLeave);
+      };
+    });
+  }, []);
+
   return (
     <>
       <div ref={container} className="homepage">
