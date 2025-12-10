@@ -582,6 +582,10 @@ body {
   /* border: 1px solid red; */
 }
 .tagline {
+  text-align: center;
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
   font-weight: 400;
   text-transform: uppercase;
   white-space: nowrap;
@@ -593,7 +597,6 @@ body {
   padding-bottom: 0.5em;
   padding-left: 0.75em;
   padding-right: 0.75em;
-  text-align: center;
   letter-spacing: -0.05em;
   font-family: "MS Gothic", "Courier New", monospace;
   font-size: var(--sublogo-font-size);
@@ -605,6 +608,7 @@ body {
 
 .char {
   display: inline-block;
+  /* z-index: 100; */
 }
 
 /* .new-container .logo {

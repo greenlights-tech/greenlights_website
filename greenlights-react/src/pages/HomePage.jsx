@@ -1,13 +1,13 @@
-import { gsap } from "gsap";
 import { useRef, useState, useEffect } from "react";
 import { initSwiper } from "../utils/initSwiper";
+import { gsap } from "gsap";
 import { Flip } from "gsap/Flip";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
-import { CustomEase } from "gsap/CustomEase";
+// import { CustomEase } from "gsap/CustomEase";
 // import Lenis from "lenis";
 import { useGSAP } from "@gsap/react";
-gsap.registerPlugin(Flip, ScrollTrigger, SplitText, CustomEase, useGSAP);
+gsap.registerPlugin(useGSAP, Flip, ScrollTrigger, SplitText);
 import { Icon } from "../components/Icon";
 export const HomePage = () => {
   const [endX, setEndX] = useState(0);
@@ -66,28 +66,21 @@ export const HomePage = () => {
           ".original-container"
         );
         const newContainer = container.current.querySelector(".new-container");
-        const tagline = container.current.querySelector(
-          ".new-container-wrapper .tagline-wrapper .tagline"
+        // const tagline = document.querySelector(
+        //   ".new-container-wrapper .tagline-wrapper .tagline"
+        // );
+
+        let splitTagline = SplitText.create(
+          ".new-container-wrapper .tagline-wrapper .tagline",
+          {
+            // type: "chars, words",
+            type: "chars",
+            charsclassName: "char",
+            // wordsclassName: "word",
+            // autoSplit: true,
+          }
         );
 
-        let splitTagline = SplitText.create(tagline, {
-          type: "chars",
-          charsclassName: "char",
-          autoSplit: true,
-        });
-        // Als je split met characters gebruikt, altijd ook words erbij zetten omdat hij anders woorden afbreekt bij schermresizing
-        let splitMidTextSolli = SplitText.create(".mid-text-sollicitant", {
-          type: "chars, words",
-          charsclassName: "char",
-          wordsclassName: "word",
-          // autoSplit: true,
-        });
-        let splitMidTextOpdr = SplitText.create(".mid-text-opdrachtgever", {
-          type: "chars, words",
-          charsclassName: "char",
-          wordsclassName: "word",
-          // autoSplit: true,
-        });
         // ---------- Globale variabelen ----------
 
         // let solliTextTL = null;
@@ -113,23 +106,14 @@ export const HomePage = () => {
           "stop-color": "#00000057",
         });
 
-        gsap.set(splitTagline.chars, {
-          opacity: 1,
-        });
+        // gsap.set(splitTagline.chars, {
+        //   opacity: 1,
+        // });
 
-        gsap.set(splitMidTextSolli.chars, {
-          opacity: 0,
-          yPercent: 100,
-          rotateX: -90,
-          filter: "blur(10px)",
-        });
-
-        gsap.set(splitMidTextOpdr.chars, {
-          opacity: 0,
-          yPercent: 100,
-          rotateX: -90,
-          filter: "blur(10px)",
-        });
+        // gsap.set(splitTagline.chars, {
+        //   opacity: 1,
+        //   yPercent: 0,
+        // });
 
         gsap.set(".teasers-container-swiper", {
           scale: 0,
@@ -160,6 +144,11 @@ export const HomePage = () => {
         // gsap.set(opdPage, { xPercent: 100, opacity: 1 });
 
         tl.current = gsap.timeline({ paused: true });
+
+        tl.current.set(splitTagline.chars, {
+          opacity: 0,
+          yPercent: -100,
+        });
         // ---------- Intro + Switch ----------
 
         // Stop de oneindige zweefanimatie
@@ -263,9 +252,12 @@ export const HomePage = () => {
           splitTagline.chars,
           {
             opacity: 1,
-            duration: 1,
-            ease: "power2.out",
-            stagger: 0.05,
+            yPercent: 0,
+            ease: "back",
+            stagger: {
+              amount: 1,
+              from: "begin",
+            },
           },
           2
         );
@@ -356,6 +348,150 @@ export const HomePage = () => {
       };
     });
   }, []);
+
+  // useEffect(() => {
+  //   const leftSwiper = document.querySelector(".leftSwiper");
+  //   const rightSwiper = document.querySelector(".rightSwiper");
+
+  //   const midTextSolli = document.querySelector(".mid-text-sollicitant");
+  //   const midTextOpdr = document.querySelector(".mid-text-opdrachtgever");
+  //   // Als je split met characters gebruikt, altijd ook words erbij zetten omdat hij anders woorden afbreekt bij schermresizing
+  //   let splitMidTextSolli = SplitText.create(midTextSolli, {
+  //     type: "chars, words",
+  //     charsclassName: "char",
+  //     wordsclassName: "word",
+  //     // autoSplit: true,
+  //   });
+  //   let splitMidTextOpdr = SplitText.create(midTextOpdr, {
+  //     type: "chars, words",
+  //     charsclassName: "char",
+  //     wordsclassName: "word",
+  //     // autoSplit: true,
+  //   });
+
+  //   gsap.set(splitMidTextSolli.chars, {
+  //     opacity: 0,
+  //     yPercent: 100,
+  //     rotateX: -90,
+  //     filter: "blur(10px)",
+  //   });
+
+  //   gsap.set(splitMidTextOpdr.chars, {
+  //     opacity: 0,
+  //     yPercent: 100,
+  //     rotateX: -90,
+  //     filter: "blur(10px)",
+  //   });
+
+  //   if (!leftSwiper || !rightSwiper) return;
+
+  //   // SplitText references
+  //   // const splitMidTextSolli = container.current.querySelectorAll(
+  //   //   ".mid-text-sollicitant .char"
+  //   // );
+  //   // const splitMidTextOpdr = container.current.querySelectorAll(
+  //   //   ".mid-text-opdrachtgever .char"
+  //   // );
+
+  //   let solliTextTL = null;
+  //   let opdrTextTL = null;
+
+  //   const mm = gsap.matchMedia();
+
+  //   mm.add("(min-width: 992px)", () => {
+  //     // LEFT HOVER
+  //     const onLeftEnter = () => {
+  //       if (solliTextTL) solliTextTL.kill();
+
+  //       gsap.to(leftSwiper, {
+  //         scale: 1.1,
+  //         duration: 0.4,
+  //         ease: "power1.inOut",
+  //       });
+
+  //       solliTextTL = gsap.timeline({ defaults: { overwrite: true } });
+  //       solliTextTL.to(splitMidTextSolli, {
+  //         opacity: 1,
+  //         yPercent: 20,
+  //         rotateX: 0,
+  //         filter: "blur(0px)",
+  //         stagger: 0.01,
+  //         duration: 1,
+  //         ease: "power2.out",
+  //       });
+  //     };
+
+  //     const onLeftLeave = () => {
+  //       if (solliTextTL) solliTextTL.kill();
+
+  //       gsap.to(leftSwiper, { scale: 1, duration: 0.4, ease: "power1.inOut" });
+
+  //       solliTextTL = gsap.timeline({ defaults: { overwrite: true } });
+  //       solliTextTL.to(splitMidTextSolli, {
+  //         opacity: 0,
+  //         yPercent: 180,
+  //         rotateX: 90,
+  //         filter: "blur(10px)",
+  //         stagger: 0.01,
+  //         duration: 0.5,
+  //         ease: "power2.in",
+  //       });
+  //     };
+
+  //     leftSwiper.addEventListener("pointerenter", onLeftEnter);
+  //     leftSwiper.addEventListener("pointerleave", onLeftLeave);
+
+  //     // RIGHT HOVER
+  //     const onRightEnter = () => {
+  //       if (opdrTextTL) opdrTextTL.kill();
+
+  //       gsap.to(rightSwiper, {
+  //         scale: 1.1,
+  //         duration: 0.4,
+  //         ease: "power1.inOut",
+  //       });
+
+  //       opdrTextTL = gsap.timeline({ defaults: { overwrite: true } });
+  //       opdrTextTL.to(splitMidTextOpdr, {
+  //         opacity: 1,
+  //         yPercent: 20,
+  //         rotateX: 0,
+  //         filter: "blur(0px)",
+  //         stagger: 0.01,
+  //         duration: 1,
+  //         ease: "power2.out",
+  //       });
+  //     };
+
+  //     const onRightLeave = () => {
+  //       if (opdrTextTL) opdrTextTL.kill();
+
+  //       gsap.to(rightSwiper, { scale: 1, duration: 0.4, ease: "power1.inOut" });
+
+  //       opdrTextTL = gsap.timeline({ defaults: { overwrite: true } });
+  //       opdrTextTL.to(splitMidTextOpdr, {
+  //         opacity: 0,
+  //         yPercent: 180,
+  //         rotateX: 90,
+  //         filter: "blur(10px)",
+  //         stagger: 0.01,
+  //         duration: 0.5,
+  //         ease: "power2.in",
+  //       });
+  //     };
+
+  //     rightSwiper.addEventListener("pointerenter", onRightEnter);
+  //     rightSwiper.addEventListener("pointerleave", onRightLeave);
+
+  //     // Cleanup bij unmount
+  //     return () => {
+  //       leftSwiper.removeEventListener("pointerenter", onLeftEnter);
+  //       leftSwiper.removeEventListener("pointerleave", onLeftLeave);
+  //       rightSwiper.removeEventListener("pointerenter", onRightEnter);
+  //       rightSwiper.removeEventListener("pointerleave", onRightLeave);
+  //     };
+  //   });
+  // }, []);
 
   return (
     <>
