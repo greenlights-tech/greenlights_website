@@ -1306,7 +1306,7 @@ button {
   padding-bottom: 2rem; */
   width: 100%;
   background-color: transparent;
-  border: 1px solid white;
+  /* border: 1px solid white; */
   visibility: hidden;
   height: calc(100vh - var(--header-height));
 }
@@ -1326,7 +1326,7 @@ button {
 }
 
 .mySwiper .swiper-wrapper {
-  border: 1px solid yellow;
+  /* border: 1px solid yellow; */
   width: 100%;
 }
 
@@ -1334,7 +1334,7 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px dotted blue;
+  /* border: 1px dotted blue; */
   width: 100%;
   /* padding: 3rem;
   margin: 5rem; */
@@ -1352,7 +1352,7 @@ button {
   width: 100%;
   justify-content: flex-start;
   align-items: flex-start;
-  border: 1px dotted yellow;
+  /* border: 1px dotted yellow; */
 }
 
 .teasers-container-swiper .swiper-slide {
@@ -1360,7 +1360,7 @@ button {
   justify-content: center;
   align-items: center;
   width: 80%;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 /* .swiper-slide {
@@ -1385,7 +1385,7 @@ button {
   background-size: auto 100%;
   border-radius: 2vw;
   will-change: transform;
-  border: 1px solid orange;
+  /* border: 1px solid orange; */
 }
 
 /* .swiper-slide-active {
@@ -1433,11 +1433,11 @@ button {
   }
   .mySwiper {
     align-items: flex-start;
-    width: 60%;
+    width: 70%;
   }
   .teaser-swiper {
     cursor: pointer;
-    /* margin: 3rem; */
+    margin: 3rem;
   }
 }
 
