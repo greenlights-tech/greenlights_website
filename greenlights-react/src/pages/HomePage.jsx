@@ -1,14 +1,11 @@
 import { gsap } from "gsap";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
+import { initSwiper } from "../utils/initSwiper";
 import { Flip } from "gsap/Flip";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 import { CustomEase } from "gsap/CustomEase";
 // import Lenis from "lenis";
-import Swiper from "swiper/bundle";
-import { Pagination } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/pagination";
 import { useGSAP } from "@gsap/react";
 gsap.registerPlugin(Flip, ScrollTrigger, SplitText, CustomEase, useGSAP);
 import { Icon } from "../components/Icon";
@@ -16,6 +13,10 @@ export const HomePage = () => {
   const [endX, setEndX] = useState(0);
   const container = useRef();
   const tl = useRef();
+
+  useEffect(() => {
+    initSwiper();
+  }, []);
 
   // ---------- DOM elementen ----------
   // const bg = document.querySelector(".header .container .bg");
@@ -88,7 +89,7 @@ export const HomePage = () => {
           // autoSplit: true,
         });
         // ---------- Globale variabelen ----------
-        let swiper;
+
         // let solliTextTL = null;
         // let opdrTextTL = null;
 
@@ -157,30 +158,6 @@ export const HomePage = () => {
 
         // gsap.set(solPage, { xPercent: -100, opacity: 1 });
         // gsap.set(opdPage, { xPercent: 100, opacity: 1 });
-
-        // --------- Swiper ----------
-        function initSwiper() {
-          // voorkomt dubbele init
-          if (swiper) return swiper;
-
-          swiper = new Swiper(".mySwiper", {
-            // grabCursor: true,
-            // centeredSlides: true,
-            slidesPerView: 1,
-            spaceBetween: 24,
-
-            pagination: {
-              el: ".swiper-pagination",
-              clickable: true,
-            },
-            breakpoints: {
-              992: {
-                slidesPerView: 2,
-                spaceBetween: 50,
-              },
-            },
-          });
-        }
 
         tl.current = gsap.timeline({ paused: true });
         // ---------- Intro + Switch ----------
@@ -331,8 +308,6 @@ export const HomePage = () => {
         //   // introAnimationCompleted = true;
         //   // Koppelt de hover-events pas als de intro-animatie klaar is
         // });
-
-        initSwiper();
       });
     },
     { dependencies: [endX], scope: container }
