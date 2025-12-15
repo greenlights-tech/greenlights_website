@@ -56,10 +56,8 @@ export const HomePage = () => {
 
   // const whatsappButton = document.querySelector(".container-whatsapp-knop");
 
-  // ---------- SplitText ----------
-
   useGSAP(
-    () => {
+    (context) => {
       document.fonts.ready.then(() => {
         const logo = container.current.querySelector(".child1");
         const originalContainer = container.current.querySelector(
@@ -149,10 +147,8 @@ export const HomePage = () => {
           opacity: 0,
           yPercent: -100,
         });
-        // ---------- Intro + Switch ----------
 
-        // Stop de oneindige zweefanimatie
-        // zweefTL.kill();
+        // ---------- Intro + Switch ----------
 
         tl.current.to(
           ".icon2",
@@ -289,112 +285,135 @@ export const HomePage = () => {
           3
         );
         if (endX > 0) {
-          // Speel af bij de eerste klik (endX = 1)
           tl.current.play();
-          // of als je wilt dat hij telkens opnieuw speelt bij elke klik:
-          // tl.current.restart();
         }
-
-        // tl.eventCallback("onComplete", () => {
-        //   setupSwiperEffects();
-        //   // introAnimationCompleted = true;
-        //   // Koppelt de hover-events pas als de intro-animatie klaar is
-        // });
       });
+      console.log("context", context.data.length);
     },
     { dependencies: [endX], scope: container }
   );
 
-  useGSAP(
-    (context, contextSafe) => {
-      // contextSafe als 2e argument
+  const { contextSafe } = useGSAP({ scope: container });
 
-      // Selecteer elementen binnen de scope
-      const leftSwiper = container.current.querySelector(".leftSwiper");
-      const rightSwiper = container.current.querySelector(".rightSwiper");
+  const mm = gsap.matchMedia();
+  const onLeftEnter = contextSafe(() => {
+    mm.add(
+      {
+        isDesktop: "(min-width: 768px)",
+      },
+      (context) => {
+        let { isDesktop } = context.conditions;
+        gsap.to(".leftSwiper", { scale: isDesktop ? 1.1 : 1, duration: 0.4 });
+      }
+    );
+  });
 
-      if (!leftSwiper || !rightSwiper) return;
+  const onLeftLeave = contextSafe(() => {
+    mm.add(
+      {
+        isDesktop: "(min-width: 768px)",
+      },
+      (context) => {
+        let { isDesktop } = context.conditions;
+        gsap.to(".leftSwiper", { scale: isDesktop ? 1 : 1, duration: 0.4 });
+      }
+    );
+  });
 
-      const mm = gsap.matchMedia();
+  //  const onLeftLeave = contextSafe(() => {
+  //         gsap.to(".leftSwiper", { scale: 1, duration: 0.4 });
+  //       });
 
-      mm.add(
-        {
-          isDesktop: "(min-width: 768px)",
-        },
-        (context) => {
-          let { isDesktop } = context.conditions;
+  // useGSAP(
+  //   (context, contextSafe) => {
+  //     // contextSafe als 2e argument
 
-          // LEFT HOVER IN (Context-Safe gewrapped)
-          const onLeftEnter = contextSafe(() => {
-            gsap.to(leftSwiper, {
-              scale: 1.1,
-              duration: 0.4,
-              ease: "power1.inOut",
-            });
-            // Plaats hier SplitText animatie
-          });
+  //     // Selecteer elementen binnen de scope
+  //     const leftSwiper = container.current.querySelector(".leftSwiper");
+  //     const rightSwiper = container.current.querySelector(".rightSwiper");
 
-          // LEFT HOVER UIT (Context-Safe gewrapped)
-          const onLeftLeave = contextSafe(() => {
-            if (!isDesktop) return;
+  //     if (!leftSwiper || !rightSwiper) return;
 
-            gsap.to(leftSwiper, {
-              scale: 1,
-              duration: 0.4,
-              ease: "power1.inOut",
-            });
-          });
+  //     const mm = gsap.matchMedia();
 
-          // RIGHT HOVER IN
-          const onRightEnter = contextSafe(() => {
-            if (!isDesktop) return;
-            gsap.to(rightSwiper, {
-              scale: 1.1,
-              duration: 0.4,
-              ease: "power1.inOut",
-            });
-          });
+  //     mm.add(
+  //       {
+  //         isDesktop: "(min-width: 768px)",
+  //       },
+  //       (context) => {
+  //         let { isDesktop } = context.conditions;
 
-          // RIGHT HOVER UIT
-          const onRightLeave = contextSafe(() => {
-            if (!isDesktop) return;
-            gsap.to(rightSwiper, {
-              scale: 1,
-              duration: 0.4,
-              ease: "power1.inOut",
-            });
-          });
+  //         // LEFT HOVER IN (Context-Safe gewrapped)
+  //         const onLeftEnter = contextSafe(() => {
+  //           gsap.to(leftSwiper, {
+  //             scale: 1.1,
+  //             duration: 0.4,
+  //             ease: "power1.inOut",
+  //           });
+  //           // hier komt SplitText animatie
+  //         });
 
-          // ------------------------------------------------------------
-          // Event Listeners TOEVOEGEN (alleen als isDesktop true is)
-          // ------------------------------------------------------------
-          if (isDesktop) {
-            leftSwiper.addEventListener("mouseenter", onLeftEnter);
-            leftSwiper.addEventListener("mouseleave", onLeftLeave);
-            rightSwiper.addEventListener("mouseenter", onRightEnter);
-            rightSwiper.addEventListener("mouseleave", onRightLeave);
-          }
+  //         // LEFT HOVER UIT (Context-Safe gewrapped)
+  //         const onLeftLeave = contextSafe(() => {
+  //           if (!isDesktop) return;
 
-          // Cleanup functie voor de MatchMedia query
-          return () => {
-            // Ruim de event listeners op wanneer de media query stopt met matchen
-            leftSwiper.removeEventListener("mouseenter", onLeftEnter);
-            leftSwiper.removeEventListener("mouseleave", onLeftLeave);
-            rightSwiper.removeEventListener("mouseenter", onRightEnter);
-            rightSwiper.removeEventListener("mouseleave", onRightLeave);
-            // SplitText objecten worden hier ook automatisch opgeruimd door GSAP!
-          };
-        },
-        container
-      ); // Scope is het container element
+  //           gsap.to(leftSwiper, {
+  //             scale: 1,
+  //             duration: 0.4,
+  //             ease: "power1.inOut",
+  //           });
+  //         });
 
-      // Cleanup functie voor de useGSAP hook
-      return () => {
-        mm.revert();
-      };
-    },
-    { scope: container, dependencies: [] }
-  );
+  //         // RIGHT HOVER IN
+  //         const onRightEnter = contextSafe(() => {
+  //           if (!isDesktop) return;
+  //           gsap.to(rightSwiper, {
+  //             scale: 1.1,
+  //             duration: 0.4,
+  //             ease: "power1.inOut",
+  //           });
+  //         });
+
+  //         // RIGHT HOVER UIT
+  //         const onRightLeave = contextSafe(() => {
+  //           if (!isDesktop) return;
+  //           gsap.to(rightSwiper, {
+  //             scale: 1,
+  //             duration: 0.4,
+  //             ease: "power1.inOut",
+  //           });
+  //         });
+
+  //         // ------------------------------------------------------------
+  //         // Event Listeners TOEVOEGEN (alleen als isDesktop true is)
+  //         // ------------------------------------------------------------
+  //         if (isDesktop) {
+  //           leftSwiper.addEventListener("mouseenter", onLeftEnter);
+  //           leftSwiper.addEventListener("mouseleave", onLeftLeave);
+  //           rightSwiper.addEventListener("mouseenter", onRightEnter);
+  //           rightSwiper.addEventListener("mouseleave", onRightLeave);
+  //         }
+
+  //         // Cleanup functie voor de MatchMedia query
+  //         return () => {
+  //           // Ruim de event listeners op wanneer de media query stopt met matchen
+  //           leftSwiper.removeEventListener("mouseenter", onLeftEnter);
+  //           leftSwiper.removeEventListener("mouseleave", onLeftLeave);
+  //           rightSwiper.removeEventListener("mouseenter", onRightEnter);
+  //           rightSwiper.removeEventListener("mouseleave", onRightLeave);
+  //           // SplitText objecten worden hier ook automatisch opgeruimd door GSAP!
+  //         };
+  //       },
+  //       container
+  //     ); // Scope is het container element
+
+  //     // Cleanup functie voor de useGSAP hook
+  //     return () => {
+  //       mm.revert();
+  //     };
+  //   },
+  //   { scope: container, dependencies: [] }
+  // );
 
   // useEffect(() => {
   //   const leftSwiper = document.querySelector(".leftSwiper");
@@ -676,9 +695,9 @@ export const HomePage = () => {
                     <div
                       id="openSolliMobile"
                       className="teaser-swiper leftSwiper left"
-                      // onMouseEnter={onLeftEnter}
-                      // onMouseLeave={onLeftLeave}
                       aria-label="Ontdek opdrachten"
+                      onMouseEnter={onLeftEnter}
+                      onMouseLeave={onLeftLeave}
                     >
                       <div className="centered-text">
                         <p className="centered-subtext">
