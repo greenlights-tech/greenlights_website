@@ -296,29 +296,55 @@ export const HomePage = () => {
   const { contextSafe } = useGSAP({ scope: container });
 
   const mm = gsap.matchMedia();
-  const onLeftEnter = contextSafe(() => {
-    mm.add(
-      {
-        isDesktop: "(min-width: 768px)",
-      },
-      (context) => {
-        let { isDesktop } = context.conditions;
-        gsap.to(".leftSwiper", { scale: isDesktop ? 1.1 : 1, duration: 0.4 });
-      }
-    );
-  });
 
-  const onLeftLeave = contextSafe(() => {
-    mm.add(
-      {
-        isDesktop: "(min-width: 768px)",
-      },
-      (context) => {
-        let { isDesktop } = context.conditions;
+  const handlers = {
+    left: { handleEnter: () => {}, handleLeave: () => {} },
+    right: { handleEnter: () => {}, handleLeave: () => {} },
+  };
+
+  contextSafe(() => {
+    mm.add({ isDesktop: "(min-width: 768px)" }, (context) => {
+      const { isDesktop } = context.conditions;
+
+      handlers.left.handleEnter = () => {
+        gsap.to(".leftSwiper", { scale: isDesktop ? 1.1 : 1, duration: 0.4 });
+      };
+      handlers.left.handleLeave = () => {
         gsap.to(".leftSwiper", { scale: isDesktop ? 1 : 1, duration: 0.4 });
-      }
-    );
-  });
+      };
+
+      handlers.right.handleEnter = () => {
+        gsap.to(".rightSwiper", { scale: isDesktop ? 1.1 : 1, duration: 0.4 });
+      };
+      handlers.right.handleLeave = () => {
+        gsap.to(".rightSwiper", { scale: isDesktop ? 1 : 1, duration: 0.4 });
+      };
+    });
+  })();
+
+  // const onLeftEnter = contextSafe(() => {
+  //   mm.add(
+  //     {
+  //       isDesktop: "(min-width: 768px)",
+  //     },
+  //     (context) => {
+  //       let { isDesktop } = context.conditions;
+  //       gsap.to(".leftSwiper", { scale: isDesktop ? 1.1 : 1, duration: 0.4 });
+  //     }
+  //   );
+  // });
+
+  // const onLeftLeave = contextSafe(() => {
+  //   mm.add(
+  //     {
+  //       isDesktop: "(min-width: 768px)",
+  //     },
+  //     (context) => {
+  //       let { isDesktop } = context.conditions;
+  //       gsap.to(".leftSwiper", { scale: isDesktop ? 1 : 1, duration: 0.4 });
+  //     }
+  //   );
+  // });
 
   //  const onLeftLeave = contextSafe(() => {
   //         gsap.to(".leftSwiper", { scale: 1, duration: 0.4 });
@@ -696,8 +722,8 @@ export const HomePage = () => {
                       id="openSolliMobile"
                       className="teaser-swiper leftSwiper left"
                       aria-label="Ontdek opdrachten"
-                      onMouseEnter={onLeftEnter}
-                      onMouseLeave={onLeftLeave}
+                      onMouseEnter={handlers.left.handleEnter}
+                      onMouseLeave={handlers.left.handleLeave}
                     >
                       <div className="centered-text">
                         <p className="centered-subtext">
@@ -711,9 +737,9 @@ export const HomePage = () => {
                     <div
                       id="openOpdrachtgeverMobile"
                       className="teaser-swiper rightSwiper right"
-                      // onMouseEnter={onRightEnter}
-                      // onMouseLeave={onRightLeave}
                       aria-label="Ontdek trainees"
+                      onMouseEnter={handlers.right.handleEnter}
+                      onMouseLeave={handlers.right.handleLeave}
                     >
                       <div className="centered-text">
                         <p className="centered-subtext">
