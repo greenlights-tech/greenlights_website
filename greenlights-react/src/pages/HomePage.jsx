@@ -57,7 +57,7 @@ export const HomePage = () => {
   // const whatsappButton = document.querySelector(".container-whatsapp-knop");
 
   useGSAP(
-    (context) => {
+    (context, contextSafe) => {
       document.fonts.ready.then(() => {
         const logo = container.current.querySelector(".child1");
         const originalContainer = container.current.querySelector(
@@ -284,162 +284,155 @@ export const HomePage = () => {
           },
           3
         );
-        if (endX > 0) {
+        const playTimeline = contextSafe(() => {
           tl.current.play();
+        });
+
+        if (endX > 0) {
+          playTimeline(); // speel de timeline af als endX > 0
         }
       });
-      console.log("context", context.data.length);
     },
     { dependencies: [endX], scope: container }
   );
 
-  const { contextSafe } = useGSAP({ scope: container });
-
-  const mm = gsap.matchMedia();
-
-  const handlers = {
-    left: { handleEnter: () => {}, handleLeave: () => {} },
-    right: { handleEnter: () => {}, handleLeave: () => {} },
-  };
-
-  contextSafe(() => {
-    mm.add({ isDesktop: "(min-width: 768px)" }, (context) => {
-      const { isDesktop } = context.conditions;
-
-      handlers.left.handleEnter = () => {
-        gsap.to(".leftSwiper", { scale: isDesktop ? 1.1 : 1, duration: 0.4 });
-      };
-      handlers.left.handleLeave = () => {
-        gsap.to(".leftSwiper", { scale: isDesktop ? 1 : 1, duration: 0.4 });
-      };
-
-      handlers.right.handleEnter = () => {
-        gsap.to(".rightSwiper", { scale: isDesktop ? 1.1 : 1, duration: 0.4 });
-      };
-      handlers.right.handleLeave = () => {
-        gsap.to(".rightSwiper", { scale: isDesktop ? 1 : 1, duration: 0.4 });
-      };
-    });
-  })();
+  // const { contextSafe } = useGSAP({ scope: container });
 
   // const onLeftEnter = contextSafe(() => {
-  //   mm.add(
-  //     {
-  //       isDesktop: "(min-width: 768px)",
-  //     },
-  //     (context) => {
-  //       let { isDesktop } = context.conditions;
-  //       gsap.to(".leftSwiper", { scale: isDesktop ? 1.1 : 1, duration: 0.4 });
-  //     }
-  //   );
+  //   gsap.to(".leftSwiper", { scale: 1.1, duration: 0.4 });
   // });
 
   // const onLeftLeave = contextSafe(() => {
-  //   mm.add(
-  //     {
-  //       isDesktop: "(min-width: 768px)",
-  //     },
-  //     (context) => {
-  //       let { isDesktop } = context.conditions;
-  //       gsap.to(".leftSwiper", { scale: isDesktop ? 1 : 1, duration: 0.4 });
-  //     }
-  //   );
+  //   gsap.to(".leftSwiper", { scale: 1, duration: 0.4 });
   // });
+
+  // const onRightEnter = contextSafe(() => {
+  //   gsap.to(".rightSwiper", { scale: 1.1, duration: 0.4 });
+  // });
+
+  // const onRightLeave = contextSafe(() => {
+  //   gsap.to(".rightSwiper", { scale: 1, duration: 0.4 });
+  // });
+
+  // const handlers = {
+  //   left: { handleEnter: () => {}, handleLeave: () => {} },
+  //   right: { handleEnter: () => {}, handleLeave: () => {} },
+  // };
+
+  // contextSafe(() => {
+  //   mm.add({ isDesktop: "(min-width: 768px)" }, (context) => {
+  //     const { isDesktop } = context.conditions;
+
+  //     handlers.left.handleEnter = () => {
+  //       gsap.to(".leftSwiper", { scale: isDesktop ? 1.1 : 1, duration: 0.4 });
+  //     };
+  //     handlers.left.handleLeave = () => {
+  //       gsap.to(".leftSwiper", { scale: isDesktop ? 1 : 1, duration: 0.4 });
+  //     };
+
+  //     handlers.right.handleEnter = () => {
+  //       gsap.to(".rightSwiper", { scale: isDesktop ? 1.1 : 1, duration: 0.4 });
+  //     };
+  //     handlers.right.handleLeave = () => {
+  //       gsap.to(".rightSwiper", { scale: isDesktop ? 1 : 1, duration: 0.4 });
+  //     };
+  //   });
+  // })();
 
   //  const onLeftLeave = contextSafe(() => {
   //         gsap.to(".leftSwiper", { scale: 1, duration: 0.4 });
   //       });
 
-  // useGSAP(
-  //   (context, contextSafe) => {
-  //     // contextSafe als 2e argument
+  useGSAP(
+    (context, contextSafe) => {
+      // contextSafe als 2e argument
 
-  //     // Selecteer elementen binnen de scope
-  //     const leftSwiper = container.current.querySelector(".leftSwiper");
-  //     const rightSwiper = container.current.querySelector(".rightSwiper");
+      // Selecteer elementen binnen de scope
+      const leftSwiper = container.current.querySelector(".leftSwiper");
+      const rightSwiper = container.current.querySelector(".rightSwiper");
 
-  //     if (!leftSwiper || !rightSwiper) return;
+      if (!leftSwiper || !rightSwiper) return;
 
-  //     const mm = gsap.matchMedia();
+      const mm = gsap.matchMedia();
 
-  //     mm.add(
-  //       {
-  //         isDesktop: "(min-width: 768px)",
-  //       },
-  //       (context) => {
-  //         let { isDesktop } = context.conditions;
+      mm.add(
+        {
+          isDesktop: "(min-width: 768px)",
+        },
+        (context) => {
+          let { isDesktop } = context.conditions;
 
-  //         // LEFT HOVER IN (Context-Safe gewrapped)
-  //         const onLeftEnter = contextSafe(() => {
-  //           gsap.to(leftSwiper, {
-  //             scale: 1.1,
-  //             duration: 0.4,
-  //             ease: "power1.inOut",
-  //           });
-  //           // hier komt SplitText animatie
-  //         });
+          // LEFT HOVER IN (Context-Safe gewrapped)
+          const onLeftEnter = contextSafe(() => {
+            gsap.to(leftSwiper, {
+              scale: 1.1,
+              duration: 0.4,
+              ease: "power1.inOut",
+            });
+            // hier komt SplitText animatie
+          });
 
-  //         // LEFT HOVER UIT (Context-Safe gewrapped)
-  //         const onLeftLeave = contextSafe(() => {
-  //           if (!isDesktop) return;
+          // LEFT HOVER UIT (Context-Safe gewrapped)
+          const onLeftLeave = contextSafe(() => {
+            if (!isDesktop) return;
 
-  //           gsap.to(leftSwiper, {
-  //             scale: 1,
-  //             duration: 0.4,
-  //             ease: "power1.inOut",
-  //           });
-  //         });
+            gsap.to(leftSwiper, {
+              scale: 1,
+              duration: 0.4,
+              ease: "power1.inOut",
+            });
+          });
 
-  //         // RIGHT HOVER IN
-  //         const onRightEnter = contextSafe(() => {
-  //           if (!isDesktop) return;
-  //           gsap.to(rightSwiper, {
-  //             scale: 1.1,
-  //             duration: 0.4,
-  //             ease: "power1.inOut",
-  //           });
-  //         });
+          // RIGHT HOVER IN
+          const onRightEnter = contextSafe(() => {
+            if (!isDesktop) return;
+            gsap.to(rightSwiper, {
+              scale: 1.1,
+              duration: 0.4,
+              ease: "power1.inOut",
+            });
+          });
 
-  //         // RIGHT HOVER UIT
-  //         const onRightLeave = contextSafe(() => {
-  //           if (!isDesktop) return;
-  //           gsap.to(rightSwiper, {
-  //             scale: 1,
-  //             duration: 0.4,
-  //             ease: "power1.inOut",
-  //           });
-  //         });
+          // RIGHT HOVER UIT
+          const onRightLeave = contextSafe(() => {
+            if (!isDesktop) return;
+            gsap.to(rightSwiper, {
+              scale: 1,
+              duration: 0.4,
+              ease: "power1.inOut",
+            });
+          });
 
-  //         // ------------------------------------------------------------
-  //         // Event Listeners TOEVOEGEN (alleen als isDesktop true is)
-  //         // ------------------------------------------------------------
-  //         if (isDesktop) {
-  //           leftSwiper.addEventListener("mouseenter", onLeftEnter);
-  //           leftSwiper.addEventListener("mouseleave", onLeftLeave);
-  //           rightSwiper.addEventListener("mouseenter", onRightEnter);
-  //           rightSwiper.addEventListener("mouseleave", onRightLeave);
-  //         }
+          // ------------------------------------------------------------
+          // Event Listeners TOEVOEGEN (alleen als isDesktop true is)
+          // ------------------------------------------------------------
+          if (isDesktop) {
+            leftSwiper.addEventListener("mouseenter", onLeftEnter);
+            leftSwiper.addEventListener("mouseleave", onLeftLeave);
+            rightSwiper.addEventListener("mouseenter", onRightEnter);
+            rightSwiper.addEventListener("mouseleave", onRightLeave);
+          }
 
-  //         // Cleanup functie voor de MatchMedia query
-  //         return () => {
-  //           // Ruim de event listeners op wanneer de media query stopt met matchen
-  //           leftSwiper.removeEventListener("mouseenter", onLeftEnter);
-  //           leftSwiper.removeEventListener("mouseleave", onLeftLeave);
-  //           rightSwiper.removeEventListener("mouseenter", onRightEnter);
-  //           rightSwiper.removeEventListener("mouseleave", onRightLeave);
-  //           // SplitText objecten worden hier ook automatisch opgeruimd door GSAP!
-  //         };
-  //       },
-  //       container
-  //     ); // Scope is het container element
+          // Cleanup functie voor de MatchMedia query
+          return () => {
+            // Ruim de event listeners op wanneer de media query stopt met matchen
+            leftSwiper.removeEventListener("mouseenter", onLeftEnter);
+            leftSwiper.removeEventListener("mouseleave", onLeftLeave);
+            rightSwiper.removeEventListener("mouseenter", onRightEnter);
+            rightSwiper.removeEventListener("mouseleave", onRightLeave);
+            // SplitText objecten worden hier ook automatisch opgeruimd door GSAP!
+          };
+        },
+        container
+      ); // Scope is het container element
 
-  //     // Cleanup functie voor de useGSAP hook
-  //     return () => {
-  //       mm.revert();
-  //     };
-  //   },
-  //   { scope: container, dependencies: [] }
-  // );
+      // Cleanup functie voor de useGSAP hook
+      return () => {
+        mm.revert();
+      };
+    },
+    { scope: container, dependencies: [] }
+  );
 
   // useEffect(() => {
   //   const leftSwiper = document.querySelector(".leftSwiper");
@@ -722,8 +715,8 @@ export const HomePage = () => {
                       id="openSolliMobile"
                       className="teaser-swiper leftSwiper left"
                       aria-label="Ontdek opdrachten"
-                      onMouseEnter={handlers.left.handleEnter}
-                      onMouseLeave={handlers.left.handleLeave}
+                      // onMouseEnter={onLeftEnter}
+                      // onMouseLeave={onLeftLeave}
                     >
                       <div className="centered-text">
                         <p className="centered-subtext">
@@ -738,8 +731,8 @@ export const HomePage = () => {
                       id="openOpdrachtgeverMobile"
                       className="teaser-swiper rightSwiper right"
                       aria-label="Ontdek trainees"
-                      onMouseEnter={handlers.right.handleEnter}
-                      onMouseLeave={handlers.right.handleLeave}
+                      // onMouseEnter={onRightEnter}
+                      // onMouseLeave={onRightLeave}
                     >
                       <div className="centered-text">
                         <p className="centered-subtext">

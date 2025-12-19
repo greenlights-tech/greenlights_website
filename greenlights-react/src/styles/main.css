@@ -1389,7 +1389,7 @@ button {
   background-size: auto 100%;
   border-radius: 2vw;
   will-change: transform;
-  /* border: 1px solid orange; */
+  border: 1px solid orange;
 }
 
 /* .swiper-slide-active {
