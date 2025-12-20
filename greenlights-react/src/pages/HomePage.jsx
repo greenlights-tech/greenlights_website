@@ -79,6 +79,14 @@ export const HomePage = () => {
           }
         );
 
+        // Als je split met characters gebruikt, altijd ook words erbij zetten omdat hij anders woorden afbreekt bij schermresizing
+        let splitMidTextSolli = SplitText.create(".mid-text-sollicitant", {
+          type: "chars, words",
+          charsclassName: "char",
+          wordsclassName: "word",
+          // autoSplit: true,
+        });
+
         // ---------- Globale variabelen ----------
 
         // let solliTextTL = null;
@@ -146,6 +154,13 @@ export const HomePage = () => {
         tl.current.set(splitTagline.chars, {
           opacity: 0,
           yPercent: -100,
+        });
+
+        tl.current.set(splitMidTextSolli.chars, {
+          opacity: 0,
+          yPercent: 100,
+          rotateX: -90,
+          filter: "blur(10px)",
         });
 
         // ---------- Intro + Switch ----------
@@ -284,6 +299,28 @@ export const HomePage = () => {
           },
           3
         );
+
+        tl.current.to(
+          ".mid-text-container",
+          {
+            opacity: 1,
+          },
+          2
+        );
+
+        tl.current.to(
+          splitMidTextSolli.chars,
+          {
+            opacity: 1,
+            yPercent: 20,
+            rotateX: 0,
+            filter: "blur(0px)",
+            stagger: 0.01,
+            duration: 1,
+            ease: "power2.out",
+          },
+          4
+        );
         const playTimeline = contextSafe(() => {
           tl.current.play();
         });
@@ -345,91 +382,83 @@ export const HomePage = () => {
 
   useGSAP(
     (context, contextSafe) => {
-      // contextSafe als 2e argument
+      document.fonts.ready.then(() => {
+        // contextSafe als 2e argument
 
-      // Selecteer elementen binnen de scope
-      const leftSwiper = container.current.querySelector(".leftSwiper");
-      const rightSwiper = container.current.querySelector(".rightSwiper");
+        // Selecteer elementen binnen de scope
+        const leftSwiper = container.current.querySelector(".leftSwiper");
+        const rightSwiper = container.current.querySelector(".rightSwiper");
 
-      if (!leftSwiper || !rightSwiper) return;
+        if (!leftSwiper || !rightSwiper) return;
 
-      const mm = gsap.matchMedia();
+        const mm = gsap.matchMedia();
 
-      mm.add(
-        {
-          isDesktop: "(min-width: 768px)",
-        },
-        (context) => {
-          let { isDesktop } = context.conditions;
+        mm.add(
+          {
+            isDesktop: "(min-width: 768px)",
+          },
+          (context) => {
+            let { isDesktop } = context.conditions;
 
-          // LEFT HOVER IN (Context-Safe gewrapped)
-          const onLeftEnter = contextSafe(() => {
-            gsap.to(leftSwiper, {
-              scale: 1.1,
-              duration: 0.4,
-              ease: "power1.inOut",
+            // LEFT HOVER IN (Context-Safe gewrapped)
+            const onLeftEnter = contextSafe(() => {
+              gsap.to(leftSwiper, {
+                scale: 1.1,
+                duration: 0.4,
+                ease: "power1.inOut",
+              });
             });
-            // hier komt SplitText animatie
-          });
 
-          // LEFT HOVER UIT (Context-Safe gewrapped)
-          const onLeftLeave = contextSafe(() => {
-            if (!isDesktop) return;
+            // LEFT HOVER UIT (Context-Safe gewrapped)
+            const onLeftLeave = contextSafe(() => {
+              if (!isDesktop) return;
 
-            gsap.to(leftSwiper, {
-              scale: 1,
-              duration: 0.4,
-              ease: "power1.inOut",
+              gsap.to(leftSwiper, {
+                scale: 1,
+                duration: 0.4,
+                ease: "power1.inOut",
+              });
             });
-          });
 
-          // RIGHT HOVER IN
-          const onRightEnter = contextSafe(() => {
-            if (!isDesktop) return;
-            gsap.to(rightSwiper, {
-              scale: 1.1,
-              duration: 0.4,
-              ease: "power1.inOut",
+            // RIGHT HOVER IN
+            const onRightEnter = contextSafe(() => {
+              if (!isDesktop) return;
+              gsap.to(rightSwiper, {
+                scale: 1.1,
+                duration: 0.4,
+                ease: "power1.inOut",
+              });
             });
-          });
 
-          // RIGHT HOVER UIT
-          const onRightLeave = contextSafe(() => {
-            if (!isDesktop) return;
-            gsap.to(rightSwiper, {
-              scale: 1,
-              duration: 0.4,
-              ease: "power1.inOut",
+            // RIGHT HOVER UIT
+            const onRightLeave = contextSafe(() => {
+              if (!isDesktop) return;
+              gsap.to(rightSwiper, {
+                scale: 1,
+                duration: 0.4,
+                ease: "power1.inOut",
+              });
             });
-          });
 
-          // ------------------------------------------------------------
-          // Event Listeners TOEVOEGEN (alleen als isDesktop true is)
-          // ------------------------------------------------------------
-          if (isDesktop) {
+            // ------------------------------------------------------------
+            // Event Listeners TOEVOEGEN (alleen als isDesktop true is)
+            // ------------------------------------------------------------
+
             leftSwiper.addEventListener("mouseenter", onLeftEnter);
             leftSwiper.addEventListener("mouseleave", onLeftLeave);
             rightSwiper.addEventListener("mouseenter", onRightEnter);
             rightSwiper.addEventListener("mouseleave", onRightLeave);
+
+            return () => {
+              leftSwiper.removeEventListener("mouseenter", onLeftEnter);
+              leftSwiper.removeEventListener("mouseleave", onLeftLeave);
+              rightSwiper.removeEventListener("mouseenter", onRightEnter);
+              rightSwiper.removeEventListener("mouseleave", onRightLeave);
+              // SplitText objecten worden hier ook automatisch opgeruimd door GSAP!
+            };
           }
-
-          // Cleanup functie voor de MatchMedia query
-          return () => {
-            // Ruim de event listeners op wanneer de media query stopt met matchen
-            leftSwiper.removeEventListener("mouseenter", onLeftEnter);
-            leftSwiper.removeEventListener("mouseleave", onLeftLeave);
-            rightSwiper.removeEventListener("mouseenter", onRightEnter);
-            rightSwiper.removeEventListener("mouseleave", onRightLeave);
-            // SplitText objecten worden hier ook automatisch opgeruimd door GSAP!
-          };
-        },
-        container
-      ); // Scope is het container element
-
-      // Cleanup functie voor de useGSAP hook
-      return () => {
-        mm.revert();
-      };
+        );
+      });
     },
     { scope: container, dependencies: [] }
   );
@@ -693,21 +722,21 @@ export const HomePage = () => {
               ></button>
             </div>
             <Icon />
-            <section className="teasers-container-swiper">
-              <div className="mid-text-container">
-                <div className="mid-text-sollicitant">
-                  <h2>
-                    Jij hebt de skills, zij de uitdaging, wij zorgen voor de
-                    match
-                  </h2>
-                </div>
-                <div className="mid-text-opdrachtgever">
+            <div className="mid-text-container">
+              <div className="mid-text-sollicitant">
+                <h2>
+                  Wij versnellen digitale ambities door passend IT-talent te
+                  koppelen
+                </h2>
+              </div>
+              {/* <div className="mid-text-opdrachtgever">
                   <h2>
                     Wij versnellen digitale ambities door passend IT-talent te
                     koppelen
                   </h2>
-                </div>
-              </div>
+                </div> */}
+            </div>
+            <section className="teasers-container-swiper">
               <div className="swiper mySwiper">
                 <div className="swiper-wrapper">
                   <div className="swiper-slide">
