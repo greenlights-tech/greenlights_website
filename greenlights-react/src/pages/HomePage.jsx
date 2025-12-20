@@ -283,6 +283,28 @@ export const HomePage = () => {
           2
         );
 
+        tl.current.to(
+          ".mid-text-container",
+          {
+            opacity: 1,
+          },
+          1
+        );
+
+        tl.current.to(
+          splitMidTextSolli.chars,
+          {
+            opacity: 1,
+            yPercent: 20,
+            rotateX: 0,
+            filter: "blur(0px)",
+            stagger: 0.01,
+            duration: 1,
+            ease: "power2.out",
+          },
+          2
+        );
+
         gsap.set(".teasers-container-swiper", {
           visibility: "visible",
           opacity: 0,
@@ -300,27 +322,6 @@ export const HomePage = () => {
           3
         );
 
-        tl.current.to(
-          ".mid-text-container",
-          {
-            opacity: 1,
-          },
-          2
-        );
-
-        tl.current.to(
-          splitMidTextSolli.chars,
-          {
-            opacity: 1,
-            yPercent: 20,
-            rotateX: 0,
-            filter: "blur(0px)",
-            stagger: 0.01,
-            duration: 1,
-            ease: "power2.out",
-          },
-          4
-        );
         const playTimeline = contextSafe(() => {
           tl.current.play();
         });
