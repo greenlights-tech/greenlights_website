@@ -351,7 +351,7 @@ body {
   color: #f1efe0;
   color: #b9b9b9;
   background-color: #303847;
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
 }
 
 /* .container-whatsapp-knop {
@@ -723,7 +723,7 @@ nav {
   /* Laat de hoogte bepalen door de inhoud (height: 100% kan problematisch zijn) */
   /* De container neemt nu de hoogte van de overlappende elementen. */
   height: auto;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   opacity: 0;
 }
 
@@ -731,7 +731,7 @@ nav {
   width: 100%;
   text-align: center;
   pointer-events: none;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   /* opacity: 0; */
 }
 
@@ -1387,7 +1387,7 @@ button {
   background-size: auto 100%;
   border-radius: 2vw;
   will-change: transform;
-  border: 1px solid orange;
+  /* border: 1px solid orange; */
 }
 
 /* .swiper-slide-active {

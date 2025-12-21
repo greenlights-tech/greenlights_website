@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { HomePage } from "./pages/HomePage";
+import { TalentPage } from "./pages/TalentPage";
+import { ClientPage } from "./pages/ClientPage";
 import { ContactPage } from "./pages/ContactPage";
 import { PrivacyPage } from "./pages/PrivacyPage";
 import { AboutPage } from "./pages/AboutPage";
@@ -18,6 +20,8 @@ const router = createBrowserRouter([
         path: "/",
         element: <HomePage />,
       },
+      { path: "talent", element: <TalentPage /> },
+      { path: "opdrachtgever", element: <ClientPage /> },
       { path: "contact", element: <ContactPage /> },
       { path: "about", element: <AboutPage /> },
       { path: "privacy", element: <PrivacyPage /> },

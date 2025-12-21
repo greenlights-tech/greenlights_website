@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { initSwiper } from "../utils/initSwiper";
 import { gsap } from "gsap";
 import { Flip } from "gsap/Flip";
@@ -17,44 +18,6 @@ export const HomePage = () => {
   useEffect(() => {
     initSwiper();
   }, []);
-
-  // ---------- DOM elementen ----------
-  // const bg = document.querySelector(".header .container .bg");
-  // const logo = document.querySelector(".child1");
-  // const originalContainer = document.querySelector(".original-container");
-  // const newContainer = document.querySelector(".new-container");
-  // const midTextSolli = document.querySelector(".mid-text-sollicitant");
-  // const midTextOpdr = document.querySelector(".mid-text-opdrachtgever");
-  // const swiperContainer = document.querySelector(
-  //   ".teasers-container-swiper"
-  // );
-
-  // const tagline = document.querySelector(
-  //   ".new-container-wrapper .tagline-wrapper .tagline"
-  // );
-
-  // const taglineWrapper = document.querySelector(
-  //   ".new-container-wrapper .tagline-wrapper"
-  // );
-  //   const color1 = document.querySelector("#color1");
-  // const color2 = document.querySelector("#color2");
-  // const icon2 = document.querySelector(".hero .icon2");
-  // const switchButton = document.querySelector(".switch");
-
-  // const leftSwiper = document.querySelector(".leftSwiper");
-  // const rightSwiper = document.querySelector(".rightSwiper");
-  // const solPage = document.querySelector(".sol-page");
-  // const opdPage = document.querySelector(".opd-page");
-  // const infoContainerEffect = document.querySelector(
-  //   ".info-container-effect"
-  // );
-  // const infoContainerMV = document.querySelector(
-  //   ".info-container-missievisie"
-  // );
-  // const infoContainerHoe = document.querySelector(".info-container-hoe");
-  // const footerContainer = document.querySelector(".footer-container");
-
-  // const whatsappButton = document.querySelector(".container-whatsapp-knop");
 
   useGSAP(
     (context, contextSafe) => {
@@ -87,39 +50,12 @@ export const HomePage = () => {
           // autoSplit: true,
         });
 
-        // ---------- Globale variabelen ----------
-
-        // let solliTextTL = null;
-        // let opdrTextTL = null;
-
-        // ---------- Init GSAP states ----------
-        // gsap.set(
-        //   [
-        //     solPage,
-        //     opdPage,
-        //     infoContainerEffect,
-        //     infoContainerMV,
-        //     infoContainerHoe,
-        //     footerContainer,
-        //   ],
-        //   { opacity: 0, visibility: "hidden" }
-        // );
-
         gsap.set(".child1", { visibility: "visible" });
 
         gsap.set(["#color1", "#color2"], {
           opacity: 0.1,
           "stop-color": "#00000057",
         });
-
-        // gsap.set(splitTagline.chars, {
-        //   opacity: 1,
-        // });
-
-        // gsap.set(splitTagline.chars, {
-        //   opacity: 1,
-        //   yPercent: 0,
-        // });
 
         gsap.set(".teasers-container-swiper", {
           scale: 0,
@@ -394,71 +330,66 @@ export const HomePage = () => {
 
         const mm = gsap.matchMedia();
 
-        mm.add(
-          {
-            isDesktop: "(min-width: 768px)",
-          },
-          (context) => {
-            let { isDesktop } = context.conditions;
+        mm.add("(min-width: 768px)", () => {
+          // {
+          //   isDesktop: "(min-width: 768px)",
+          // },
+          // (context) => {
+          //   let { isDesktop } = context.conditions;
 
-            // LEFT HOVER IN (Context-Safe gewrapped)
-            const onLeftEnter = contextSafe(() => {
-              gsap.to(leftSwiper, {
-                scale: 1.1,
-                duration: 0.4,
-                ease: "power1.inOut",
-              });
+          // LEFT HOVER IN (Context-Safe gewrapped)
+          const onLeftEnter = contextSafe(() => {
+            gsap.to(leftSwiper, {
+              scale: 1.1,
+              duration: 0.4,
+              ease: "power1.inOut",
             });
+          });
 
-            // LEFT HOVER UIT (Context-Safe gewrapped)
-            const onLeftLeave = contextSafe(() => {
-              if (!isDesktop) return;
-
-              gsap.to(leftSwiper, {
-                scale: 1,
-                duration: 0.4,
-                ease: "power1.inOut",
-              });
+          // LEFT HOVER UIT (Context-Safe gewrapped)
+          const onLeftLeave = contextSafe(() => {
+            gsap.to(leftSwiper, {
+              scale: 1,
+              duration: 0.4,
+              ease: "power1.inOut",
             });
+          });
 
-            // RIGHT HOVER IN
-            const onRightEnter = contextSafe(() => {
-              if (!isDesktop) return;
-              gsap.to(rightSwiper, {
-                scale: 1.1,
-                duration: 0.4,
-                ease: "power1.inOut",
-              });
+          // RIGHT HOVER IN
+          const onRightEnter = contextSafe(() => {
+            gsap.to(rightSwiper, {
+              scale: 1.1,
+              duration: 0.4,
+              ease: "power1.inOut",
             });
+          });
 
-            // RIGHT HOVER UIT
-            const onRightLeave = contextSafe(() => {
-              if (!isDesktop) return;
-              gsap.to(rightSwiper, {
-                scale: 1,
-                duration: 0.4,
-                ease: "power1.inOut",
-              });
+          // RIGHT HOVER UIT
+          const onRightLeave = contextSafe(() => {
+            gsap.to(rightSwiper, {
+              scale: 1,
+              duration: 0.4,
+              ease: "power1.inOut",
             });
+          });
 
-            // ------------------------------------------------------------
-            // Event Listeners TOEVOEGEN (alleen als isDesktop true is)
-            // ------------------------------------------------------------
+          // ------------------------------------------------------------
+          // Event Listeners TOEVOEGEN (alleen als isDesktop true is)
+          // ------------------------------------------------------------
 
-            leftSwiper.addEventListener("mouseenter", onLeftEnter);
-            leftSwiper.addEventListener("mouseleave", onLeftLeave);
-            rightSwiper.addEventListener("mouseenter", onRightEnter);
-            rightSwiper.addEventListener("mouseleave", onRightLeave);
+          leftSwiper.addEventListener("mouseenter", onLeftEnter);
+          leftSwiper.addEventListener("mouseleave", onLeftLeave);
+          rightSwiper.addEventListener("mouseenter", onRightEnter);
+          rightSwiper.addEventListener("mouseleave", onRightLeave);
 
-            return () => {
-              leftSwiper.removeEventListener("mouseenter", onLeftEnter);
-              leftSwiper.removeEventListener("mouseleave", onLeftLeave);
-              rightSwiper.removeEventListener("mouseenter", onRightEnter);
-              rightSwiper.removeEventListener("mouseleave", onRightLeave);
-              // SplitText objecten worden hier ook automatisch opgeruimd door GSAP!
-            };
-          }
-        );
+          return () => {
+            leftSwiper.removeEventListener("mouseenter", onLeftEnter);
+            leftSwiper.removeEventListener("mouseleave", onLeftLeave);
+            rightSwiper.removeEventListener("mouseenter", onRightEnter);
+            rightSwiper.removeEventListener("mouseleave", onRightLeave);
+            // SplitText objecten worden hier ook automatisch opgeruimd door GSAP!
+          };
+        });
       });
     },
     { scope: container, dependencies: [] }
@@ -741,19 +672,18 @@ export const HomePage = () => {
               <div className="swiper mySwiper">
                 <div className="swiper-wrapper">
                   <div className="swiper-slide">
-                    <div
+                    <Link
+                      to="/talent"
                       id="openSolliMobile"
                       className="teaser-swiper leftSwiper left"
                       aria-label="Ontdek opdrachten"
-                      // onMouseEnter={onLeftEnter}
-                      // onMouseLeave={onLeftLeave}
                     >
                       <div className="centered-text">
                         <p className="centered-subtext">
                           Ontdek <span className="highlight">opdrachten</span>
                         </p>
                       </div>
-                    </div>
+                    </Link>
                   </div>
 
                   <div className="swiper-slide">
