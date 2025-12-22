@@ -1,6 +1,12 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { initSwiper } from "../utils/initSwiper";
+// import { initSwiper } from "../utils/initSwiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, EffectCoverflow } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
+// import { Header } from "../components/Header";
 import { gsap } from "gsap";
 import { Flip } from "gsap/Flip";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -10,13 +16,16 @@ import { SplitText } from "gsap/SplitText";
 import { useGSAP } from "@gsap/react";
 gsap.registerPlugin(useGSAP, Flip, ScrollTrigger, SplitText);
 import { Icon } from "../components/Icon";
+
+let introHasRunGlobal = false;
+
 export const HomePage = () => {
-  const [endX, setEndX] = useState(0);
+  // const [endX, setEndX] = useState(0);
   const container = useRef();
   const tl = useRef();
 
   useEffect(() => {
-    initSwiper();
+    // initSwiper();
   }, []);
 
   useGSAP(
@@ -30,6 +39,8 @@ export const HomePage = () => {
         // const tagline = document.querySelector(
         //   ".new-container-wrapper .tagline-wrapper .tagline"
         // );
+
+        const switchBtn = container.current.querySelector(".switch");
 
         let splitTagline = SplitText.create(
           ".new-container-wrapper .tagline-wrapper .tagline",
@@ -85,7 +96,12 @@ export const HomePage = () => {
         // gsap.set(solPage, { xPercent: -100, opacity: 1 });
         // gsap.set(opdPage, { xPercent: 100, opacity: 1 });
 
-        tl.current = gsap.timeline({ paused: true });
+        tl.current = gsap.timeline({
+          paused: true,
+          onComplete: () => {
+            introHasRunGlobal = true; // Zet op true als de animatie klaar is
+          },
+        });
 
         tl.current.set(splitTagline.chars, {
           opacity: 0,
@@ -112,12 +128,12 @@ export const HomePage = () => {
           0
         );
 
-        const state = Flip.getState(logo);
+        // const state = Flip.getState(logo);
 
-        (logo.parentNode === originalContainer
-          ? newContainer
-          : originalContainer
-        ).appendChild(logo);
+        // (logo.parentNode === originalContainer
+        //   ? newContainer
+        //   : originalContainer
+        // ).appendChild(logo);
 
         tl.current.fromTo(
           logo,
@@ -165,16 +181,16 @@ export const HomePage = () => {
           },
           1 // Start op tijdstip 1, tegelijk met de Flip-animatie
         );
-        tl.current.add(
-          Flip.from(state, {
-            scale: true,
-            duration: 1.2,
-            nested: true,
-            ease: "power2.inOut",
-            zIndex: 1000,
-          }),
-          1
-        );
+        // tl.current.add(
+        //   Flip.from(state, {
+        //     scale: true,
+        //     duration: 1.2,
+        //     nested: true,
+        //     ease: "power2.inOut",
+        //     zIndex: 1000,
+        //   }),
+        //   1
+        // );
         tl.current.to(
           ".switch",
           {
@@ -258,16 +274,49 @@ export const HomePage = () => {
           3
         );
 
-        const playTimeline = contextSafe(() => {
+        const handleStartClick = contextSafe(() => {
+          // FLIP LOGICA HIER:
+          const state = Flip.getState(logo);
+
+          // Verplaats fysiek
+          newContainer.appendChild(logo);
+
+          // Voeg de Flip animatie dynamisch toe aan de bestaande timeline op de juiste seconde
+          tl.current.add(
+            Flip.from(state, {
+              scale: true,
+              duration: 1.2,
+              nested: true,
+              ease: "power2.inOut",
+              zIndex: 1000,
+            }),
+            1 // Starttijd van de flip (matcht met je .child1 glow timing)
+          );
+
           tl.current.play();
         });
 
-        if (endX > 0) {
-          playTimeline(); // speel de timeline af als endX > 0
+        const skipIntro = contextSafe(() => {
+          // Directe DOM verplaatsing voor terugkerende bezoekers
+          if (logo.parentNode !== newContainer) {
+            newContainer.appendChild(logo);
+          }
+          // Forceer de tijdlijn naar het eindpunt (GSAP handelt de Flip eindstand af)
+          tl.current.progress(1);
+          gsap.set(switchBtn, { display: "none" });
+        });
+
+        // --- 5. Uitvoering Check ---
+        if (introHasRunGlobal) {
+          skipIntro();
+        } else {
+          if (switchBtn) {
+            switchBtn.addEventListener("click", handleStartClick);
+          }
         }
       });
     },
-    { dependencies: [endX], scope: container }
+    { scope: container }
   );
 
   // const { contextSafe } = useGSAP({ scope: container });
@@ -543,6 +592,7 @@ export const HomePage = () => {
     <>
       <div ref={container} className="homepage">
         <section id="flip-logo" className="header-hero">
+          {/* <Header /> */}
           <header className="header flicker">
             <div className="container">
               <div className="bg"></div>
@@ -554,6 +604,7 @@ export const HomePage = () => {
               </div>
             </div>
           </header>
+
           <section className="hero">
             <div className="original-container">
               <svg
@@ -649,7 +700,7 @@ export const HomePage = () => {
 
             <div className="switch-container">
               <button
-                onClick={() => setEndX((prev) => prev + 1)}
+                // onClick={() => setEndX((prev) => prev + 1)}
                 className="switch"
               ></button>
             </div>
@@ -669,41 +720,79 @@ export const HomePage = () => {
                 </div> */}
             </div>
             <section className="teasers-container-swiper">
-              <div className="swiper mySwiper">
-                <div className="swiper-wrapper">
-                  <div className="swiper-slide">
-                    <Link
-                      to="/talent"
-                      id="openSolliMobile"
-                      className="teaser-swiper leftSwiper left"
-                      aria-label="Ontdek opdrachten"
-                    >
-                      <div className="centered-text">
-                        <p className="centered-subtext">
-                          Ontdek <span className="highlight">opdrachten</span>
-                        </p>
-                      </div>
-                    </Link>
-                  </div>
+              <Swiper
+                modules={[Pagination, EffectCoverflow]}
+                effect="coverflow"
+                centeredSlides={true}
+                slidesPerView="auto"
+                spaceBetween={24}
+                pagination={{
+                  el: ".swiper-pagination",
+                  clickable: true,
+                }}
+                breakpoints={{
+                  768: {
+                    slidesPerView: 2,
+                    centeredSlides: false,
+                    spaceBetween: 100,
+                    coverflowEffect: {
+                      rotate: 0,
+                      stretch: 0,
+                      depth: 0,
+                      modifier: 0,
+                    },
+                  },
+                }}
+                coverflowEffect={{
+                  rotate: 50,
+                  stretch: 0,
+                  depth: 100,
+                  modifier: 1,
+                  slideShadows: false,
+                }}
+                className="mySwiper"
+                onSwiper={(swiper) => {
+                  // Forceer een update zodra de component mount
+                  setTimeout(() => {
+                    swiper.update();
+                  }, 100);
+                }}
+              >
+                {/* SLIDE 1 */}
+                <SwiperSlide>
+                  <Link
+                    to="/talent"
+                    id="openSolliMobile"
+                    className="teaser-swiper leftSwiper left"
+                    aria-label="Ontdek opdrachten"
+                  >
+                    <div className="centered-text">
+                      <p className="centered-subtext">
+                        Ontdek <span className="highlight">opdrachten</span>
+                      </p>
+                    </div>
+                  </Link>
+                </SwiperSlide>
 
-                  <div className="swiper-slide">
-                    <div
-                      id="openOpdrachtgeverMobile"
-                      className="teaser-swiper rightSwiper right"
-                      aria-label="Ontdek trainees"
-                      // onMouseEnter={onRightEnter}
-                      // onMouseLeave={onRightLeave}
-                    >
-                      <div className="centered-text">
-                        <p className="centered-subtext">
-                          Ontdek <span className="highlight">trainees</span>
-                        </p>
-                      </div>
+                {/* SLIDE 2 */}
+                <SwiperSlide>
+                  <div
+                    id="openOpdrachtgeverMobile"
+                    className="teaser-swiper rightSwiper right"
+                    aria-label="Ontdek trainees"
+                  >
+                    <div className="centered-text">
+                      <p className="centered-subtext">
+                        Ontdek <span className="highlight">trainees</span>
+                      </p>
                     </div>
                   </div>
-                </div>
+                </SwiperSlide>
+
+                {/* De pagination div wordt automatisch beheerd door Swiper React als je de module gebruikt, 
+        maar je kunt de class targeten via de pagination prop hierboven */}
                 <div className="swiper-pagination" aria-hidden="true"></div>
-              </div>
+              </Swiper>
             </section>
           </section>
         </section>

@@ -319,18 +319,24 @@ body {
   justify-content: space-around;
   border: 1px solid red;
 } */
+.layout-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+}
 
-#root {
+/* #root {
   display: flex;
   flex-direction: column;
   justify-content: center;
   position: relative;
-  min-height: auto;
+  min-height: 100vh;
   z-index: 1;
   width: 100%;
   background-color: transparent;
   border: 1px solid red;
-}
+} */
 
 .homepage {
   /* background-color: #303847;
