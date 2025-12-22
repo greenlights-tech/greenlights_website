@@ -1,7 +1,16 @@
+import { useIntro } from "../context/IntroContext";
+import { useLocation } from "react-router-dom";
 export const Header = () => {
+  const { introFinished } = useIntro();
+  const location = useLocation();
+  const isHome = location.pathname === "/";
+
+  // De header is onzichtbaar op Home zolang de intro niet klaar is.
+  // Op alle andere pagina's (!isHome) is hij ALTIJD zichtbaar.
+  const showHeader = !isHome || introFinished;
   return (
     <>
-      <header className="header flicker">
+      <header className={`header flicker ${showHeader ? "show" : ""}`}>
         <div className="container">
           <div className="bg"></div>
           <div className="new-container-wrapper">

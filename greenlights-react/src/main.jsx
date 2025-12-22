@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { HomePage } from "./pages/HomePage";
+import { IntroProvider } from "./context/IntroContext";
 import { TalentPage } from "./pages/TalentPage";
 import { ClientPage } from "./pages/ClientPage";
 import { ContactPage } from "./pages/ContactPage";
@@ -32,6 +33,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <IntroProvider>
+      <RouterProvider router={router} />
+    </IntroProvider>
   </React.StrictMode>
 );

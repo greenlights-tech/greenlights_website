@@ -6,7 +6,7 @@ import { useGSAP } from "@gsap/react";
 // import { Header } from "./Header";
 // import { Footer } from "./Footer";
 import { ScrollToTop } from "./ScrollToTop";
-// import { Header } from "./Header";
+import { Header } from "./Header";
 // import { SwitchProvider } from "../context/SwitchContext";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -16,9 +16,8 @@ export const Root = () => {
     <>
       {/* <SwitchProvider> */}
 
-      {/* <Header /> */}
       <div className="layout-wrapper">
-        {/* <Header /> */}
+        <Header />
         <ScrollToTop />
         <Outlet />
       </div>

@@ -197,7 +197,7 @@ button {
   --font-secondary: "Inter", "Manrope", "Gill Sans MT", sans-serif;
   --font-tertiary: "Overpass Mono", "Gill Sans MT", sans-serif;
 
-  /* --header-height: 7.5rem; */
+  --header-height: 8rem;
 
   /* ===== Z-index scale ===== */
   --z-base: 0;
@@ -526,7 +526,7 @@ body {
 }
 
 .header {
-  height: 7.5rem;
+  height: 8rem;
   /* top: 0;
   left: 0;
   right: 0; */
@@ -650,7 +650,7 @@ nav {
   position: relative;
   align-items: center;
   justify-content: center;
-  min-height: calc(100vh - var(--header-height));
+  height: calc(100vh - var(--header-height));
   /* border: 2px solid blue; */
   /* overflow-x: hidden;
   overflow-y: hidden; */
