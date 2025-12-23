@@ -773,7 +773,8 @@ export const HomePage = () => {
 
                 {/* SLIDE 2 */}
                 <SwiperSlide>
-                  <div
+                  <Link
+                    to="/opdrachtgever"
                     id="openOpdrachtgeverMobile"
                     className="teaser-swiper rightSwiper right"
                     aria-label="Ontdek trainees"
@@ -783,7 +784,7 @@ export const HomePage = () => {
                         Ontdek <span className="highlight">trainees</span>
                       </p>
                     </div>
-                  </div>
+                  </Link>
                 </SwiperSlide>
 
                 {/* De pagination div wordt automatisch beheerd door Swiper React als je de module gebruikt, 
