@@ -70,6 +70,8 @@ export const HomePage = () => {
           "stop-color": "#00000057",
         });
 
+        gsap.set(".bg", { opacity: 0 });
+
         gsap.set(".teasers-container-swiper", {
           scale: 0,
           opacity: 0,
