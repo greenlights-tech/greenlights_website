@@ -356,7 +356,8 @@ body {
   background-color: transparent;
   /* background-color: green; */
   display: flex;
-  flex-flow: column nowrap;
+  flex-direction: column;
+  /* flex-flow: column nowrap; */
   justify-content: center;
   position: relative;
   height: calc(100vh - var(--header-height));
@@ -368,7 +369,7 @@ body {
   color: #b9b9b9;
   background-color: #303847;
   /* overflow-y: hidden; */
-  /* border: 1px solid blue; */
+  border: 1px solid blue;
 }
 
 /* .container-whatsapp-knop {
