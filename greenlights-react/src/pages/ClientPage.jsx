@@ -66,10 +66,12 @@ export const ClientPage = () => {
         </div>
         <div class="meer-weten-container">
           <h4>Meer weten?</h4>
-          <div class="meer-weten-pijl-container" id="meerWetenOpd">
-            <div class="meer-weten-pijl"></div>
-            <div class="meer-weten-pijl"></div>
-          </div>
+          <Link to="/about">
+            <div class="meer-weten-pijl-container" id="meerWetenOpd">
+              <div class="meer-weten-pijl"></div>
+              <div class="meer-weten-pijl"></div>
+            </div>
+          </Link>
         </div>
       </div>
     </section>
