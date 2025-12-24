@@ -72,10 +72,12 @@ export const TalentPage = () => {
 
         <div className="meer-weten-container">
           <h4>Meer weten?</h4>
-          <div className="meer-weten-pijl-container" id="meerWetenSol">
-            <div className="meer-weten-pijl"></div>
-            <div className="meer-weten-pijl"></div>
-          </div>
+          <Link to="/about">
+            <div className="meer-weten-pijl-container" id="meerWetenSol">
+              <div className="meer-weten-pijl"></div>
+              <div className="meer-weten-pijl"></div>
+            </div>
+          </Link>
         </div>
       </div>
     </section>

@@ -1,11 +1,63 @@
 import { Link } from "react-router-dom";
+import { useRef } from "react";
 import { GoChevronLeft } from "react-icons/go";
 import missieVisieSvg from "../assets/missievisie.svg";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+gsap.registerPlugin(useGSAP, ScrollTrigger);
+// import { CustomEase } from "gsap/CustomEase";
+// import Lenis from "lenis";
+
 // import { MdArrowOutward } from "react-icons/md";
 
 export const AboutPage = () => {
+  const container = useRef();
+
+  function initCardSection() {
+    const cards = gsap.utils.toArray(".card");
+    const cardsContainer = document.querySelector(".info-container-hoe");
+
+    cards.forEach((card, index) => {
+      gsap.to(card, {
+        scrollTrigger: {
+          trigger: card,
+          start: () => `top bottom-=100`,
+          end: () => `top top-=100`,
+          scrub: true,
+          // markers: true,
+          invalidateOnRefresh: true,
+        },
+        ease: "power1.in",
+        scale: () => 1 - (cards.length - index) * 0.025,
+      });
+
+      ScrollTrigger.create({
+        trigger: card,
+        start: "center center",
+        pin: true,
+        pinSpacing: false,
+        // markers: true,
+        endTrigger: cardsContainer,
+        end: "bottom bottom",
+        invalidateOnRefresh: true,
+      });
+    });
+  }
+
+  useGSAP(
+    (context, contextSafe) => {
+      document.fonts.ready.then(() => {
+        contextSafe(() => {
+          initCardSection();
+        });
+      });
+    },
+    { scope: container }
+  );
+
   return (
-    <div className="about-page">
+    <div className="about-page" ref={container}>
       <div className="sol-home-button-wrapper">
         <Link to="/">
           <div className="sol-home-button-container" id="closeSolli">

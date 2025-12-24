@@ -10,12 +10,11 @@ import { Header } from "../components/Header";
 import { useIntro } from "../context/IntroContext";
 import { gsap } from "gsap";
 import { Flip } from "gsap/Flip";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 // import { CustomEase } from "gsap/CustomEase";
 // import Lenis from "lenis";
 import { useGSAP } from "@gsap/react";
-gsap.registerPlugin(useGSAP, Flip, ScrollTrigger, SplitText);
+gsap.registerPlugin(useGSAP, Flip, SplitText);
 import { Icon } from "../components/Icon";
 
 let introHasRunGlobal = false;

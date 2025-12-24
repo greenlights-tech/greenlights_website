@@ -294,6 +294,13 @@ body {
   /* -ms-overflow-style: none; */
 }
 
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+}
+
 .show .tagline-wrapper {
   opacity: 1;
 }
