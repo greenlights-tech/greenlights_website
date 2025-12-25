@@ -365,9 +365,9 @@ body,
   display: flex;
   flex-direction: column;
   /* flex-flow: column nowrap; */
-  justify-content: center;
-  position: relative;
-  height: calc(100vh - var(--header-height));
+  justify-content: space-evenly;
+  /* position: relative; */
+  height: calc(100vh - 6.5rem);
   z-index: 1;
   width: 100%;
   /* flex-grow: 1; */
@@ -377,6 +377,15 @@ body,
   background-color: #303847;
   /* overflow-y: hidden; */
   border: 1px solid blue;
+}
+
+.about-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+  border: 1px solid yellow;
 }
 
 /* .container-whatsapp-knop {
@@ -545,7 +554,7 @@ body,
 }
 
 .header {
-  height: auto;
+  height: 6.5rem;
   /* top: 0;
   left: 0;
   right: 0; */
@@ -565,6 +574,7 @@ body,
   inset: 0;
   background-image: linear-gradient(to top, #686563, #686563 30%, #464443);
   background-image: linear-gradient(to top, #374051, #232832 50%, #191d24);
+  /* background-image: linear-gradient(to top, #303847, #232832 60%, #161a20); */
 
   /* background-image: linear-gradient(
     to top,
@@ -579,7 +589,7 @@ body,
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 70%;
+  width: 60%;
   border: 1p solid red;
 }
 
@@ -673,6 +683,16 @@ nav {
 @media (min-width: 768px) {
   .new-container-wrapper {
     width: 25%;
+    border: 1px solid yellow;
+  }
+}
+
+@media (min-width: 992px) {
+  .header {
+    height: 7.25rem;
+  }
+  .homepage {
+    height: calc(100vh - 7.25rem);
   }
 }
 
@@ -685,11 +705,10 @@ nav {
 .hero {
   display: flex;
   flex-direction: column;
-  position: relative;
   align-items: center;
   justify-content: center;
-  height: calc(100vh - var(--header-height));
-  /* border: 2px solid blue; */
+  height: 100%;
+  border: 1px solid red;
   /* overflow-x: hidden;
   overflow-y: hidden; */
 }
@@ -763,12 +782,12 @@ nav {
   height: 100%; */
   /* Maak de container zo breed als de parent */
   width: 100%;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  /* margin-top: 1rem;
+  margin-bottom: 1rem; */
   /* Laat de hoogte bepalen door de inhoud (height: 100% kan problematisch zijn) */
   /* De container neemt nu de hoogte van de overlappende elementen. */
   height: auto;
-  /* border: 1px solid red; */
+  border: 1px solid red;
   opacity: 0;
 }
 
@@ -807,15 +826,14 @@ nav {
   font: 500 normal 1.75rem "Inter", sans-serif;
   letter-spacing: -0.05em;
   line-height: 1.5;
+  border: 1px solid blue;
 }
 
-.mid-text-sollicitant,
-.mid-text-opdrachtgever {
+.mid-text-sollicitant {
   /* position: absolute;
   left: 50%;
   transform: translateX(-50%);
   top: 50%; */
-  grid-area: 1 / 1 / 2 / 2;
   /* Gebruik padding op deze elementen om de gewenste 5rem ruimte erboven te creëren */
   /* padding-top: 2rem;
   padding-bottom: 2rem; */
@@ -2669,7 +2687,7 @@ button {
   border: 1px solid green;
 } */
 
-/* .container {
+/* .info-container {
   display: flex;
   flex-direction: column;
   position: relative;
@@ -2684,11 +2702,13 @@ button {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-bottom: 10rem;
-  /* border: 1px solid blue; */
+  height: 400vh;
+  /* padding-bottom: 10rem;
+  height: 100%; */
+  border: 1px solid blue;
 }
 
-.info-container-hoe .container {
+.info-container-hoe .info-container {
   display: flex;
   width: 100%;
   align-items: center;
@@ -2789,7 +2809,7 @@ button {
   /* border: 1px solid red; */
 }
 
-.info-container-effect .info-container {
+.info-container-effect .container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2990,5 +3010,5 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100vh;
+  height: 100%;
 }

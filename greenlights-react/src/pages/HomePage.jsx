@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import { Link } from "react-router-dom";
 // import { initSwiper } from "../utils/initSwiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -6,7 +6,6 @@ import { Pagination, EffectCoverflow } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
-import { Header } from "../components/Header";
 import { useIntro } from "../context/IntroContext";
 import { gsap } from "gsap";
 import { Flip } from "gsap/Flip";
@@ -24,10 +23,6 @@ export const HomePage = () => {
   const container = useRef();
   const tl = useRef();
   const { introFinished, setIntroFinished } = useIntro();
-
-  useEffect(() => {
-    // initSwiper();
-  }, []);
 
   useGSAP(
     (context, contextSafe) => {
@@ -596,6 +591,20 @@ export const HomePage = () => {
   return (
     <>
       <div ref={container} className="homepage">
+        <div className="mid-text-container">
+          <div className="mid-text-sollicitant">
+            <h2>
+              Wij versnellen digitale ambities door passend IT-talent te
+              koppelen
+            </h2>
+          </div>
+          {/* <div className="mid-text-opdrachtgever">
+                  <h2>
+                    Wij versnellen digitale ambities door passend IT-talent te
+                    koppelen
+                  </h2>
+                </div> */}
+        </div>
         <section id="flip-logo" className="header-hero">
           {/* <Header /> */}
 
@@ -701,20 +710,7 @@ export const HomePage = () => {
               ></button>
             </div>
             <Icon />
-            <div className="mid-text-container">
-              <div className="mid-text-sollicitant">
-                <h2>
-                  Wij versnellen digitale ambities door passend IT-talent te
-                  koppelen
-                </h2>
-              </div>
-              {/* <div className="mid-text-opdrachtgever">
-                  <h2>
-                    Wij versnellen digitale ambities door passend IT-talent te
-                    koppelen
-                  </h2>
-                </div> */}
-            </div>
+
             <section className="teasers-container-swiper">
               <Swiper
                 modules={[Pagination, EffectCoverflow]}
@@ -787,7 +783,7 @@ export const HomePage = () => {
                 </SwiperSlide>
 
                 {/* De pagination div wordt automatisch beheerd door Swiper React als je de module gebruikt, 
-        maar je kunt de class targeten via de pagination prop hierboven */}
+                  maar je kunt de class targeten via de pagination prop hierboven */}
                 <div className="swiper-pagination" aria-hidden="true"></div>
               </Swiper>
             </section>

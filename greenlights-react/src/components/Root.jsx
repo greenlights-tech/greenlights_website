@@ -25,18 +25,19 @@ export const Root = () => {
   return (
     <>
       {/* <SwitchProvider> */}
-
-      <div id="smooth-wrapper" className="layout-wrapper">
+      <div className="smooth-wrapper">
         <div id="smooth-content">
-          <Header />
-          {/* <ScrollToTop /> */}
-          <Outlet />
+          <div className="layout-wrapper">
+            <Header />
+            {/* <ScrollToTop /> */}
+            <Outlet />
+          </div>
+
+          {/* <Footer /> */}
         </div>
 
-        {/* <Footer /> */}
+        {/* </SwitchProvider> */}
       </div>
-
-      {/* </SwitchProvider> */}
     </>
   );
 };

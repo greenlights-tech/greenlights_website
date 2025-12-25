@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import { useRef } from "react";
-import { GoChevronLeft } from "react-icons/go";
-import missieVisieSvg from "../assets/missievisie.svg";
+// import { GoChevronLeft } from "react-icons/go";
+// import missieVisieSvg from "../assets/missievisie.svg";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 // import { CustomEase } from "gsap/CustomEase";
 // import Lenis from "lenis";
@@ -12,61 +13,50 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 // import { MdArrowOutward } from "react-icons/md";
 
 export const AboutPage = () => {
-  const container = useRef();
-
-  function initCardSection() {
-    const cards = gsap.utils.toArray(".card");
-    const cardsContainer = document.querySelector(".info-container-hoe");
-
-    cards.forEach((card, index) => {
-      gsap.to(card, {
-        scrollTrigger: {
-          trigger: card,
-          start: () => `top bottom-=100`,
-          end: () => `top top-=100`,
-          scrub: true,
-          // markers: true,
-          invalidateOnRefresh: true,
-        },
-        ease: "power1.in",
-        scale: () => 1 - (cards.length - index) * 0.025,
-      });
-
-      ScrollTrigger.create({
-        trigger: card,
-        start: "center center",
-        pin: true,
-        pinSpacing: false,
-        // markers: true,
-        endTrigger: cardsContainer,
-        end: "bottom bottom",
-        invalidateOnRefresh: true,
-      });
-    });
-  }
+  const containerAbout = useRef();
 
   useGSAP(
-    (context, contextSafe) => {
+    () => {
+      // // Wacht tot de fonts geladen zijn voor juiste hoogte-berekening
       document.fonts.ready.then(() => {
-        contextSafe(() => {
-          initCardSection();
+        const cards = gsap.utils.toArray(".card");
+
+        cards.forEach((card, index) => {
+          // // 1. Z-index direct goed zetten voor stapeling
+          gsap.set(card, { zIndex: index }); // // Zorg voor achtergrond!
+
+          // // 2. Eén animatie die alles regelt
+          gsap.to(card, {
+            scrollTrigger: {
+              trigger: card,
+              start: "center center",
+              endTrigger: ".info-container-hoe", // // Dit moet nu werken
+              end: "bottom bottom",
+              pin: true,
+              pinSpacing: false,
+              markers: true,
+              invalidateOnRefresh: true,
+            },
+            ease: "none", // // "none" werkt vaak beter voor stacking effecten
+            scale: 1 - (cards.length - index) * 0.025,
+          });
         });
       });
     },
-    { scope: container }
+    { scope: containerAbout } // // Verwijder dependencies: [] als je wilt dat hij goed reageert op de scope
   );
 
   return (
-    <div className="about-page" ref={container}>
-      <div className="sol-home-button-wrapper">
+    <div className="about-page" ref={containerAbout}>
+      {/* <div className="sol-home-button-wrapper">
         <Link to="/">
           <div className="sol-home-button-container" id="closeSolli">
             <div className="sol-home-button"></div>
             <div className="sol-home-button"></div>
           </div>
         </Link>
-      </div>
-      <section className="info-container-effect">
+      </div> */}
+      {/* <section className="info-container-effect">
         <div className="pin-height">
           <div className="info-container">
             <div className="info-title-wie">Over ons</div>
@@ -89,11 +79,12 @@ export const AboutPage = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
-      <section className="info-container-missievisie">
+      {/* <section className="info-container-missievisie">
         <img className="info-missievisie-svg" src={missieVisieSvg} />
-        {/* <!-- <div className="info-title">Missie</div>
+        </section> */}
+      {/* <!-- <div className="info-title">Missie</div>
           <div className="info-content">
             Greenlights stelt zich ten doel om gemotiveerde IT-starters duurzaam
             te verbinden aan organisaties. We doen dit door talent te selecteren
@@ -116,10 +107,9 @@ export const AboutPage = () => {
             waarde — voor talent, voor teams en voor de toekomst.Waar zijn wij
             goed in?
           </div> --> */}
-      </section>
 
       <section className="info-container-hoe">
-        <div className="container">
+        <div className="info-container">
           {/* <!-- <div className="info-title-test">
               <div className="pin">
                 <h2>Hoe het werkt</h2>

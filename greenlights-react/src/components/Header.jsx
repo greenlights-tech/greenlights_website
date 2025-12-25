@@ -12,7 +12,7 @@ export const Header = () => {
   const showHeader = !isHome || introFinished;
   return (
     <>
-      <header className={`header flicker ${showHeader ? "show" : ""}`}>
+      <header className={`header ${showHeader ? "show" : ""}`}>
         <div className="container">
           <div className="bg"></div>
           <div className="new-container-wrapper">
