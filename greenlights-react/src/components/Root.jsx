@@ -6,7 +6,7 @@ import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { useGSAP } from "@gsap/react";
 // import { Header } from "./Header";
 // import { Footer } from "./Footer";
-// import { ScrollToTop } from "./ScrollToTop";
+import { ScrollToTop } from "./ScrollToTop";
 import { Header } from "./Header";
 // import { SwitchProvider } from "../context/SwitchContext";
 
@@ -25,11 +25,12 @@ export const Root = () => {
   return (
     <>
       {/* <SwitchProvider> */}
-      <div className="smooth-wrapper">
+      <ScrollToTop />
+      <div id="smooth-wrapper">
         <div id="smooth-content">
           <div className="layout-wrapper">
             <Header />
-            {/* <ScrollToTop /> */}
+
             <Outlet />
           </div>
 
