@@ -17,45 +17,50 @@ export const AboutPage = () => {
 
   useGSAP(
     () => {
-      // // Wacht tot de fonts geladen zijn voor juiste hoogte-berekening
-      document.fonts.ready.then(() => {
-        const cards = gsap.utils.toArray(".card");
+      const cards = gsap.utils.toArray(".card");
+      const cardsContainer = containerAbout.current.querySelector(
+        ".info-container-hoe"
+      );
 
-        cards.forEach((card, index) => {
-          // // 1. Z-index direct goed zetten voor stapeling
-          gsap.set(card, { zIndex: index }); // // Zorg voor achtergrond!
+      cards.forEach((card, index) => {
+        gsap.to(card, {
+          scrollTrigger: {
+            trigger: card,
+            start: () => `top bottom-=100`,
+            end: () => `top top-=100`,
+            scrub: true,
+            // markers: true,
+            invalidateOnRefresh: true,
+          },
+          ease: "power1.in",
+          scale: () => 1 - (cards.length - index) * 0.025,
+        });
 
-          // // 2. Eén animatie die alles regelt
-          gsap.to(card, {
-            scrollTrigger: {
-              trigger: card,
-              start: "center center",
-              endTrigger: ".info-container-hoe", // // Dit moet nu werken
-              end: "bottom bottom",
-              pin: true,
-              pinSpacing: false,
-              markers: true,
-              invalidateOnRefresh: true,
-            },
-            ease: "none", // // "none" werkt vaak beter voor stacking effecten
-            scale: 1 - (cards.length - index) * 0.025,
-          });
+        ScrollTrigger.create({
+          trigger: card,
+          start: "center center",
+          pin: true,
+          pinSpacing: false,
+          markers: true,
+          endTrigger: cardsContainer,
+          end: "bottom bottom",
+          invalidateOnRefresh: true,
         });
       });
     },
-    { scope: containerAbout } // // Verwijder dependencies: [] als je wilt dat hij goed reageert op de scope
+    { scope: containerAbout }
   );
 
   return (
     <div className="about-page" ref={containerAbout}>
-      {/* <div className="sol-home-button-wrapper">
+      <div className="sol-home-button-wrapper">
         <Link to="/">
           <div className="sol-home-button-container" id="closeSolli">
             <div className="sol-home-button"></div>
             <div className="sol-home-button"></div>
           </div>
         </Link>
-      </div> */}
+      </div>
       {/* <section className="info-container-effect">
         <div className="pin-height">
           <div className="info-container">
@@ -83,7 +88,7 @@ export const AboutPage = () => {
 
       {/* <section className="info-container-missievisie">
         <img className="info-missievisie-svg" src={missieVisieSvg} />
-        </section> */}
+          </section> */}
       {/* <!-- <div className="info-title">Missie</div>
           <div className="info-content">
             Greenlights stelt zich ten doel om gemotiveerde IT-starters duurzaam
@@ -109,7 +114,7 @@ export const AboutPage = () => {
           </div> --> */}
 
       <section className="info-container-hoe">
-        <div className="info-container">
+        <div className="container">
           {/* <!-- <div className="info-title-test">
               <div className="pin">
                 <h2>Hoe het werkt</h2>

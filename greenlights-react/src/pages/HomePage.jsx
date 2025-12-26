@@ -246,7 +246,7 @@ export const HomePage = () => {
           splitMidTextSolli.chars,
           {
             opacity: 1,
-            yPercent: 20,
+            yPercent: 0,
             rotateX: 0,
             filter: "blur(0px)",
             stagger: 0.01,
