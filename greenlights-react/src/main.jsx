@@ -6,7 +6,6 @@ import { TalentPage } from "./pages/TalentPage";
 import { ClientPage } from "./pages/ClientPage";
 import { ContactPage } from "./pages/ContactPage";
 import { PrivacyPage } from "./pages/PrivacyPage";
-import { AboutPage } from "./pages/AboutPage";
 import { BlogPage } from "./pages/BlogPage";
 import "./styles/main.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -24,7 +23,6 @@ const router = createBrowserRouter([
       { path: "talent", element: <TalentPage /> },
       { path: "opdrachtgever", element: <ClientPage /> },
       { path: "contact", element: <ContactPage /> },
-      { path: "about", element: <AboutPage /> },
       { path: "privacy", element: <PrivacyPage /> },
       { path: "blog", element: <BlogPage /> },
     ],

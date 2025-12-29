@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useRef } from "react";
 // import { GoChevronLeft } from "react-icons/go";
-// import missieVisieSvg from "../assets/missievisie.svg";
+import missieVisieSvg from "../assets/missievisie.svg";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -12,7 +12,7 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 // import { MdArrowOutward } from "react-icons/md";
 
-export const AboutPage = () => {
+export const AboutSection = ({ className }) => {
   const containerAbout = useRef();
 
   useGSAP(
@@ -52,15 +52,11 @@ export const AboutPage = () => {
   );
 
   return (
-    <div className="about-page" ref={containerAbout}>
-      <div className="sol-home-button-wrapper">
-        <Link to="/">
-          <div className="sol-home-button-container" id="closeSolli">
-            <div className="sol-home-button"></div>
-            <div className="sol-home-button"></div>
-          </div>
-        </Link>
-      </div>
+    <section
+      id="over-ons"
+      className={`about-component ${className}`}
+      ref={containerAbout}
+    >
       {/* <section className="info-container-effect">
         <div className="pin-height">
           <div className="info-container">
@@ -86,9 +82,9 @@ export const AboutPage = () => {
         </div>
       </section> */}
 
-      {/* <section className="info-container-missievisie">
+      <section className="info-container-missievisie">
         <img className="info-missievisie-svg" src={missieVisieSvg} />
-          </section> */}
+      </section>
       {/* <!-- <div className="info-title">Missie</div>
           <div className="info-content">
             Greenlights stelt zich ten doel om gemotiveerde IT-starters duurzaam
@@ -187,6 +183,6 @@ export const AboutPage = () => {
         </div>
         <div className="container2"></div>
       </section>
-    </div>
+    </section>
   );
 };

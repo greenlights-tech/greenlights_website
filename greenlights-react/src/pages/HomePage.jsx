@@ -146,7 +146,7 @@ export const HomePage = () => {
             duration: 0.3,
             ease: "power2.inOut",
           },
-          0.5 // Start direct
+          0.5
         );
         // Animeer de stop-kleuren terug naar groen
         tl.current.to(
@@ -178,7 +178,7 @@ export const HomePage = () => {
             duration: 1.2,
             ease: "power2.inOut",
           },
-          1 // Start op tijdstip 1, tegelijk met de Flip-animatie
+          1
         );
         // tl.current.add(
         //   Flip.from(state, {
@@ -198,7 +198,7 @@ export const HomePage = () => {
             duration: 0.3,
             ease: "power2.out",
           },
-          0.7 // Start tegelijk met de Flip
+          0.7
         );
 
         tl.current.to(
@@ -280,7 +280,6 @@ export const HomePage = () => {
           // Verplaats fysiek
           newContainer.appendChild(logo);
 
-          // Voeg de Flip animatie dynamisch toe aan de bestaande timeline op de juiste seconde
           tl.current.add(
             Flip.from(state, {
               scale: true,
@@ -289,7 +288,7 @@ export const HomePage = () => {
               ease: "power2.inOut",
               zIndex: 1000,
             }),
-            1 // Starttijd van de flip (matcht met je .child1 glow timing)
+            1
           );
 
           tl.current.play();
@@ -306,7 +305,7 @@ export const HomePage = () => {
           gsap.set(switchBtn, { display: "none" });
         });
 
-        // --- 5. Uitvoering Check ---
+        // Uitvoering check
         if (introHasRunGlobal) {
           skipIntro();
         } else {
