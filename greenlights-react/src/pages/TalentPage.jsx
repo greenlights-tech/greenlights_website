@@ -5,6 +5,8 @@ import { useGSAP } from "@gsap/react";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { AboutSection } from "../components/AboutSection";
+import { BlogSection } from "../components/BlogSection";
+import { Footer } from "../components/Footer";
 import { GoChevronLeft } from "react-icons/go";
 // import { MdArrowOutward } from "react-icons/md";
 
@@ -76,7 +78,8 @@ export const TalentPage = () => {
       <nav className="nav-bar">
         <button onClick={() => scrollToSection("#belofte")}>Belofte</button>
         <button onClick={() => scrollToSection("#over-ons")}>Over ons</button>
-        {/* <button onClick={() => scrollToSection("#blog")}>Blog</button> */}
+        <button onClick={() => scrollToSection("#blog")}>Blog</button>
+        <button onClick={() => scrollToSection("#contact")}>Contact</button>
       </nav>
       <div className="sol-home-button-wrapper">
         <Link to="/">
@@ -156,6 +159,8 @@ export const TalentPage = () => {
       </section>
 
       <AboutSection className="talent-section" />
+      <BlogSection className="talent-section" />
+      <Footer className="talent-section" />
     </div>
   );
 };

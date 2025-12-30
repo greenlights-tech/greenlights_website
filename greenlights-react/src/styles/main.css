@@ -389,6 +389,15 @@ body,
   border: 1px solid yellow;
 }
 
+.blog-component {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: auto;
+  width: 100%;
+  border: 1px solid yellow;
+}
+
 /* .container-whatsapp-knop {
   position: fixed;
   bottom: 2rem;

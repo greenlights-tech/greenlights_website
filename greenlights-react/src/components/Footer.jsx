@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-export const Footer = () => {
+export const Footer = ({ className }) => {
   return (
-    <footer className="footer-container">
+    <footer id="contact" className={`footer-container ${className}`}>
       {/* <!-- <div className="footer-ticker">
             <div className="ticker-content">
               HIER KAN JE TEKST NEERZETTEN OVER GREENLIGHTS · NOG · EVEN ·

@@ -5,6 +5,8 @@ import { useGSAP } from "@gsap/react";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { AboutSection } from "../components/AboutSection";
+import { BlogSection } from "../components/BlogSection";
+import { Footer } from "../components/Footer";
 import { GoChevronLeft } from "react-icons/go";
 // import { MdArrowOutward } from "react-icons/md";
 
@@ -17,7 +19,7 @@ export const ClientPage = () => {
 
   const scrollToSection = (id) => {
     gsap.to(window, {
-      duration: 1.5,
+      duration: 1,
       scrollTo: { y: id, offsetY: 0, autoKill: true },
       ease: "power4.inOut",
     });
@@ -65,7 +67,8 @@ export const ClientPage = () => {
       <nav className="nav-bar">
         <button onClick={() => scrollToSection("#belofte")}>Belofte</button>
         <button onClick={() => scrollToSection("#over-ons")}>Over ons</button>
-        {/* <button onClick={() => scrollToSection("#blog")}>Blog</button> */}
+        <button onClick={() => scrollToSection("#blog")}>Blog</button>
+        <button onClick={() => scrollToSection("#contact")}>Contact</button>
       </nav>
       <div className="opd-home-button-wrapper">
         <Link to="/">
@@ -141,6 +144,8 @@ export const ClientPage = () => {
       </section>
 
       <AboutSection className="client-section" />
+      <BlogSection className="client-section" />
+      <Footer className="client-section" />
     </div>
   );
 };

@@ -31,6 +31,8 @@ export const AboutSection = ({ className }) => {
             scrub: true,
             // markers: true,
             invalidateOnRefresh: true,
+            fastScrollEnd: true,
+            preventOverlaps: true,
           },
           ease: "power1.in",
           scale: () => 1 - (cards.length - index) * 0.025,
@@ -45,6 +47,8 @@ export const AboutSection = ({ className }) => {
           endTrigger: cardsContainer,
           end: "bottom bottom",
           invalidateOnRefresh: true,
+          fastScrollEnd: true,
+          preventOverlaps: true,
         });
       });
     },

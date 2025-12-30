@@ -10,7 +10,7 @@ export const Header = () => {
   const headerRef = useRef(null);
   const reactLogoRef = useRef(null);
 
-  // // Deze ref zorgt ervoor dat we per pagina-wissel maar ÉÉN keer animeren
+  // Deze ref zorgt ervoor dat we per pagina-wissel maar ÉÉN keer animeren
   const hasAnimatedRef = useRef("");
 
   useGSAP(
@@ -19,14 +19,14 @@ export const Header = () => {
       if (!container) return;
       const logos = container.querySelectorAll(".child1");
 
-      // // 1. ALTIJD opruimen (voorkomt dubbele logo's ongeacht de animatie)
+      // ALTIJD opruimen (voorkomt dubbele logo's ongeacht de animatie)
       if (!isHome) {
         logos.forEach((logo) => {
           if (logo !== reactLogoRef.current) logo.remove();
         });
 
-        // // 2. ALLEEN animeren als dit pad nog niet geanimeerd is
-        // // ÉN als de intro klaar is (of we niet op home zijn)
+        // ALLEEN animeren als dit pad nog niet geanimeerd is
+        // ÉN als de intro klaar is (of we niet op home zijn)
         const shouldAnimate = hasAnimatedRef.current !== location.pathname;
 
         if (shouldAnimate && headerRef.current) {
@@ -37,7 +37,7 @@ export const Header = () => {
 
           gsap.fromTo(
             headerRef.current,
-            { opacity: 0, y: -20 },
+            { opacity: 0, y: -50 },
             {
               opacity: 1,
               y: 0,
@@ -65,7 +65,7 @@ export const Header = () => {
     },
     { dependencies: [location.pathname, introFinished] }
   );
-  // // ^ De dependencies zorgen ervoor dat de animatie alleen start als de pagina echt verandert
+  // De dependencies zorgen ervoor dat de animatie alleen start als de pagina echt verandert
 
   const showHeader = !isHome || introFinished;
   const shouldRenderLogo = !isHome || introFinished;
@@ -85,6 +85,9 @@ export const Header = () => {
                   ref={reactLogoRef}
                   className="child1"
                   data-flip-id="image"
+                  style={{
+                    filter: "drop-shadow(0 0 1px #00dc82)",
+                  }}
                   width="379"
                   height="36"
                   viewBox="0 0 379 36"
