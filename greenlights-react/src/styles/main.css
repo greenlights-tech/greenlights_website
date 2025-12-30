@@ -591,7 +591,7 @@ body,
   flex-direction: column;
   align-items: center;
   width: 60%;
-  border: 1p solid red;
+  /* border: 1px solid red; */
 }
 
 .new-container {
@@ -709,7 +709,7 @@ nav {
   align-items: center;
   justify-content: center;
   height: 100%;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   /* overflow-x: hidden;
   overflow-y: hidden; */
 }
@@ -788,7 +788,7 @@ nav {
   /* Laat de hoogte bepalen door de inhoud (height: 100% kan problematisch zijn) */
   /* De container neemt nu de hoogte van de overlappende elementen. */
   height: auto;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   opacity: 0;
 }
 

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { useIntro } from "../context/IntroContext";
 import { useLocation } from "react-router-dom";
 import { gsap } from "gsap";
@@ -9,36 +9,44 @@ export const Header = () => {
   const headerRef = useRef(null);
   const reactLogoRef = useRef(null);
 
-  useEffect(() => {
-    if (!isHome) {
-      // Ruim de Flip-logo op
-      const container = document.querySelector(".new-container");
-      if (container) {
-        const logos = container.querySelectorAll(".child1");
-        logos.forEach((logo) => {
-          if (logo !== reactLogoRef.current) logo.remove();
-        });
-      }
+  useLayoutEffect(() => {
+    const container = document.querySelector(".new-container");
+    if (!container) return;
 
-      // Laat de HELE header van boven naar beneden infaden
+    const logos = container.querySelectorAll(".child1");
+
+    if (!isHome) {
+      // // 1. OP ANDERE PAGINA'S: Ruim de Flip-kopie op
+      logos.forEach((logo) => {
+        if (logo !== reactLogoRef.current) {
+          logo.remove();
+        }
+      });
+
+      // // Start de slide-down animatie
       if (headerRef.current) {
         gsap.fromTo(
           headerRef.current,
           { y: -20, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 1,
-            ease: "power3.out",
-          }
+          { y: 0, opacity: 1, duration: 1, ease: "power3.out" }
         );
       }
+    } else if (isHome && introFinished) {
+      // // 2. OP DE HOMEPAGE:
+      // // Als er twee logo's zijn (Flip + React), verwijder de Flip-versie (de eerste).
+      // // De React-versie (logos[1]) blijft staan met alle ID's (#color1 etc.) intact.
+      if (logos.length > 1) {
+        logos[0].remove();
+      }
     }
-  }, [location.pathname, isHome]);
+  }, [location.pathname, isHome, introFinished]);
 
-  // De header is onzichtbaar op Home zolang de intro niet klaar is.
-  // Op alle andere pagina's (!isHome) is hij altijd zichtbaar.
   const showHeader = !isHome || introFinished;
+
+  // // HIER IS DE BELANGRIJKSTE WIJZIGING:
+  // // We tekenen het logo ALTIJD (behalve op home als de intro nog bezig is).
+  // // We laten de useLayoutEffect hierboven bepalen welke van de twee logo's weg moet.
+  const shouldRenderLogo = !isHome || introFinished;
   return (
     <>
       <header
@@ -50,7 +58,7 @@ export const Header = () => {
           <div className="bg"></div>
           <div className="new-container-wrapper">
             <div className="new-container" data-flip-id="image">
-              {(!isHome || (isHome && introFinished)) && (
+              {shouldRenderLogo && (
                 <svg
                   ref={reactLogoRef}
                   className="child1"
