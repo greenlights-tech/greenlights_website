@@ -17,7 +17,10 @@ export const TalentPage = () => {
 
   const scrollToSection = (id) => {
     gsap.to(window, {
-      duration: 1.5,
+      duration: 1,
+      //To have ScrollToPlugin automatically sense if the scroll position was changed outside of itself
+      // (like if the user manually started dragging the scrollbar mid-tween)
+      // and cancel that portion of the tween, set autoKill: trueinside the scrollTo object
       scrollTo: { y: id, offsetY: 0, autoKill: true },
       ease: "power4.inOut",
     });
@@ -27,9 +30,17 @@ export const TalentPage = () => {
   // Alleen als je de pagina vers opent, kijkt hij of er een #hash is en scrollt hij daarheen
   useEffect(() => {
     if (hash) {
-      document.fonts.ready.then(() => {
-        scrollToSection(hash);
-      });
+      const timer = setTimeout(() => {
+        document.fonts.ready.then(() => {
+          // // Forceer GSAP om alle hoogtes opnieuw te berekenen
+          ScrollTrigger.refresh();
+
+          // // Scroll nu pas naar de sectie
+          scrollToSection(hash);
+        });
+      }, 200); // // 200ms is genoeg voor de Header-check en de Smoother
+
+      return () => clearTimeout(timer);
     }
   }, []);
 

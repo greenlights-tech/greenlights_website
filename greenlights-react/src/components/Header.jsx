@@ -1,24 +1,58 @@
+import { useEffect, useRef } from "react";
 import { useIntro } from "../context/IntroContext";
 import { useLocation } from "react-router-dom";
+import { gsap } from "gsap";
 export const Header = () => {
   const { introFinished } = useIntro();
   const location = useLocation();
   const isHome = location.pathname === "/";
+  const headerRef = useRef(null);
+  const reactLogoRef = useRef(null);
 
-  const logoAlreadyExists = document.querySelector(".new-container .child1");
+  useEffect(() => {
+    if (!isHome) {
+      // Ruim de Flip-logo op
+      const container = document.querySelector(".new-container");
+      if (container) {
+        const logos = container.querySelectorAll(".child1");
+        logos.forEach((logo) => {
+          if (logo !== reactLogoRef.current) logo.remove();
+        });
+      }
+
+      // Laat de HELE header van boven naar beneden infaden
+      if (headerRef.current) {
+        gsap.fromTo(
+          headerRef.current,
+          { y: -20, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            ease: "power3.out",
+          }
+        );
+      }
+    }
+  }, [location.pathname, isHome]);
 
   // De header is onzichtbaar op Home zolang de intro niet klaar is.
   // Op alle andere pagina's (!isHome) is hij altijd zichtbaar.
   const showHeader = !isHome || introFinished;
   return (
     <>
-      <header className={`header ${showHeader ? "show" : ""}`}>
+      <header
+        ref={headerRef}
+        className={`header ${showHeader ? "show" : ""}`}
+        style={{ opacity: isHome ? 1 : 0 }}
+      >
         <div className="container">
           <div className="bg"></div>
           <div className="new-container-wrapper">
             <div className="new-container" data-flip-id="image">
-              {!isHome && !logoAlreadyExists && (
+              {(!isHome || (isHome && introFinished)) && (
                 <svg
+                  ref={reactLogoRef}
                   className="child1"
                   data-flip-id="image"
                   width="379"
