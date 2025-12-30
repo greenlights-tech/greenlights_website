@@ -1,7 +1,8 @@
-import { useLayoutEffect, useRef } from "react";
+import { useRef } from "react";
 import { useIntro } from "../context/IntroContext";
 import { useLocation } from "react-router-dom";
 import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
 export const Header = () => {
   const { introFinished } = useIntro();
   const location = useLocation();
@@ -9,50 +10,71 @@ export const Header = () => {
   const headerRef = useRef(null);
   const reactLogoRef = useRef(null);
 
-  useLayoutEffect(() => {
-    const container = document.querySelector(".new-container");
-    if (!container) return;
+  // // Deze ref zorgt ervoor dat we per pagina-wissel maar ÉÉN keer animeren
+  const hasAnimatedRef = useRef("");
 
-    const logos = container.querySelectorAll(".child1");
+  useGSAP(
+    () => {
+      const container = document.querySelector(".new-container");
+      if (!container) return;
+      const logos = container.querySelectorAll(".child1");
 
-    if (!isHome) {
-      // // 1. OP ANDERE PAGINA'S: Ruim de Flip-kopie op
-      logos.forEach((logo) => {
-        if (logo !== reactLogoRef.current) {
-          logo.remove();
+      // // 1. ALTIJD opruimen (voorkomt dubbele logo's ongeacht de animatie)
+      if (!isHome) {
+        logos.forEach((logo) => {
+          if (logo !== reactLogoRef.current) logo.remove();
+        });
+
+        // // 2. ALLEEN animeren als dit pad nog niet geanimeerd is
+        // // ÉN als de intro klaar is (of we niet op home zijn)
+        const shouldAnimate = hasAnimatedRef.current !== location.pathname;
+
+        if (shouldAnimate && headerRef.current) {
+          hasAnimatedRef.current = location.pathname; // // Zet direct op slot
+
+          // // Gebruik kill() om eventuele lopende animaties op dit element te stoppen
+          gsap.killTweensOf(headerRef.current);
+
+          gsap.fromTo(
+            headerRef.current,
+            { opacity: 0, y: -20 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 1,
+              ease: "power3.out",
+              overwrite: "auto", // // Zorgt dat nieuwe animaties oude overschrijven
+            }
+          );
+
+          // if (reactLogoRef.current) {
+          //   gsap.fromTo(
+          //     reactLogoRef.current,
+          //     { opacity: 0 },
+          //     { opacity: 1, duration: 0.5, delay: 0.2 }
+          //   );
+          // }
         }
-      });
-
-      // // Start de slide-down animatie
-      if (headerRef.current) {
-        gsap.fromTo(
-          headerRef.current,
-          { y: -20, opacity: 0 },
-          { y: 0, opacity: 1, duration: 1, ease: "power3.out" }
-        );
+      } else if (isHome && introFinished) {
+        // // Op home: Alleen opruimen
+        if (logos.length > 1) {
+          logos[0].remove();
+        }
+        hasAnimatedRef.current = "/"; // // Reset voor als we terugkomen
       }
-    } else if (isHome && introFinished) {
-      // // 2. OP DE HOMEPAGE:
-      // // Als er twee logo's zijn (Flip + React), verwijder de Flip-versie (de eerste).
-      // // De React-versie (logos[1]) blijft staan met alle ID's (#color1 etc.) intact.
-      if (logos.length > 1) {
-        logos[0].remove();
-      }
-    }
-  }, [location.pathname, isHome, introFinished]);
+    },
+    { dependencies: [location.pathname, introFinished] }
+  );
+  // // ^ De dependencies zorgen ervoor dat de animatie alleen start als de pagina echt verandert
 
   const showHeader = !isHome || introFinished;
-
-  // // HIER IS DE BELANGRIJKSTE WIJZIGING:
-  // // We tekenen het logo ALTIJD (behalve op home als de intro nog bezig is).
-  // // We laten de useLayoutEffect hierboven bepalen welke van de twee logo's weg moet.
   const shouldRenderLogo = !isHome || introFinished;
   return (
     <>
       <header
         ref={headerRef}
         className={`header ${showHeader ? "show" : ""}`}
-        style={{ opacity: isHome ? 1 : 0 }}
+        // style={{ opacity: isHome ? 1 : 0 }}
       >
         <div className="container">
           <div className="bg"></div>
