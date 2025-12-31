@@ -386,7 +386,7 @@ body,
   justify-content: center;
   height: auto;
   width: 100%;
-  border: 1px solid yellow;
+  /* border: 1px solid yellow; */
 }
 
 .blog-component {
@@ -395,7 +395,7 @@ body,
   justify-content: center;
   height: auto;
   width: 100%;
-  border: 1px solid yellow;
+  /* border: 1px solid yellow; */
 }
 
 /* .container-whatsapp-knop {
@@ -2076,14 +2076,88 @@ button {
   position: fixed;
   display: flex;
   flex-direction: column;
-  gap: 4rem;
+  gap: 2rem;
   top: 50%;
   transform: translateY(-50%);
-  left: 0;
+  right: 0;
   z-index: 100;
   list-style: none;
-  padding: 0;
+  /* padding: 0; */
   margin: 0;
+}
+
+.nav-bar button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: var(--text-font-size);
+  font-family: "IBM Plex Mono", sans-serif;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* .nav-bar button:hover {
+  color: var(--color-primary);
+} */
+
+.nav-bar {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* Iets minder gap zodat de balken mooi aansluiten */
+  top: 50%;
+  transform: translateY(-50%);
+  /* right: 20px; */
+  /* padding: 10px; */
+}
+
+.nav-bar button {
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #aaabb8;
+  font-family: "IBM Plex Mono", sans-serif;
+  padding: 12px 24px;
+  font-size: 16px;
+  z-index: 10; /* Zorgt dat tekst BOVEN de marker staat */
+  transition: color 0.3s ease;
+  white-space: nowrap;
+}
+
+/* De Glijdende Balk */
+.marker {
+  position: absolute;
+  inset: 0; /* Vult de hele button */
+  background-color: #2b313d; /* Half doorzichtig groen */
+  border-radius: 8px 0 0 8px; /* Afgeronde hoeken voor de balk */
+  border-right: 2px solid #28a745; /* Optioneel: een feller lijntje aan de zijkant */
+  z-index: -1; /* Achter de tekst */
+  padding: 1rem;
+}
+
+/* Kleuren van de tekst */
+/* .nav-bar button.active {
+  color: #ffffff;
+} */
+
+.nav-bar button.selected {
+  color: #28a745;
+  z-index: 10;
+}
+
+.nav-bar button:not(.active) {
+  z-index: 100;
+}
+
+/* .nav-bar button.active {
+  color: #28a745;
+} */
+
+.button-text {
+  position: relative;
+  z-index: 10000; /* Hoger dan de marker (die is -1 of 1) */
+  pointer-events: none; /* Klikken gaat door de span heen naar de button */
 }
 
 .photo-solpage {
