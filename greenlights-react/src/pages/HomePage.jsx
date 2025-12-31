@@ -221,7 +221,7 @@ export const HomePage = () => {
               from: "begin",
             },
           },
-          2
+          2.5
         );
 
         tl.current.to(
@@ -231,7 +231,7 @@ export const HomePage = () => {
             duration: 1,
             ease: "none",
           },
-          2
+          2.5
         );
 
         tl.current.to(
@@ -253,7 +253,7 @@ export const HomePage = () => {
             duration: 1,
             ease: "power2.out",
           },
-          2
+          2.5
         );
 
         gsap.set(".teasers-container-swiper", {
@@ -286,6 +286,7 @@ export const HomePage = () => {
               duration: 1.2,
               nested: true,
               ease: "power2.inOut",
+              absolute: true,
               zIndex: 1000,
             }),
             1

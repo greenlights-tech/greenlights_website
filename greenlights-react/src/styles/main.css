@@ -564,7 +564,7 @@ body,
 }
 
 .header {
-  height: 6.5rem;
+  /* height: 6.5rem; */
   /* top: 0;
   left: 0;
   right: 0; */
@@ -574,7 +574,7 @@ body,
   background-color: #686563; */
   width: 100%;
   /* flex-shrink: 0; */
-
+  height: auto;
   /* border: 1px solid yellow; */
   /* background-color: rgba(70, 68, 67, 0.5); */
 }
@@ -683,12 +683,12 @@ li {
   list-style: none;
 }
 
-nav {
+/* nav {
   display: flex;
   height: 100%;
   align-items: center;
   gap: 1rem;
-}
+} */
 
 @media (min-width: 768px) {
   .new-container-wrapper {
@@ -698,9 +698,9 @@ nav {
 }
 
 @media (min-width: 992px) {
-  .header {
+  /* .header {
     height: 7.25rem;
-  }
+  } */
   .homepage {
     height: calc(100vh - 7.25rem);
   }
@@ -2070,6 +2070,17 @@ button {
   height: auto;
 
   /* border: 1px solid red; */
+}
+
+.nav-bar {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  z-index: 100;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .photo-solpage {
