@@ -1,24 +1,21 @@
 import { useLocation } from "react-router-dom";
 import { gsap } from "gsap";
-import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 
-gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother);
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 export const NavBar = () => {
   const { pathname } = useLocation();
 
   const showNav = pathname === "/opdrachtgever" || pathname === "/talent";
 
-  const { contextSafe } = useGSAP({ dependencies: [pathname] });
-
-  const handleScroll = contextSafe((id) => {
+  const handleScroll = (id) => {
     const smoother = ScrollSmoother.get();
     if (smoother) {
       smoother.scrollTo(id, true, "top top");
     }
-  });
+  };
 
   if (!showNav) return null;
 

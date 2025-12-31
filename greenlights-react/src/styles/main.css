@@ -2074,6 +2074,9 @@ button {
 
 .nav-bar {
   position: fixed;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
   top: 50%;
   transform: translateY(-50%);
   left: 0;

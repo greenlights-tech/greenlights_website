@@ -7,7 +7,6 @@ import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { AboutSection } from "../components/AboutSection";
 import { BlogSection } from "../components/BlogSection";
 import { Footer } from "../components/Footer";
-import { GoChevronLeft } from "react-icons/go";
 // import { MdArrowOutward } from "react-icons/md";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother);

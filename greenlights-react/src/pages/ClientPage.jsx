@@ -7,7 +7,6 @@ import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { AboutSection } from "../components/AboutSection";
 import { BlogSection } from "../components/BlogSection";
 import { Footer } from "../components/Footer";
-import { GoChevronLeft } from "react-icons/go";
 // import { MdArrowOutward } from "react-icons/md";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother);
@@ -28,9 +27,17 @@ export const ClientPage = () => {
   // Alleen als je de pagina vers opent, kijkt hij of er een #hash is en scrollt hij daarheen
   useEffect(() => {
     if (hash) {
-      document.fonts.ready.then(() => {
-        scrollToSection(hash);
-      });
+      const timer = setTimeout(() => {
+        document.fonts.ready.then(() => {
+          // // Forceer GSAP om alle hoogtes opnieuw te berekenen
+          ScrollTrigger.refresh();
+
+          // // Scroll nu pas naar de sectie
+          scrollToSection(hash);
+        });
+      }, 300); // // 200ms is genoeg voor de Header-check en de Smoother
+
+      return () => clearTimeout(timer);
     }
   }, []);
 
@@ -53,7 +60,7 @@ export const ClientPage = () => {
 
       ScrollTrigger.create({
         start: 0,
-        end: "top 10%",
+        end: "top top",
         trigger: sections[0],
         onLeaveBack: () => navigate(pathname, { replace: true }),
       });
