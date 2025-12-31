@@ -2,15 +2,15 @@ import { useRef, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { AboutSection } from "../components/AboutSection";
 import { BlogSection } from "../components/BlogSection";
 import { Footer } from "../components/Footer";
 import { GoChevronLeft } from "react-icons/go";
 // import { MdArrowOutward } from "react-icons/md";
 
-gsap.registerPlugin(useGSAP, ScrollToPlugin, ScrollTrigger);
+gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother);
 
 export const ClientPage = () => {
   const container = useRef();
@@ -18,11 +18,10 @@ export const ClientPage = () => {
   const navigate = useNavigate();
 
   const scrollToSection = (id) => {
-    gsap.to(window, {
-      duration: 1,
-      scrollTo: { y: id, offsetY: 0, autoKill: true },
-      ease: "power4.inOut",
-    });
+    const smoother = ScrollSmoother.get();
+    if (smoother) {
+      smoother.scrollTo(id, true, "top top");
+    }
   };
 
   // Dit is voor als je een link doorstuurt
@@ -64,12 +63,12 @@ export const ClientPage = () => {
 
   return (
     <div ref={container} className="opd-page">
-      <nav className="nav-bar">
+      {/* <nav className="nav-bar">
         <button onClick={() => scrollToSection("#belofte")}>Belofte</button>
         <button onClick={() => scrollToSection("#over-ons")}>Over ons</button>
         <button onClick={() => scrollToSection("#blog")}>Blog</button>
         <button onClick={() => scrollToSection("#contact")}>Contact</button>
-      </nav>
+      </nav> */}
       <div className="opd-home-button-wrapper">
         <Link to="/">
           <div className="opd-home-button-container" id="closeOpdrachtgever">

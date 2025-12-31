@@ -7,6 +7,7 @@ import { useGSAP } from "@gsap/react";
 // import { Header } from "./Header";
 // import { Footer } from "./Footer";
 import { ScrollToTop } from "./ScrollToTop";
+import { NavBar } from "./NavBar";
 import { Header } from "./Header";
 // import { SwitchProvider } from "../context/SwitchContext";
 
@@ -26,6 +27,7 @@ export const Root = () => {
     <>
       {/* <SwitchProvider> */}
       <ScrollToTop />
+      <NavBar />
       <div id="smooth-wrapper">
         <div id="smooth-content">
           <div className="layout-wrapper">
