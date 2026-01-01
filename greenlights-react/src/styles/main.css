@@ -443,8 +443,8 @@ body,
 
 .container-whatsapp-knop {
   position: fixed;
-  bottom: 1.5rem;
-  right: 2rem;
+  bottom: 1rem;
+  right: 1rem;
   padding: 1em 1.5em;
   /* background: linear-gradient(to right, #20ff85, #02a16f); */
   padding: 0.825em 1.5em;
@@ -2091,6 +2091,7 @@ button {
   border: none;
   cursor: pointer;
   font-size: var(--text-font-size);
+  font-size: clamp(0.5rem, 1.5vw, 0.75rem);
   font-family: "IBM Plex Mono", sans-serif;
   font-weight: 500;
   line-height: 1.5;
@@ -2104,9 +2105,14 @@ button {
   position: fixed;
   display: flex;
   flex-direction: column;
-  gap: 1rem; /* Iets minder gap zodat de balken mooi aansluiten */
+  gap: 0.5rem; /* Iets minder gap zodat de balken mooi aansluiten */
   top: 50%;
   transform: translateY(-50%);
+  background-color: #3b4353;
+  background-color: #2b313d;
+  border-radius: 8px 0 0 8px;
+  /* border-right: 2px solid #28a745; */
+  padding-right: 0rem;
   /* right: 20px; */
   /* padding: 10px; */
 }
@@ -2118,8 +2124,7 @@ button {
   cursor: pointer;
   color: #aaabb8;
   font-family: "IBM Plex Mono", sans-serif;
-  padding: 12px 24px;
-  font-size: 16px;
+  padding: 12px 16px;
   z-index: 10; /* Zorgt dat tekst BOVEN de marker staat */
   transition: color 0.3s ease;
   white-space: nowrap;
@@ -2129,10 +2134,13 @@ button {
 .marker {
   position: absolute;
   inset: 0; /* Vult de hele button */
-  background-color: #2b313d; /* Half doorzichtig groen */
+  background-color: #242933; /* Half doorzichtig groen */
+  background-color: #242933;
   border-radius: 8px 0 0 8px; /* Afgeronde hoeken voor de balk */
-  border-right: 2px solid #28a745; /* Optioneel: een feller lijntje aan de zijkant */
-  z-index: -1; /* Achter de tekst */
+  border-right: 2px solid;
+  border-image-source: linear-gradient(to bottom, #20ff85, #02a16f);
+  border-image-slice: 1;
+  z-index: -1;
   padding: 1rem;
 }
 
@@ -2141,15 +2149,22 @@ button {
   color: #ffffff;
 } */
 
-.nav-bar button.selected {
+/* .nav-bar button.selected {
   color: #28a745;
   z-index: 10;
+} */
+
+/* .nav-bar button.active {
+  color: #00ff00; 
+} */
+.nav-bar button:hover {
+  color: #fff; /* // Of jouw specifieke groene hex-code */
+  /* transition: color 0.3s ease; */
 }
 
-.nav-bar button.active,
-.nav-bar button.is-clicked {
-  color: #00ff00; /* // Of jouw specifieke groene hex-code */
-  /* transition: color 0.3s ease; */
+.nav-bar button:focus {
+  outline: none;
+  border: none;
 }
 
 .nav-bar button:not(.active) {
