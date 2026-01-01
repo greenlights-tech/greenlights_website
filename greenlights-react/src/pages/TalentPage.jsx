@@ -84,7 +84,7 @@ export const TalentPage = () => {
           </div>
         </Link>
       </div>
-      <section id="belofte" className="talent-section">
+      <section id="belofte" className="belofte-section talent-section">
         <h2 className="sol-title">Onze belofte</h2>
 
         <div className="sol-content">

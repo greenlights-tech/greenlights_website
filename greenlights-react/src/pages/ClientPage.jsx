@@ -84,7 +84,7 @@ export const ClientPage = () => {
           </div>
         </Link>
       </div>
-      <section id="belofte" className="client-section">
+      <section id="belofte" className="belofte-section client-section">
         <h2 className="opd-title">Onze belofte</h2>
 
         <div className="opd-content">
