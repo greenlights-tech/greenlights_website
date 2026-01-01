@@ -13,6 +13,9 @@ import { SplitText } from "gsap/SplitText";
 // import { CustomEase } from "gsap/CustomEase";
 // import Lenis from "lenis";
 import { useGSAP } from "@gsap/react";
+import leftImage from "../assets/background6.avif";
+import rightImage from "../assets/background7-kopie.jpg";
+
 gsap.registerPlugin(useGSAP, Flip, SplitText);
 import { Icon } from "../components/Icon";
 
@@ -374,8 +377,12 @@ export const HomePage = () => {
         // Selecteer elementen binnen de scope
         const leftSwiper = container.current.querySelector(".leftSwiper");
         const rightSwiper = container.current.querySelector(".rightSwiper");
+        const featured = container.current.querySelector(
+          ".featured-background"
+        );
+        const headerBg = document.querySelector(".header .bg");
 
-        if (!leftSwiper || !rightSwiper) return;
+        if (!leftSwiper || !rightSwiper || !featured) return;
 
         const mm = gsap.matchMedia();
 
@@ -388,6 +395,16 @@ export const HomePage = () => {
 
           // LEFT HOVER IN (Context-Safe gewrapped)
           const onLeftEnter = contextSafe(() => {
+            gsap.to(featured, {
+              backgroundColor: "#354a37",
+              duration: 1,
+              ease: "power1.inOut",
+            });
+            gsap.to(headerBg, {
+              background: "linear-gradient(to top, #fff, #232832 50%, #191d24)",
+              duration: 1,
+              ease: "power1.inOut",
+            });
             gsap.to(leftSwiper, {
               scale: 1.1,
               duration: 0.4,
@@ -397,6 +414,17 @@ export const HomePage = () => {
 
           // LEFT HOVER UIT (Context-Safe gewrapped)
           const onLeftLeave = contextSafe(() => {
+            gsap.to(featured, {
+              backgroundColor: "#303847",
+              duration: 1,
+              ease: "power1.inOut",
+            });
+            gsap.to(headerBg, {
+              background:
+                "linear-gradient(to top, #374051, #232832 50%, #191d24)",
+              duration: 1,
+              ease: "power1.inOut",
+            });
             gsap.to(leftSwiper, {
               scale: 1,
               duration: 0.4,
@@ -406,6 +434,17 @@ export const HomePage = () => {
 
           // RIGHT HOVER IN
           const onRightEnter = contextSafe(() => {
+            gsap.to(featured, {
+              backgroundColor: "#635a54",
+              duration: 1,
+              ease: "power1.inOut",
+            });
+            gsap.to(headerBg, {
+              background:
+                "linear-gradient(to top, #a8988c, #635a54 50%, #403a36)",
+              duration: 1,
+              ease: "power1.inOut",
+            });
             gsap.to(rightSwiper, {
               scale: 1.1,
               duration: 0.4,
@@ -415,6 +454,17 @@ export const HomePage = () => {
 
           // RIGHT HOVER UIT
           const onRightLeave = contextSafe(() => {
+            gsap.to(featured, {
+              backgroundColor: "#303847",
+              duration: 1,
+              ease: "power1.inOut",
+            });
+            gsap.to(headerBg, {
+              background:
+                "linear-gradient(to top, #374051, #232832 50%, #191d24)",
+              duration: 1,
+              ease: "power1.inOut",
+            });
             gsap.to(rightSwiper, {
               scale: 1,
               duration: 0.4,
@@ -436,7 +486,6 @@ export const HomePage = () => {
             leftSwiper.removeEventListener("mouseleave", onLeftLeave);
             rightSwiper.removeEventListener("mouseenter", onRightEnter);
             rightSwiper.removeEventListener("mouseleave", onRightLeave);
-            // SplitText objecten worden hier ook automatisch opgeruimd door GSAP!
           };
         });
       });
@@ -591,6 +640,7 @@ export const HomePage = () => {
   return (
     <>
       <div ref={container} className="homepage">
+        <div className="featured-background"></div>
         <div className="mid-text-container">
           <div className="mid-text-sollicitant">
             <h2>
@@ -758,6 +808,11 @@ export const HomePage = () => {
                     className="teaser-swiper leftSwiper left"
                     aria-label="Ontdek opdrachten"
                   >
+                    <img
+                      src={leftImage}
+                      alt="Opdrachten"
+                      className="teaser-image"
+                    />
                     <div className="centered-text">
                       <p className="centered-subtext">
                         Ontdek <span className="highlight">opdrachten</span>
@@ -774,6 +829,11 @@ export const HomePage = () => {
                     className="teaser-swiper rightSwiper right"
                     aria-label="Ontdek trainees"
                   >
+                    <img
+                      src={rightImage}
+                      alt="Trainees"
+                      className="teaser-image"
+                    />
                     <div className="centered-text">
                       <p className="centered-subtext">
                         Ontdek <span className="highlight">trainees</span>

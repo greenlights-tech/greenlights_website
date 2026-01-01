@@ -163,6 +163,7 @@ button {
 :root {
   /* ===== COLORS =====*/
   /* --color-primary: rgb(0, 230, 104); */
+
   --color-primary: #20ff85;
   /* --color-primary: #00dc82; */
   --color-bg: rgba(37, 44, 59);
@@ -196,6 +197,7 @@ button {
   --font-primary: "Sanchez", "Manrope", "Gill Sans MT", sans-serif;
   --font-secondary: "Inter", "Manrope", "Gill Sans MT", sans-serif;
   --font-tertiary: "Overpass Mono", "Gill Sans MT", sans-serif;
+  --font-ui: "Instrument Sans", system-ui, sans-serif;
 
   /* --header-height: 7.5rem; */
 
@@ -810,6 +812,7 @@ li {
 
 .mid-text-sollicitant h2 {
   font-family: "IBM Plex Mono";
+  font-family: var(--font-ui);
   font-size: 1.5rem;
   /* text-transform: uppercase; */
   color: #b9b9b9;
@@ -1301,15 +1304,12 @@ button {
 /* Teasers universele instellingen */
 
 .left {
-  background-image: url("../assets/background6.avif");
+  /* background-image: url("../assets/background6.avif"); */
   position: relative;
 }
-/* background-color: rgb(32, 38, 51); */
-
-/* box-shadow: 14px 2px 25px -8px rgba(0, 0, 0, 0.6) inset; */
 
 .right {
-  background-image: url("../assets/background7-kopie.jpg");
+  /* background-image: url("../assets/background7-kopie.jpg"); */
   position: relative;
 }
 
@@ -1451,15 +1451,41 @@ button {
   flex: 1 1 auto;
   height: auto;
   aspect-ratio: 1 / 1;
-  background-repeat: no-repeat;
+  /* background-repeat: no-repeat;
   background-position: center;
   background-color: var(--color-bg);
-  background-size: cover;
+  background-size: cover; */
   box-shadow: 18px 18px 16px 0 rgba(0, 0, 0, 0.3);
-  background-size: auto 100%;
+  /* background-size: auto 100%; */
   border-radius: 2vw;
   will-change: transform;
   /* border: 1px solid orange; */
+}
+
+.teaser-image {
+  width: 100%;
+  height: 100%;
+  /* // Dit is de vervanger voor background-size: cover; */
+  object-fit: cover;
+  /* // Dit is de vervanger voor background-position: center; */
+  object-position: center;
+  display: block;
+  border-radius: 2vw;
+}
+
+.featured-background {
+  position: fixed; /* // Of absolute, als hij mee moet scrollen */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* // Stel hier de gewenste kleur in */
+  background-color: #303847; /* // Bijvoorbeeld je groene kleur */
+  /* // Zorg dat hij achter alle tekst en buttons blijft */
+  z-index: -1;
+
+  /* // Optioneel: als je de gradient wilt die je eerder noemde */
+  /* background: linear-gradient(to bottom, #20ff85, #02a16f); */
 }
 
 /* .swiper-slide-active {
