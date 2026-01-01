@@ -377,6 +377,7 @@ body,
   color: #f1efe0;
   color: #b9b9b9;
   background-color: #303847;
+
   /* overflow-y: hidden; */
   /* border: 1px solid blue; */
 }
@@ -584,7 +585,7 @@ body,
   position: absolute;
   inset: 0;
   background-image: linear-gradient(to top, #686563, #686563 30%, #464443);
-  background-image: linear-gradient(to top, #374051, #232832 50%, #191d24);
+  background-image: linear-gradient(to top, #465166, #232832 50%, #191d24);
   /* background-image: linear-gradient(to top, #303847, #232832 60%, #161a20); */
 
   /* background-image: linear-gradient(
@@ -662,7 +663,7 @@ body,
   padding-bottom: 0.5em;
   padding-left: 0.75em;
   padding-right: 0.75em;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.0825em;
   font-family: "MS Gothic", "Courier New", monospace;
   font-size: var(--sublogo-font-size);
   color: #bec6ab;

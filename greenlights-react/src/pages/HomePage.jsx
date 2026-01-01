@@ -396,17 +396,23 @@ export const HomePage = () => {
           // LEFT HOVER IN (Context-Safe gewrapped)
           const onLeftEnter = contextSafe(() => {
             gsap.to(featured, {
-              backgroundColor: "#354a37",
+              backgroundColor: "#403e40",
               duration: 1,
               ease: "power1.inOut",
             });
             gsap.to(headerBg, {
-              background: "linear-gradient(to top, #fff, #232832 50%, #191d24)",
+              background:
+                "linear-gradient(to top, #6b686b, #403e40 50%, #302f30)",
               duration: 1,
               ease: "power1.inOut",
             });
             gsap.to(leftSwiper, {
               scale: 1.1,
+              duration: 0.4,
+              ease: "power1.inOut",
+            });
+            gsap.to(rightSwiper, {
+              scale: 0.9,
               duration: 0.4,
               ease: "power1.inOut",
             });
@@ -421,11 +427,16 @@ export const HomePage = () => {
             });
             gsap.to(headerBg, {
               background:
-                "linear-gradient(to top, #374051, #232832 50%, #191d24)",
+                "linear-gradient(to top, #465166, #232832 50%, #191d24)",
               duration: 1,
               ease: "power1.inOut",
             });
             gsap.to(leftSwiper, {
+              scale: 1,
+              duration: 0.4,
+              ease: "power1.inOut",
+            });
+            gsap.to(rightSwiper, {
               scale: 1,
               duration: 0.4,
               ease: "power1.inOut",
@@ -450,6 +461,11 @@ export const HomePage = () => {
               duration: 0.4,
               ease: "power1.inOut",
             });
+            gsap.to(leftSwiper, {
+              scale: 0.9,
+              duration: 0.4,
+              ease: "power1.inOut",
+            });
           });
 
           // RIGHT HOVER UIT
@@ -461,11 +477,16 @@ export const HomePage = () => {
             });
             gsap.to(headerBg, {
               background:
-                "linear-gradient(to top, #374051, #232832 50%, #191d24)",
+                "linear-gradient(to top, #465166, #232832 50%, #191d24)",
               duration: 1,
               ease: "power1.inOut",
             });
             gsap.to(rightSwiper, {
+              scale: 1,
+              duration: 0.4,
+              ease: "power1.inOut",
+            });
+            gsap.to(leftSwiper, {
               scale: 1,
               duration: 0.4,
               ease: "power1.inOut",
