@@ -2146,6 +2146,12 @@ button {
   z-index: 10;
 }
 
+.nav-bar button.active,
+.nav-bar button.is-clicked {
+  color: #00ff00; /* // Of jouw specifieke groene hex-code */
+  /* transition: color 0.3s ease; */
+}
+
 .nav-bar button:not(.active) {
   z-index: 100;
 }

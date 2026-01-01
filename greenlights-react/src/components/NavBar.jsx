@@ -1,85 +1,88 @@
-import { useState, useRef, useLayoutEffect } from "react";
+import { useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
 import { Flip } from "gsap/Flip";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 
-gsap.registerPlugin(Flip, ScrollTrigger, ScrollSmoother);
+gsap.registerPlugin(useGSAP, Flip, ScrollSmoother);
 
 export const NavBar = () => {
   const { pathname, hash } = useLocation();
-  const navRef = useRef();
-  const [selectedHash, setSelectedHash] = useState(null);
+  const navRef = useRef(null);
 
-  const handleScroll = (id) => {
-    setSelectedHash(id); // Tekst wordt direct groen
+  const { contextSafe } = useGSAP({ scope: navRef });
+
+  const handleScroll = contextSafe((e) => {
+    const targetId = e.currentTarget.getAttribute("data-id");
+    if (!targetId) return;
+
     const smoother = ScrollSmoother.get();
     if (smoother) {
-      smoother.scrollTo(id, true, "top top");
+      // Element buiten de scope zoeken omdat de secties ergens anders in de DOM staan
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        smoother.scrollTo(targetElement, true, "top top");
+      }
     }
-  };
+  });
 
-  useLayoutEffect(() => {
-    if (!navRef.current) return;
+  // Flip animatie voor de marker
+  useGSAP(
+    () => {
+      if (!navRef.current) return;
 
-    const marker = navRef.current.querySelector(".marker");
-    // HIER GEBEURT HET: De balk zoekt de button die 'active' is (door de scroll)
-    const activeItem = navRef.current.querySelector(".active");
+      const marker = document.querySelector(".marker");
+      const activeItem = document.querySelector(".active");
 
-    if (marker && activeItem) {
-      const state = Flip.getState(marker);
-
-      // Verplaats de balk fysiek naar de actieve button
-      activeItem.appendChild(marker);
-
-      Flip.from(state, {
-        duration: 0.5,
-        ease: "power1.inOut",
-      });
-    }
-  }, [hash]); // De balk 'flipt' alleen als de HASH verandert (de scroll)
+      if (marker && activeItem) {
+        const state = Flip.getState(marker);
+        activeItem.appendChild(marker);
+        Flip.from(state, {
+          duration: 0.5,
+          ease: "power1.inOut",
+          overwrite: "auto",
+        });
+      }
+    },
+    { dependencies: [hash], scope: navRef }
+  );
 
   const showNav = pathname === "/opdrachtgever" || pathname === "/talent";
   if (!showNav) return null;
 
   return (
     <nav className="nav-bar" ref={navRef}>
-      {/* De balk die we gaan verschuiven */}
       <div className="marker"></div>
 
       <button
-        onClick={() => handleScroll("#belofte")}
-        className={`${hash === "#belofte" ? "active" : ""} ${
-          selectedHash === "#belofte" ? "selected" : ""
-        }`}
+        data-id="#belofte"
+        onClick={handleScroll}
+        className={hash === "#belofte" ? "active" : ""}
       >
         <span className="button-text">Belofte</span>
       </button>
 
       <button
-        onClick={() => handleScroll("#over-ons")}
-        className={`${hash === "#over-ons" ? "active" : ""} ${
-          selectedHash === "#over-ons" ? "selected" : ""
-        }`}
+        data-id="#over-ons"
+        onClick={handleScroll}
+        className={hash === "#over-ons" ? "active" : ""}
       >
         <span className="button-text">Over ons</span>
       </button>
 
       <button
-        onClick={() => handleScroll("#blog")}
-        className={`${hash === "#blog" ? "active" : ""} ${
-          selectedHash === "#blog" ? "selected" : ""
-        }`}
+        data-id="#blog"
+        onClick={handleScroll}
+        className={hash === "#blog" ? "active" : ""}
       >
         <span className="button-text">Blog</span>
       </button>
 
       <button
-        onClick={() => handleScroll("#contact")}
-        className={`${hash === "#contact" ? "active" : ""} ${
-          selectedHash === "#contact" ? "selected" : ""
-        }`}
+        data-id="#contact"
+        onClick={handleScroll}
+        className={hash === "#contact" ? "active" : ""}
       >
         <span className="button-text">Contact</span>
       </button>
