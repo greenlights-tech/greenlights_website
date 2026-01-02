@@ -290,7 +290,13 @@ body {
   /* background-color: #041819; */
   overflow-x: hidden;
   /* overflow-y: hidden; */
-  background-color: #303847;
+  /* background-color: #303847; */
+  /* background-image: linear-gradient(
+    to bottom,
+    hsla(0, 0%, 21%, 1) 0%,
+    hsla(0, 1%, 32%, 1) 100%
+  ); */
+  background-color: hsl(0, 0%, 21%);
   font-size: 16px;
   /* overflow: hidden; */
   /* -ms-overflow-style: none; */
@@ -361,8 +367,6 @@ body,
   /* background-color: #303847;
   background-color: #191d24;
   background-color: #252b37; */
-  background-color: #252b37;
-  background-color: transparent;
   /* background-color: green; */
   display: flex;
   flex-direction: column;
@@ -376,8 +380,8 @@ body,
   /* animation: animateGlow 10s ease infinite; */
   color: #f1efe0;
   color: #b9b9b9;
-  background-color: #303847;
 
+  background-color: hsl(0, 0%, 21%);
   /* overflow-y: hidden; */
   /* border: 1px solid blue; */
 }
@@ -584,8 +588,15 @@ body,
 .header .container .bg {
   position: absolute;
   inset: 0;
-  background-image: linear-gradient(to top, #686563, #686563 30%, #464443);
-  background-image: linear-gradient(to top, #465166, #232832 50%, #191d24);
+  /* background-image: linear-gradient(to top, #686563, #686563 30%, #464443);
+  background-image: linear-gradient(to top, #465166, #232832 50%, #191d24); */
+  background-image: linear-gradient(
+    to top,
+    hsla(0, 1%, 36%, 1),
+    hsla(0, 0%, 21%, 1) 50%,
+    hsla(0, 0%, 21%, 1)
+  );
+
   /* background-image: linear-gradient(to top, #303847, #232832 60%, #161a20); */
 
   /* background-image: linear-gradient(
@@ -1481,7 +1492,14 @@ button {
   width: 100%;
   height: 100%;
   /* // Stel hier de gewenste kleur in */
-  background-color: #303847; /* // Bijvoorbeeld je groene kleur */
+  /* background-image: linear-gradient(
+    to bottom,
+
+    hsla(0, 0%, 21%, 1) 0%,
+
+    hsla(0, 1%, 32%, 1) 100%
+  ); */
+  background-color: hsla(0, 0%, 21%, 1) 0%;
   /* // Zorg dat hij achter alle tekst en buttons blijft */
   z-index: -1;
 
@@ -2082,7 +2100,7 @@ button {
   left: 0; */
   width: 100%;
   /* padding: 0 100vw; */
-  background-color: #303847;
+  /* background-color: #303847; */
   /* background-color: #9597a7; */
   /* background-color: #d9dadb; */
   /* visibility: hidden; */
@@ -2318,8 +2336,8 @@ button {
   width: 100%;
   /* will-change: transform; */
   /* padding: 0 100vw; */
-  background-color: #303847;
-  background-color: transparent;
+  /* background-color: #303847; */
+  /* background-color: transparent; */
   /* background-color: #9597a7; */
   /* background-color: #d9dadb; */
   /* visibility: hidden; */

@@ -396,13 +396,13 @@ export const HomePage = () => {
           // LEFT HOVER IN (Context-Safe gewrapped)
           const onLeftEnter = contextSafe(() => {
             gsap.to(featured, {
-              backgroundColor: "#403e40",
+              backgroundColor: "#635a54",
               duration: 1,
               ease: "power1.inOut",
             });
             gsap.to(headerBg, {
               background:
-                "linear-gradient(to top, #6b686b, #403e40 50%, #302f30)",
+                "linear-gradient(to top, #a8988c, #635a54 50%, #403a36)",
               duration: 1,
               ease: "power1.inOut",
             });
@@ -421,14 +421,14 @@ export const HomePage = () => {
           // LEFT HOVER UIT (Context-Safe gewrapped)
           const onLeftLeave = contextSafe(() => {
             gsap.to(featured, {
-              backgroundColor: "#303847",
-              duration: 1,
+              backgroundColor: "hsl(0, 0%, 21%)",
+              duration: 0.4,
               ease: "power1.inOut",
             });
             gsap.to(headerBg, {
               background:
-                "linear-gradient(to top, #465166, #232832 50%, #191d24)",
-              duration: 1,
+                "linear-gradient(to top, hsla(0, 1%, 36%, 1), hsla(0, 0%, 21%, 1) 50%, hsla(0, 0%, 21%, 1)",
+              duration: 0.4,
               ease: "power1.inOut",
             });
             gsap.to(leftSwiper, {
@@ -446,14 +446,16 @@ export const HomePage = () => {
           // RIGHT HOVER IN
           const onRightEnter = contextSafe(() => {
             gsap.to(featured, {
-              backgroundColor: "#635a54",
-              duration: 1,
+              backgroundColor: "hsla(36, 7%, 30%, 1)",
+              // background:
+              //   "linear-gradient(to bottom, hsla(36, 7%, 30%, 1) 0%, hsla(36, 11%, 57%, 1) 100%)",
+              duration: 0.4,
               ease: "power1.inOut",
             });
             gsap.to(headerBg, {
               background:
-                "linear-gradient(to top, #a8988c, #635a54 50%, #403a36)",
-              duration: 1,
+                "linear-gradient(to bottom, hsla(36, 7%, 30%, 1) 0%, hsla(36, 11%, 57%, 1) 100%)",
+              duration: 0.4,
               ease: "power1.inOut",
             });
             gsap.to(rightSwiper, {
@@ -471,14 +473,14 @@ export const HomePage = () => {
           // RIGHT HOVER UIT
           const onRightLeave = contextSafe(() => {
             gsap.to(featured, {
-              backgroundColor: "#303847",
-              duration: 1,
+              backgroundColor: "hsl(0, 0%, 21%)",
+              duration: 0.4,
               ease: "power1.inOut",
             });
             gsap.to(headerBg, {
               background:
-                "linear-gradient(to top, #465166, #232832 50%, #191d24)",
-              duration: 1,
+                "linear-gradient(to top, hsla(0, 1%, 36%, 1), hsla(0, 0%, 21%, 1) 50%, hsla(0, 0%, 21%, 1)",
+              duration: 0.4,
               ease: "power1.inOut",
             });
             gsap.to(rightSwiper, {
