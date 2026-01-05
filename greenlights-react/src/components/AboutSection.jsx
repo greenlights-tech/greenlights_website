@@ -43,7 +43,7 @@ export const AboutSection = ({ className }) => {
           start: "center center",
           pin: true,
           pinSpacing: false,
-          markers: true,
+          // markers: true,
           endTrigger: cardsContainer,
           end: "bottom bottom",
           invalidateOnRefresh: true,

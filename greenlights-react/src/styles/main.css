@@ -592,9 +592,9 @@ body,
   background-image: linear-gradient(to top, #465166, #232832 50%, #191d24); */
   background-image: linear-gradient(
     to top,
-    hsla(0, 1%, 36%, 1),
-    hsla(0, 0%, 21%, 1) 50%,
-    hsla(0, 0%, 21%, 1)
+    rgb(93, 91, 91),
+    rgb(54, 54, 54) 50%,
+    rgb(44, 44, 44)
   );
 
   /* background-image: linear-gradient(to top, #303847, #232832 60%, #161a20); */
@@ -1485,7 +1485,7 @@ button {
   border-radius: 2vw;
 }
 
-.featured-background {
+.featured-background-wrapper {
   position: fixed; /* // Of absolute, als hij mee moet scrollen */
   top: 0;
   left: 0;
@@ -1499,12 +1499,29 @@ button {
 
     hsla(0, 1%, 32%, 1) 100%
   ); */
-  background-color: hsla(0, 0%, 21%, 1) 0%;
+  background-color: hsla(0, 0%, 21%, 1);
   /* // Zorg dat hij achter alle tekst en buttons blijft */
   z-index: -1;
+  will-change: background-color;
 
   /* // Optioneel: als je de gradient wilt die je eerder noemde */
   /* background: linear-gradient(to bottom, #20ff85, #02a16f); */
+}
+
+.hover-layer-left,
+.hover-layer-right {
+  position: absolute;
+  inset: 0;
+  opacity: 0; /* Standaard onzichtbaar */
+  will-change: opacity;
+}
+
+.hover-layer-left {
+  background-color: #635a54; /* Laag 2: De kleur voor Links */
+}
+
+.hover-layer-right {
+  background-color: hsla(36, 7%, 30%, 1); /* Laag 3: De kleur voor Rechts */
 }
 
 /* .swiper-slide-active {
@@ -2152,8 +2169,7 @@ button {
   gap: 0.5rem; /* Iets minder gap zodat de balken mooi aansluiten */
   top: 50%;
   transform: translateY(-50%);
-  background-color: #3b4353;
-  background-color: #2b313d;
+  background-color: rgb(93, 91, 91);
   border-radius: 8px 0 0 8px;
   /* border-right: 2px solid #28a745; */
   padding-right: 0rem;
@@ -2178,8 +2194,7 @@ button {
 .marker {
   position: absolute;
   inset: 0; /* Vult de hele button */
-  background-color: #242933; /* Half doorzichtig groen */
-  background-color: #242933;
+  background-color: rgb(54, 54, 54);
   border-radius: 8px 0 0 8px; /* Afgeronde hoeken voor de balk */
   border-right: 2px solid;
   border-image-source: linear-gradient(to bottom, #20ff85, #02a16f);

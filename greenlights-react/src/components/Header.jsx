@@ -30,7 +30,7 @@ export const Header = () => {
         const shouldAnimate = hasAnimatedRef.current !== location.pathname;
 
         if (shouldAnimate && headerRef.current) {
-          hasAnimatedRef.current = location.pathname; // // Zet direct op slot
+          hasAnimatedRef.current = location.pathname;
 
           // // Gebruik kill() om eventuele lopende animaties op dit element te stoppen
           gsap.killTweensOf(headerRef.current);

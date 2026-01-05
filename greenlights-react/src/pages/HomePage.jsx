@@ -377,16 +377,27 @@ export const HomePage = () => {
         // Selecteer elementen binnen de scope
         const leftSwiper = container.current.querySelector(".leftSwiper");
         const rightSwiper = container.current.querySelector(".rightSwiper");
-        const featured = container.current.querySelector(
-          ".featured-background"
-        );
+        const leftLayer = container.current.querySelector(".hover-layer-left");
+        const rightLayer =
+          container.current.querySelector(".hover-layer-right");
         const headerBg = document.querySelector(".header .bg");
 
-        if (!leftSwiper || !rightSwiper || !featured) return;
+        if (
+          !leftSwiper ||
+          !rightSwiper ||
+          !leftLayer ||
+          !rightLayer ||
+          !headerBg
+        )
+          return;
 
         const mm = gsap.matchMedia();
 
         mm.add("(min-width: 768px)", () => {
+          gsap.set(headerBg, {
+            background:
+              "linear-gradient(to top, rgb(93, 91, 91), rgb(54, 54, 54) 50%, rgb(44, 44, 44)",
+          });
           // {
           //   isDesktop: "(min-width: 768px)",
           // },
@@ -395,16 +406,18 @@ export const HomePage = () => {
 
           // LEFT HOVER IN (Context-Safe gewrapped)
           const onLeftEnter = contextSafe(() => {
-            gsap.to(featured, {
-              backgroundColor: "#635a54",
+            gsap.to(leftLayer, {
+              opacity: 1,
               duration: 1,
               ease: "power1.inOut",
             });
+            gsap.to(rightLayer, { opacity: 0, duration: 1 });
             gsap.to(headerBg, {
               background:
                 "linear-gradient(to top, #a8988c, #635a54 50%, #403a36)",
               duration: 1,
               ease: "power1.inOut",
+              force3D: true,
             });
             gsap.to(leftSwiper, {
               scale: 1.1,
@@ -420,15 +433,15 @@ export const HomePage = () => {
 
           // LEFT HOVER UIT (Context-Safe gewrapped)
           const onLeftLeave = contextSafe(() => {
-            gsap.to(featured, {
-              backgroundColor: "hsl(0, 0%, 21%)",
-              duration: 0.4,
+            gsap.to([leftLayer, rightLayer], {
+              opacity: 0,
+              duration: 1,
               ease: "power1.inOut",
             });
             gsap.to(headerBg, {
               background:
-                "linear-gradient(to top, hsla(0, 1%, 36%, 1), hsla(0, 0%, 21%, 1) 50%, hsla(0, 0%, 21%, 1)",
-              duration: 0.4,
+                "linear-gradient(to top, rgb(93, 91, 91), rgb(54, 54, 54) 50%, rgb(44, 44, 44)",
+              duration: 1,
               ease: "power1.inOut",
             });
             gsap.to(leftSwiper, {
@@ -445,17 +458,16 @@ export const HomePage = () => {
 
           // RIGHT HOVER IN
           const onRightEnter = contextSafe(() => {
-            gsap.to(featured, {
-              backgroundColor: "hsla(36, 7%, 30%, 1)",
-              // background:
-              //   "linear-gradient(to bottom, hsla(36, 7%, 30%, 1) 0%, hsla(36, 11%, 57%, 1) 100%)",
-              duration: 0.4,
+            gsap.to(rightLayer, {
+              opacity: 1,
+              duration: 1,
               ease: "power1.inOut",
             });
+            gsap.to(leftLayer, { opacity: 0, duration: 1 });
             gsap.to(headerBg, {
               background:
-                "linear-gradient(to bottom, hsla(36, 7%, 30%, 1) 0%, hsla(36, 11%, 57%, 1) 100%)",
-              duration: 0.4,
+                "linear-gradient(to top, rgb(163, 154, 138), rgb(97, 92, 84) 50%, rgb(71, 68, 62))",
+              duration: 1,
               ease: "power1.inOut",
             });
             gsap.to(rightSwiper, {
@@ -472,15 +484,15 @@ export const HomePage = () => {
 
           // RIGHT HOVER UIT
           const onRightLeave = contextSafe(() => {
-            gsap.to(featured, {
-              backgroundColor: "hsl(0, 0%, 21%)",
-              duration: 0.4,
+            gsap.to([leftLayer, rightLayer], {
+              opacity: 0,
+              duration: 1,
               ease: "power1.inOut",
             });
             gsap.to(headerBg, {
               background:
-                "linear-gradient(to top, hsla(0, 1%, 36%, 1), hsla(0, 0%, 21%, 1) 50%, hsla(0, 0%, 21%, 1)",
-              duration: 0.4,
+                "linear-gradient(to top, rgb(93, 91, 91), rgb(54, 54, 54) 50%, rgb(44, 44, 44)",
+              duration: 1,
               ease: "power1.inOut",
             });
             gsap.to(rightSwiper, {
@@ -663,7 +675,10 @@ export const HomePage = () => {
   return (
     <>
       <div ref={container} className="homepage">
-        <div className="featured-background"></div>
+        <div className="featured-background-wrapper">
+          <div className="hover-layer-left"></div>
+          <div className="hover-layer-right"></div>
+        </div>
         <div className="mid-text-container">
           <div className="mid-text-sollicitant">
             <h2>
