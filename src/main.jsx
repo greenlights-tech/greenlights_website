@@ -11,23 +11,28 @@ import "./styles/main.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Root } from "./components/Root";
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <Root />,
+      children: [
+        {
+          path: "/",
+          element: <HomePage />,
+        },
+        { path: "talent", element: <TalentPage /> },
+        { path: "opdrachtgever", element: <ClientPage /> },
+        { path: "contact", element: <ContactPage /> },
+        { path: "privacy", element: <PrivacyPage /> },
+        { path: "blog", element: <BlogPage /> },
+      ],
+    },
+  ],
   {
-    path: "/",
-    element: <Root />,
-    children: [
-      {
-        path: "/",
-        element: <HomePage />,
-      },
-      { path: "talent", element: <TalentPage /> },
-      { path: "opdrachtgever", element: <ClientPage /> },
-      { path: "contact", element: <ContactPage /> },
-      { path: "privacy", element: <PrivacyPage /> },
-      { path: "blog", element: <BlogPage /> },
-    ],
-  },
-]);
+    basename: "/greenlights_website",
+  }
+);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
