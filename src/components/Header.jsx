@@ -19,7 +19,6 @@ export const Header = () => {
       if (!container) return;
       const logos = container.querySelectorAll(".child1");
 
-      // ALTIJD opruimen (voorkomt dubbele logo's ongeacht de animatie)
       if (!isHome) {
         logos.forEach((logo) => {
           if (logo !== reactLogoRef.current) logo.remove();
