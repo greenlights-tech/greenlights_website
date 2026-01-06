@@ -2904,7 +2904,7 @@ button {
   align-items: center;
   justify-content: center;
   padding-bottom: 10rem;
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
 }
 
 .info-container-hoe .container {
