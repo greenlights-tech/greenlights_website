@@ -662,7 +662,7 @@ export const HomePage = () => {
   //     rightSwiper.addEventListener("pointerenter", onRightEnter);
   //     rightSwiper.addEventListener("pointerleave", onRightLeave);
 
-  //     // Cleanup bij unmount
+  //     Cleanup bij unmount
   //     return () => {
   //       leftSwiper.removeEventListener("pointerenter", onLeftEnter);
   //       leftSwiper.removeEventListener("pointerleave", onLeftLeave);
