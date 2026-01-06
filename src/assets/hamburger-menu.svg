@@ -4,8 +4,8 @@
     <defs>
         <filter id="dropshadow-groot">
             <feDropShadow 
-                dx="0.8"         dy="0.8"         stdDeviation="0.6" flood-color="black" 
-                flood-opacity="0.3"
+                dx="0.8"         dy="0.8"         stdDeviation="0.6" floodColor="black" 
+                floodOpacity="0.3"
             />
         </filter>
     </defs>

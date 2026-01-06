@@ -871,18 +871,19 @@ li {
   position: absolute;
   width: 60%;
   top: 40%;
-  left: 50%;
+  left: 15%;
   transform: translate(-50%, -50%);
   text-align: center;
   height: auto;
   background-color: "transparent";
-  /* visibility: hidden; */
 }
 
 .icon2 {
+  /* border: 1px solid green; */
   width: 100%;
   height: auto;
   z-index: -1;
+  padding-right: 1rem;
 }
 
 /* @media (min-width: 768px) {
@@ -894,7 +895,7 @@ li {
     width: 100%;
   }
   .icon2-wrapper {
-    width: 30%;
+    width: 10%;
   }
 }
 

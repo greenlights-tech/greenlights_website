@@ -58,7 +58,7 @@ export const HomePage = () => {
 
         gsap.set(["#color1", "#color2"], {
           opacity: 0.1,
-          "stop-color": "#00000057",
+          "stop-color": "#00D661",
         });
 
         gsap.set(".bg", { opacity: 0 });
