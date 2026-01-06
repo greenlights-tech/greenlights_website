@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -7,6 +7,7 @@ import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { AboutSection } from "../components/AboutSection";
 import { BlogSection } from "../components/BlogSection";
 import { Footer } from "../components/Footer";
+import { SollicitatieModal } from "../components/SollicitatieModal";
 // import { MdArrowOutward } from "react-icons/md";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother);
@@ -15,6 +16,7 @@ export const TalentPage = () => {
   const container = useRef();
   const { pathname, hash } = useLocation();
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const scrollToSection = (id) => {
     const smoother = ScrollSmoother.get();
@@ -136,10 +138,15 @@ export const TalentPage = () => {
             <button
               id="sol-signup-button"
               className="btn--gradient sol-signup-button"
+              onClick={() => setIsModalOpen(true)}
             >
               <span className="sol-signup-button-text"> Ik doe mee! </span>
             </button>
           </div>
+          <SollicitatieModal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+          />
 
           <div className="meer-weten-container">
             <h4>Meer weten?</h4>

@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -7,6 +7,7 @@ import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { AboutSection } from "../components/AboutSection";
 import { BlogSection } from "../components/BlogSection";
 import { Footer } from "../components/Footer";
+import { ClientModal } from "../components/ClientModal";
 // import { MdArrowOutward } from "react-icons/md";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother);
@@ -15,6 +16,7 @@ export const ClientPage = () => {
   const container = useRef();
   const { pathname, hash } = useLocation();
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const scrollToSection = (id) => {
     const smoother = ScrollSmoother.get();
@@ -133,10 +135,15 @@ export const ClientPage = () => {
             <button
               id="opd-signup-button"
               className="btn--gradient sol-signup-button"
+              onClick={() => setIsModalOpen(true)}
             >
               <span className="sol-signup-button-text"> Neem contact op </span>
             </button>
           </div>
+          <ClientModal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+          />
           <div className="meer-weten-container">
             <h4>Meer weten?</h4>
             <Link to="/about">
