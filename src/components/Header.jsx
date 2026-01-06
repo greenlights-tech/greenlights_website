@@ -1,8 +1,9 @@
 import { useRef } from "react";
 import { useIntro } from "../context/IntroContext";
 import { useLocation } from "react-router-dom";
-import { gsap } from "gsap";
-import { useGSAP } from "@gsap/react";
+
+import { gsap, useGSAP } from "../utils/gsap-setup";
+
 export const Header = () => {
   const { introFinished } = useIntro();
   const location = useLocation();
