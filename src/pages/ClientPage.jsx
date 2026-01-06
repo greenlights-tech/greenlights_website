@@ -1,16 +1,17 @@
 import { useRef, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { gsap } from "gsap";
-import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { AboutSection } from "../components/AboutSection";
 import { BlogSection } from "../components/BlogSection";
 import { Footer } from "../components/Footer";
 import { ClientModal } from "../components/ClientModal";
 // import { MdArrowOutward } from "react-icons/md";
 
-gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother);
+import {
+  gsap,
+  ScrollTrigger,
+  ScrollSmoother,
+  useGSAP,
+} from "../utils/gsap-setup";
 
 export const ClientPage = () => {
   const container = useRef();

@@ -1,11 +1,7 @@
 import { useRef } from "react";
 import { useLocation } from "react-router-dom";
-import { gsap } from "gsap";
-import { useGSAP } from "@gsap/react";
-import { Flip } from "gsap/Flip";
-import { ScrollSmoother } from "gsap/ScrollSmoother";
 
-gsap.registerPlugin(useGSAP, Flip, ScrollSmoother);
+import { gsap, useGSAP, Flip, ScrollSmoother } from "../utils/gsap-setup";
 
 export const NavBar = () => {
   const { pathname, hash } = useLocation();

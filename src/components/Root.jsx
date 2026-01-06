@@ -1,9 +1,4 @@
 import { Outlet } from "react-router-dom";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ScrollSmoother } from "gsap/ScrollSmoother";
-// import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-import { useGSAP } from "@gsap/react";
 // import { Header } from "./Header";
 // import { Footer } from "./Footer";
 // import { ScrollToTop } from "./ScrollToTop";
@@ -11,15 +6,19 @@ import { NavBar } from "./NavBar";
 import { WhatsAppButton } from "./WhatsappButton";
 import { Header } from "./Header";
 // import { SwitchProvider } from "../context/SwitchContext";
-
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP);
+import {
+  gsap,
+  useGSAP,
+  ScrollTrigger,
+  ScrollSmoother,
+} from "../utils/gsap-setup";
 
 export const Root = () => {
   useGSAP(() => {
     ScrollSmoother.create({
       wrapper: "#smooth-wrapper",
       content: "#smooth-content",
-      smooth: 2, // Iets hogere waarde voor dat 'premium' gevoel
+      smooth: 2,
       effects: true,
     });
   }, []);

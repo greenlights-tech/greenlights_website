@@ -7,17 +7,11 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import { useIntro } from "../context/IntroContext";
-import { gsap } from "gsap";
-import { Flip } from "gsap/Flip";
-import { SplitText } from "gsap/SplitText";
-// import { CustomEase } from "gsap/CustomEase";
-// import Lenis from "lenis";
-import { useGSAP } from "@gsap/react";
 import leftImage from "../assets/background6.avif";
 import rightImage from "../assets/background7-kopie.jpg";
-
-gsap.registerPlugin(useGSAP, Flip, SplitText);
 import { Icon } from "../components/Icon";
+
+import { gsap, useGSAP, Flip, SplitText } from "../utils/gsap-setup";
 
 let introHasRunGlobal = false;
 
