@@ -21,8 +21,8 @@ const ArticleCard = ({ title, content, date, author, excerpt, image, }) => {
     <article className="article-card">
       <img src={image} alt={title} />
       <h3>{title}</h3>
-      <p>{excerpt}</p>
       <p>{author}</p>
+      <p>{excerpt}</p>
       <small>{date.toLocaleDateString("nl-NL", { day: "2-digit", month: "long", year: "numeric", })}</small>
     </article>
   );
