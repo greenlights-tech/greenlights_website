@@ -2,7 +2,7 @@
   position: relative;
   display: flex;
   justify-content: center;
-  width: 80%;
+  width: 70%;
 }
 
 .grid-sizer {
@@ -17,20 +17,45 @@
 
 .article-card.card-expanded {
   width: 91%;
-  box-shadow: 0 12px 32px rgba(0,0,0,0.18);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
 }
 
 .article-card {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   box-sizing: border-box;
   overflow: hidden;
   border-radius: 2vw;
   border: 1px solid rgb(211, 199, 185);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.article-color-darkgreen {
+  background-color: #2f7e65;
+  color: rgb(228, 228, 228);
+}
+
+.article-color-yellow {
+  background-color: #e0ff98;
+  color: rgb(114, 114, 114);
+}
+
+.article-color-blue {
+  background-color: #4a94f9;
+  color: #264a7c;
+}
+
+.article-color-gray {
+  background-color: rgb(153, 153, 153);
+  color: rgb(228, 228, 228);
+}
+
+.article-color-green {
+  background-color: #02a16f;
+  color: rgb(228, 228, 228);
 }
 
 .article-card img {
@@ -44,13 +69,49 @@
 }
 
 .article-card h3 {
+  font-size: 1.2rem;
   margin-bottom: 1rem;
   font-family: "Inter";
   text-transform: uppercase;
-  text-align: center;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--color-primary);
   line-height: 1.1;
+  margin: 1rem 1rem 0.5rem;
+}
+
+.article-card h4 {
+  font-size: 1.1rem;
+  font-family: "Inter";
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--color-primary);
+  margin: 1rem 1rem 0.5rem;
+}
+
+.article-card h5 {
+  font-size: 1rem;
+  font-family: "Inter";
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--color-primary);
+  margin: 1rem 1rem 0.5rem;
+}
+
+
+.article-card p {
+  margin: 0rem 1rem 0.5rem;
+}
+
+.article-footer {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  margin: 0rem 1rem 0.5rem;
+}
+
+.article-card small {
+  font-size: 0.8rem;
+  opacity: 0.8;
 }
 
 .article-card:hover {
@@ -58,31 +119,28 @@
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
-.modal-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
+article blockquote {
+  font-style: italic;
+  border-left: 5px solid rgb(153, 153, 153);
+  margin: 0 2rem 1rem;
 }
 
-.modal {
-  background: white;
-  max-width: 800px;
-  width: 90%;
-  max-height: 90vh;
-  overflow-y: auto;
-  padding: 2rem;
-  position: relative;
+article .excerpt {
+  line-height: 1.6;
+  font-weight: bold;
 }
 
-.close-btn {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
+article .ul {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+  list-style-type: disc;
+  list-style-position: outside;
 }
+
+article .ul .li {
+  margin: 0.25rem 0;
+}
+
 
 @media (max-width: 900px) {
   .article-card {
