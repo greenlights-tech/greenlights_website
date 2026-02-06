@@ -33,28 +33,28 @@
   cursor: pointer;
 }
 
-.article-color-darkgreen {
-  background-color: #2f7e65;
+.article-color-jungleTeal {
+  background-color: var(--color-jungleTeal);
   color: rgb(228, 228, 228);
 }
 
-.article-color-yellow {
-  background-color: #e0ff98;
+.article-color-limeCream {
+  background-color: var(--color-limeCream);
   color: rgb(114, 114, 114);
 }
 
-.article-color-blue {
-  background-color: #4a94f9;
+.article-color-blueEnergy {
+  background-color: var(--color-blueEnergy);
   color: #264a7c;
 }
 
-.article-color-gray {
-  background-color: rgb(153, 153, 153);
+.article-color-grayOlive {
+  background-color: var(--color-greyOlive);
   color: rgb(228, 228, 228);
 }
 
-.article-color-green {
-  background-color: #02a16f;
+.article-color-jungleGreen {
+  background-color: var(--color-jungleGreen);
   color: rgb(228, 228, 228);
 }
 

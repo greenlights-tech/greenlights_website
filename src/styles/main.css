@@ -176,6 +176,11 @@ button {
   --color-menu: #444857;
   --color-secondary: rgb(255, 255, 255);
   --color-tertiary: rgb(0, 32, 96);
+  --color-limeCream: #e0ff98;
+  --color-jungleTeal: #2f7e65;
+  --color-blueEnergy: #4a94f9;
+  --color-greyOlive: rgb(153, 153, 153);
+  --color-jungleGreen: #02a16f;
 
   /* ===== FONTSIZE */
   --hero-logo-font-size: clamp(3rem, 4vw, 7rem);
@@ -442,7 +447,7 @@ body,
 .whatsapp-gradient {
   transition: all 0.4s ease-in-out;
   color: #fff;
-  background: linear-gradient(to right, #20ff85, #02a16f);
+  background: linear-gradient(to right, #20ff85, var(--color-jungleGreen));
   position: relative;
   overflow: hidden;
 }
@@ -488,7 +493,7 @@ body,
   left: 0;
   opacity: 0;
   transition: all 0.4s ease-in-out;
-  background: linear-gradient(to right, #02a16f, #20ff85);
+  background: linear-gradient(to right, var(--color-jungleGreen), #20ff85);
   z-index: 1;
 }
 
@@ -1644,7 +1649,7 @@ button {
   align-items: center;
   justify-content: center;
   font-size: 0.875rem;
-  background-color: #e0ff98;
+  background-color: var(--color-limeCream);
   background-color: #1e1e1e;
   background-color: #e7e8e9;
   color: var(--color-secondary);
@@ -2092,7 +2097,7 @@ button {
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
   background-clip: text; */
-  color: #4a94f9;
+  color: var(--color-blueEnergy);
   color: gray;
 }
 
@@ -2198,7 +2203,7 @@ button {
   background-color: rgb(54, 54, 54);
   border-radius: 8px 0 0 8px; /* Afgeronde hoeken voor de balk */
   border-right: 2px solid;
-  border-image-source: linear-gradient(to bottom, #20ff85, #02a16f);
+  border-image-source: linear-gradient(to bottom, #20ff85, var(--color-jungleGreen));
   border-image-slice: 1;
   z-index: -1;
   padding: 1rem;
@@ -2299,7 +2304,7 @@ button {
   margin-left: -7px;
   height: 35px;
   width: 35px;
-  background: linear-gradient(to right, #20ff85, #02a16f);
+  background: linear-gradient(to right, #20ff85, var(--color-jungleGreen));
   border: 0px solid var(--color-primary);
   border-radius: 0%;
   clip-path: polygon(60% 0%, 85% 0%, 35% 50%, 85% 100%, 60% 100%, 10% 50%);
@@ -2477,7 +2482,7 @@ button {
   border-width: 3px;
   border-image-slice: 1;
   margin-top: 1rem;
-  border-image-source: linear-gradient(to right, #20ff85, #02a16f);
+  border-image-source: linear-gradient(to right, #20ff85, var(--color-jungleGreen));
   cursor: pointer;
 }
 
@@ -2521,7 +2526,7 @@ button {
   margin-left: -7px;
   height: 35px;
   width: 35px;
-  background: linear-gradient(to right, #20ff85, #02a16f);
+  background: linear-gradient(to right, #20ff85, var(--color-jungleGreen));
   border: 0px solid var(--color-primary);
   border-radius: 0%;
   clip-path: polygon(60% 0%, 85% 0%, 35% 50%, 85% 100%, 60% 100%, 10% 50%);
@@ -3063,19 +3068,19 @@ button {
 } */
 
 .card1 {
-  background-color: #2f7e65;
+  background-color: var(--color-jungleTeal);
 }
 .card2 {
   background-color: #e0ff98;
 }
 .card3 {
-  background-color: #4a94f9;
+  background-color: var(--color-blueEnergy);
 }
 .card4 {
-  background-color: rgb(153, 153, 153);
+  background-color: var(--color-greyOlive);
 }
 .card5 {
-  background-color: #02a16f;
+  background-color: var(--color-jungleGreen);
 }
 
 .card p {

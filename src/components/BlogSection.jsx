@@ -12,7 +12,7 @@ import rehypeSanitize from "rehype-sanitize";
 // returnt raw data en image urls met contenct van "blog-content/articles/article*.md bestanden zonder dat het uitmaakt hoeveel article*.md er zijn
 const rawArticleData = Object.values(import.meta.glob('../../blog-content/articles/*.md', { eager: true, query: '?raw', import: 'default' }));
 const imageUrls = Object.values(import.meta.glob('../../blog-content/images/*.{png,jpg,jpeg,svg}', { eager: true, query: '?url', import: 'default' }));
-const backgrounds = ['article-color-darkgreen', 'article-color-yellow', 'article-color-blue', 'article-color-gray', 'article-color-green'];
+const backgrounds = ['article-color-jungleTeal', 'article-color-limeCream', 'article-color-blueEnergy', 'article-color-grayOlive', 'article-color-jungleGreen'];
 
 const articles = rawArticleData.map((articleArray, index) => {
   const { data, content } = matter(articleArray);
