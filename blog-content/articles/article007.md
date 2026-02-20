@@ -1,7 +1,7 @@
 ---
 title: "Titel van het artikel"
-date: 2025-01-09
-author: "Naam Auteur"
+date: 2026-02-19
+author: "Henk Jansen"
 image: "/images/blog/hoofdfoto.jpg"
 excerpt: "Korte samenvatting (1-2 zinnen) voor op de overzichtspagina"
 tags: [Traineeship, ICT, Cybersecurity]
@@ -19,6 +19,8 @@ Inhoud van je artikel in normale markdown.
 **Vetgedrukt**
 
 *schuingedrukt*
+
+![Beschrijving foto](/images/blog/foto-in-tekst.jpg)
 
 > Mooie quote
 
