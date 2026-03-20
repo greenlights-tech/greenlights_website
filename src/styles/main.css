@@ -674,7 +674,9 @@ body,
   border: 1px solid var(--color-primary);
   /* box-shadow: inset 0 0 15px -5px var(--color-primary),
     0 0 15px -5px var(--color-primary); */
-  box-shadow: 0px 0px 4px #00dc8083, 0px 0px 8px #00dc8083;
+  box-shadow:
+    0px 0px 4px #00dc8083,
+    0px 0px 8px #00dc8083;
   padding-top: 0.5em;
   padding-bottom: 0.5em;
   padding-left: 0.75em;
@@ -834,7 +836,9 @@ li {
   /* text-transform: uppercase; */
   color: #b9b9b9;
   font-weight: 400;
-  font: 500 normal 1.75rem "Inter", sans-serif;
+  font:
+    500 normal 1.75rem "Inter",
+    sans-serif;
   letter-spacing: -0.05em;
   /* line-height: 1.2; */
 }
@@ -852,7 +856,9 @@ li {
   /* text-transform: uppercase; */
   color: #b9b9b9;
   font-weight: 400;
-  font: 500 normal 1.75rem "Inter", sans-serif;
+  font:
+    500 normal 1.75rem "Inter",
+    sans-serif;
   letter-spacing: -0.05em;
   /* line-height: 1.5; */
   /* border: 1px solid blue; */
@@ -1483,9 +1489,7 @@ button {
 .teaser-image {
   width: 100%;
   height: 100%;
-  /* // Dit is de vervanger voor background-size: cover; */
   object-fit: cover;
-  /* // Dit is de vervanger voor background-position: center; */
   object-position: center;
   display: block;
   border-radius: 2vw;
@@ -1528,6 +1532,8 @@ button {
 
 .hover-layer-right {
   background-color: hsla(36, 7%, 30%, 1); /* Laag 3: De kleur voor Rechts */
+
+  /* background-color: #635a54; */
 }
 
 /* .swiper-slide-active {
@@ -1764,7 +1770,9 @@ button {
   padding-top: 2rem;
   padding-bottom: 2rem;
   align-items: center;
-  font: 400 normal 15px / normal "Inter", sans-serif;
+  font:
+    400 normal 15px / normal "Inter",
+    sans-serif;
   letter-spacing: -0.03em;
   /* border: 1px solid green; */
 }
@@ -2203,7 +2211,11 @@ button {
   background-color: rgb(54, 54, 54);
   border-radius: 8px 0 0 8px; /* Afgeronde hoeken voor de balk */
   border-right: 2px solid;
-  border-image-source: linear-gradient(to bottom, #20ff85, var(--color-jungleGreen));
+  border-image-source: linear-gradient(
+    to bottom,
+    #20ff85,
+    var(--color-jungleGreen)
+  );
   border-image-slice: 1;
   z-index: -1;
   padding: 1rem;
@@ -2384,11 +2396,21 @@ button {
   z-index: 1000;
 }
 
-.belofte-client {
+.client-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  width: 90%;
+  border: 1px solid red;
+  background-color: var(--color-greyOlive);
+  border-top-right-radius: 2vw;
+  border-bottom-right-radius: 2vw;
+  margin-bottom: 3rem;
+  backdrop-filter: blur(30px);
+  border: 1px solid var(--color-primary);
+  border: 2px solid rgb(211, 199, 185);
+  padding: 2rem;
+  margin-top: 3rem;
 }
 
 /* .belofte-section {
@@ -2398,7 +2420,7 @@ button {
 .opd-content {
   display: flex;
   flex-direction: column;
-  width: 80%;
+  width: 100%;
   /* border: 1px solid green; */
   margin-bottom: 0.25rem;
 }
@@ -2407,6 +2429,14 @@ button {
   margin-bottom: 1rem;
   font-weight: 600;
   color: var(--color-primary);
+}
+
+.opd-content p {
+  display: flex;
+  font-family: "Inter", sans-serif;
+  font-size: 1.25rem;
+  color: rgb(228, 228, 228);
+  line-height: 1.5;
 }
 
 .sol-title,
@@ -2482,7 +2512,11 @@ button {
   border-width: 3px;
   border-image-slice: 1;
   margin-top: 1rem;
-  border-image-source: linear-gradient(to right, #20ff85, var(--color-jungleGreen));
+  border-image-source: linear-gradient(
+    to right,
+    #20ff85,
+    var(--color-jungleGreen)
+  );
   cursor: pointer;
 }
 
@@ -2717,7 +2751,9 @@ button {
   top: 0px;
   right: 0;
   /* transform: translateX(0%); */
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow:
+    0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
   animation: slideIn 1s ease;
 }
 

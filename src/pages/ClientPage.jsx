@@ -38,7 +38,7 @@ export const ClientPage = () => {
           // // Scroll nu pas naar de sectie
           scrollToSection(hash);
         });
-      }, 300); // // 200ms is genoeg voor de Header-check en de Smoother
+      }, 300);
 
       return () => clearTimeout(timer);
     }
@@ -68,7 +68,7 @@ export const ClientPage = () => {
         onLeaveBack: () => navigate(pathname, { replace: true }),
       });
     },
-    { scope: container }
+    { scope: container },
   );
 
   return (
@@ -88,27 +88,57 @@ export const ClientPage = () => {
         </Link>
       </div>
       <section id="belofte" className="belofte-section client-section">
-        <h2 className="opd-title">Onze belofte</h2>
+        <div className="client-container">
+          <h2 className="opd-title">Onze belofte</h2>
 
-        <div className="opd-content">
-          <p>
-            Snel, passend IT-talent vinden, geselecteerd op motivatie, groei
-            mind-set en passend bij uw bedrijfscultuur. Kandidaten zijn
-            opgeleid, specifiek voor uw behoefte en krijgen persoonlijke
-            begeleiding tot ze volledig meedraaien. Wij investeren in de
-            toekomst van uw team, met intentie tot in dienst treding.
-          </p>
-        </div>
-        <div className="opd-content">
-          <h3>Waarom Greenlights?</h3>
-          <p>
-            Greenlights biedt het hoofd aan de hevige strijd om startend
-            IT-talent te binden aan uw organisatie. In het werkveld zien we dat
-            men tegen dezelfde problemen aanloopt: generieke profielen, lange
-            inwerktijd en onvoldoende aansluiting op de praktijk. Wij leveren
-            zorgvuldig geselecteerd talent. Een maatwerktraject, afgestemd op uw
-            opdracht!
-          </p>
+          <div className="opd-content">
+            <p>
+              Snel, passend IT-talent vinden, geselecteerd op motivatie, groei
+              mind-set en passend bij uw bedrijfscultuur. Kandidaten zijn
+              opgeleid, specifiek voor uw behoefte en krijgen persoonlijke
+              begeleiding tot ze volledig meedraaien. Wij investeren in de
+              toekomst van uw team, met intentie tot in dienst treding.
+            </p>
+          </div>
+          <div className="opd-content">
+            <h3>Waarom Greenlights?</h3>
+            <p>
+              Greenlights biedt het hoofd aan de hevige strijd om startend
+              IT-talent te binden aan uw organisatie. In het werkveld zien we
+              dat men tegen dezelfde problemen aanloopt: generieke profielen,
+              lange inwerktijd en onvoldoende aansluiting op de praktijk. Wij
+              leveren zorgvuldig geselecteerd talent. Een maatwerktraject,
+              afgestemd op uw opdracht!
+            </p>
+          </div>
+          <div className="opd-button-wrapper">
+            <div className="button-container">
+              <h4>Nieuw IT-talent nodig?</h4>
+              <button
+                id="opd-signup-button"
+                className="btn--gradient sol-signup-button"
+                onClick={() => setIsModalOpen(true)}
+              >
+                <span className="sol-signup-button-text">
+                  {" "}
+                  Neem contact op{" "}
+                </span>
+              </button>
+            </div>
+            <ClientModal
+              isOpen={isModalOpen}
+              onClose={() => setIsModalOpen(false)}
+            />
+            <div className="meer-weten-container">
+              <h4>Meer weten?</h4>
+              <Link to="/about">
+                <div className="meer-weten-pijl-container" id="meerWetenOpd">
+                  <div className="meer-weten-pijl"></div>
+                  <div className="meer-weten-pijl"></div>
+                </div>
+              </Link>
+            </div>
+          </div>
         </div>
 
         {/* <!-- <div className="checkmarks-container">
@@ -130,31 +160,6 @@ export const ClientPage = () => {
                   <p>Volledige begeleiding tot inzetbaarheid</p>
                 </div>
               </div> --> */}
-        <div className="opd-button-wrapper">
-          <div className="button-container">
-            <h4>Nieuw IT-talent nodig?</h4>
-            <button
-              id="opd-signup-button"
-              className="btn--gradient sol-signup-button"
-              onClick={() => setIsModalOpen(true)}
-            >
-              <span className="sol-signup-button-text"> Neem contact op </span>
-            </button>
-          </div>
-          <ClientModal
-            isOpen={isModalOpen}
-            onClose={() => setIsModalOpen(false)}
-          />
-          <div className="meer-weten-container">
-            <h4>Meer weten?</h4>
-            <Link to="/about">
-              <div className="meer-weten-pijl-container" id="meerWetenOpd">
-                <div className="meer-weten-pijl"></div>
-                <div className="meer-weten-pijl"></div>
-              </div>
-            </Link>
-          </div>
-        </div>
       </section>
 
       <AboutSection className="client-section" />

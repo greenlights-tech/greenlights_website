@@ -38,7 +38,7 @@ export const TalentPage = () => {
           // // Scroll nu pas naar de sectie
           scrollToSection(hash);
         });
-      }, 200); // // 200ms is genoeg voor de Header-check en de Smoother
+      }, 200); 
 
       return () => clearTimeout(timer);
     }

@@ -7,8 +7,9 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import { useIntro } from "../context/IntroContext";
-import leftImage from "../assets/background6.avif";
-import rightImage from "../assets/background7-kopie.jpg";
+import rightImage from "../assets/background6.avif";
+// import rightImage from "../assets/background7-kopie.jpg";
+import leftImage from "../assets/test-home.jpg";
 import { Icon } from "../components/Icon";
 
 import { gsap, useGSAP, Flip, SplitText } from "../utils/gsap-setup";
@@ -26,7 +27,7 @@ export const HomePage = () => {
       document.fonts.ready.then(() => {
         const logo = document.querySelector(".child1");
         const originalContainer = container.current.querySelector(
-          ".original-container"
+          ".original-container",
         );
         const newContainer = document.querySelector(".new-container");
         // const tagline = document.querySelector(
@@ -43,7 +44,7 @@ export const HomePage = () => {
             charsclassName: "char",
             // wordsclassName: "word",
             // autoSplit: true,
-          }
+          },
         );
 
         // Als je split met characters gebruikt, altijd ook words erbij zetten omdat hij anders woorden afbreekt bij schermresizing
@@ -121,7 +122,7 @@ export const HomePage = () => {
             ease: "none",
             zIndex: -1,
           },
-          0
+          0,
         );
 
         // const state = Flip.getState(logo);
@@ -143,7 +144,7 @@ export const HomePage = () => {
             duration: 0.3,
             ease: "power2.inOut",
           },
-          0.5
+          0.5,
         );
         // Animeer de stop-kleuren terug naar groen
         tl.current.to(
@@ -154,7 +155,7 @@ export const HomePage = () => {
             duration: 0.3,
             ease: "power1.out",
           },
-          0.5 // Start tegelijk
+          0.5, // Start tegelijk
         );
 
         tl.current.to(
@@ -165,7 +166,7 @@ export const HomePage = () => {
             duration: 0.3,
             ease: "power1.out",
           },
-          0.5 // Start tegelijk
+          0.5, // Start tegelijk
         );
 
         tl.current.to(
@@ -175,7 +176,7 @@ export const HomePage = () => {
             duration: 1.2,
             ease: "power2.inOut",
           },
-          1
+          1,
         );
         // tl.current.add(
         //   Flip.from(state, {
@@ -195,7 +196,7 @@ export const HomePage = () => {
             duration: 0.3,
             ease: "power2.out",
           },
-          0.7
+          0.7,
         );
 
         tl.current.to(
@@ -205,7 +206,7 @@ export const HomePage = () => {
             duration: 1,
             ease: "power2.inOut",
           },
-          2
+          2,
         );
         tl.current.to(
           splitTagline.chars,
@@ -218,7 +219,7 @@ export const HomePage = () => {
               from: "begin",
             },
           },
-          2.5
+          2.5,
         );
 
         tl.current.to(
@@ -228,7 +229,7 @@ export const HomePage = () => {
             duration: 1,
             ease: "none",
           },
-          2.5
+          2.5,
         );
 
         tl.current.to(
@@ -236,7 +237,7 @@ export const HomePage = () => {
           {
             opacity: 1,
           },
-          1
+          1,
         );
 
         tl.current.to(
@@ -250,7 +251,7 @@ export const HomePage = () => {
             duration: 1,
             ease: "power2.out",
           },
-          2.5
+          2.5,
         );
 
         gsap.set(".teasers-container-swiper", {
@@ -267,7 +268,7 @@ export const HomePage = () => {
             ease: "expo.out",
             duration: 2,
           },
-          3
+          3,
         );
 
         const handleStartClick = contextSafe(() => {
@@ -286,7 +287,7 @@ export const HomePage = () => {
               absolute: true,
               zIndex: 1000,
             }),
-            1
+            1,
           );
 
           tl.current.play();
@@ -313,7 +314,7 @@ export const HomePage = () => {
         }
       });
     },
-    { scope: container }
+    { scope: container },
   );
 
   // const { contextSafe } = useGSAP({ scope: container });
@@ -519,7 +520,7 @@ export const HomePage = () => {
         });
       });
     },
-    { scope: container, dependencies: [] }
+    { scope: container, dependencies: [] },
   );
 
   // useEffect(() => {
@@ -673,6 +674,7 @@ export const HomePage = () => {
           <div className="hover-layer-left"></div>
           <div className="hover-layer-right"></div>
         </div>
+
         <div className="mid-text-container">
           <div className="mid-text-sollicitant">
             <h2>
