@@ -203,7 +203,7 @@ export const HomePage = () => {
           ".bg",
           {
             opacity: 1,
-            duration: 1,
+            duration: 2,
             ease: "power2.inOut",
           },
           2,

@@ -32,7 +32,7 @@ export const Header = () => {
         if (shouldAnimate && headerRef.current) {
           hasAnimatedRef.current = location.pathname;
 
-          // // Gebruik kill() om eventuele lopende animaties op dit element te stoppen
+          // // Gebruik van kill() om eventuele lopende animaties op dit element te stoppen
           gsap.killTweensOf(headerRef.current);
 
           gsap.fromTo(
@@ -43,7 +43,7 @@ export const Header = () => {
               y: 0,
               duration: 1,
               ease: "power3.out",
-              overwrite: "auto", // // Zorgt dat nieuwe animaties oude overschrijven
+              overwrite: "auto", // Zorgt dat nieuwe animaties oude overschrijven
             }
           );
 
@@ -60,7 +60,7 @@ export const Header = () => {
         if (logos.length > 1) {
           logos[0].remove();
         }
-        hasAnimatedRef.current = "/"; // // Reset voor als we terugkomen
+        hasAnimatedRef.current = "/"; // Reset voor als je  terugkomt
       }
     },
     { dependencies: [location.pathname, introFinished] }
@@ -74,7 +74,7 @@ export const Header = () => {
       <header
         ref={headerRef}
         className={`header ${showHeader ? "show" : ""}`}
-        // style={{ opacity: isHome ? 1 : 0 }}
+      // style={{ opacity: isHome ? 1 : 0 }}
       >
         <div className="container">
           <div className="bg"></div>
