@@ -16,7 +16,7 @@ export function initSwiper() {
     // grabCursor: true,
     centeredSlides: true,
     slidesPerView: "auto",
-    spaceBetween: 24,
+    spaceBetween: 12,
     coverflowEffect: {
       rotate: 50,
       stretch: 0,
@@ -33,7 +33,7 @@ export function initSwiper() {
       768: {
         slidesPerView: 2,
         centeredSlides: false,
-        spaceBetween: 100,
+        spaceBetween: 12,
         coverflowEffect: {
           rotate: 0,
           stretch: 0,

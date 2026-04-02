@@ -97,6 +97,7 @@ video {
   font: inherit;
   vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
 article,
 aside,
@@ -111,17 +112,21 @@ nav,
 section {
   display: block;
 }
+
 body {
   line-height: 1;
 }
+
 ol,
 ul {
   list-style: none;
 }
+
 blockquote,
 q {
   quotes: none;
 }
+
 blockquote:before,
 blockquote:after,
 q:before,
@@ -129,6 +134,7 @@ q:after {
   content: "";
   content: none;
 }
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -241,14 +247,17 @@ button {
 body::-webkit-scrollbar,
 html::-webkit-scrollbar {
   display: none;
-  width: 0; /* Zorgt ervoor dat de ruimte ook verdwijnt */
+  width: 0;
+  /* Zorgt ervoor dat de ruimte ook verdwijnt */
 }
 
 /* 2. Verbergt de scrollbar in Internet Explorer, Edge, en Firefox */
 body,
 html {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 /* =========================================
@@ -595,12 +604,10 @@ body,
   inset: 0;
   /* background-image: linear-gradient(to top, #686563, #686563 30%, #464443);
   background-image: linear-gradient(to top, #465166, #232832 50%, #191d24); */
-  background-image: linear-gradient(
-    to top,
-    rgb(93, 91, 91),
-    rgb(54, 54, 54) 50%,
-    rgb(44, 44, 44)
-  );
+  background-image: linear-gradient(to top,
+      rgb(93, 91, 91),
+      rgb(54, 54, 54) 50%,
+      rgb(44, 44, 44));
 
   /* background-image: linear-gradient(to top, #303847, #232832 60%, #161a20); */
 
@@ -637,7 +644,8 @@ body,
 
 .child1.is-refreshing {
   opacity: 0;
-  animation: fadeInLogo 0.1s forwards; /* Hele korte delay */
+  animation: fadeInLogo 0.1s forwards;
+  /* Hele korte delay */
   animation-delay: 0.05s;
 }
 
@@ -663,6 +671,7 @@ body,
   padding-bottom: 0.5rem;
   /* border: 1px solid red; */
 }
+
 .tagline {
   text-align: center;
   /* display: flex;
@@ -718,6 +727,7 @@ li {
 }
 
 @media (min-width: 992px) {
+
   /* .header {
     height: 7.25rem;
   } */
@@ -905,6 +915,7 @@ li {
     padding-bottom: 2rem;
     width: 100%;
   }
+
   .icon2-wrapper {
     width: 10%;
   }
@@ -924,9 +935,12 @@ li {
 .switch {
   position: relative;
   display: inline-block;
-  width: 100px; /* 50px * 2 */
-  height: 54px; /* 27px * 2 */
-  border-radius: 54px; /* 27px * 2 */
+  width: 100px;
+  /* 50px * 2 */
+  height: 54px;
+  /* 27px * 2 */
+  border-radius: 54px;
+  /* 27px * 2 */
   cursor: pointer;
   transition: all 0.3s;
   overflow: hidden;
@@ -938,24 +952,29 @@ li {
   ); */
   background-color: hsl(223, 10%, 10%);
 }
+
 .switch input {
   display: none;
 }
-.switch input:checked + div {
+
+.switch input:checked+div {
   /* (100% - 50px) -> 100% minus de nieuwe breedte van het binnenste balletje */
   left: calc(100% - 50px);
 }
+
 .switch div {
   position: absolute;
-  width: 50px; /* 25px * 2 */
-  height: 50px; /* 25px * 2 */
-  border-radius: 50px; /* 25px * 2 */
-  background-image: linear-gradient(
-    45deg,
-    hsl(223, 10%, 20%),
-    hsl(223, 10%, 10%)
-  );
-  top: 2px; /* 1px * 2 */
+  width: 50px;
+  /* 25px * 2 */
+  height: 50px;
+  /* 25px * 2 */
+  border-radius: 50px;
+  /* 25px * 2 */
+  background-image: linear-gradient(45deg,
+      hsl(223, 10%, 20%),
+      hsl(223, 10%, 10%));
+  top: 2px;
+  /* 1px * 2 */
   left: 0px;
   transition: all 0.4s;
 }
@@ -1496,7 +1515,8 @@ button {
 }
 
 .featured-background-wrapper {
-  position: fixed; /* // Of absolute, als hij mee moet scrollen */
+  position: fixed;
+  /* // Of absolute, als hij mee moet scrollen */
   top: 0;
   left: 0;
   width: 100%;
@@ -1522,16 +1542,19 @@ button {
 .hover-layer-right {
   position: absolute;
   inset: 0;
-  opacity: 0; /* Standaard onzichtbaar */
+  opacity: 0;
+  /* Standaard onzichtbaar */
   will-change: opacity;
 }
 
 .hover-layer-left {
-  background-color: #635a54; /* Laag 2: De kleur voor Links */
+  background-color: #635a54;
+  /* Laag 2: De kleur voor Links */
 }
 
 .hover-layer-right {
-  background-color: hsla(36, 7%, 30%, 1); /* Laag 3: De kleur voor Rechts */
+  background-color: hsla(36, 7%, 30%, 1);
+  /* Laag 3: De kleur voor Rechts */
 
   /* background-color: #635a54; */
 }
@@ -1557,16 +1580,18 @@ button {
 } */
 
 @media (min-width: 768px) {
-  .teasers-container-swiper .swiper-wrapper {
+  /* .teasers-container-swiper .swiper-wrapper {
     width: 60%;
-  }
+  } */
+
   .teasers-container-swiper {
     width: 100%;
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     justify-content: center;
     align-items: center;
     flex-wrap: nowrap;
+    border: 1px solid yellow;
     /* margin-top: 3rem; */
   }
 
@@ -1576,18 +1601,27 @@ button {
   .swiper-slide {
     margin-top: 0rem;
     margin-bottom: 0rem;
+    border: 1px solid blue;
     /* padding-left: 5rem;
     padding-right: 5rem; */
   }
+
   .mySwiper {
     align-items: flex-start;
-    width: 70%;
+    width: 100%;
+    max-width: 1100px;
+    border: 1px solid red;
   }
+
   .teaser-swiper {
     cursor: pointer;
     margin: 3rem;
+
   }
 }
+
+
+
 
 /* .teasers-container .buttons .left,
   .teasers-container .buttons .right {
@@ -1765,6 +1799,7 @@ button {
 .container-contact {
   display: flex;
 }
+
 .secRow {
   display: flex;
   padding-top: 2rem;
@@ -1776,9 +1811,11 @@ button {
   letter-spacing: -0.03em;
   /* border: 1px solid green; */
 }
+
 .secRow ul {
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
+
 .secRow ul li {
   display: flex;
   gap: 15px;
@@ -2024,7 +2061,8 @@ button {
 .contact-icon {
   position: relative;
   display: block;
-  width: 2rem; /* Bepaal de grootte van het klikgebied */
+  width: 2rem;
+  /* Bepaal de grootte van het klikgebied */
   height: 2rem;
   color: white;
   font-size: 0;
@@ -2180,7 +2218,8 @@ button {
   position: fixed;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem; /* Iets minder gap zodat de balken mooi aansluiten */
+  gap: 0.5rem;
+  /* Iets minder gap zodat de balken mooi aansluiten */
   top: 50%;
   transform: translateY(-50%);
   background-color: rgb(93, 91, 91);
@@ -2199,7 +2238,8 @@ button {
   color: #aaabb8;
   font-family: "IBM Plex Mono", sans-serif;
   padding: 12px 16px;
-  z-index: 10; /* Zorgt dat tekst BOVEN de marker staat */
+  z-index: 10;
+  /* Zorgt dat tekst BOVEN de marker staat */
   transition: color 0.3s ease;
   white-space: nowrap;
 }
@@ -2207,15 +2247,15 @@ button {
 /* De Glijdende Balk */
 .marker {
   position: absolute;
-  inset: 0; /* Vult de hele button */
+  inset: 0;
+  /* Vult de hele button */
   background-color: rgb(54, 54, 54);
-  border-radius: 8px 0 0 8px; /* Afgeronde hoeken voor de balk */
+  border-radius: 8px 0 0 8px;
+  /* Afgeronde hoeken voor de balk */
   border-right: 2px solid;
-  border-image-source: linear-gradient(
-    to bottom,
-    #20ff85,
-    var(--color-jungleGreen)
-  );
+  border-image-source: linear-gradient(to bottom,
+      #20ff85,
+      var(--color-jungleGreen));
   border-image-slice: 1;
   z-index: -1;
   padding: 1rem;
@@ -2235,7 +2275,8 @@ button {
   color: #00ff00; 
 } */
 .nav-bar button:hover {
-  color: #fff; /* // Of jouw specifieke groene hex-code */
+  color: #fff;
+  /* // Of jouw specifieke groene hex-code */
   /* transition: color 0.3s ease; */
 }
 
@@ -2254,8 +2295,10 @@ button {
 
 .button-text {
   position: relative;
-  z-index: 10000; /* Hoger dan de marker (die is -1 of 1) */
-  pointer-events: none; /* Klikken gaat door de span heen naar de button */
+  z-index: 10000;
+  /* Hoger dan de marker (die is -1 of 1) */
+  pointer-events: none;
+  /* Klikken gaat door de span heen naar de button */
 }
 
 .photo-solpage {
@@ -2285,6 +2328,7 @@ button {
   line-height: 1;
   margin-top: 0.75rem;
 }
+
 .sol-home-button-container,
 .opd-home-button-container {
   /* margin: 40px;
@@ -2512,11 +2556,9 @@ button {
   border-width: 3px;
   border-image-slice: 1;
   margin-top: 1rem;
-  border-image-source: linear-gradient(
-    to right,
-    #20ff85,
-    var(--color-jungleGreen)
-  );
+  border-image-source: linear-gradient(to right,
+      #20ff85,
+      var(--color-jungleGreen));
   cursor: pointer;
 }
 
@@ -2576,26 +2618,32 @@ button {
 } */
 
 @media (min-width: 376px) {
+
   .sol-content,
   .opd-content {
     width: 70%;
     margin-bottom: 2rem;
   }
+
   .sol-home-button-container,
   .opd-home-button-container {
     margin-top: 1rem;
   }
 }
+
 @media (min-width: 768px) {
+
   .sol-content,
   .opd-content {
     width: 50%;
   }
+
   .sol-title,
   .opd-title {
     margin-top: 0rem;
     width: 50%;
   }
+
   .sol-button-wrapper,
   .opd-button-wrapper {
     gap: 3rem;
@@ -2604,11 +2652,13 @@ button {
 }
 
 @media (min-width: 992px) {
+
   .sol-home-button-wrapper,
   .opd-home-button-wrapper {
     display: flex;
     width: 100%;
   }
+
   .sol-home-button-container {
     margin-right: 4rem;
   }
@@ -2616,6 +2666,7 @@ button {
   .opd-home-button-container {
     margin-left: 4rem;
   }
+
   .sol-button-wrapper,
   .opd-button-wrapper {
     flex-direction: row;
@@ -3106,15 +3157,19 @@ button {
 .card1 {
   background-color: var(--color-jungleTeal);
 }
+
 .card2 {
   background-color: #e0ff98;
 }
+
 .card3 {
   background-color: var(--color-blueEnergy);
 }
+
 .card4 {
   background-color: var(--color-greyOlive);
 }
+
 .card5 {
   background-color: var(--color-jungleGreen);
 }
@@ -3122,6 +3177,7 @@ button {
 .card p {
   color: rgb(228, 228, 228);
 }
+
 .card2 p {
   color: rgb(114, 114, 114);
 }
@@ -3129,6 +3185,7 @@ button {
 .card3 h3 {
   color: #20ff85;
 }
+
 .card3 p {
   color: #264a7c;
 }
@@ -3138,10 +3195,12 @@ button {
     height: 40%;
     width: 40%;
   }
+
   .info-container-effect .pin-height {
     height: 400vh;
     /* border: 1px solid red; */
   }
+
   .info-container-effect .info-container {
     flex-direction: column;
     height: 100vh;
@@ -3164,6 +3223,7 @@ button {
   .info-container-effect .first {
     flex: 1;
   }
+
   .info-container-effect .second {
     margin-top: 5rem;
   }
@@ -3192,6 +3252,7 @@ button {
   .info-missievisie-svg {
     width: 70%;
   }
+
   .info-container-missievisie {
     display: flex;
     width: 100%;
@@ -3220,10 +3281,12 @@ button {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 32px; /* Dit is je 'gap={8}' in de oude code */
+  gap: 32px;
+  /* Dit is je 'gap={8}' in de oude code */
   /* Gebruik hier de 90% breedte van de parent */
   width: 90%;
-  margin: 0 auto; /* mx="auto" */
+  margin: 0 auto;
+  /* mx="auto" */
   justify-content: flex-start;
   background-color: transparent;
   border: 0.5px solid gray;
@@ -3239,6 +3302,7 @@ button {
   .artikelen {
     width: 80%;
   }
+
   .artikel {
     /* Formule voor 3 kolommen met een gap van 32px:
            100% / 3 - (2 * 32px / 3) = 33.333% - 21.333px */
