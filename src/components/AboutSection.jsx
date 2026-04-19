@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useRef } from "react";
 // import { GoChevronLeft } from "react-icons/go";
-import missieVisieSvg from "../assets/missievisie.svg";
+// import missieVisieSvg from "../assets/missievisie.svg";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -87,7 +87,7 @@ export const AboutSection = ({ className }) => {
       </section> */}
 
       <section className="info-container-missievisie">
-        <img className="info-missievisie-svg" src={missieVisieSvg} />
+        {/* <img className="info-missievisie-svg" src={missieVisieSvg} /> */}
       </section>
       {/* <!-- <div className="info-title">Missie</div>
           <div className="info-content">

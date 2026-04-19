@@ -575,8 +575,8 @@ export const Icon = () => {
             y2="114.31"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stopColor="#20FF85" />
-            <stop offset="1" stopColor="#00D661" />
+            <stop stopColor="#00450D" />
+            <stop offset="1" stopColor="#007416" />
           </linearGradient>
           <linearGradient
             id="paint1_linear_2061_5"
@@ -586,7 +586,7 @@ export const Icon = () => {
             y2="30.2676"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stopColor="#20FF85" />
+            <stop stopColor="#00450D" />
           </linearGradient>
           <linearGradient
             id="paint2_linear_2061_5"
@@ -596,8 +596,8 @@ export const Icon = () => {
             y2="131.149"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stopColor="#00E668" />
-            <stop offset="1" stopColor="#00C258" />
+            <stop stopColor="#00450D" />
+            <stop offset="1" stopColor="#007416" />
           </linearGradient>
           <linearGradient
             id="paint3_linear_2061_5"
@@ -607,7 +607,7 @@ export const Icon = () => {
             y2="48.0612"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stopColor="#00E668" />
+            <stop stopColor="#00450D" />
           </linearGradient>
         </defs>
       </svg>

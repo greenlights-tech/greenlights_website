@@ -7,9 +7,9 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import { useIntro } from "../context/IntroContext";
-import rightImage from "../assets/background6.avif";
+import rightImage from "../assets/homepage-2.jpg";
 // import rightImage from "../assets/background7-kopie.jpg";
-import leftImage from "../assets/test-home.jpg";
+import leftImage from "../assets/homepage-green.jpg";
 import { Icon } from "../components/Icon";
 
 import { gsap, useGSAP, Flip, SplitText } from "../utils/gsap-setup";
@@ -59,7 +59,7 @@ export const HomePage = () => {
 
         gsap.set(["#color1", "#color2"], {
           opacity: 0.1,
-          "stop-color": "#00D661",
+          "stop-color": "#00450D",
         });
 
         gsap.set(".bg", { opacity: 0 });
@@ -132,26 +132,26 @@ export const HomePage = () => {
         //   : originalContainer
         // ).appendChild(logo);
 
-        tl.current.fromTo(
-          logo,
-          {
-            // STARTWAARDEN (FROM)
-            filter: "none", // Start zonder gloed
-          },
-          {
-            // EINDWAARDEN (TO)
-            filter: "drop-shadow(0 0 3px #00dc82)",
-            duration: 0.3,
-            ease: "power2.inOut",
-          },
-          0.5,
-        );
+        // tl.current.fromTo(
+        //   logo,
+        //   {
+        //     // STARTWAARDEN (FROM)
+        //     filter: "none", // Start zonder gloed
+        //   },
+        //   {
+        //     // EINDWAARDEN (TO)
+        //     filter: "drop-shadow(0 0 3px #00dc82)",
+        //     duration: 0.3,
+        //     ease: "power2.inOut",
+        //   },
+        //   0.5,
+        // );
         // Animeer de stop-kleuren terug naar groen
         tl.current.to(
           "#color1",
           {
             opacity: 1,
-            "stop-color": "#20FF85", // Groen 1
+            "stop-color": "#00450D", // Groen 1
             duration: 0.3,
             ease: "power1.out",
           },
@@ -162,22 +162,22 @@ export const HomePage = () => {
           "#color2",
           {
             opacity: 1,
-            "stop-color": "#00D661", // Groen 2
+            "stop-color": "#007416", // Groen 2
             duration: 0.3,
             ease: "power1.out",
           },
           0.5, // Start tegelijk
         );
 
-        tl.current.to(
-          ".child1",
-          {
-            filter: "drop-shadow(0 0 1px #00dc82)",
-            duration: 1.2,
-            ease: "power2.inOut",
-          },
-          1,
-        );
+        // tl.current.to(
+        //   ".child1",
+        //   {
+        //     filter: "drop-shadow(0 0 1px #00dc82)",
+        //     duration: 1.2,
+        //     ease: "power2.inOut",
+        //   },
+        //   1,
+        // );
         // tl.current.add(
         //   Flip.from(state, {
         //     scale: true,
@@ -389,10 +389,14 @@ export const HomePage = () => {
         const mm = gsap.matchMedia();
 
         mm.add("(min-width: 768px)", () => {
-          gsap.set(headerBg, {
-            background:
-              "linear-gradient(to top, rgb(93, 91, 91), rgb(54, 54, 54) 50%, rgb(44, 44, 44)",
-          });
+          // gsap.set(headerBg, {
+          //   background:
+          //     "linear-gradient(to top, rgb(219, 219, 196), rgb(196, 196, 175) 50%, rgb(180, 180, 161)",
+
+
+          // });
+
+
           // {
           //   isDesktop: "(min-width: 768px)",
           // },
@@ -407,13 +411,13 @@ export const HomePage = () => {
               ease: "power1.inOut",
             });
             gsap.to(rightLayer, { opacity: 0, duration: 1 });
-            gsap.to(headerBg, {
-              background:
-                "linear-gradient(to top, #a8988c, #635a54 50%, #403a36)",
-              duration: 1,
-              ease: "power1.inOut",
-              force3D: true,
-            });
+            // gsap.to(headerBg, {
+            //   background:
+            //     "linear-gradient(to top, #a8988c, #635a54 50%, #403a36)",
+            //   duration: 1,
+            //   ease: "power1.inOut",
+            //   force3D: true,
+            // });
             gsap.to(leftSwiper, {
               scale: 1.1,
               duration: 0.4,
@@ -433,12 +437,13 @@ export const HomePage = () => {
               duration: 1,
               ease: "power1.inOut",
             });
-            gsap.to(headerBg, {
-              background:
-                "linear-gradient(to top, rgb(93, 91, 91), rgb(54, 54, 54) 50%, rgb(44, 44, 44)",
-              duration: 1,
-              ease: "power1.inOut",
-            });
+            // gsap.to(headerBg, {
+            //   background:
+            //     // "linear-gradient(to top, rgb(219, 219, 196), rgb(196, 196, 175) 50%, rgb(180, 180, 161)",
+            //     "linear-gradient(to top, rgb(219, 219, 196), rgb(187, 184, 160) 50%, rgb(126, 124, 107)",
+            //   duration: 1,
+            //   ease: "power1.inOut",
+            // });
             gsap.to(leftSwiper, {
               scale: 1,
               duration: 0.4,
@@ -459,12 +464,12 @@ export const HomePage = () => {
               ease: "power1.inOut",
             });
             gsap.to(leftLayer, { opacity: 0, duration: 1 });
-            gsap.to(headerBg, {
-              background:
-                "linear-gradient(to top, rgb(163, 154, 138), rgb(97, 92, 84) 50%, rgb(71, 68, 62))",
-              duration: 1,
-              ease: "power1.inOut",
-            });
+            // gsap.to(headerBg, {
+            //   background:
+            //     "linear-gradient(to top, rgb(163, 154, 138), rgb(97, 92, 84) 50%, rgb(71, 68, 62))",
+            //   duration: 1,
+            //   ease: "power1.inOut",
+            // });
             gsap.to(rightSwiper, {
               scale: 1.1,
               duration: 0.4,
@@ -484,12 +489,12 @@ export const HomePage = () => {
               duration: 1,
               ease: "power1.inOut",
             });
-            gsap.to(headerBg, {
-              background:
-                "linear-gradient(to top, rgb(93, 91, 91), rgb(54, 54, 54) 50%, rgb(44, 44, 44)",
-              duration: 1,
-              ease: "power1.inOut",
-            });
+            // gsap.to(headerBg, {
+            //   background:
+            //     "linear-gradient(to top, rgb(219, 219, 196), rgb(196, 196, 175) 50%, rgb(180, 180, 161)",
+            //   duration: 1,
+            //   ease: "power1.inOut",
+            // });
             gsap.to(rightSwiper, {
               scale: 1,
               duration: 0.4,

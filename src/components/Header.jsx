@@ -85,9 +85,9 @@ export const Header = () => {
                   ref={reactLogoRef}
                   className="child1"
                   data-flip-id="image"
-                  style={{
-                    filter: "drop-shadow(0 0 1px #00dc82)",
-                  }}
+                  // style={{
+                  //   filter: "drop-shadow(0 0 1px #00dc82)",
+                  // }}
                   width="379"
                   height="36"
                   viewBox="0 0 379 36"
@@ -169,8 +169,8 @@ export const Header = () => {
                       y2="47.752"
                       gradientUnits="userSpaceOnUse"
                     >
-                      <stop id="color1" stopColor="#20FF85" />
-                      <stop id="color2" offset="1" stopColor="#00D661" />
+                      <stop id="color1" stopColor="#00450D" />
+                      <stop id="color2" offset="1" stopColor="#007416" />
                     </linearGradient>
                   </defs>
                 </svg>
