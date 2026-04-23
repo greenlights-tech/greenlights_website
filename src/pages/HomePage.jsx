@@ -7,9 +7,9 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import { useIntro } from "../context/IntroContext";
-import rightImage from "../assets/homepage-2.jpg";
+import rightImage from "../assets/Homepage-right.jpg";
 // import rightImage from "../assets/background7-kopie.jpg";
-import leftImage from "../assets/homepage-green.jpg";
+import leftImage from "../assets/Homepage-left.jpg";
 import { Icon } from "../components/Icon";
 
 import { gsap, useGSAP, Flip, SplitText } from "../utils/gsap-setup";
@@ -407,10 +407,10 @@ export const HomePage = () => {
           const onLeftEnter = contextSafe(() => {
             gsap.to(leftLayer, {
               opacity: 1,
-              duration: 1,
+              duration: 4,
               ease: "power1.inOut",
             });
-            gsap.to(rightLayer, { opacity: 0, duration: 1 });
+            gsap.to(rightLayer, { opacity: 0, duration: 4 });
             // gsap.to(headerBg, {
             //   background:
             //     "linear-gradient(to top, #a8988c, #635a54 50%, #403a36)",
@@ -420,21 +420,21 @@ export const HomePage = () => {
             // });
             gsap.to(leftSwiper, {
               scale: 1.1,
-              duration: 0.4,
-              ease: "power1.inOut",
+              duration: 1,
+              ease: "power4.out",
             });
-            gsap.to(rightSwiper, {
-              scale: 0.9,
-              duration: 0.4,
-              ease: "power1.inOut",
-            });
+            // gsap.to(rightSwiper, {
+            //   scale: 0.9,
+            //   duration: 0.4,
+            //   ease: "power1.inOut",
+            // });
           });
 
           // LEFT HOVER UIT (Context-Safe gewrapped)
           const onLeftLeave = contextSafe(() => {
             gsap.to([leftLayer, rightLayer], {
               opacity: 0,
-              duration: 1,
+              duration: 4,
               ease: "power1.inOut",
             });
             // gsap.to(headerBg, {
@@ -446,24 +446,24 @@ export const HomePage = () => {
             // });
             gsap.to(leftSwiper, {
               scale: 1,
-              duration: 0.4,
-              ease: "power1.inOut",
+              duration: 1,
+              ease: "power4.in",
             });
-            gsap.to(rightSwiper, {
-              scale: 1,
-              duration: 0.4,
-              ease: "power1.inOut",
-            });
+            // gsap.to(rightSwiper, {
+            //   scale: 1,
+            //   duration: 0.4,
+            //   ease: "power1.inOut",
+            // });
           });
 
           // RIGHT HOVER IN
           const onRightEnter = contextSafe(() => {
             gsap.to(rightLayer, {
               opacity: 1,
-              duration: 1,
+              duration: 4,
               ease: "power1.inOut",
             });
-            gsap.to(leftLayer, { opacity: 0, duration: 1 });
+            gsap.to(leftLayer, { opacity: 0, duration: 4 });
             // gsap.to(headerBg, {
             //   background:
             //     "linear-gradient(to top, rgb(163, 154, 138), rgb(97, 92, 84) 50%, rgb(71, 68, 62))",
@@ -472,21 +472,21 @@ export const HomePage = () => {
             // });
             gsap.to(rightSwiper, {
               scale: 1.1,
-              duration: 0.4,
-              ease: "power1.inOut",
+              duration: 1,
+              ease: "power4.out",
             });
-            gsap.to(leftSwiper, {
-              scale: 0.9,
-              duration: 0.4,
-              ease: "power1.inOut",
-            });
+            // gsap.to(leftSwiper, {
+            //   scale: 0.9,
+            //   duration: 0.4,
+            //   ease: "power1.inOut",
+            // });
           });
 
           // RIGHT HOVER UIT
           const onRightLeave = contextSafe(() => {
             gsap.to([leftLayer, rightLayer], {
               opacity: 0,
-              duration: 1,
+              duration: 4,
               ease: "power1.inOut",
             });
             // gsap.to(headerBg, {
@@ -497,14 +497,14 @@ export const HomePage = () => {
             // });
             gsap.to(rightSwiper, {
               scale: 1,
-              duration: 0.4,
-              ease: "power1.inOut",
+              duration: 1,
+              ease: "power4.in",
             });
-            gsap.to(leftSwiper, {
-              scale: 1,
-              duration: 0.4,
-              ease: "power1.inOut",
-            });
+            // gsap.to(leftSwiper, {
+            //   scale: 1,
+            //   duration: 0.4,
+            //   ease: "power1.inOut",
+            // });
           });
 
           // ------------------------------------------------------------
@@ -676,8 +676,27 @@ export const HomePage = () => {
     <>
       <div ref={container} className="homepage">
         <div className="featured-background-wrapper">
-          <div className="hover-layer-left"></div>
-          <div className="hover-layer-right"></div>
+          <div className="hover-layer-left">
+            <div className="mid-text-container-left">
+              <div className="mid-text-sollicitant-left">
+                <h2>
+                  Wij versnellen digitale ambities door passend IT-talent te
+                  koppelen
+                </h2>
+              </div>
+
+            </div>
+          </div>
+          <div className="hover-layer-right">
+            <div className="mid-text-container-right">
+              <div className="mid-text-sollicitant-right">
+                <h2>
+                  Wij versnellen digitale ambities door passend IT-talent
+                </h2>
+              </div>
+
+            </div>
+          </div>
         </div>
 
         <div className="mid-text-container">
@@ -806,7 +825,7 @@ export const HomePage = () => {
                 effect="coverflow"
                 centeredSlides={true}
                 slidesPerView="auto"
-                spaceBetween={24}
+                spaceBetween={12}
                 pagination={{
                   el: ".swiper-pagination",
                   clickable: true,
@@ -825,9 +844,9 @@ export const HomePage = () => {
                   },
                 }}
                 coverflowEffect={{
-                  rotate: 50,
+                  rotate: 0,
                   stretch: 0,
-                  depth: 100,
+                  depth: 0,
                   modifier: 1,
                   slideShadows: false,
                 }}
@@ -850,7 +869,7 @@ export const HomePage = () => {
                     <img
                       src={leftImage}
                       alt="Opdrachten"
-                      className="teaser-image"
+                      className="teaser-image teaser-image-left"
                     />
                     <div className="centered-text">
                       <p className="centered-subtext">
@@ -871,7 +890,7 @@ export const HomePage = () => {
                     <img
                       src={rightImage}
                       alt="Trainees"
-                      className="teaser-image"
+                      className="teaser-image teaser-image-right"
                     />
                     <div className="centered-text">
                       <p className="centered-subtext">

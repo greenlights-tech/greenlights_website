@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AboutSection } from "../components/AboutSection";
-import { BlogSection } from "../components/BlogSection";
+// import { BlogSection } from "../components/BlogSection";
 import { Footer } from "../components/Footer";
 import { ClientModal } from "../components/ClientModal";
 // import { MdArrowOutward } from "react-icons/md";
@@ -129,7 +129,7 @@ export const ClientPage = () => {
               isOpen={isModalOpen}
               onClose={() => setIsModalOpen(false)}
             />
-            <div className="meer-weten-container">
+            {/* <div className="meer-weten-container">
               <h4>Meer weten?</h4>
               <Link to="/about">
                 <div className="meer-weten-pijl-container" id="meerWetenOpd">
@@ -137,7 +137,7 @@ export const ClientPage = () => {
                   <div className="meer-weten-pijl"></div>
                 </div>
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
 
@@ -163,7 +163,7 @@ export const ClientPage = () => {
       </section>
 
       <AboutSection className="client-section" />
-      <BlogSection className="client-section" />
+      {/* <BlogSection className="client-section" /> */}
       <Footer className="client-section" />
     </div>
   );
