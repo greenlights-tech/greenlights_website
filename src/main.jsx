@@ -30,7 +30,7 @@ const router = createBrowserRouter(
     },
   ],
   {
-    basename: "/greenlights_website",
+    basename: "/greenlights_website/",
   }
 );
 

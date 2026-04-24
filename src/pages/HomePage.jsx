@@ -36,16 +36,19 @@ export const HomePage = () => {
 
         const switchBtn = container.current.querySelector(".switch");
 
-        let splitTagline = SplitText.create(
-          ".new-container-wrapper .tagline-wrapper .tagline",
-          {
-            // type: "chars, words",
-            type: "chars",
-            charsclassName: "char",
-            // wordsclassName: "word",
-            // autoSplit: true,
-          },
-        );
+
+
+        // SPLIT TAGLINE
+        // let splitTagline = SplitText.create(
+        //   ".new-container-wrapper .tagline-wrapper .tagline",
+        //   {
+        //     // type: "chars, words",
+        //     type: "chars",
+        //     charsclassName: "char",
+        //     // wordsclassName: "word",
+        //     // autoSplit: true,
+        //   },
+        // );
 
         // Als je split met characters gebruikt, altijd ook words erbij zetten omdat hij anders woorden afbreekt bij schermresizing
         let splitMidTextSolli = SplitText.create(".mid-text-sollicitant", {
@@ -100,10 +103,10 @@ export const HomePage = () => {
           },
         });
 
-        tl.current.set(splitTagline.chars, {
-          opacity: 0,
-          yPercent: -100,
-        });
+        // tl.current.set(splitTagline.chars, {
+        //   opacity: 0,
+        //   yPercent: -100,
+        // });
 
         tl.current.set(splitMidTextSolli.chars, {
           opacity: 0,
@@ -208,29 +211,29 @@ export const HomePage = () => {
           },
           2,
         );
-        tl.current.to(
-          splitTagline.chars,
-          {
-            opacity: 1,
-            yPercent: 0,
-            ease: "back",
-            stagger: {
-              amount: 1,
-              from: "begin",
-            },
-          },
-          2.5,
-        );
+        // tl.current.to(
+        //   splitTagline.chars,
+        //   {
+        //     opacity: 1,
+        //     yPercent: 0,
+        //     ease: "back",
+        //     stagger: {
+        //       amount: 1,
+        //       from: "begin",
+        //     },
+        //   },
+        //   2.5,
+        // );
 
-        tl.current.to(
-          ".tagline-wrapper",
-          {
-            opacity: 1,
-            duration: 1,
-            ease: "none",
-          },
-          2.5,
-        );
+        // tl.current.to(
+        //   ".tagline-wrapper",
+        //   {
+        //     opacity: 1,
+        //     duration: 1,
+        //     ease: "none",
+        //   },
+        //   2.5,
+        // );
 
         tl.current.to(
           ".mid-text-container",
@@ -703,7 +706,7 @@ export const HomePage = () => {
           <div className="mid-text-sollicitant">
             <h2>
               Wij versnellen digitale ambities door passend IT-talent te
-              koppelen
+              koppelen. Snel, passend IT-talent vinden, geselecteerd op motivatie, groei mind-set en passend bij uw bedrijfscultuur.
             </h2>
           </div>
           {/* <div className="mid-text-opdrachtgever">
@@ -722,92 +725,102 @@ export const HomePage = () => {
                 <svg
                   className="child1"
                   data-flip-id="image"
-                  width="379"
-                  height="36"
-                  viewBox="0 0 379 36"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    id="letterG"
-                    d="M30.816 34.752H28.272C27.856 34.752 27.648 34.56 27.648 34.176L27.696 30.864C24.88 33.68 21.12 35.088 16.416 35.088C11.744 35.088 7.84005 33.456 4.70405 30.192C1.56805 26.928 4.49419e-05 22.64 4.49419e-05 17.328C4.49419e-05 13.776 0.784045 10.656 2.35205 7.96795C3.95204 5.27995 5.96804 3.27995 8.40005 1.96795C10.864 0.655951 13.52 -4.86374e-05 16.368 -4.86374e-05C21.264 -4.86374e-05 24.784 1.51995 26.928 4.55995L26.88 0.863952C26.816 0.479951 27.008 0.287951 27.456 0.287951H30.144C30.56 0.287951 30.768 0.479951 30.768 0.863952V10.752C30.768 11.136 30.56 11.328 30.144 11.328H27.12C26.736 11.328 26.544 11.136 26.544 10.752V10.176C26.544 8.76795 25.568 7.37595 23.616 5.99995C21.696 4.62395 19.232 3.93595 16.224 3.93595C13.216 3.93595 10.496 5.18395 8.06405 7.67995C5.66405 10.144 4.46405 13.456 4.46405 17.616C4.46405 21.744 5.68005 25.024 8.11205 27.456C10.544 29.856 13.264 31.056 16.272 31.056C19.28 31.056 21.648 30.576 23.376 29.616C25.136 28.656 26.448 27.52 27.312 26.208V22.464H18.384C18 22.464 17.808 22.256 17.808 21.84V19.632C17.808 19.248 18 19.056 18.384 19.056H30.816C31.2 19.056 31.392 19.248 31.392 19.632V34.176C31.392 34.56 31.2 34.752 30.816 34.752Z"
-                    fill="url(#paint0_linear_2065_28)"
-                  />
-
-                  <path
-                    id="letterR"
-                    d="M67.7235 34.752H63.5475C62.3955 34.752 61.4355 33.984 60.6675 32.448L56.1555 23.28C55.7715 22.48 55.3555 21.888 54.9075 21.504C54.4915 21.12 53.8995 20.912 53.1315 20.88H47.0355V31.152H51.3555C51.7395 31.152 51.9315 31.344 51.9315 31.728V34.176C51.9315 34.56 51.7395 34.752 51.3555 34.752H39.2115C38.7955 34.752 38.5875 34.56 38.5875 34.176V31.728C38.5875 31.344 38.7955 31.152 39.2115 31.152H42.8595V3.88795H39.2115C38.7955 3.88795 38.5875 3.69595 38.5875 3.31195V0.863952C38.5875 0.479951 38.7955 0.287951 39.2115 0.287951H53.9955C57.4195 0.287951 60.2035 1.19995 62.3475 3.02395C64.4915 4.81595 65.5635 7.35995 65.5635 10.656C65.5635 15.68 63.2115 18.816 58.5075 20.064C59.1155 20.544 59.8675 21.616 60.7635 23.28L64.7955 31.152H67.7235C68.1075 31.152 68.2995 31.344 68.2995 31.728V34.176C68.2995 34.56 68.1075 34.752 67.7235 34.752ZM47.0355 17.472H53.1795C58.6195 17.472 61.3395 15.248 61.3395 10.8C61.3395 6.19195 58.6195 3.88795 53.1795 3.88795H47.0355V17.472Z"
-                    fill="url(#paint0_linear_2065_28)"
-                  />
-
-                  <path
-                    id="letterE1"
-                    d="M100.662 34.752H75.174C74.758 34.752 74.55 34.56 74.55 34.176V31.728C74.55 31.344 74.758 31.152 75.174 31.152H78.822V3.88795H75.174C74.758 3.88795 74.55 3.69595 74.55 3.31195V0.863952C74.55 0.479951 74.758 0.287951 75.174 0.287951H100.662C101.078 0.287951 101.286 0.479951 101.286 0.863952V8.59195C101.286 9.00795 101.078 9.21595 100.662 9.21595H98.0701C97.686 9.21595 97.494 9.00795 97.494 8.59195V3.88795H82.998V15.792H95.142C95.558 15.792 95.766 15.984 95.766 16.368V18.816C95.766 19.2 95.558 19.392 95.142 19.392H82.998V31.152H97.446V26.448C97.446 26.064 97.654 25.872 98.0701 25.872H100.662C101.078 25.872 101.286 26.064 101.286 26.448V34.176C101.286 34.56 101.078 34.752 100.662 34.752Z"
-                    fill="url(#paint0_linear_2065_28)"
-                  />
-
-                  <path
-                    id="letterE2"
-                    d="M134.421 34.752H108.933C108.517 34.752 108.309 34.56 108.309 34.176V31.728C108.309 31.344 108.517 31.152 108.933 31.152H112.581V3.88795H108.933C108.517 3.88795 108.309 3.69595 108.309 3.31195V0.863952C108.309 0.479951 108.517 0.287951 108.933 0.287951H134.421C134.837 0.287951 135.045 0.479951 135.045 0.863952V8.59195C135.045 9.00795 134.837 9.21595 134.421 9.21595H131.829C131.445 9.21595 131.253 9.00795 131.253 8.59195V3.88795H116.757V15.792H128.901C129.317 15.792 129.525 15.984 129.525 16.368V18.816C129.525 19.2 129.317 19.392 128.901 19.392H116.757V31.152H131.205V26.448C131.205 26.064 131.413 25.872 131.829 25.872H134.421C134.837 25.872 135.045 26.064 135.045 26.448V34.176C135.045 34.56 134.837 34.752 134.421 34.752Z"
-                    fill="url(#paint0_linear_2065_28)"
-                  />
-
-                  <path
-                    id="letterN"
-                    d="M171.925 34.752H169.333C168.725 34.752 168.245 34.64 167.893 34.416C167.541 34.16 167.205 33.776 166.885 33.264L153.013 11.568L150.613 7.53595H150.517V31.152H154.213C154.629 31.152 154.837 31.344 154.837 31.728V34.176C154.837 34.56 154.629 34.752 154.213 34.752H142.693C142.277 34.752 142.069 34.56 142.069 34.176V31.728C142.069 31.344 142.277 31.152 142.693 31.152H146.341V3.88795H142.693C142.277 3.88795 142.069 3.69595 142.069 3.31195V0.863952C142.069 0.479951 142.277 0.287951 142.693 0.287951H149.413C150.341 0.287951 151.157 0.831951 151.861 1.91995L165.541 23.328L168.277 27.984H168.373V3.88795H164.677C164.293 3.88795 164.101 3.69595 164.101 3.31195V0.863952C164.101 0.479951 164.293 0.287951 164.677 0.287951H176.245C176.629 0.287951 176.821 0.479951 176.821 0.863952V3.31195C176.821 3.69595 176.629 3.88795 176.245 3.88795H172.549V34.176C172.549 34.56 172.341 34.752 171.925 34.752Z"
-                    fill="url(#paint0_linear_2065_28)"
-                  />
-
-                  <path
-                    id="letterL"
-                    d="M210.068 34.752H183.812C183.396 34.752 183.188 34.56 183.188 34.176V31.728C183.188 31.344 183.396 31.152 183.812 31.152H187.46V3.88795H183.812C183.396 3.88795 183.188 3.69595 183.188 3.31195V0.863952C183.188 0.479951 183.396 0.287951 183.812 0.287951H195.284C195.7 0.287951 195.908 0.495951 195.908 0.911951V3.26395C195.908 3.67995 195.7 3.88795 195.284 3.88795H191.636V31.152H206.9V26.448C206.9 26.064 207.108 25.872 207.524 25.872H210.116C210.5 25.872 210.692 26.064 210.692 26.448V34.128C210.692 34.544 210.484 34.752 210.068 34.752Z"
-                    fill="url(#paint0_linear_2065_28)"
-                  />
-
-                  <path
-                    id="letterI"
-                    d="M228.013 34.752H216.493C216.077 34.752 215.869 34.56 215.869 34.176V31.728C215.869 31.344 216.077 31.152 216.493 31.152H220.141V3.88795H216.493C216.077 3.88795 215.869 3.69595 215.869 3.31195V0.863952C215.869 0.479951 216.077 0.287951 216.493 0.287951H228.013C228.429 0.287951 228.637 0.479951 228.637 0.863952V3.31195C228.637 3.69595 228.429 3.88795 228.013 3.88795H224.317V31.152H228.013C228.429 31.152 228.637 31.344 228.637 31.728V34.176C228.637 34.56 228.429 34.752 228.013 34.752Z"
-                    fill="url(#paint0_linear_2065_28)"
-                  />
-
-                  <path
-                    id="letterG2"
-                    d="M264.882 34.752H262.338C261.922 34.752 261.714 34.56 261.714 34.176L261.762 30.864C258.946 33.68 255.186 35.088 250.482 35.088C245.81 35.088 241.906 33.456 238.77 30.192C235.634 26.928 234.066 22.64 234.066 17.328C234.066 13.776 234.85 10.656 236.418 7.96795C238.018 5.27995 240.034 3.27995 242.466 1.96795C244.93 0.655951 247.586 -4.86374e-05 250.434 -4.86374e-05C255.33 -4.86374e-05 258.85 1.51995 260.994 4.55995L260.946 0.863952C260.882 0.479951 261.074 0.287951 261.522 0.287951H264.21C264.626 0.287951 264.834 0.479951 264.834 0.863952V10.752C264.834 11.136 264.626 11.328 264.21 11.328H261.186C260.802 11.328 260.61 11.136 260.61 10.752V10.176C260.61 8.76795 259.634 7.37595 257.682 5.99995C255.762 4.62395 253.298 3.93595 250.29 3.93595C247.282 3.93595 244.562 5.18395 242.13 7.67995C239.73 10.144 238.53 13.456 238.53 17.616C238.53 21.744 239.746 25.024 242.178 27.456C244.61 29.856 247.33 31.056 250.338 31.056C253.346 31.056 255.714 30.576 257.442 29.616C259.202 28.656 260.514 27.52 261.378 26.208V22.464H252.45C252.066 22.464 251.874 22.256 251.874 21.84V19.632C251.874 19.248 252.066 19.056 252.45 19.056H264.882C265.266 19.056 265.458 19.248 265.458 19.632V34.176C265.458 34.56 265.266 34.752 264.882 34.752Z"
-                    fill="url(#paint0_linear_2065_28)"
-                  />
-
-                  <path
-                    id="letterH"
-                    d="M306.829 34.752H295.261C294.877 34.752 294.685 34.56 294.685 34.176V31.728C294.685 31.344 294.877 31.152 295.261 31.152H298.957V19.392H281.101V31.152H284.797C285.213 31.152 285.421 31.344 285.421 31.728V34.176C285.421 34.56 285.213 34.752 284.797 34.752H273.277C272.861 34.752 272.653 34.56 272.653 34.176V31.728C272.653 31.344 272.861 31.152 273.277 31.152H276.925V3.88795H273.277C272.861 3.88795 272.653 3.69595 272.653 3.31195V0.863952C272.653 0.479951 272.861 0.287951 273.277 0.287951H284.797C285.213 0.287951 285.421 0.479951 285.421 0.863952V3.31195C285.421 3.69595 285.213 3.88795 284.797 3.88795H281.101V15.888H298.957V3.88795H295.261C294.877 3.88795 294.685 3.69595 294.685 3.31195V0.863952C294.685 0.479951 294.877 0.287951 295.261 0.287951H306.829C307.213 0.287951 307.405 0.479951 307.405 0.863952V3.31195C307.405 3.69595 307.213 3.88795 306.829 3.88795H303.133V31.152H306.829C307.213 31.152 307.405 31.344 307.405 31.728V34.176C307.405 34.56 307.213 34.752 306.829 34.752Z"
-                    fill="url(#paint0_linear_2065_28)"
-                  />
-
-                  <path
-                    id="letterT"
-                    d="M335.068 34.752H323.884C323.468 34.752 323.26 34.544 323.26 34.128V31.776C323.26 31.36 323.468 31.152 323.884 31.152H327.532V3.88795H318.46V8.97595C318.46 9.42395 318.236 9.64795 317.788 9.64795H315.1C314.652 9.64795 314.428 9.42395 314.428 8.97595V0.911951C314.428 0.495951 314.652 0.287951 315.1 0.287951H344.044C344.492 0.287951 344.716 0.495951 344.716 0.911951V8.97595C344.716 9.42395 344.492 9.64795 344.044 9.64795H341.308C340.892 9.64795 340.684 9.42395 340.684 8.97595V3.88795H331.708V31.152H335.068C335.516 31.152 335.74 31.36 335.74 31.776V34.128C335.74 34.544 335.516 34.752 335.068 34.752Z"
-                    fill="url(#paint0_linear_2065_28)"
-                  />
-
-                  <path
-                    id="letterS"
-                    d="M354.406 34.752H351.718C351.302 34.752 351.094 34.56 351.094 34.176V22.944C351.094 22.528 351.302 22.32 351.718 22.32H354.742C355.126 22.32 355.318 22.528 355.318 22.944V23.952C355.318 24.56 355.686 25.376 356.422 26.4C357.158 27.392 357.894 28.208 358.63 28.848C359.366 29.488 360.342 30.048 361.558 30.528C362.806 30.976 364.15 31.2 365.59 31.2C368.054 31.2 369.974 30.688 371.35 29.664C372.758 28.64 373.462 27.216 373.462 25.392C373.462 24.336 373.062 23.44 372.262 22.704C371.494 21.936 370.486 21.328 369.238 20.88C367.99 20.432 366.598 20.016 365.062 19.632C363.558 19.248 362.038 18.816 360.502 18.336C358.998 17.824 357.622 17.232 356.374 16.56C355.126 15.856 354.102 14.896 353.302 13.68C352.534 12.432 352.15 10.976 352.15 9.31195C352.15 6.62395 353.158 4.39995 355.174 2.63995C357.222 0.879951 359.958 -4.86374e-05 363.382 -4.86374e-05C367.702 -4.86374e-05 370.87 1.26395 372.886 3.79195L372.79 0.815952C372.79 0.431952 372.998 0.239951 373.414 0.239951H376.102C376.486 0.239951 376.678 0.431952 376.678 0.815952V11.28C376.678 11.664 376.486 11.856 376.102 11.856H373.078C372.694 11.856 372.502 11.664 372.502 11.28V9.93595C372.502 8.62395 371.766 7.29595 370.294 5.95195C368.822 4.60795 366.662 3.93595 363.814 3.93595C361.702 3.93595 359.99 4.44795 358.678 5.47195C357.398 6.46395 356.758 7.74395 356.758 9.31195C356.758 10.432 357.158 11.392 357.958 12.192C358.758 12.992 359.798 13.632 361.078 14.112C362.358 14.592 363.766 15.04 365.302 15.456C366.838 15.84 368.374 16.272 369.91 16.752C371.446 17.232 372.854 17.808 374.134 18.48C375.414 19.152 376.454 20.08 377.254 21.264C378.054 22.416 378.454 23.792 378.454 25.392C378.454 28.208 377.446 30.528 375.43 32.352C373.414 34.176 370.406 35.088 366.406 35.088C363.462 35.088 361.03 34.496 359.11 33.312C357.19 32.128 355.798 30.848 354.934 29.472L354.982 34.176C354.982 34.56 354.79 34.752 354.406 34.752Z"
-                    fill="url(#paint0_linear_2065_28)"
-                  />
-
+                  width="296" height="70" viewBox="0 0 296 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M71.472 56.384C69.7013 56.384 68.0693 56.1067 66.576 55.552C65.104 54.976 63.8133 54.1653 62.704 53.12C61.616 52.0747 60.7627 50.848 60.144 49.44C59.5467 48.032 59.248 46.4853 59.248 44.8C59.248 43.1147 59.5467 41.568 60.144 40.16C60.7627 38.752 61.6267 37.5253 62.736 36.48C63.8453 35.4347 65.1467 34.6347 66.64 34.08C68.1333 33.504 69.776 33.216 71.568 33.216C73.552 33.216 75.3333 33.5467 76.912 34.208C78.512 34.8693 79.856 35.8293 80.944 37.088L77.616 40.16C76.8053 39.3067 75.92 38.6773 74.96 38.272C74 37.8453 72.9547 37.632 71.824 37.632C70.736 37.632 69.744 37.8027 68.848 38.144C67.952 38.4853 67.1733 38.976 66.512 39.616C65.872 40.256 65.3707 41.0133 65.008 41.888C64.6667 42.7627 64.496 43.7333 64.496 44.8C64.496 45.8453 64.6667 46.8053 65.008 47.68C65.3707 48.5547 65.872 49.3227 66.512 49.984C67.1733 50.624 67.9413 51.1147 68.816 51.456C69.712 51.7973 70.6933 51.968 71.76 51.968C72.784 51.968 73.776 51.808 74.736 51.488C75.7173 51.1467 76.6667 50.5813 77.584 49.792L80.528 53.536C79.312 54.4533 77.8933 55.1573 76.272 55.648C74.672 56.1387 73.072 56.384 71.472 56.384ZM75.792 52.864V44.448H80.528V53.536L75.792 52.864ZM85.3435 56V33.6H95.0395C97.0448 33.6 98.7728 33.9307 100.224 34.592C101.674 35.232 102.794 36.16 103.584 37.376C104.373 38.592 104.768 40.0427 104.768 41.728C104.768 43.392 104.373 44.832 103.584 46.048C102.794 47.2427 101.674 48.16 100.224 48.8C98.7728 49.44 97.0448 49.76 95.0395 49.76H88.2235L90.5275 47.488V56H85.3435ZM99.5835 56L93.9835 47.872H99.5195L105.184 56H99.5835ZM90.5275 48.064L88.2235 45.632H94.7515C96.3515 45.632 97.5462 45.2907 98.3355 44.608C99.1248 43.904 99.5195 42.944 99.5195 41.728C99.5195 40.4907 99.1248 39.5307 98.3355 38.848C97.5462 38.1653 96.3515 37.824 94.7515 37.824H88.2235L90.5275 35.36V48.064ZM113.643 42.624H124.427V46.656H113.643V42.624ZM114.027 51.84H126.219V56H108.875V33.6H125.803V37.76H114.027V51.84ZM135.112 42.624H145.896V46.656H135.112V42.624ZM135.496 51.84H147.688V56H130.344V33.6H147.272V37.76H135.496V51.84ZM151.812 56V33.6H156.1L169.316 49.728H167.236V33.6H172.356V56H168.1L154.852 39.872H156.932V56H151.812ZM177.656 56V33.6H182.84V51.776H194.072V56H177.656ZM196.969 56V33.6H202.153V56H196.969ZM218.285 56.384C216.514 56.384 214.882 56.1067 213.389 55.552C211.917 54.976 210.626 54.1653 209.516 53.12C208.429 52.0747 207.575 50.848 206.957 49.44C206.359 48.032 206.061 46.4853 206.061 44.8C206.061 43.1147 206.359 41.568 206.957 40.16C207.575 38.752 208.439 37.5253 209.549 36.48C210.658 35.4347 211.959 34.6347 213.453 34.08C214.946 33.504 216.589 33.216 218.381 33.216C220.365 33.216 222.146 33.5467 223.725 34.208C225.325 34.8693 226.669 35.8293 227.757 37.088L224.429 40.16C223.618 39.3067 222.733 38.6773 221.773 38.272C220.813 37.8453 219.767 37.632 218.637 37.632C217.549 37.632 216.557 37.8027 215.661 38.144C214.765 38.4853 213.986 38.976 213.325 39.616C212.685 40.256 212.183 41.0133 211.821 41.888C211.479 42.7627 211.309 43.7333 211.309 44.8C211.309 45.8453 211.479 46.8053 211.821 47.68C212.183 48.5547 212.685 49.3227 213.325 49.984C213.986 50.624 214.754 51.1147 215.629 51.456C216.525 51.7973 217.506 51.968 218.573 51.968C219.597 51.968 220.589 51.808 221.549 51.488C222.53 51.1467 223.479 50.5813 224.397 49.792L227.341 53.536C226.125 54.4533 224.706 55.1573 223.085 55.648C221.485 56.1387 219.885 56.384 218.285 56.384ZM222.605 52.864V44.448H227.341V53.536L222.605 52.864ZM247.516 33.6H252.7V56H247.516V33.6ZM237.34 56H232.156V33.6H237.34V56ZM247.9 46.816H236.956V42.432H247.9V46.816ZM262.64 56V37.824H255.472V33.6H274.992V37.824H267.824V56H262.64ZM284.985 56.384C283.193 56.384 281.475 56.1493 279.833 55.68C278.19 55.1893 276.867 54.56 275.865 53.792L277.625 49.888C278.585 50.5707 279.715 51.136 281.017 51.584C282.339 52.0107 283.673 52.224 285.017 52.224C286.041 52.224 286.862 52.128 287.481 51.936C288.121 51.7227 288.59 51.4347 288.889 51.072C289.187 50.7093 289.337 50.2933 289.337 49.824C289.337 49.2267 289.102 48.7573 288.633 48.416C288.163 48.0533 287.545 47.7653 286.777 47.552C286.009 47.3173 285.155 47.104 284.217 46.912C283.299 46.6987 282.371 46.4427 281.433 46.144C280.515 45.8453 279.673 45.4613 278.905 44.992C278.137 44.5227 277.507 43.904 277.017 43.136C276.547 42.368 276.313 41.3867 276.313 40.192C276.313 38.912 276.654 37.7493 277.337 36.704C278.041 35.6373 279.086 34.7947 280.473 34.176C281.881 33.536 283.641 33.216 285.753 33.216C287.161 33.216 288.547 33.3867 289.913 33.728C291.278 34.048 292.483 34.5387 293.529 35.2L291.929 39.136C290.883 38.5387 289.838 38.1013 288.793 37.824C287.747 37.5253 286.723 37.376 285.721 37.376C284.718 37.376 283.897 37.4933 283.257 37.728C282.617 37.9627 282.158 38.272 281.881 38.656C281.603 39.0187 281.465 39.4453 281.465 39.936C281.465 40.512 281.699 40.9813 282.169 41.344C282.638 41.6853 283.257 41.9627 284.025 42.176C284.793 42.3893 285.635 42.6027 286.553 42.816C287.491 43.0293 288.419 43.2747 289.337 43.552C290.275 43.8293 291.129 44.2027 291.897 44.672C292.665 45.1413 293.283 45.76 293.753 46.528C294.243 47.296 294.489 48.2667 294.489 49.44C294.489 50.6987 294.137 51.8507 293.433 52.896C292.729 53.9413 291.673 54.784 290.265 55.424C288.878 56.064 287.118 56.384 284.985 56.384Z" fill="#00450D" />
+                  <g filter="url(#filter0_n_2019_130)">
+                    <rect x="12.0908" y="18.0865" width="13.3179" height="40.4659" rx="6.65895" transform="rotate(17.3853 12.0908 18.0865)" fill="url(#paint0_linear_2019_130)" />
+                  </g>
+                  <g filter="url(#filter1_n_2019_130)">
+                    <ellipse cx="22.0425" cy="8.58882" rx="6.65895" ry="6.91506" transform="rotate(17.3853 22.0425 8.58882)" fill="url(#paint1_linear_2019_130)" />
+                  </g>
+                  <g filter="url(#filter2_n_2019_130)">
+                    <rect x="27.6396" y="26.7122" width="13.3179" height="40.4659" rx="6.65895" transform="rotate(17.3853 27.6396 26.7122)" fill="url(#paint2_linear_2019_130)" />
+                  </g>
+                  <g filter="url(#filter3_n_2019_130)">
+                    <ellipse cx="37.438" cy="17.7032" rx="6.65895" ry="6.91506" transform="rotate(17.3853 37.438 17.7032)" fill="url(#paint3_linear_2019_130)" />
+                  </g>
                   <defs>
-                    <linearGradient
-                      id="paint0_linear_2065_28"
-                      x1="189.696"
-                      y1="-13.248"
-                      x2="189.696"
-                      y2="47.752"
-                      gradientUnits="userSpaceOnUse"
-                    >
-                      <stop id="color1" stopColor="#20FF85" />
-                      <stop id="color2" offset="1" stopColor="#00D661" />
+                    <filter id="filter0_n_2019_130" x="1.68359" y="19.7703" width="21.4331" height="39.2292" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                      <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                      <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                      <feTurbulence type="fractalNoise" baseFrequency="10 10" stitchTiles="stitch" numOctaves="3" result="noise" seed="7313" />
+                      <feColorMatrix in="noise" type="luminanceToAlpha" result="alphaNoise" />
+                      <feComponentTransfer in="alphaNoise" result="coloredNoise1">
+                        <feFuncA type="discrete" tableValues="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 " />
+                      </feComponentTransfer>
+                      <feComposite operator="in" in2="shape" in="coloredNoise1" result="noise1Clipped" />
+                      <feFlood flood-color="rgba(0, 0, 0, 0.25)" result="color1Flood" />
+                      <feComposite operator="in" in2="noise1Clipped" in="color1Flood" result="color1" />
+                      <feMerge result="effect1_noise_2019_130">
+                        <feMergeNode in="shape" />
+                        <feMergeNode in="color1" />
+                      </feMerge>
+                    </filter>
+                    <filter id="filter1_n_2019_130" x="15.3584" y="1.69446" width="13.3682" height="13.7888" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                      <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                      <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                      <feTurbulence type="fractalNoise" baseFrequency="10 10" stitchTiles="stitch" numOctaves="3" result="noise" seed="7313" />
+                      <feColorMatrix in="noise" type="luminanceToAlpha" result="alphaNoise" />
+                      <feComponentTransfer in="alphaNoise" result="coloredNoise1">
+                        <feFuncA type="discrete" tableValues="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 " />
+                      </feComponentTransfer>
+                      <feComposite operator="in" in2="shape" in="coloredNoise1" result="noise1Clipped" />
+                      <feFlood flood-color="rgba(0, 0, 0, 0.25)" result="color1Flood" />
+                      <feComposite operator="in" in2="noise1Clipped" in="color1Flood" result="color1" />
+                      <feMerge result="effect1_noise_2019_130">
+                        <feMergeNode in="shape" />
+                        <feMergeNode in="color1" />
+                      </feMerge>
+                    </filter>
+                    <filter id="filter2_n_2019_130" x="17.2324" y="28.3959" width="21.4331" height="39.2292" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                      <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                      <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                      <feTurbulence type="fractalNoise" baseFrequency="10 10" stitchTiles="stitch" numOctaves="3" result="noise" seed="7313" />
+                      <feColorMatrix in="noise" type="luminanceToAlpha" result="alphaNoise" />
+                      <feComponentTransfer in="alphaNoise" result="coloredNoise1">
+                        <feFuncA type="discrete" tableValues="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 " />
+                      </feComponentTransfer>
+                      <feComposite operator="in" in2="shape" in="coloredNoise1" result="noise1Clipped" />
+                      <feFlood flood-color="rgba(0, 0, 0, 0.25)" result="color1Flood" />
+                      <feComposite operator="in" in2="noise1Clipped" in="color1Flood" result="color1" />
+                      <feMerge result="effect1_noise_2019_130">
+                        <feMergeNode in="shape" />
+                        <feMergeNode in="color1" />
+                      </feMerge>
+                    </filter>
+                    <filter id="filter3_n_2019_130" x="30.7539" y="10.8088" width="13.3682" height="13.7888" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                      <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                      <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                      <feTurbulence type="fractalNoise" baseFrequency="10 10" stitchTiles="stitch" numOctaves="3" result="noise" seed="7313" />
+                      <feColorMatrix in="noise" type="luminanceToAlpha" result="alphaNoise" />
+                      <feComponentTransfer in="alphaNoise" result="coloredNoise1">
+                        <feFuncA type="discrete" tableValues="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 " />
+                      </feComponentTransfer>
+                      <feComposite operator="in" in2="shape" in="coloredNoise1" result="noise1Clipped" />
+                      <feFlood flood-color="rgba(0, 0, 0, 0.25)" result="color1Flood" />
+                      <feComposite operator="in" in2="noise1Clipped" in="color1Flood" result="color1" />
+                      <feMerge result="effect1_noise_2019_130">
+                        <feMergeNode in="shape" />
+                        <feMergeNode in="color1" />
+                      </feMerge>
+                    </filter>
+                    <linearGradient id="paint0_linear_2019_130" x1="18.7498" y1="18.0865" x2="18.7498" y2="58.5524" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#3B8558" />
+                      <stop offset="1" stop-color="#007416" />
+                    </linearGradient>
+                    <linearGradient id="paint1_linear_2019_130" x1="22.0425" y1="1.67376" x2="22.0425" y2="15.5039" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#3B8558" />
+                    </linearGradient>
+                    <linearGradient id="paint2_linear_2019_130" x1="34.2986" y1="26.7122" x2="34.2986" y2="67.1781" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#007416" />
+                      <stop offset="1" stop-color="#00450D" />
+                    </linearGradient>
+                    <linearGradient id="paint3_linear_2019_130" x1="37.438" y1="10.7881" x2="37.438" y2="24.6183" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#007416" />
                     </linearGradient>
                   </defs>
                 </svg>
+
               </div>
             )}
 
@@ -819,93 +832,95 @@ export const HomePage = () => {
             </div>
             <Icon />
 
-            <section className="teasers-container-swiper">
-              <Swiper
-                modules={[Pagination, EffectCoverflow]}
-                effect="coverflow"
-                centeredSlides={true}
-                slidesPerView="auto"
-                spaceBetween={12}
-                pagination={{
-                  el: ".swiper-pagination",
-                  clickable: true,
-                }}
-                breakpoints={{
-                  768: {
-                    slidesPerView: 2,
-                    centeredSlides: false,
-                    spaceBetween: 100,
-                    coverflowEffect: {
-                      rotate: 0,
-                      stretch: 0,
-                      depth: 0,
-                      modifier: 0,
-                    },
-                  },
-                }}
-                coverflowEffect={{
+
+          </section>
+
+        </section>
+        <section className="teasers-container-swiper">
+          <Swiper
+            modules={[Pagination, EffectCoverflow]}
+            effect="coverflow"
+            centeredSlides={true}
+            slidesPerView="auto"
+            spaceBetween={12}
+            pagination={{
+              el: ".swiper-pagination",
+              clickable: true,
+            }}
+            breakpoints={{
+              768: {
+                slidesPerView: 2,
+                centeredSlides: false,
+                spaceBetween: 100,
+                coverflowEffect: {
                   rotate: 0,
                   stretch: 0,
                   depth: 0,
-                  modifier: 1,
-                  slideShadows: false,
-                }}
-                className="mySwiper"
-                onSwiper={(swiper) => {
-                  // Forceer een update zodra de component mount
-                  setTimeout(() => {
-                    swiper.update();
-                  }, 100);
-                }}
+                  modifier: 0,
+                },
+              },
+            }}
+            coverflowEffect={{
+              rotate: 0,
+              stretch: 0,
+              depth: 0,
+              modifier: 1,
+              slideShadows: false,
+            }}
+            className="mySwiper"
+            onSwiper={(swiper) => {
+              // Forceer een update zodra de component mount
+              setTimeout(() => {
+                swiper.update();
+              }, 100);
+            }}
+          >
+            {/* SLIDE 1 */}
+            <SwiperSlide>
+              <Link
+                to="/talent"
+                id="openSolliMobile"
+                className="teaser-swiper leftSwiper left"
+                aria-label="Ontdek opdrachten"
               >
-                {/* SLIDE 1 */}
-                <SwiperSlide>
-                  <Link
-                    to="/talent"
-                    id="openSolliMobile"
-                    className="teaser-swiper leftSwiper left"
-                    aria-label="Ontdek opdrachten"
-                  >
-                    <img
-                      src={leftImage}
-                      alt="Opdrachten"
-                      className="teaser-image teaser-image-left"
-                    />
-                    <div className="centered-text">
-                      <p className="centered-subtext">
-                        Ontdek <span className="highlight">opdrachten</span>
-                      </p>
-                    </div>
-                  </Link>
-                </SwiperSlide>
+                <img
+                  src={leftImage}
+                  alt="Opdrachten"
+                  className="teaser-image teaser-image-left"
+                />
+                <div className="centered-text">
+                  <p className="centered-subtext">
+                    Ontdek <span className="highlight">opdrachten</span>
+                  </p>
+                </div>
+              </Link>
+            </SwiperSlide>
 
-                {/* SLIDE 2 */}
-                <SwiperSlide>
-                  <Link
-                    to="/opdrachtgever"
-                    id="openOpdrachtgeverMobile"
-                    className="teaser-swiper rightSwiper right"
-                    aria-label="Ontdek trainees"
-                  >
-                    <img
-                      src={rightImage}
-                      alt="Trainees"
-                      className="teaser-image teaser-image-right"
-                    />
-                    <div className="centered-text">
-                      <p className="centered-subtext">
-                        Ontdek <span className="highlight">trainees</span>
-                      </p>
-                    </div>
-                  </Link>
-                </SwiperSlide>
+            {/* SLIDE 2 */}
+            <SwiperSlide>
+              <Link
+                to="/opdrachtgever"
+                id="openOpdrachtgeverMobile"
+                className="teaser-swiper rightSwiper right"
+                aria-label="Ontdek trainees"
+              >
+                <img
+                  src={rightImage}
+                  alt="Trainees"
+                  className="teaser-image teaser-image-right"
+                />
+                <div className="centered-text">
+                  <p className="centered-subtext">
+                    Ontdek <span className="highlight">trainees</span>
+                  </p>
+                </div>
+              </Link>
+            </SwiperSlide>
 
-                {/* De pagination div wordt automatisch beheerd door Swiper React als je de module gebruikt, 
+            {/* De pagination div wordt automatisch beheerd door Swiper React als je de module gebruikt, 
                   maar je kunt de class targeten via de pagination prop hierboven */}
-                <div className="swiper-pagination" aria-hidden="true"></div>
-              </Swiper>
-            </section>
-          </section>
+            <div className="swiper-pagination" aria-hidden="true"></div>
+          </Swiper>
         </section>
       </div>
     </>

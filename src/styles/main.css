@@ -398,9 +398,9 @@ body,
   color: #b9b9b9;
   color: var(--color-green);
   background-color: hsl(0, 0%, 21%);
-  background-color: rgb(187, 184, 160)
-    /* overflow-y: hidden; */
-    /* border: 1px solid blue; */
+  background-color: rgb(187, 184, 160);
+  /* overflow-y: hidden; */
+  border: 1px solid yellow;
 }
 
 .about-component {
@@ -634,20 +634,21 @@ body,
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 60%;
-  /* border: 1px solid red; */
+  width: 100%;
+  border: 1px solid red;
 }
 
 .new-container {
   display: flex;
   position: relative;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   width: 100%;
   /* border: 1px dashed blue; */
   background-color: transparent;
   padding-top: 1.5rem;
   padding-bottom: 1rem;
+  padding-left: 1rem;
   cursor: pointer;
   z-index: 10;
 }
@@ -756,12 +757,18 @@ li {
   ========================================
 */
 
+.header-hero {
+  border: 1px solid red;
+  height: calc(100vh - var(--header-height));
+}
+
 .hero {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100%;
+
   /* border: 1px solid red; */
   /* overflow-x: hidden;
   overflow-y: hidden; */
@@ -850,7 +857,7 @@ li {
   margin-bottom: 1rem; */
   /* Laat de hoogte bepalen door de inhoud (height: 100% kan problematisch zijn) */
   /* De container neemt nu de hoogte van de overlappende elementen. */
-  height: auto;
+  height: 100vh;
   /* border: 1px solid red; */
   opacity: 0;
   color: #fff;
@@ -873,7 +880,7 @@ li {
   color: var(--color-green); */
   font-weight: 400;
   font:
-    500 normal 1.75rem "Inter",
+    500 normal 2rem "Inter",
     sans-serif;
   letter-spacing: -0.05em;
   /* line-height: 1.2; */
@@ -893,7 +900,7 @@ li {
   color: #b9b9b9;
   font-weight: 400;
   font:
-    500 normal 1.75rem "Inter",
+    300 normal 1.75rem "Inter",
     sans-serif;
   letter-spacing: -0.05em;
   /* line-height: 1.5; */
@@ -910,7 +917,7 @@ li {
   padding-bottom: 2rem; */
   /* Zorg dat de breedte niet te ver uitloopt, maar centreert */
   text-align: center;
-  width: 70%;
+  width: 60%;
 }
 
 .icon2-wrapper {
@@ -1452,7 +1459,8 @@ button {
   background-color: transparent;
   border: 1px solid white;
   visibility: hidden;
-  /* height: calc(100vh - var(--header-height) - var(--mid-text-container-height)); */
+  height: calc(100vh - var(--header-height) - var(--mid-text-container-height));
+  border: 1px solid blue;
 }
 
 /* SWIPER */
@@ -1466,8 +1474,8 @@ button {
   /* border: 3px solid black; */
   position: relative;
   --swiper-pagination-color: #1ca45b;
-  border: 1px solid red;
-  padding: 10rem;
+  /* border: 1px solid red; */
+  padding: 8rem;
   /* overflow: visible !important; */
 }
 
@@ -1523,8 +1531,8 @@ button {
   /* flex: 1 1 auto;
   height: auto; */
   /* aspect-ratio: 1 / 1; */
-  aspect-ratio: 3 / 4;
-  min-height: 500px;
+  aspect-ratio: 4 / 3;
+  max-height: 500px;
   /* min-height: 400px; */
   /* background-repeat: no-repeat;
   background-position: center;
@@ -1542,8 +1550,12 @@ button {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: bottom;
   display: block;
+}
+
+.teaser-image-left {
+  object-position: center;
 }
 
 .featured-background-wrapper {

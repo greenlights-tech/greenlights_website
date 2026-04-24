@@ -304,313 +304,101 @@ export const Icon = () => {
           </linearGradient>
         </defs>
       </svg> */}
-      <svg
-        className="icon2"
-        width="90"
-        height="136"
-        viewBox="0 0 90 136"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <g filter="url(#filter0_n_2061_5)">
-          <rect
-            x="23.6049"
-            y="35.3097"
-            width="26"
-            height="79"
-            rx="13"
-            transform="rotate(17.3853 23.6049 35.3097)"
-            fill="url(#paint0_linear_2061_5)"
-          />
+      <svg className="icon2" width="142" height="215" viewBox="0 0 142 215" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g filter="url(#filter0_n_2019_122)">
+          <rect x="37.439" y="56.0041" width="41.2379" height="125.3" rx="20.6189" transform="rotate(17.3853 37.439 56.0041)" fill="url(#paint0_linear_2019_122)" />
         </g>
-        <g filter="url(#filter1_n_2061_5)">
-          <ellipse
-            cx="43.0327"
-            cy="16.7676"
-            rx="13"
-            ry="13.5"
-            transform="rotate(17.3853 43.0327 16.7676)"
-            fill="url(#paint1_linear_2061_5)"
-          />
+        <g filter="url(#filter1_n_2019_122)">
+          <ellipse cx="68.2533" cy="26.5948" rx="20.6189" ry="21.412" transform="rotate(17.3853 68.2533 26.5948)" fill="url(#paint1_linear_2019_122)" />
         </g>
-        <g filter="url(#filter2_n_2061_5)">
-          <rect
-            x="53.9602"
-            y="52.149"
-            width="26"
-            height="79"
-            rx="13"
-            transform="rotate(17.3853 53.9602 52.149)"
-            fill="url(#paint2_linear_2061_5)"
-          />
+        <g filter="url(#filter2_n_2019_122)">
+          <rect x="85.5854" y="82.7122" width="41.2379" height="125.3" rx="20.6189" transform="rotate(17.3853 85.5854 82.7122)" fill="url(#paint2_linear_2019_122)" />
         </g>
-        <g filter="url(#filter3_n_2061_5)">
-          <ellipse
-            cx="73.0892"
-            cy="34.5612"
-            rx="13"
-            ry="13.5"
-            transform="rotate(17.3853 73.0892 34.5612)"
-            fill="url(#paint3_linear_2061_5)"
-          />
+        <g filter="url(#filter3_n_2019_122)">
+          <ellipse cx="115.925" cy="54.8167" rx="20.6189" ry="21.412" transform="rotate(17.3853 115.925 54.8167)" fill="url(#paint3_linear_2019_122)" />
         </g>
         <defs>
-          <filter
-            id="filter0_n_2061_5"
-            x="3.28699"
-            y="38.5967"
-            width="41.8431"
-            height="76.5858"
-            filterUnits="userSpaceOnUse"
-            colorInterpolationFilters="sRGB"
-          >
-            <feFlood floodOpacity="0" result="BackgroundImageFix" />
-            <feBlend
-              mode="normal"
-              in="SourceGraphic"
-              in2="BackgroundImageFix"
-              result="shape"
-            />
-            <feTurbulence
-              type="fractalNoise"
-              baseFrequency="10 10"
-              stitchTiles="stitch"
-              numOctaves="3"
-              result="noise"
-              seed="7313"
-            />
-            <feColorMatrix
-              in="noise"
-              type="luminanceToAlpha"
-              result="alphaNoise"
-            />
+          <filter id="filter0_n_2019_122" x="5.21338" y="61.2175" width="66.3662" height="121.471" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+            <feTurbulence type="fractalNoise" baseFrequency="10 10" stitchTiles="stitch" numOctaves="3" result="noise" seed="7313" />
+            <feColorMatrix in="noise" type="luminanceToAlpha" result="alphaNoise" />
             <feComponentTransfer in="alphaNoise" result="coloredNoise1">
-              <feFuncA
-                type="discrete"
-                tableValues="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "
-              />
+              <feFuncA type="discrete" tableValues="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 " />
             </feComponentTransfer>
-            <feComposite
-              operator="in"
-              in2="shape"
-              in="coloredNoise1"
-              result="noise1Clipped"
-            />
-            <feFlood floodColor="rgba(0, 0, 0, 0.25)" result="color1Flood" />
-            <feComposite
-              operator="in"
-              in2="noise1Clipped"
-              in="color1Flood"
-              result="color1"
-            />
-            <feMerge result="effect1_noise_2061_5">
+            <feComposite operator="in" in2="shape" in="coloredNoise1" result="noise1Clipped" />
+            <feFlood flood-color="rgba(0, 0, 0, 0.25)" result="color1Flood" />
+            <feComposite operator="in" in2="noise1Clipped" in="color1Flood" result="color1" />
+            <feMerge result="effect1_noise_2019_122">
               <feMergeNode in="shape" />
               <feMergeNode in="color1" />
             </feMerge>
           </filter>
-          <filter
-            id="filter1_n_2061_5"
-            x="29.9838"
-            y="3.30798"
-            width="26.0979"
-            height="26.9193"
-            filterUnits="userSpaceOnUse"
-            colorInterpolationFilters="sRGB"
-          >
-            <feFlood floodOpacity="0" result="BackgroundImageFix" />
-            <feBlend
-              mode="normal"
-              in="SourceGraphic"
-              in2="BackgroundImageFix"
-              result="shape"
-            />
-            <feTurbulence
-              type="fractalNoise"
-              baseFrequency="10 10"
-              stitchTiles="stitch"
-              numOctaves="3"
-              result="noise"
-              seed="7313"
-            />
-            <feColorMatrix
-              in="noise"
-              type="luminanceToAlpha"
-              result="alphaNoise"
-            />
+          <filter id="filter1_n_2019_122" x="47.5566" y="5.24677" width="41.3931" height="42.696" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+            <feTurbulence type="fractalNoise" baseFrequency="10 10" stitchTiles="stitch" numOctaves="3" result="noise" seed="7313" />
+            <feColorMatrix in="noise" type="luminanceToAlpha" result="alphaNoise" />
             <feComponentTransfer in="alphaNoise" result="coloredNoise1">
-              <feFuncA
-                type="discrete"
-                tableValues="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "
-              />
+              <feFuncA type="discrete" tableValues="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 " />
             </feComponentTransfer>
-            <feComposite
-              operator="in"
-              in2="shape"
-              in="coloredNoise1"
-              result="noise1Clipped"
-            />
-            <feFlood floodColor="rgba(0, 0, 0, 0.25)" result="color1Flood" />
-            <feComposite
-              operator="in"
-              in2="noise1Clipped"
-              in="color1Flood"
-              result="color1"
-            />
-            <feMerge result="effect1_noise_2061_5">
+            <feComposite operator="in" in2="shape" in="coloredNoise1" result="noise1Clipped" />
+            <feFlood flood-color="rgba(0, 0, 0, 0.25)" result="color1Flood" />
+            <feComposite operator="in" in2="noise1Clipped" in="color1Flood" result="color1" />
+            <feMerge result="effect1_noise_2019_122">
               <feMergeNode in="shape" />
               <feMergeNode in="color1" />
             </feMerge>
           </filter>
-          <filter
-            id="filter2_n_2061_5"
-            x="33.6423"
-            y="55.436"
-            width="41.8431"
-            height="76.5858"
-            filterUnits="userSpaceOnUse"
-            colorInterpolationFilters="sRGB"
-          >
-            <feFlood floodOpacity="0" result="BackgroundImageFix" />
-            <feBlend
-              mode="normal"
-              in="SourceGraphic"
-              in2="BackgroundImageFix"
-              result="shape"
-            />
-            <feTurbulence
-              type="fractalNoise"
-              baseFrequency="10 10"
-              stitchTiles="stitch"
-              numOctaves="3"
-              result="noise"
-              seed="7313"
-            />
-            <feColorMatrix
-              in="noise"
-              type="luminanceToAlpha"
-              result="alphaNoise"
-            />
+          <filter id="filter2_n_2019_122" x="53.3599" y="87.9256" width="66.3662" height="121.471" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+            <feTurbulence type="fractalNoise" baseFrequency="10 10" stitchTiles="stitch" numOctaves="3" result="noise" seed="7313" />
+            <feColorMatrix in="noise" type="luminanceToAlpha" result="alphaNoise" />
             <feComponentTransfer in="alphaNoise" result="coloredNoise1">
-              <feFuncA
-                type="discrete"
-                tableValues="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "
-              />
+              <feFuncA type="discrete" tableValues="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 " />
             </feComponentTransfer>
-            <feComposite
-              operator="in"
-              in2="shape"
-              in="coloredNoise1"
-              result="noise1Clipped"
-            />
-            <feFlood floodColor="rgba(0, 0, 0, 0.25)" result="color1Flood" />
-            <feComposite
-              operator="in"
-              in2="noise1Clipped"
-              in="color1Flood"
-              result="color1"
-            />
-            <feMerge result="effect1_noise_2061_5">
+            <feComposite operator="in" in2="shape" in="coloredNoise1" result="noise1Clipped" />
+            <feFlood flood-color="rgba(0, 0, 0, 0.25)" result="color1Flood" />
+            <feComposite operator="in" in2="noise1Clipped" in="color1Flood" result="color1" />
+            <feMerge result="effect1_noise_2019_122">
               <feMergeNode in="shape" />
               <feMergeNode in="color1" />
             </feMerge>
           </filter>
-          <filter
-            id="filter3_n_2061_5"
-            x="60.0403"
-            y="21.1016"
-            width="26.0979"
-            height="26.9193"
-            filterUnits="userSpaceOnUse"
-            colorInterpolationFilters="sRGB"
-          >
-            <feFlood floodOpacity="0" result="BackgroundImageFix" />
-            <feBlend
-              mode="normal"
-              in="SourceGraphic"
-              in2="BackgroundImageFix"
-              result="shape"
-            />
-            <feTurbulence
-              type="fractalNoise"
-              baseFrequency="10 10"
-              stitchTiles="stitch"
-              numOctaves="3"
-              result="noise"
-              seed="7313"
-            />
-            <feColorMatrix
-              in="noise"
-              type="luminanceToAlpha"
-              result="alphaNoise"
-            />
+          <filter id="filter3_n_2019_122" x="95.2285" y="33.4686" width="41.3931" height="42.696" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+            <feTurbulence type="fractalNoise" baseFrequency="10 10" stitchTiles="stitch" numOctaves="3" result="noise" seed="7313" />
+            <feColorMatrix in="noise" type="luminanceToAlpha" result="alphaNoise" />
             <feComponentTransfer in="alphaNoise" result="coloredNoise1">
-              <feFuncA
-                type="discrete"
-                tableValues="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "
-              />
+              <feFuncA type="discrete" tableValues="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 " />
             </feComponentTransfer>
-            <feComposite
-              operator="in"
-              in2="shape"
-              in="coloredNoise1"
-              result="noise1Clipped"
-            />
-            <feFlood floodColor="rgba(0, 0, 0, 0.25)" result="color1Flood" />
-            <feComposite
-              operator="in"
-              in2="noise1Clipped"
-              in="color1Flood"
-              result="color1"
-            />
-            <feMerge result="effect1_noise_2061_5">
+            <feComposite operator="in" in2="shape" in="coloredNoise1" result="noise1Clipped" />
+            <feFlood flood-color="rgba(0, 0, 0, 0.25)" result="color1Flood" />
+            <feComposite operator="in" in2="noise1Clipped" in="color1Flood" result="color1" />
+            <feMerge result="effect1_noise_2019_122">
               <feMergeNode in="shape" />
               <feMergeNode in="color1" />
             </feMerge>
           </filter>
-          <linearGradient
-            id="paint0_linear_2061_5"
-            x1="36.6049"
-            y1="35.3097"
-            x2="36.6049"
-            y2="114.31"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop stopColor="#00450D" />
-            <stop offset="1" stopColor="#007416" />
+          <linearGradient id="paint0_linear_2019_122" x1="58.0579" y1="56.0041" x2="58.0579" y2="181.304" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#3B8558" />
+            <stop offset="1" stop-color="#007416" />
           </linearGradient>
-          <linearGradient
-            id="paint1_linear_2061_5"
-            x1="43.0327"
-            y1="3.26762"
-            x2="43.0327"
-            y2="30.2676"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop stopColor="#00450D" />
+          <linearGradient id="paint1_linear_2019_122" x1="68.2533" y1="5.18281" x2="68.2533" y2="48.0068" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#3B8558" />
           </linearGradient>
-          <linearGradient
-            id="paint2_linear_2061_5"
-            x1="66.9602"
-            y1="52.149"
-            x2="66.9602"
-            y2="131.149"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop stopColor="#00450D" />
-            <stop offset="1" stopColor="#007416" />
+          <linearGradient id="paint2_linear_2019_122" x1="106.204" y1="82.7122" x2="106.204" y2="208.012" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#007416" />
+            <stop offset="1" stop-color="#00450D" />
           </linearGradient>
-          <linearGradient
-            id="paint3_linear_2061_5"
-            x1="73.0892"
-            y1="21.0612"
-            x2="73.0892"
-            y2="48.0612"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop stopColor="#00450D" />
+          <linearGradient id="paint3_linear_2019_122" x1="115.925" y1="33.4047" x2="115.925" y2="76.2286" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#007416" />
           </linearGradient>
         </defs>
       </svg>
+
     </div>
   );
 };
