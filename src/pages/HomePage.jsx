@@ -34,7 +34,7 @@ export const HomePage = () => {
         //   ".new-container-wrapper .tagline-wrapper .tagline"
         // );
 
-        const switchBtn = container.current.querySelector(".switch");
+        // const switchBtn = container.current.querySelector(".switch");
 
 
 
@@ -60,17 +60,16 @@ export const HomePage = () => {
 
         gsap.set(".child1", { visibility: "visible" });
 
-        gsap.set(["#color1", "#color2"], {
-          opacity: 0.1,
-          "stop-color": "#00450D",
-        });
+        // gsap.set(["#color1", "#color2"], {
+        //   opacity: 0.1,
+        //   "stopColor": "#00450D",
+        // });
 
         gsap.set(".bg", { opacity: 0 });
 
         gsap.set(".teasers-container-swiper", {
-          scale: 0,
-          opacity: 0,
-          visibility: "hidden",
+          yPercent: 10,
+          opacity: 0.9
         });
 
         const zweefTL = gsap.timeline({ repeat: -1, yoyo: true });
@@ -115,6 +114,15 @@ export const HomePage = () => {
           filter: "blur(10px)",
         });
 
+        tl.current.set(
+          ".glyph",
+          {
+            opacity: 0,
+            scale: 0.8,
+
+          },
+        );
+
         // ---------- Intro + Switch ----------
 
         tl.current.to(
@@ -150,27 +158,27 @@ export const HomePage = () => {
         //   0.5,
         // );
         // Animeer de stop-kleuren terug naar groen
-        tl.current.to(
-          "#color1",
-          {
-            opacity: 1,
-            "stop-color": "#00450D", // Groen 1
-            duration: 0.3,
-            ease: "power1.out",
-          },
-          0.5, // Start tegelijk
-        );
+        // tl.current.to(
+        //   "#color1",
+        //   {
+        //     opacity: 1,
+        //     "stopColor": "#00450D", // Groen 1
+        //     duration: 0.3,
+        //     ease: "power1.out",
+        //   },
+        //   0.5, // Start tegelijk
+        // );
 
-        tl.current.to(
-          "#color2",
-          {
-            opacity: 1,
-            "stop-color": "#007416", // Groen 2
-            duration: 0.3,
-            ease: "power1.out",
-          },
-          0.5, // Start tegelijk
-        );
+        // tl.current.to(
+        //   "#color2",
+        //   {
+        //     opacity: 1,
+        //     "stopColor": "#007416", // Groen 2
+        //     duration: 0.3,
+        //     ease: "power1.out",
+        //   },
+        //   0.5, // Start tegelijk
+        // );
 
         // tl.current.to(
         //   ".child1",
@@ -191,16 +199,16 @@ export const HomePage = () => {
         //   }),
         //   1
         // );
-        tl.current.to(
-          ".switch",
-          {
-            opacity: 0,
-            scale: 0.5,
-            duration: 0.3,
-            ease: "power2.out",
-          },
-          0.7,
-        );
+        // tl.current.to(
+        //   ".switch",
+        //   {
+        //     opacity: 0,
+        //     scale: 0.5,
+        //     duration: 0.3,
+        //     ease: "power2.out",
+        //   },
+        //   0.7,
+        // );
 
         tl.current.to(
           ".bg",
@@ -257,24 +265,43 @@ export const HomePage = () => {
           2.5,
         );
 
-        gsap.set(".teasers-container-swiper", {
-          visibility: "visible",
-          opacity: 0,
-          scale: 0,
-        });
-
         tl.current.to(
-          ".teasers-container-swiper",
+          ".glyph",
           {
             opacity: 1,
             scale: 1,
-            ease: "expo.out",
             duration: 2,
+            ease: "power2.out",
+            stagger: 0.2
           },
-          3,
+          3 // exact dezelfde start als mid-text
         );
 
-        const handleStartClick = contextSafe(() => {
+        tl.current.to(".teasers-container-swiper", {
+          visibility: "visible",
+          yPercent: 0,
+          duration: 2.5,
+          ease: "power3.out"
+        }, 5);
+
+        // gsap.set(".teasers-container-swiper", {
+        //   visibility: "visible",
+        //   opacity: 0,
+        //   scale: 0,
+        // });
+
+        // tl.current.to(
+        //   ".teasers-container-swiper",
+        //   {
+        //     opacity: 1,
+        //     scale: 1,
+        //     ease: "expo.out",
+        //     duration: 2,
+        //   },
+        //   3,
+        // );
+
+        const startIntro = contextSafe(() => {
           // FLIP LOGICA HIER:
           const state = Flip.getState(logo);
 
@@ -304,16 +331,17 @@ export const HomePage = () => {
           // Forceer de tijdlijn naar het eindpunt (GSAP handelt de Flip eindstand af)
           tl.current.progress(1);
           setIntroFinished(true);
-          gsap.set(switchBtn, { display: "none" });
+          // gsap.set(switchBtn, { display: "none" });
         });
 
         // Uitvoering check
         if (introHasRunGlobal) {
           skipIntro();
         } else {
-          if (switchBtn) {
-            switchBtn.addEventListener("click", handleStartClick);
-          }
+          startIntro();
+          // if (switchBtn) {
+          //   switchBtn.addEventListener("click", handleStartClick);
+          // }
         }
       });
     },
@@ -678,44 +706,131 @@ export const HomePage = () => {
   return (
     <>
       <div ref={container} className="homepage">
-        <div className="featured-background-wrapper">
-          <div className="hover-layer-left">
-            <div className="mid-text-container-left">
-              <div className="mid-text-sollicitant-left">
+        <section className="homepage-hero">
+          <div className="featured-background-wrapper">
+            <div className="hover-layer-left">
+
+            </div>
+            <div className="hover-layer-right">
+
+            </div>
+          </div>
+          <div className="mid-hero-section">
+            <div className="mid-text-container">
+              <div className="mid-text-sollicitant">
                 <h2>
                   Wij versnellen digitale ambities door passend IT-talent te
-                  koppelen
+                  koppelen. Snel, passend IT-talent vinden, geselecteerd op motivatie, groei mind-set en passend bij uw bedrijfscultuur.
                 </h2>
               </div>
-
-            </div>
-          </div>
-          <div className="hover-layer-right">
-            <div className="mid-text-container-right">
-              <div className="mid-text-sollicitant-right">
-                <h2>
-                  Wij versnellen digitale ambities door passend IT-talent
-                </h2>
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-        <div className="mid-text-container">
-          <div className="mid-text-sollicitant">
-            <h2>
-              Wij versnellen digitale ambities door passend IT-talent te
-              koppelen. Snel, passend IT-talent vinden, geselecteerd op motivatie, groei mind-set en passend bij uw bedrijfscultuur.
-            </h2>
-          </div>
-          {/* <div className="mid-text-opdrachtgever">
+              {/* <div className="mid-text-opdrachtgever">
                   <h2>
                     Wij versnellen digitale ambities door passend IT-talent te
                     koppelen
                   </h2>
                 </div> */}
-        </div>
+
+            </div>
+            <div className="hero-pictures">
+              <img className="glyph g1" data-speed="1.3" src={leftImage} />
+              <img className="glyph g2" data-speed="1.5" src={rightImage} />
+              <img className="glyph g3" data-speed="1.3" src={rightImage} />
+              <img className="glyph g4" data-speed="1.3" src={leftImage} />
+              <img className="glyph g5" data-speed="1.5" src={rightImage} />
+              <img className="glyph g6" data-speed="1.3" src={leftImage} />
+              <img className="glyph g7" data-speed="1.5" src={leftImage} />
+              {/* <img className="glyph g8" data-speed="1.3" src={leftImage} /> */}
+            </div>
+          </div>
+
+          <div className="teasers-container-swiper">
+            <Swiper
+              modules={[Pagination, EffectCoverflow]}
+              effect="coverflow"
+              centeredSlides={true}
+              slidesPerView="auto"
+              spaceBetween={12}
+              pagination={{
+                el: ".swiper-pagination",
+                clickable: true,
+              }}
+              breakpoints={{
+                768: {
+                  slidesPerView: 2,
+                  centeredSlides: false,
+                  spaceBetween: 100,
+                  coverflowEffect: {
+                    rotate: 0,
+                    stretch: 0,
+                    depth: 0,
+                    modifier: 0,
+                  },
+                },
+              }}
+              coverflowEffect={{
+                rotate: 0,
+                stretch: 0,
+                depth: 0,
+                modifier: 1,
+                slideShadows: false,
+              }}
+              className="mySwiper"
+              onSwiper={(swiper) => {
+                // Forceer een update zodra de component mount
+                setTimeout(() => {
+                  swiper.update();
+                }, 100);
+              }}
+            >
+              {/* SLIDE 1 */}
+              <SwiperSlide>
+                <Link
+                  to="/talent"
+                  id="openSolliMobile"
+                  className="teaser-swiper leftSwiper left"
+                  aria-label="Ontdek opdrachten"
+                >
+                  <img
+                    src={leftImage}
+                    alt="Opdrachten"
+                    className="teaser-image teaser-image-left"
+                  />
+                  <div className="centered-text">
+                    <p className="centered-subtext">
+                      Ontdek <span className="highlight">opdrachten</span>
+                    </p>
+                  </div>
+                </Link>
+              </SwiperSlide>
+
+              {/* SLIDE 2 */}
+              <SwiperSlide>
+                <Link
+                  to="/opdrachtgever"
+                  id="openOpdrachtgeverMobile"
+                  className="teaser-swiper rightSwiper right"
+                  aria-label="Ontdek trainees"
+                >
+                  <img
+                    src={rightImage}
+                    alt="Trainees"
+                    className="teaser-image teaser-image-right"
+                  />
+                  <div className="centered-text">
+                    <p className="centered-subtext">
+                      Ontdek <span className="highlight">trainees</span>
+                    </p>
+                  </div>
+                </Link>
+              </SwiperSlide>
+
+              {/* De pagination div wordt automatisch beheerd door Swiper React als je de module gebruikt, 
+                  maar je kunt de class targeten via de pagination prop hierboven */}
+              <div className="swiper-pagination" aria-hidden="true"></div>
+            </Swiper>
+          </div>
+        </section>
+
         <section id="flip-logo" className="header-hero">
           {/* <Header /> */}
 
@@ -740,8 +855,8 @@ export const HomePage = () => {
                     <ellipse cx="37.438" cy="17.7032" rx="6.65895" ry="6.91506" transform="rotate(17.3853 37.438 17.7032)" fill="url(#paint3_linear_2019_130)" />
                   </g>
                   <defs>
-                    <filter id="filter0_n_2019_130" x="1.68359" y="19.7703" width="21.4331" height="39.2292" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                      <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                    <filter id="filter0_n_2019_130" x="1.68359" y="19.7703" width="21.4331" height="39.2292" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                      <feFlood floodOpacity="0" result="BackgroundImageFix" />
                       <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
                       <feTurbulence type="fractalNoise" baseFrequency="10 10" stitchTiles="stitch" numOctaves="3" result="noise" seed="7313" />
                       <feColorMatrix in="noise" type="luminanceToAlpha" result="alphaNoise" />
@@ -749,15 +864,15 @@ export const HomePage = () => {
                         <feFuncA type="discrete" tableValues="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 " />
                       </feComponentTransfer>
                       <feComposite operator="in" in2="shape" in="coloredNoise1" result="noise1Clipped" />
-                      <feFlood flood-color="rgba(0, 0, 0, 0.25)" result="color1Flood" />
+                      <feFlood floodColor="rgba(0, 0, 0, 0.25)" result="color1Flood" />
                       <feComposite operator="in" in2="noise1Clipped" in="color1Flood" result="color1" />
                       <feMerge result="effect1_noise_2019_130">
                         <feMergeNode in="shape" />
                         <feMergeNode in="color1" />
                       </feMerge>
                     </filter>
-                    <filter id="filter1_n_2019_130" x="15.3584" y="1.69446" width="13.3682" height="13.7888" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                      <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                    <filter id="filter1_n_2019_130" x="15.3584" y="1.69446" width="13.3682" height="13.7888" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                      <feFlood floodOpacity="0" result="BackgroundImageFix" />
                       <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
                       <feTurbulence type="fractalNoise" baseFrequency="10 10" stitchTiles="stitch" numOctaves="3" result="noise" seed="7313" />
                       <feColorMatrix in="noise" type="luminanceToAlpha" result="alphaNoise" />
@@ -765,15 +880,15 @@ export const HomePage = () => {
                         <feFuncA type="discrete" tableValues="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 " />
                       </feComponentTransfer>
                       <feComposite operator="in" in2="shape" in="coloredNoise1" result="noise1Clipped" />
-                      <feFlood flood-color="rgba(0, 0, 0, 0.25)" result="color1Flood" />
+                      <feFlood floodColor="rgba(0, 0, 0, 0.25)" result="color1Flood" />
                       <feComposite operator="in" in2="noise1Clipped" in="color1Flood" result="color1" />
                       <feMerge result="effect1_noise_2019_130">
                         <feMergeNode in="shape" />
                         <feMergeNode in="color1" />
                       </feMerge>
                     </filter>
-                    <filter id="filter2_n_2019_130" x="17.2324" y="28.3959" width="21.4331" height="39.2292" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                      <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                    <filter id="filter2_n_2019_130" x="17.2324" y="28.3959" width="21.4331" height="39.2292" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                      <feFlood floodOpacity="0" result="BackgroundImageFix" />
                       <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
                       <feTurbulence type="fractalNoise" baseFrequency="10 10" stitchTiles="stitch" numOctaves="3" result="noise" seed="7313" />
                       <feColorMatrix in="noise" type="luminanceToAlpha" result="alphaNoise" />
@@ -781,15 +896,15 @@ export const HomePage = () => {
                         <feFuncA type="discrete" tableValues="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 " />
                       </feComponentTransfer>
                       <feComposite operator="in" in2="shape" in="coloredNoise1" result="noise1Clipped" />
-                      <feFlood flood-color="rgba(0, 0, 0, 0.25)" result="color1Flood" />
+                      <feFlood floodColor="rgba(0, 0, 0, 0.25)" result="color1Flood" />
                       <feComposite operator="in" in2="noise1Clipped" in="color1Flood" result="color1" />
                       <feMerge result="effect1_noise_2019_130">
                         <feMergeNode in="shape" />
                         <feMergeNode in="color1" />
                       </feMerge>
                     </filter>
-                    <filter id="filter3_n_2019_130" x="30.7539" y="10.8088" width="13.3682" height="13.7888" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                      <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                    <filter id="filter3_n_2019_130" x="30.7539" y="10.8088" width="13.3682" height="13.7888" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                      <feFlood floodOpacity="0" result="BackgroundImageFix" />
                       <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
                       <feTurbulence type="fractalNoise" baseFrequency="10 10" stitchTiles="stitch" numOctaves="3" result="noise" seed="7313" />
                       <feColorMatrix in="noise" type="luminanceToAlpha" result="alphaNoise" />
@@ -797,7 +912,7 @@ export const HomePage = () => {
                         <feFuncA type="discrete" tableValues="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 " />
                       </feComponentTransfer>
                       <feComposite operator="in" in2="shape" in="coloredNoise1" result="noise1Clipped" />
-                      <feFlood flood-color="rgba(0, 0, 0, 0.25)" result="color1Flood" />
+                      <feFlood floodColor="rgba(0, 0, 0, 0.25)" result="color1Flood" />
                       <feComposite operator="in" in2="noise1Clipped" in="color1Flood" result="color1" />
                       <feMerge result="effect1_noise_2019_130">
                         <feMergeNode in="shape" />
@@ -805,18 +920,18 @@ export const HomePage = () => {
                       </feMerge>
                     </filter>
                     <linearGradient id="paint0_linear_2019_130" x1="18.7498" y1="18.0865" x2="18.7498" y2="58.5524" gradientUnits="userSpaceOnUse">
-                      <stop stop-color="#3B8558" />
-                      <stop offset="1" stop-color="#007416" />
+                      <stop stopColor="#3B8558" />
+                      <stop offset="1" stopColor="#007416" />
                     </linearGradient>
                     <linearGradient id="paint1_linear_2019_130" x1="22.0425" y1="1.67376" x2="22.0425" y2="15.5039" gradientUnits="userSpaceOnUse">
-                      <stop stop-color="#3B8558" />
+                      <stop stopColor="#3B8558" />
                     </linearGradient>
                     <linearGradient id="paint2_linear_2019_130" x1="34.2986" y1="26.7122" x2="34.2986" y2="67.1781" gradientUnits="userSpaceOnUse">
-                      <stop stop-color="#007416" />
-                      <stop offset="1" stop-color="#00450D" />
+                      <stop stopColor="#007416" />
+                      <stop offset="1" stopColor="#00450D" />
                     </linearGradient>
                     <linearGradient id="paint3_linear_2019_130" x1="37.438" y1="10.7881" x2="37.438" y2="24.6183" gradientUnits="userSpaceOnUse">
-                      <stop stop-color="#007416" />
+                      <stop stopColor="#007416" />
                     </linearGradient>
                   </defs>
                 </svg>
@@ -824,104 +939,19 @@ export const HomePage = () => {
               </div>
             )}
 
-            <div className="switch-container">
+            {/* <div className="switch-container">
               <button
                 // onClick={() => setEndX((prev) => prev + 1)}
                 className="switch"
               ></button>
-            </div>
+            </div> */}
             <Icon />
 
 
           </section>
 
         </section>
-        <section className="teasers-container-swiper">
-          <Swiper
-            modules={[Pagination, EffectCoverflow]}
-            effect="coverflow"
-            centeredSlides={true}
-            slidesPerView="auto"
-            spaceBetween={12}
-            pagination={{
-              el: ".swiper-pagination",
-              clickable: true,
-            }}
-            breakpoints={{
-              768: {
-                slidesPerView: 2,
-                centeredSlides: false,
-                spaceBetween: 100,
-                coverflowEffect: {
-                  rotate: 0,
-                  stretch: 0,
-                  depth: 0,
-                  modifier: 0,
-                },
-              },
-            }}
-            coverflowEffect={{
-              rotate: 0,
-              stretch: 0,
-              depth: 0,
-              modifier: 1,
-              slideShadows: false,
-            }}
-            className="mySwiper"
-            onSwiper={(swiper) => {
-              // Forceer een update zodra de component mount
-              setTimeout(() => {
-                swiper.update();
-              }, 100);
-            }}
-          >
-            {/* SLIDE 1 */}
-            <SwiperSlide>
-              <Link
-                to="/talent"
-                id="openSolliMobile"
-                className="teaser-swiper leftSwiper left"
-                aria-label="Ontdek opdrachten"
-              >
-                <img
-                  src={leftImage}
-                  alt="Opdrachten"
-                  className="teaser-image teaser-image-left"
-                />
-                <div className="centered-text">
-                  <p className="centered-subtext">
-                    Ontdek <span className="highlight">opdrachten</span>
-                  </p>
-                </div>
-              </Link>
-            </SwiperSlide>
 
-            {/* SLIDE 2 */}
-            <SwiperSlide>
-              <Link
-                to="/opdrachtgever"
-                id="openOpdrachtgeverMobile"
-                className="teaser-swiper rightSwiper right"
-                aria-label="Ontdek trainees"
-              >
-                <img
-                  src={rightImage}
-                  alt="Trainees"
-                  className="teaser-image teaser-image-right"
-                />
-                <div className="centered-text">
-                  <p className="centered-subtext">
-                    Ontdek <span className="highlight">trainees</span>
-                  </p>
-                </div>
-              </Link>
-            </SwiperSlide>
-
-            {/* De pagination div wordt automatisch beheerd door Swiper React als je de module gebruikt, 
-                  maar je kunt de class targeten via de pagination prop hierboven */}
-            <div className="swiper-pagination" aria-hidden="true"></div>
-          </Swiper>
-        </section>
       </div>
     </>
   );

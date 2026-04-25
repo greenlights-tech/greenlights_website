@@ -759,7 +759,8 @@ li {
 
 .header-hero {
   border: 1px solid red;
-  height: calc(100vh - var(--header-height));
+  height: calc(100vh - 7.25rem);
+  overflow: hidden;
 }
 
 .hero {
@@ -777,7 +778,7 @@ li {
 .original-container {
   display: flex;
   position: absolute;
-  top: 40%;
+  top: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
@@ -857,8 +858,8 @@ li {
   margin-bottom: 1rem; */
   /* Laat de hoogte bepalen door de inhoud (height: 100% kan problematisch zijn) */
   /* De container neemt nu de hoogte van de overlappende elementen. */
-  height: 100vh;
-  /* border: 1px solid red; */
+  height: calc(100vh - 7.25rem);
+  border: 1px solid red;
   opacity: 0;
   color: #fff;
 }
@@ -954,63 +955,85 @@ li {
   }
 }
 
-.switch-container {
-  display: flex;
-  position: absolute;
-  top: 80%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  height: auto;
-  background-color: "transparent";
-}
-
-.switch {
+.mid-hero-section {
   position: relative;
-  display: inline-block;
-  width: 100px;
-  /* 50px * 2 */
-  height: 54px;
-  /* 27px * 2 */
-  border-radius: 54px;
-  /* 27px * 2 */
-  cursor: pointer;
-  transition: all 0.3s;
+  height: 100vh;
+  width: 100%;
   overflow: hidden;
-  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
-  /* background-image: linear-gradient(
-    45deg,
-    hsl(223, 10%, 20%),
-    hsl(223, 10%, 10%)
-  ); */
-  background-color: hsl(223, 10%, 10%);
 }
 
-.switch input {
-  display: none;
-}
-
-.switch input:checked+div {
-  /* (100% - 50px) -> 100% minus de nieuwe breedte van het binnenste balletje */
-  left: calc(100% - 50px);
-}
-
-.switch div {
+.hero-pictures {
   position: absolute;
-  width: 50px;
-  /* 25px * 2 */
-  height: 50px;
-  /* 25px * 2 */
-  border-radius: 50px;
-  /* 25px * 2 */
-  background-image: linear-gradient(45deg,
-      hsl(223, 10%, 20%),
-      hsl(223, 10%, 10%));
-  top: 2px;
-  /* 1px * 2 */
-  left: 0px;
-  transition: all 0.4s;
+  inset: 0;
+  z-index: -1;
 }
+
+.glyph {
+  position: absolute;
+  aspect-ratio: 1 / 1;
+  max-height: 200px;
+  max-width: 200px;
+  object-fit: cover;
+  opacity: 0;
+  will-change: opacity;
+}
+
+.g1 {
+  top: 15%;
+  left: 5%;
+  aspect-ratio: 3 / 4;
+  max-height: 200px;
+  max-width: 300px;
+}
+
+.g2 {
+  top: 15%;
+  left: 70%;
+  aspect-ratio: 3 / 4;
+  max-height: 250px;
+  max-width: 200px;
+}
+
+.g3 {
+  top: 50%;
+  left: 17%;
+  aspect-ratio: 3 / 4;
+  max-height: 400px;
+  max-width: 200px;
+}
+
+.g4 {
+  top: 55%;
+  left: 75%;
+  aspect-ratio: 3 / 4;
+  max-height: 400px;
+  max-width: 200px;
+}
+
+.g5 {
+  top: 40%;
+  left: 45%;
+  aspect-ratio: 3 / 4;
+  max-height: 200px;
+  max-width: 300px;
+}
+
+.g6 {
+  top: 10%;
+  left: 35%;
+}
+
+.g7 {
+  top: 30%;
+  right: 2%;
+}
+
+.g8 {
+  top: 50%;
+  left: 4%;
+}
+
+
 
 /* .container-mid-text {
   display: flex;
@@ -1035,15 +1058,15 @@ li {
   border: 1px solid yellow;
 } */
 
-/* .glyph {
+.glyph {
   width: 25vw;
   height: auto;
   filter: saturate(1);
-} */
+}
 
 /* TEST */
 
-/* .images {
+.images {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   align-items: flex-start;
@@ -1056,17 +1079,18 @@ img {
   max-width: 100%;
   height: 60vh;
   object-fit: cover;
-} */
-/* .hero-images {
+}
+
+.hero-images {
 
   position: absolute;
-  top: 0; 
+  top: 0;
   left: 0;
   height: calc(100vh - var(--header-height));
   width: 100%;
 }
 
-.box {
+/* .box {
   position: absolute;
   z-index: 0;
   background-color: #1ca45b;
@@ -1459,7 +1483,7 @@ button {
   background-color: transparent;
   border: 1px solid white;
   visibility: hidden;
-  height: calc(100vh - var(--header-height) - var(--mid-text-container-height));
+  /* height: calc(100vh - var(--header-height) - var(--mid-text-container-height)); */
   border: 1px solid blue;
 }
 
@@ -1480,6 +1504,7 @@ button {
 }
 
 .mySwiper .swiper-wrapper {
+
   /* border: 1px solid yellow; */
   width: 100%;
 }
