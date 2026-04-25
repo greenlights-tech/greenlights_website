@@ -30,6 +30,9 @@ export const HomePage = () => {
           ".original-container",
         );
         const newContainer = document.querySelector(".new-container");
+        const leftLayer = container.current.querySelector(".hover-layer-left");
+        const rightLayer =
+          container.current.querySelector(".hover-layer-right");
         // const tagline = document.querySelector(
         //   ".new-container-wrapper .tagline-wrapper .tagline"
         // );
@@ -268,7 +271,7 @@ export const HomePage = () => {
         tl.current.to(
           ".glyph",
           {
-            opacity: 1,
+            opacity: 0.8,
             scale: 1,
             duration: 2,
             ease: "power2.out",
@@ -283,6 +286,8 @@ export const HomePage = () => {
           duration: 2.5,
           ease: "power3.out"
         }, 5);
+
+
 
         // gsap.set(".teasers-container-swiper", {
         //   visibility: "visible",
@@ -394,6 +399,59 @@ export const HomePage = () => {
   //  const onLeftLeave = contextSafe(() => {
   //         gsap.to(".leftSwiper", { scale: 1, duration: 0.4 });
   //       });
+
+  useGSAP(() => {
+
+    const leftLayer =
+      container.current.querySelector(".hover-layer-left");
+
+    const rightLayer =
+      container.current.querySelector(".hover-layer-right");
+
+    const midText =
+      container.current.querySelector(".mid-text-container");
+
+
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: midText,
+        start: "top top",
+        end: "+=500",
+        scrub: true,
+        // markers: true
+      }
+    })
+
+      .to(
+        rightLayer,
+        {
+          opacity: 1,
+          duration: 4,
+          ease: "power1.inOut"
+        },
+        0
+      )
+
+      .to(
+        leftLayer,
+        {
+          opacity: 0,
+          duration: 4,
+        },
+        0
+      );
+
+  },
+    { scope: container });
+
+
+
+  // gsap.to(rightLayer, {
+  //   opacity: 1,
+  //   duration: 4,
+  //   ease: "power1.inOut",
+  // }, 5);
+  // gsap.to(leftLayer, { opacity: 0, duration: 4 }, 5);
 
   useGSAP(
     (context, contextSafe) => {
@@ -732,13 +790,13 @@ export const HomePage = () => {
 
             </div>
             <div className="hero-pictures">
-              <img className="glyph g1" data-speed="1.3" src={leftImage} />
-              <img className="glyph g2" data-speed="1.5" src={rightImage} />
-              <img className="glyph g3" data-speed="1.3" src={rightImage} />
-              <img className="glyph g4" data-speed="1.3" src={leftImage} />
-              <img className="glyph g5" data-speed="1.5" src={rightImage} />
-              <img className="glyph g6" data-speed="1.3" src={leftImage} />
-              <img className="glyph g7" data-speed="1.5" src={leftImage} />
+              <img className="glyph g1" data-speed="clamp(1.3)" src={leftImage} />
+              <img className="glyph g2" data-speed="clamp(1.5)" src={rightImage} />
+              <img className="glyph g3" data-speed="clamp(1.4)" src={rightImage} />
+              <img className="glyph g4" data-speed="clamp(1.7)" src={leftImage} />
+              <img className="glyph g5" data-speed="clamp(1.5)" src={rightImage} />
+              <img className="glyph g6" data-speed="clamp(1.3)" src={leftImage} />
+              <img className="glyph g7" data-speed="clamp(1.3)" src={leftImage} />
               {/* <img className="glyph g8" data-speed="1.3" src={leftImage} /> */}
             </div>
           </div>
