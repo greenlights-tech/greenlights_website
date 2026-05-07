@@ -777,6 +777,9 @@ li {
   overflow-y: hidden; */
 }
 
+
+
+
 .original-container {
   position: absolute;
   top: 45%;
@@ -787,6 +790,7 @@ li {
   background-color: "transparent";
   visibility: hidden;
   z-index: 1 !important;
+
   /* border: 1px solid red; */
 }
 
@@ -889,7 +893,6 @@ li {
   font:
     500 normal 2rem "Inter",
     sans-serif;
-  letter-spacing: -0.05em;
   text-shadow: 0 0 6px rgba(0, 0, 0, 0.144);
   /* line-height: 1.2; */
 }
@@ -909,7 +912,6 @@ li {
   font:
     300 normal 1.75rem "Inter",
     sans-serif;
-  letter-spacing: -0.05em;
   /* line-height: 1.5; */
   /* border: 1px solid blue; */
 }
@@ -986,28 +988,28 @@ li {
   top: 10%;
   left: 3%;
   aspect-ratio: 4 / 3;
-  width: clamp(300px, 15vw, 500px);
+  width: clamp(150px, 15vw, 500px);
 }
 
 .g2 {
   top: 0%;
   left: 70%;
   aspect-ratio: 4 / 3;
-  width: clamp(300px, 15vw, 400px);
+  width: clamp(150px, 15vw, 400px);
 }
 
 .g3 {
   top: 50%;
   left: 17%;
   aspect-ratio: 3 / 4;
-  width: clamp(200px, 15vw, 400px);
+  width: clamp(150px, 15vw, 400px);
 }
 
 .g4 {
   top: 70%;
   right: 15%;
   aspect-ratio: 3 / 4;
-  width: clamp(200px, 15vw, 400px);
+  width: clamp(150px, 15vw, 400px);
 
 }
 
@@ -1015,28 +1017,28 @@ li {
   top: 52%;
   left: 45%;
   aspect-ratio: 4 / 3;
-  width: clamp(300px, 15vw, 500px);
+  width: clamp(150px, 15vw, 500px);
 }
 
 .g6 {
   top: -3%;
   left: 35%;
   aspect-ratio: 1 / 1;
-  width: clamp(200px, 15vw, 400px);
+  width: clamp(150px, 15vw, 400px);
 }
 
 .g7 {
   top: 30%;
   right: 2%;
   aspect-ratio: 1 / 1;
-  width: clamp(200px, 15vw, 400px);
+  width: clamp(150px, 15vw, 400px);
 }
 
 .g8 {
   top: 50%;
   left: 4%;
   aspect-ratio: 3 / 4;
-  width: clamp(250px, 15vw, 400px);
+  width: clamp(150px, 15vw, 400px);
 }
 
 
