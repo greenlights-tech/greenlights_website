@@ -67,8 +67,8 @@ export const HomePage = () => {
 
         // Als je split met characters gebruikt, altijd ook words erbij zetten omdat hij anders woorden afbreekt bij schermresizing
         let splitMidTextSolli = SplitText.create(".mid-text-sollicitant", {
-          type: "chars, words",
-          charsclassName: "char",
+          type: "words",
+          // charsclassName: "char",
           wordsclassName: "word",
           // autoSplit: true,
         });
@@ -126,7 +126,7 @@ export const HomePage = () => {
         //   yPercent: -100,
         // });
 
-        tl.current.set(splitMidTextSolli.chars, {
+        tl.current.set(splitMidTextSolli.words, {
           opacity: 0,
           yPercent: 100,
           rotateX: -90,
@@ -414,13 +414,16 @@ export const HomePage = () => {
         );
 
         tl.current.to(
-          splitMidTextSolli.chars,
+          splitMidTextSolli.words,
           {
             opacity: 1,
             yPercent: 0,
             rotateX: 0,
             filter: "blur(0px)",
-            stagger: 0.01,
+            // stagger: 0.01,
+            stagger: {
+              amount: 1
+            },
             duration: 1,
             ease: "power2.out",
           },
@@ -438,6 +441,8 @@ export const HomePage = () => {
           },
           2.5
         );
+
+
 
         tl.current.to(".teasers-container-swiper", {
           visibility: "visible",
@@ -591,6 +596,72 @@ export const HomePage = () => {
   //         gsap.to(".leftSwiper", { scale: 1, duration: 0.4 });
   //       });
 
+  useGSAP((context, contextSafe) => {
+
+    document.fonts.ready.then(() => {
+
+      const section = document.querySelector(".mid-hero-section");
+      const glyphs = document.querySelectorAll(".glyph");
+
+      if (!section || !glyphs.length) return;
+
+      const onMove = contextSafe((e) => {
+
+        const { left, top, width, height } =
+          section.getBoundingClientRect();
+
+        const x = (e.clientX - left) / width - 0.5;
+        const y = (e.clientY - top) / height - 0.5;
+
+        glyphs.forEach((glyph, index) => {
+
+          const depth = (index + 1) * 15;
+
+          gsap.to(glyph, {
+            x: x * depth,
+            y: y * depth,
+            rotateX: y * -10,
+            rotateY: x * 10,
+            duration: 1.2,
+            ease: "power3.out",
+            overwrite: "auto"
+          });
+
+        });
+
+      });
+
+      const onLeave = contextSafe(() => {
+
+        glyphs.forEach((glyph) => {
+
+          gsap.to(glyph, {
+            x: 0,
+            y: 0,
+            rotateX: 0,
+            rotateY: 0,
+            duration: 1.2,
+            ease: "power3.out",
+            overwrite: "auto"
+          });
+
+        });
+
+      });
+
+      section.addEventListener("mousemove", onMove);
+      section.addEventListener("mouseleave", onLeave);
+
+      // cleanup via GSAP context
+      return () => {
+        section.removeEventListener("mousemove", onMove);
+        section.removeEventListener("mouseleave", onLeave);
+      };
+
+    });
+
+  }, { scope: container, dependencies: [] });
+
   useGSAP(() => {
 
     const leftLayer =
@@ -617,7 +688,7 @@ export const HomePage = () => {
         rightLayer,
         {
           opacity: 1,
-          duration: 4,
+          duration: 2,
           ease: "power1.inOut"
         },
         0
@@ -627,9 +698,18 @@ export const HomePage = () => {
         leftLayer,
         {
           opacity: 0,
-          duration: 4,
+          duration: 2,
         },
         0
+      )
+
+      .to(
+        midText,
+        {
+          color: "#ffffff",
+          duration: 0.5,
+        },
+        1
       );
 
   },
@@ -1112,13 +1192,21 @@ export const HomePage = () => {
 
             </div>
             <div className="hero-pictures">
-              <img className="glyph g1" data-speed="clamp(1.3)" src={leftImage} />
+              {/* <img className="glyph g1" data-speed="clamp(1.3)" src={leftImage} />
               <img className="glyph g2" data-speed="clamp(1.5)" src={rightImage} />
               <img className="glyph g3" data-speed="clamp(1.4)" src={rightImage} />
               <img className="glyph g4" data-speed="clamp(1.7)" src={leftImage} />
               <img className="glyph g5" data-speed="clamp(1.5)" src={rightImage} />
               <img className="glyph g6" data-speed="clamp(1.3)" src={leftImage} />
-              <img className="glyph g7" data-speed="clamp(1.3)" src={leftImage} />
+              <img className="glyph g7" data-speed="clamp(1.3)" src={leftImage} /> */}
+
+              <img className="glyph g1" src={leftImage} />
+              <img className="glyph g2" src={rightImage} />
+              <img className="glyph g3" src={rightImage} />
+              <img className="glyph g4" src={leftImage} />
+              <img className="glyph g5" src={rightImage} />
+              <img className="glyph g6" src={leftImage} />
+              <img className="glyph g7" src={leftImage} />
               {/* <img className="glyph g8" data-speed="1.3" src={leftImage} /> */}
             </div>
           </div>
