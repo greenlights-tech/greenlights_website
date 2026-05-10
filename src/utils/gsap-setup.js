@@ -4,12 +4,10 @@ import { Flip } from "gsap/Flip";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { SplitText } from "gsap/SplitText";
-import { MorphSVGPlugin } from "gsap/MorphSVGPlugin";
-import DrawSVGPlugin from "gsap/DrawSVGPlugin";
 
 // Registreer alles centraal
-gsap.registerPlugin(useGSAP, Flip, ScrollTrigger, ScrollSmoother, SplitText, MorphSVGPlugin, DrawSVGPlugin);
+gsap.registerPlugin(useGSAP, Flip, ScrollTrigger, ScrollSmoother, SplitText);
 
 export * from "gsap";
-export { useGSAP, Flip, ScrollTrigger, ScrollSmoother, SplitText, MorphSVGPlugin, DrawSVGPlugin };
+export { useGSAP, Flip, ScrollTrigger, ScrollSmoother, SplitText };
 export default gsap;

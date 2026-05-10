@@ -315,7 +315,7 @@ body {
   font-size: 16px;
   /* overflow: hidden; */
   /* -ms-overflow-style: none; */
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
 }
 
 html,
@@ -325,6 +325,7 @@ body,
   width: 100%;
 }
 
+
 .show .tagline-wrapper {
   opacity: 1;
 }
@@ -332,6 +333,7 @@ body,
 .show .container .bg {
   opacity: 1;
 }
+
 
 /* body::-webkit-scrollbar {
   display: none;
@@ -404,7 +406,7 @@ body,
   background-color: #f0ebd4;
   height: 100%;
   /* overflow-y: hidden; */
-  border: 1px solid yellow;
+  /* border: 1px solid yellow; */
 }
 
 .about-component {
@@ -614,26 +616,6 @@ body,
 .header .container .bg {
   position: absolute;
   inset: 0;
-  /* background-image: linear-gradient(to top, #686563, #686563 30%, #464443);
-  background-image: linear-gradient(to top, #465166, #232832 50%, #191d24); */
-  /* background-image: linear-gradient(to top,
-      rgb(93, 91, 91),
-      rgb(54, 54, 54) 50%,
-      rgb(44, 44, 44)); */
-
-  /* background-image: linear-gradient(to top, #303847, #232832 60%, #161a20); */
-
-  /* background-image: linear-gradient(
-    to top,
-    rgba(104, 101, 99, 0.5),
-    rgba(104, 101, 99, 0.5) 30%,
-    rgba(70, 68, 67, 0.5)
-  ); */
-  /* opacity: 0; */
-  /* background-image: linear-gradient(to top,
-      rgb(219, 219, 196),
-      rgb(196, 196, 175) 50%,
-      rgb(180, 180, 161)); */
   background-color: rgb(187, 184, 160);
   background-color: transparent;
 }
@@ -968,11 +950,11 @@ li {
   display: flex;
   position: relative;
   justify-content: space-between;
-  align-items: flex-start;
-  justify-content: space-between;
+  align-items: center;
   width: 80%;
   height: calc(50vh - 3.65rem);
-  border: 1px solid red;
+  opacity: 0;
+  /* border: 1px solid red; */
 }
 
 @media (min-width: 992px) {
@@ -3470,22 +3452,26 @@ button {
   }
 }
 
+/* .layout-wrapper {
+  margin: 0 auto;
+  width: 100%;
+  min-height: 100vh;
+} */
+
 
 .layout-wrapper {
   display: flex;
-  /* max-width: 2000px; */
   flex-direction: column;
   width: 100%;
   justify-content: space-between;
   margin: 0 auto;
   align-items: center;
   height: auto;
-  /* background-color: black; */
 }
 
 
 
 
 /* * {
-  outline: 1px solid red;
+  outline: 1px solid blue;
 } */

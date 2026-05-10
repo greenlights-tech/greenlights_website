@@ -2,12 +2,11 @@ import { Outlet } from "react-router-dom";
 // import { Header } from "./Header";
 // import { Footer } from "./Footer";
 // import { ScrollToTop } from "./ScrollToTop";
-import { NavBar } from "./NavBar";
-import { WhatsAppButton } from "./WhatsappButton";
+// import { NavBar } from "./NavBar";
+// import { WhatsAppButton } from "./WhatsappButton";
 import { Header } from "./Header";
 // import { SwitchProvider } from "../context/SwitchContext";
 import {
-  gsap,
   useGSAP,
   ScrollTrigger,
   ScrollSmoother,
@@ -27,8 +26,8 @@ export const Root = () => {
     <>
       {/* <SwitchProvider> */}
       {/* <ScrollToTop /> */}
-      <NavBar />
-      <WhatsAppButton />
+      {/* <NavBar />
+      <WhatsAppButton /> */}
       <div id="smooth-wrapper">
         <div id="smooth-content">
           <Header />

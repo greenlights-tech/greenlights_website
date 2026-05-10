@@ -1,18 +1,18 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 // import { initSwiper } from "../utils/initSwiper";
-// import { Swiper, SwiperSlide } from "swiper/react";
-// import { Pagination, EffectCoverflow } from "swiper/modules";
-// import "swiper/css";
-// import "swiper/css/effect-coverflow";
-// import "swiper/css/pagination";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, EffectCoverflow } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
 import { useIntro } from "../context/IntroContext";
 import rightImage from "../assets/Homepage-right.jpg";
 // import rightImage from "../assets/background7-kopie.jpg";
 import leftImage from "../assets/Homepage-left.jpg";
 // import { Icon } from "../components/Icon";
 
-import { gsap, useGSAP, ScrollTrigger, ScrollSmoother, Flip, SplitText, MorphSVGPlugin, DrawSVGPlugin } from "../utils/gsap-setup";
+import { gsap, useGSAP, ScrollTrigger, ScrollSmoother, Flip, SplitText } from "../utils/gsap-setup";
 
 let introHasRunGlobal = false;
 
@@ -26,10 +26,10 @@ export const HomePage = () => {
     (context, contextSafe) => {
       document.fonts.ready.then(() => {
         const logo = document.querySelector(".child1");
-        const logoPath = document.querySelector("#logoPath");
-        const originalContainer = container.current.querySelector(
-          ".original-container",
-        );
+        // const logoPath = document.querySelector("#logoPath");
+        // const originalContainer = container.current.querySelector(
+        //   ".original-container",
+        // );
         const newContainer = document.querySelector(".new-container");
         // const leftLayer = container.current.querySelector(".hover-layer-left");
         // const rightLayer =
@@ -40,7 +40,7 @@ export const HomePage = () => {
 
         // const switchBtn = container.current.querySelector(".switch");
 
-        MorphSVGPlugin.convertToPath("#logoPath rect, #logoPath ellipse");
+        // MorphSVGPlugin.convertToPath("#logoPath rect, #logoPath ellipse");
 
         // gsap.set(logo.querySelectorAll("rect, ellipse"), {
         //   opacity: 1
@@ -115,9 +115,19 @@ export const HomePage = () => {
 
         tl.current = gsap.timeline({
           paused: true,
+
+          onStart: () => { ScrollSmoother.get()?.paused(true); document.body.style.overflow = "hidden"; },
           onComplete: () => {
-            introHasRunGlobal = true; // Zet op true als de animatie klaar is
+            introHasRunGlobal = true;
             setIntroFinished(true);
+
+            ScrollSmoother.get()?.paused(false);
+            document.body.style.overflow = "";
+
+            requestAnimationFrame(() => {
+              ScrollTrigger.refresh(true);
+              ScrollSmoother.get()?.refresh(true);
+            });
           },
         });
 
@@ -431,6 +441,14 @@ export const HomePage = () => {
         );
 
         tl.current.to(
+          ".hero-pictures",
+          {
+            opacity: 1,
+          },
+          0.5,
+        );
+
+        tl.current.to(
           ".glyph",
           {
             opacity: 1,
@@ -542,15 +560,7 @@ export const HomePage = () => {
     { scope: container },
   );
 
-  useGSAP(() => {
-    const smoother = ScrollSmoother.get();
 
-    requestAnimationFrame(() => {
-      ScrollTrigger.refresh(true);
-      smoother?.refresh(true);
-      smoother?.effects(".glyph");
-    });
-  }, []);
 
   // const { contextSafe } = useGSAP({ scope: container });
 
@@ -609,11 +619,11 @@ export const HomePage = () => {
       if (!section || !glyphs.length) return;
 
       const bases = [
-        { x: -22, y: 5 },   // links (lichte lift)
-        { x: -10, y: 35 },  // links lager
-        { x: 0, y: 0 },   // center anchor
-        { x: 12, y: 40 },  // rechts lager
-        { x: 24, y: 10 },  // rechts subtiel omhoog
+        { x: -22, y: 5 },
+        { x: -10, y: 35 },
+        { x: 0, y: 0 },
+        { x: 12, y: 40 },
+        { x: 24, y: 10 },
       ];
 
 
@@ -750,164 +760,164 @@ export const HomePage = () => {
   // }, 5);
   // gsap.to(leftLayer, { opacity: 0, duration: 4 }, 5);
 
-  // useGSAP(
-  //   (context, contextSafe) => {
-  //     document.fonts.ready.then(() => {
-  //       // contextSafe als 2e argument
+  useGSAP(
+    (context, contextSafe) => {
+      document.fonts.ready.then(() => {
+        // contextSafe als 2e argument
 
-  //       // Selecteer elementen binnen de scope
-  //       const leftSwiper = container.current.querySelector(".leftSwiper");
-  //       const rightSwiper = container.current.querySelector(".rightSwiper");
-  //       const leftLayer = container.current.querySelector(".hover-layer-left");
-  //       const rightLayer =
-  //         container.current.querySelector(".hover-layer-right");
-  //       const headerBg = document.querySelector(".header .bg");
+        // Selecteer elementen binnen de scope
+        const leftSwiper = container.current.querySelector(".leftSwiper");
+        const rightSwiper = container.current.querySelector(".rightSwiper");
+        const leftLayer = container.current.querySelector(".hover-layer-left");
+        const rightLayer =
+          container.current.querySelector(".hover-layer-right");
+        const headerBg = document.querySelector(".header .bg");
 
-  //       if (
-  //         !leftSwiper ||
-  //         !rightSwiper ||
-  //         !leftLayer ||
-  //         !rightLayer ||
-  //         !headerBg
-  //       )
-  //         return;
+        if (
+          !leftSwiper ||
+          !rightSwiper ||
+          !leftLayer ||
+          !rightLayer ||
+          !headerBg
+        )
+          return;
 
-  //       const mm = gsap.matchMedia();
+        const mm = gsap.matchMedia();
 
-  //       mm.add("(min-width: 768px)", () => {
-  //         // gsap.set(headerBg, {
-  //         //   background:
-  //         //     "linear-gradient(to top, rgb(219, 219, 196), rgb(196, 196, 175) 50%, rgb(180, 180, 161)",
-
-
-  //         // });
+        mm.add("(min-width: 768px)", () => {
+          // gsap.set(headerBg, {
+          //   background:
+          //     "linear-gradient(to top, rgb(219, 219, 196), rgb(196, 196, 175) 50%, rgb(180, 180, 161)",
 
 
-  //         // {
-  //         //   isDesktop: "(min-width: 768px)",
-  //         // },
-  //         // (context) => {
-  //         //   let { isDesktop } = context.conditions;
+          // });
 
-  //         // LEFT HOVER IN (Context-Safe gewrapped)
-  //         const onLeftEnter = contextSafe(() => {
-  //           gsap.to(leftLayer, {
-  //             opacity: 1,
-  //             duration: 4,
-  //             ease: "power1.inOut",
-  //           });
-  //           gsap.to(rightLayer, { opacity: 0, duration: 4 });
-  //           // gsap.to(headerBg, {
-  //           //   background:
-  //           //     "linear-gradient(to top, #a8988c, #635a54 50%, #403a36)",
-  //           //   duration: 1,
-  //           //   ease: "power1.inOut",
-  //           //   force3D: true,
-  //           // });
-  //           gsap.to(leftSwiper, {
-  //             scale: 1.1,
-  //             duration: 1,
-  //             ease: "power4.out",
-  //           });
-  //           // gsap.to(rightSwiper, {
-  //           //   scale: 0.9,
-  //           //   duration: 0.4,
-  //           //   ease: "power1.inOut",
-  //           // });
-  //         });
 
-  //         // LEFT HOVER UIT (Context-Safe gewrapped)
-  //         const onLeftLeave = contextSafe(() => {
-  //           gsap.to([leftLayer, rightLayer], {
-  //             opacity: 0,
-  //             duration: 4,
-  //             ease: "power1.inOut",
-  //           });
-  //           // gsap.to(headerBg, {
-  //           //   background:
-  //           //     // "linear-gradient(to top, rgb(219, 219, 196), rgb(196, 196, 175) 50%, rgb(180, 180, 161)",
-  //           //     "linear-gradient(to top, rgb(219, 219, 196), rgb(187, 184, 160) 50%, rgb(126, 124, 107)",
-  //           //   duration: 1,
-  //           //   ease: "power1.inOut",
-  //           // });
-  //           gsap.to(leftSwiper, {
-  //             scale: 1,
-  //             duration: 1,
-  //             ease: "power4.in",
-  //           });
-  //           // gsap.to(rightSwiper, {
-  //           //   scale: 1,
-  //           //   duration: 0.4,
-  //           //   ease: "power1.inOut",
-  //           // });
-  //         });
+          // {
+          //   isDesktop: "(min-width: 768px)",
+          // },
+          // (context) => {
+          //   let { isDesktop } = context.conditions;
 
-  //         // RIGHT HOVER IN
-  //         const onRightEnter = contextSafe(() => {
-  //           gsap.to(rightLayer, {
-  //             opacity: 1,
-  //             duration: 4,
-  //             ease: "power1.inOut",
-  //           });
-  //           gsap.to(leftLayer, { opacity: 0, duration: 4 });
-  //           // gsap.to(headerBg, {
-  //           //   background:
-  //           //     "linear-gradient(to top, rgb(163, 154, 138), rgb(97, 92, 84) 50%, rgb(71, 68, 62))",
-  //           //   duration: 1,
-  //           //   ease: "power1.inOut",
-  //           // });
-  //           gsap.to(rightSwiper, {
-  //             scale: 1.1,
-  //             duration: 1,
-  //             ease: "power4.out",
-  //           });
-  //         });
+          // LEFT HOVER IN (Context-Safe gewrapped)
+          const onLeftEnter = contextSafe(() => {
+            gsap.to(leftLayer, {
+              opacity: 1,
+              duration: 4,
+              ease: "power1.inOut",
+            });
+            gsap.to(rightLayer, { opacity: 0, duration: 4 });
+            // gsap.to(headerBg, {
+            //   background:
+            //     "linear-gradient(to top, #a8988c, #635a54 50%, #403a36)",
+            //   duration: 1,
+            //   ease: "power1.inOut",
+            //   force3D: true,
+            // });
+            gsap.to(leftSwiper, {
+              scale: 1.1,
+              duration: 1,
+              ease: "power4.out",
+            });
+            // gsap.to(rightSwiper, {
+            //   scale: 0.9,
+            //   duration: 0.4,
+            //   ease: "power1.inOut",
+            // });
+          });
 
-  //         // RIGHT HOVER UIT
-  //         const onRightLeave = contextSafe(() => {
-  //           gsap.to([leftLayer, rightLayer], {
-  //             opacity: 0,
-  //             duration: 4,
-  //             ease: "power1.inOut",
-  //           });
-  //           // gsap.to(headerBg, {
-  //           //   background:
-  //           //     "linear-gradient(to top, rgb(219, 219, 196), rgb(196, 196, 175) 50%, rgb(180, 180, 161)",
-  //           //   duration: 1,
-  //           //   ease: "power1.inOut",
-  //           // });
-  //           gsap.to(rightSwiper, {
-  //             scale: 1,
-  //             duration: 1,
-  //             ease: "power4.in",
-  //           });
-  //           // gsap.to(leftSwiper, {
-  //           //   scale: 1,
-  //           //   duration: 0.4,
-  //           //   ease: "power1.inOut",
-  //           // });
-  //         });
+          // LEFT HOVER UIT (Context-Safe gewrapped)
+          const onLeftLeave = contextSafe(() => {
+            gsap.to([leftLayer, rightLayer], {
+              opacity: 0,
+              duration: 4,
+              ease: "power1.inOut",
+            });
+            // gsap.to(headerBg, {
+            //   background:
+            //     // "linear-gradient(to top, rgb(219, 219, 196), rgb(196, 196, 175) 50%, rgb(180, 180, 161)",
+            //     "linear-gradient(to top, rgb(219, 219, 196), rgb(187, 184, 160) 50%, rgb(126, 124, 107)",
+            //   duration: 1,
+            //   ease: "power1.inOut",
+            // });
+            gsap.to(leftSwiper, {
+              scale: 1,
+              duration: 1,
+              ease: "power4.in",
+            });
+            // gsap.to(rightSwiper, {
+            //   scale: 1,
+            //   duration: 0.4,
+            //   ease: "power1.inOut",
+            // });
+          });
 
-  //         // ------------------------------------------------------------
-  //         // Event Listeners TOEVOEGEN (alleen als isDesktop true is)
-  //         // ------------------------------------------------------------
+          // RIGHT HOVER IN
+          const onRightEnter = contextSafe(() => {
+            gsap.to(rightLayer, {
+              opacity: 1,
+              duration: 4,
+              ease: "power1.inOut",
+            });
+            gsap.to(leftLayer, { opacity: 0, duration: 4 });
+            // gsap.to(headerBg, {
+            //   background:
+            //     "linear-gradient(to top, rgb(163, 154, 138), rgb(97, 92, 84) 50%, rgb(71, 68, 62))",
+            //   duration: 1,
+            //   ease: "power1.inOut",
+            // });
+            gsap.to(rightSwiper, {
+              scale: 1.1,
+              duration: 1,
+              ease: "power4.out",
+            });
+          });
 
-  //         leftSwiper.addEventListener("mouseenter", onLeftEnter);
-  //         leftSwiper.addEventListener("mouseleave", onLeftLeave);
-  //         rightSwiper.addEventListener("mouseenter", onRightEnter);
-  //         rightSwiper.addEventListener("mouseleave", onRightLeave);
+          // RIGHT HOVER UIT
+          const onRightLeave = contextSafe(() => {
+            gsap.to([leftLayer, rightLayer], {
+              opacity: 0,
+              duration: 4,
+              ease: "power1.inOut",
+            });
+            // gsap.to(headerBg, {
+            //   background:
+            //     "linear-gradient(to top, rgb(219, 219, 196), rgb(196, 196, 175) 50%, rgb(180, 180, 161)",
+            //   duration: 1,
+            //   ease: "power1.inOut",
+            // });
+            gsap.to(rightSwiper, {
+              scale: 1,
+              duration: 1,
+              ease: "power4.in",
+            });
+            // gsap.to(leftSwiper, {
+            //   scale: 1,
+            //   duration: 0.4,
+            //   ease: "power1.inOut",
+            // });
+          });
 
-  //         return () => {
-  //           leftSwiper.removeEventListener("mouseenter", onLeftEnter);
-  //           leftSwiper.removeEventListener("mouseleave", onLeftLeave);
-  //           rightSwiper.removeEventListener("mouseenter", onRightEnter);
-  //           rightSwiper.removeEventListener("mouseleave", onRightLeave);
-  //         };
-  //       });
-  //     });
-  //   },
-  //   { scope: container, dependencies: [] },
-  // );
+          // ------------------------------------------------------------
+          // Event Listeners TOEVOEGEN (alleen als isDesktop true is)
+          // ------------------------------------------------------------
+
+          leftSwiper.addEventListener("mouseenter", onLeftEnter);
+          leftSwiper.addEventListener("mouseleave", onLeftLeave);
+          rightSwiper.addEventListener("mouseenter", onRightEnter);
+          rightSwiper.addEventListener("mouseleave", onRightLeave);
+
+          return () => {
+            leftSwiper.removeEventListener("mouseenter", onLeftEnter);
+            leftSwiper.removeEventListener("mouseleave", onLeftLeave);
+            rightSwiper.removeEventListener("mouseenter", onRightEnter);
+            rightSwiper.removeEventListener("mouseleave", onRightLeave);
+          };
+        });
+      });
+    },
+    { scope: container, dependencies: [] },
+  );
 
   // useEffect(() => {
   //   const leftSwiper = document.querySelector(".leftSwiper");
@@ -1240,7 +1250,7 @@ export const HomePage = () => {
 
 
             <div className="teasers-container-swiper">
-              {/* <Swiper
+              <Swiper
                 modules={[Pagination, EffectCoverflow]}
                 effect="coverflow"
                 centeredSlides={true}
@@ -1319,7 +1329,7 @@ export const HomePage = () => {
                 </SwiperSlide>
 
                 <div className="swiper-pagination" aria-hidden="true"></div>
-              </Swiper> */}
+              </Swiper>
             </div>
           </div>
 

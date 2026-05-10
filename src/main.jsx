@@ -1,15 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { Root } from "./components/Root";
 import { HomePage } from "./pages/HomePage";
 import { IntroProvider } from "./context/IntroContext";
 import { TalentPage } from "./pages/TalentPage";
 import { ClientPage } from "./pages/ClientPage";
 import { ContactPage } from "./pages/ContactPage";
 import { PrivacyPage } from "./pages/PrivacyPage";
-import { BlogPage } from "./pages/BlogPage";
+// import { BlogPage } from "./pages/BlogPage";
 import "./styles/main.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Root } from "./components/Root";
+
 
 const router = createBrowserRouter(
   [
@@ -25,7 +26,7 @@ const router = createBrowserRouter(
         { path: "opdrachtgever", element: <ClientPage /> },
         { path: "contact", element: <ContactPage /> },
         { path: "privacy", element: <PrivacyPage /> },
-        { path: "blog", element: <BlogPage /> },
+        // { path: "blog", element: <BlogPage /> },
       ],
     },
   ],
