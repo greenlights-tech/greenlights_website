@@ -31,12 +31,9 @@ export const Root = () => {
       <WhatsAppButton />
       <div id="smooth-wrapper">
         <div id="smooth-content">
-          <div className="root-layout-wrapper">
-            <Header />
+          <Header />
 
-            <Outlet />
-          </div>
-
+          <Outlet />
 
 
           {/* <Footer /> */}

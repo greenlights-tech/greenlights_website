@@ -392,7 +392,7 @@ body,
   justify-content: space-evenly;
   /* position: relative; */
   /* height: calc(100dvh - 6.5rem); */
-  z-index: 1;
+  z-index: 10;
   width: 100%;
   /* flex-grow: 1; */
   /* animation: animateGlow 10s ease infinite; */
@@ -606,6 +606,7 @@ body,
   width: 100%;
   /* flex-shrink: 0; */
   height: 7.25rem;
+  position: relative;
   /* border: 1px solid yellow; */
   /* background-color: rgba(70, 68, 67, 0.5); */
 }
@@ -865,7 +866,7 @@ li {
   margin-bottom: 1rem; */
   /* Laat de hoogte bepalen door de inhoud (height: 100% kan problematisch zijn) */
   /* De container neemt nu de hoogte van de overlappende elementen. */
-  height: calc(100vh - 7.25rem);
+  height: calc(50vh - 3.65rem);
   /* border: 1px solid red; */
   opacity: 0;
   color: #fff;
@@ -891,7 +892,7 @@ li {
   /* text-transform: uppercase; */
   /* color: #b9b9b9;
   color: var(--color-green); */
-  font-size: 2.5rem;
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
   font-family: "Playfair Display SC", serif;
   font-style: normal;
   font-weight: 600;
@@ -925,46 +926,61 @@ li {
 /* @media (min-width: 768px) {
 } */
 
+.hero-interaction-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
 
 
 .mid-hero-section {
   position: relative;
-  height: calc(100vh - var(--header-height));
+  height: calc(100vh - 7.25rem);
   width: 100%;
+  max-width: 3000px;
   /* overflow: hidden; */
 }
 
 .hero-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 100%;
+  height: 100%;
   perspective: 1000px;
   /* border: 1px solid yellow; */
 }
 
 
 
-@media (min-width: 1536px) {
+/* @media (min-width: 1536px) {
 
   .layout-wrapper {
     max-width: 2000px;
   }
 
-}
+} */
 
 .hero-pictures {
   display: flex;
   position: relative;
-  height: calc(100vh - var(--header-height));
-  width: 100%;
+  justify-content: space-between;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 80%;
+  height: calc(50vh - 3.65rem);
+  border: 1px solid red;
 }
 
 @media (min-width: 992px) {
 
-  .hero-container {
+  /* .hero-container {
     display: flex;
     flex-direction: row;
-  }
+  } */
 
   .mid-text-container {
     padding-top: 2rem;
@@ -976,26 +992,70 @@ li {
     width: 10%;
   }
 
-  .hero-pictures {
-    width: 40%;
-    /* border: 1px solid black; */
-  }
+
 }
 
-.glyph {
+
+@media (min-width: 1536px) {
+  .hero-pictures {
+    width: 80%;
+    /* border: 1px solid black; */
+  }
+
+
+}
+
+
+/* .glyph {
   position: absolute;
   object-fit: cover;
   opacity: 0;
   border-radius: 1px;
   will-change: transform, opacity;
   box-shadow: 18px 30px 80px 30px rgba(87, 87, 87, 0.185);
-  /* border-radius: 12px; */
   transform-style: preserve-3d;
   will-change: transform;
   opacity: 0.8;
+} */
+
+.glyph {
+  aspect-ratio: 4/5;
+  flex: none;
+  width: 12vw;
+  position: relative;
+  will-change: transform;
+  /* width: clamp(75px, 8vw, 300px); */
 }
 
-.g1 {
+/* .g1 {
+  transform: translateY(60%);
+}
+
+.g2 {
+  transform: translate(55%, 20%);
+}
+
+.g3 {
+  transform: translate(-20%, 25%);
+}
+
+.g4 {
+  transform: translate(55%, 35%);
+}
+
+.g5 {
+  transform: translate(-10%, 45%);
+}
+
+.g6 {
+  transform: translate(25%, -25%);
+}
+
+.g7 {
+  transform: translate(-40%, 10%);
+} */
+
+/* .g1 {
   top: 0%;
   right: 5%;
   aspect-ratio: 4 / 5;
@@ -1028,7 +1088,7 @@ li {
   left: 5%;
   aspect-ratio: 4 / 5;
   width: clamp(175px, 8vw, 275px);
-}
+} */
 
 /* .g3 {
   top: 50%;
@@ -1491,6 +1551,7 @@ button {
   margin-top: 5rem;
   padding-bottom: 2rem; */
   width: 100%;
+  height: 100vh;
   /* min-height: 50vh; */
   background-color: transparent;
   /* border: 1px solid white; */
@@ -3409,19 +3470,19 @@ button {
   }
 }
 
-.layout-wrapper {
-  margin: 0 auto;
-}
 
-.root-layout-wrapper {
+.layout-wrapper {
   display: flex;
+  /* max-width: 2000px; */
   flex-direction: column;
   width: 100%;
   justify-content: space-between;
   margin: 0 auto;
   align-items: center;
   height: auto;
+  /* background-color: black; */
 }
+
 
 
 
