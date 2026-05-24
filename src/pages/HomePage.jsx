@@ -144,14 +144,9 @@ export const HomePage = () => {
           filter: "blur(10px)",
         });
 
-        tl.current.set(
-          ".glyph",
-          {
-            opacity: 0,
-            scale: 0.8,
-
-          },
-        );
+        tl.current.set(".glyph", {
+          clipPath: "inset(100% 0 0 0)", // volledig verborgen (rechts dicht)
+        });
 
         tl.current.set(".icon", {
           opacity: 0
@@ -438,9 +433,6 @@ export const HomePage = () => {
             rotateX: 0,
             filter: "blur(0px)",
             // stagger: 0.01,
-            stagger: {
-              amount: 1
-            },
             duration: 1,
             ease: "power2.out",
           },
@@ -455,20 +447,11 @@ export const HomePage = () => {
           0.5,
         );
 
-        tl.current.to(
-          ".glyph",
-          {
-            opacity: 1,
-            scale: 1,
-            duration: 2,
-            ease: "power2.out",
-            stagger: {
-              each: 0.1,
-              from: "random"
-            }
-          },
-          2
-        );
+        tl.current.to(".glyph", {
+          clipPath: "inset(0% 0 0 0)",
+          duration: 1.2,
+          ease: "power3.out",
+        }, 1.5);
 
 
 
@@ -489,7 +472,7 @@ export const HomePage = () => {
         tl.current.to(".teasers-container-swiper", {
           visibility: "visible",
           yPercent: 0,
-          duration: 2.5,
+          duration: 0.1,
           ease: "power3.out"
         }, 3);
 
@@ -721,7 +704,7 @@ export const HomePage = () => {
       scrollTrigger: {
         trigger: midText,
         start: "top top",
-        end: "+=500",
+        end: "+=400",
         scrub: true,
         // markers: true
       }
@@ -731,7 +714,6 @@ export const HomePage = () => {
         rightLayer,
         {
           opacity: 1,
-          duration: 1,
           ease: "power1.inOut"
         },
         0
@@ -741,7 +723,7 @@ export const HomePage = () => {
         leftLayer,
         {
           opacity: 0,
-          duration: 1
+          ease: "power1.inOut"
         },
         0
       )
@@ -751,8 +733,7 @@ export const HomePage = () => {
       },
         {
           color: "#ffffff",
-          ease: "power2.out",
-          duration: 0.5
+          ease: "power1.inOut"
         }, 0
       )
 
@@ -1274,8 +1255,8 @@ export const HomePage = () => {
                     {/* <div className="mid-text-placeholder"></div> */}
                     <div className="mid-text-sollicitant">
                       <h2>
-                        Wij versnellen digitale ambities door passend IT-talent te
-                        koppelen. Snel, passend IT-talent vinden.
+                        "Wij versnellen digitale ambities door passend it-talent te
+                        koppelen. Snel, passend IT-talent vinden."
                       </h2>
                     </div>
                     {/* <div className="mid-text-opdrachtgever">
