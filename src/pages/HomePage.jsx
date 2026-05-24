@@ -611,86 +611,76 @@ export const HomePage = () => {
 
   useGSAP((context, contextSafe) => {
 
-    document.fonts.ready.then(() => {
+    const section = document.querySelector(".hero-interaction-section");
+    const glyphs = document.querySelectorAll(".glyph");
 
-      const section = document.querySelector(".hero-interaction-section");
-      const glyphs = document.querySelectorAll(".glyph");
+    if (!section || !glyphs.length) return;
 
-      if (!section || !glyphs.length) return;
+    const bases = [
+      { x: -22, y: 5 },
+      { x: -10, y: 35 },
+      { x: 0, y: 0 },
+      { x: 12, y: 40 },
+      { x: 24, y: 10 },
+    ];
 
-      const bases = [
-        { x: -22, y: 5 },
-        { x: -10, y: 35 },
-        { x: 0, y: 0 },
-        { x: 12, y: 40 },
-        { x: 24, y: 10 },
-      ];
+    let currentX = 0;
+    let currentY = 0;
+    let targetX = 0;
+    let targetY = 0;
 
+    const onMove = contextSafe((e) => {
 
-      // set ONLY initial positions
-      glyphs.forEach((glyph, i) => {
-        gsap.set(glyph, {
-          x: bases[i]?.x || 0,
-          y: bases[i]?.y || 0,
-        });
-      });
+      const rect = section.getBoundingClientRect();
 
-      const onMove = contextSafe((e) => {
-
-        const { left, top, width, height } =
-          section.getBoundingClientRect();
-
-        const x = (e.clientX - left) / width - 0.5;
-        const y = (e.clientY - top) / height - 0.5;
-
-        glyphs.forEach((glyph, index) => {
-
-          const depth = (index + 1) * 15;
-
-          gsap.to(glyph, {
-            x: bases[index].x + x * depth,
-            y: bases[index].y + y * depth,
-            rotateX: y * -10,
-            rotateY: x * 10,
-            duration: 1.2,
-            ease: "power3.out",
-            overwrite: "auto"
-          });
-
-        });
-
-      });
-
-      const onLeave = contextSafe(() => {
-
-        glyphs.forEach((glyph, i) => {
-
-          gsap.to(glyph, {
-            x: bases[i]?.x || 0,
-            y: bases[i]?.y || 0,
-            rotateX: 0,
-            rotateY: 0,
-            duration: 1.2,
-            ease: "power3.out",
-            overwrite: "auto"
-          });
-
-        });
-
-      });
-
-      section.addEventListener("mousemove", onMove);
-      section.addEventListener("mouseleave", onLeave);
-
-      // cleanup via GSAP context
-      return () => {
-        section.removeEventListener("mousemove", onMove);
-        section.removeEventListener("mouseleave", onLeave);
-      };
+      targetX = (e.clientX - rect.left) / rect.width - 0.5;
+      targetY = (e.clientY - rect.top) / rect.height - 0.5;
 
     });
 
-  }, { scope: container, dependencies: [] });
+    const animate = () => {
+
+      // smooth follow
+      currentX += (targetX - currentX) * 0.08;
+      currentY += (targetY - currentY) * 0.08;
+
+      glyphs.forEach((glyph, index) => {
+
+        const base = bases[index];
+
+        const depth = (index - glyphs.length / 2);
+
+        // 🔥 core motion field
+        const moveX = currentX * 70;
+        const moveY = currentY * 70;
+
+        gsap.set(glyph, {
+
+          x: base.x + moveX + depth * 7,
+          y: base.y + moveY + depth * 7,
+
+          // 🔥 dit is je 3D gevoel dat je miste
+          rotateY: currentX * 28,
+          rotateX: -currentY * 28,
+
+          transformPerspective: 1000,
+          transformOrigin: "center"
+        });
+
+      });
+
+      requestAnimationFrame(animate);
+    };
+
+    section.addEventListener("mousemove", onMove);
+
+    animate();
+
+    return () => {
+      section.removeEventListener("mousemove", onMove);
+    };
+
+  }, { scope: container });
 
 
   useGSAP(() => {
@@ -759,6 +749,35 @@ export const HomePage = () => {
   //   ease: "power1.inOut",
   // }, 5);
   // gsap.to(leftLayer, { opacity: 0, duration: 4 }, 5);
+
+  useGSAP(() => {
+
+    const midText =
+      container.current.querySelector(".homepage-hero");
+
+    const lines = gsap.utils.toArray(".homepage-button");
+
+    if (!midText || !lines.length) return;
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: midText,
+        start: "top top",
+        end: "+=500",
+        scrub: true,
+      }
+    });
+
+    tl.from(lines, {
+      x: (i) => (i % 2 === 0 ? -200 : 200),
+      opacity: 0,
+      ease: "power3.out",
+      stagger: 0.25,
+    });
+
+  }, { scope: container });
+
+
 
   useGSAP(
     (context, contextSafe) => {
@@ -1216,11 +1235,17 @@ export const HomePage = () => {
                     <img className="glyph g6" data-speed="clamp(1.3)" src={leftImage} />
                      <img className="glyph g7" data-speed="clamp(1.3)" src={leftImage} /> */}
 
-                    <img className="glyph g1" src={leftImage} />
+                    {/* <img className="glyph g1" src={leftImage} />
                     <img className="glyph g2" src={rightImage} />
                     <img className="glyph g3" src={rightImage} />
                     <img className="glyph g4" src={leftImage} />
-                    <img className="glyph g5" src={rightImage} />
+                    <img className="glyph g5" src={rightImage} /> */}
+
+                    <img className="glyph skewElem g1" src={leftImage} />
+                    <img className="glyph skewElem g2" src={rightImage} />
+                    <img className="glyph skewElem g3" src={rightImage} />
+                    <img className="glyph skewElem g4" src={leftImage} />
+                    <img className="glyph skewElem g5" src={rightImage} />
                     {/* <img className="glyph g6" src={leftImage} />
                     <img className="glyph g7" src={leftImage} /> */}
                     {/* <img className="glyph g8" data-speed="1.3" src={leftImage} /> */}
@@ -1230,23 +1255,75 @@ export const HomePage = () => {
                     <div className="mid-text-sollicitant">
                       <h2>
                         Wij versnellen digitale ambities door passend IT-talent te
-                        koppelen. Snel, passend IT-talent vinden, geselecteerd op motivatie, groei mind-set en passend bij uw bedrijfscultuur.
+                        koppelen. Snel, passend IT-talent vinden.
                       </h2>
                     </div>
                     {/* <div className="mid-text-opdrachtgever">
-                  <h2>
+                     <h2>
                     Wij versnellen digitale ambities door passend IT-talent te
                     koppelen
-                  </h2>
-                  </div> */}
+                     </h2>
+                      </div> */}
 
+                  </div>
+                  <div className="hero-pictures2">
+                    {/* <img className="glyph g1" data-speed="clamp(1.3)" src={leftImage} />
+                       <img className="glyph g2" data-speed="clamp(1.5)" src={rightImage} />
+                       <img className="glyph g3" data-speed="clamp(1.4)" src={rightImage} />
+                   <img className="glyph g4" data-speed="clamp(1.7)" src={leftImage} />
+                   <img className="glyph g5" data-speed="clamp(1.5)" src={rightImage} />
+                    <img className="glyph g6" data-speed="clamp(1.3)" src={leftImage} />
+                     <img className="glyph g7" data-speed="clamp(1.3)" src={leftImage} /> */}
+
+                    {/* <img className="glyph g1" src={leftImage} />
+                    <img className="glyph g2" src={rightImage} />
+                    <img className="glyph g3" src={rightImage} />
+                    <img className="glyph g4" src={leftImage} />
+                    <img className="glyph g5" src={rightImage} /> */}
+
+                    <img className="glyph skewElem g1" src={leftImage} />
+                    <img className="glyph skewElem g2" src={rightImage} />
+                    <img className="glyph skewElem g3" src={rightImage} />
+                    <img className="glyph skewElem g4" src={leftImage} />
+                    <img className="glyph skewElem g5" src={rightImage} />
+                    {/* <img className="glyph g6" src={leftImage} />
+                    <img className="glyph g7" src={leftImage} /> */}
+                    {/* <img className="glyph g8" data-speed="1.3" src={leftImage} /> */}
                   </div>
                 </div>
 
               </div>
             </div>
 
+            <div className="homepage-buttons-container">
 
+              <Link
+                to="/talent"
+                className="homepage-button"
+                aria-label="Ontdek opdrachten"
+              >
+
+                <div className="overlay">
+                  <p className="line">
+                    start je <span className="highlight">it-carrière</span>
+                  </p>
+                </div>
+              </Link>
+
+              <Link
+                to="/opdrachtgever"
+                className="homepage-button"
+                aria-label="Ontdek trainees"
+              >
+
+                <div className="overlay">
+                  <p className="line">
+                    vind <span className="highlight">it-talent</span>
+                  </p>
+                </div>
+              </Link>
+
+            </div>
 
 
             <div className="teasers-container-swiper">
