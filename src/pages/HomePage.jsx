@@ -31,6 +31,7 @@ export const HomePage = () => {
         //   ".original-container",
         // );
         const newContainer = document.querySelector(".new-container");
+        const lines = gsap.utils.toArray(".homepage-button");
         // const leftLayer = container.current.querySelector(".hover-layer-left");
         // const rightLayer =
         //   container.current.querySelector(".hover-layer-right");
@@ -155,6 +156,12 @@ export const HomePage = () => {
         tl.current.set(".icon", {
           opacity: 0
         })
+
+        tl.current.set(lines, {
+          x: (i) => (i % 2 === 0 ? -200 : 200),
+          opacity: 0,
+        });
+
 
 
 
@@ -465,6 +472,20 @@ export const HomePage = () => {
 
 
 
+
+
+
+
+        tl.current.to(lines, {
+          x: 0,
+          opacity: 1,
+          stagger: 0.25,
+          duration: 0.8,
+          ease: "power3.out",
+        }, 3);
+
+
+
         tl.current.to(".teasers-container-swiper", {
           visibility: "visible",
           yPercent: 0,
@@ -683,6 +704,7 @@ export const HomePage = () => {
   }, { scope: container });
 
 
+
   useGSAP(() => {
 
     const leftLayer =
@@ -692,7 +714,7 @@ export const HomePage = () => {
       container.current.querySelector(".hover-layer-right");
 
     const midText =
-      container.current.querySelector(".mid-text-container");
+      container.current.querySelector(".homepage-hero");
 
 
     gsap.timeline({
@@ -709,7 +731,7 @@ export const HomePage = () => {
         rightLayer,
         {
           opacity: 1,
-          duration: 2,
+          duration: 1,
           ease: "power1.inOut"
         },
         0
@@ -719,22 +741,20 @@ export const HomePage = () => {
         leftLayer,
         {
           opacity: 0,
-          duration: 2
+          duration: 1
         },
         0
       )
 
-    // .fromTo(".mid-text-sollicitant", {
-    //   opacity: 1,
-    //   filter: "blur(0px)"
-    // },
-    //   {
-    //     opacity: 0,
-    //     filter: "blur(12px)",
-    //     ease: "power2.out",
-    //     duration: 2
-    //   }, 1
-    // )
+      .fromTo(".mid-text-sollicitant", {
+        opacity: 1,
+      },
+        {
+          color: "#ffffff",
+          ease: "power2.out",
+          duration: 0.5
+        }, 0
+      )
 
 
 
@@ -750,32 +770,32 @@ export const HomePage = () => {
   // }, 5);
   // gsap.to(leftLayer, { opacity: 0, duration: 4 }, 5);
 
-  useGSAP(() => {
+  // useGSAP(() => {
 
-    const midText =
-      container.current.querySelector(".homepage-hero");
+  //   const midText =
+  //     container.current.querySelector(".homepage-hero");
 
-    const lines = gsap.utils.toArray(".homepage-button");
+  //   const lines = gsap.utils.toArray(".homepage-button");
 
-    if (!midText || !lines.length) return;
+  //   if (!midText || !lines.length) return;
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: midText,
-        start: "top top",
-        end: "+=500",
-        scrub: true,
-      }
-    });
+  //   const tl = gsap.timeline({
+  //     scrollTrigger: {
+  //       trigger: midText,
+  //       start: "top top",
+  //       end: "+=500",
+  //       scrub: true,
+  //     }
+  //   });
 
-    tl.from(lines, {
-      x: (i) => (i % 2 === 0 ? -200 : 200),
-      opacity: 0,
-      ease: "power3.out",
-      stagger: 0.25,
-    });
+  //   tl.from(lines, {
+  //     x: (i) => (i % 2 === 0 ? -200 : 200),
+  //     opacity: 0,
+  //     ease: "power3.out",
+  //     stagger: 0.25,
+  //   });
 
-  }, { scope: container });
+  // }, { scope: container });
 
 
 
@@ -1264,66 +1284,46 @@ export const HomePage = () => {
                     koppelen
                      </h2>
                       </div> */}
+                    <div className="homepage-buttons-container">
 
+                      <Link
+                        to="/talent"
+                        className="homepage-button btn1"
+                        aria-label="Ontdek opdrachten"
+                      >
+
+                        <div className="overlay">
+                          <p className="line">
+                            start je <span className="highlight">it-carrière</span>
+                          </p>
+                        </div>
+                      </Link>
+
+                      <Link
+                        to="/opdrachtgever"
+                        className="homepage-button btn2"
+                        aria-label="Ontdek trainees"
+                      >
+
+                        <div className="overlay">
+                          <p className="line">
+                            vind <span className="highlight">it-talent</span>
+                          </p>
+                        </div>
+                      </Link>
+
+                    </div>
                   </div>
-                  <div className="hero-pictures2">
-                    {/* <img className="glyph g1" data-speed="clamp(1.3)" src={leftImage} />
-                       <img className="glyph g2" data-speed="clamp(1.5)" src={rightImage} />
-                       <img className="glyph g3" data-speed="clamp(1.4)" src={rightImage} />
-                   <img className="glyph g4" data-speed="clamp(1.7)" src={leftImage} />
-                   <img className="glyph g5" data-speed="clamp(1.5)" src={rightImage} />
-                    <img className="glyph g6" data-speed="clamp(1.3)" src={leftImage} />
-                     <img className="glyph g7" data-speed="clamp(1.3)" src={leftImage} /> */}
 
-                    {/* <img className="glyph g1" src={leftImage} />
-                    <img className="glyph g2" src={rightImage} />
-                    <img className="glyph g3" src={rightImage} />
-                    <img className="glyph g4" src={leftImage} />
-                    <img className="glyph g5" src={rightImage} /> */}
 
-                    <img className="glyph skewElem g1" src={leftImage} />
-                    <img className="glyph skewElem g2" src={rightImage} />
-                    <img className="glyph skewElem g3" src={rightImage} />
-                    <img className="glyph skewElem g4" src={leftImage} />
-                    <img className="glyph skewElem g5" src={rightImage} />
-                    {/* <img className="glyph g6" src={leftImage} />
-                    <img className="glyph g7" src={leftImage} /> */}
-                    {/* <img className="glyph g8" data-speed="1.3" src={leftImage} /> */}
-                  </div>
                 </div>
 
               </div>
-            </div>
 
-            <div className="homepage-buttons-container">
-
-              <Link
-                to="/talent"
-                className="homepage-button"
-                aria-label="Ontdek opdrachten"
-              >
-
-                <div className="overlay">
-                  <p className="line">
-                    start je <span className="highlight">it-carrière</span>
-                  </p>
-                </div>
-              </Link>
-
-              <Link
-                to="/opdrachtgever"
-                className="homepage-button"
-                aria-label="Ontdek trainees"
-              >
-
-                <div className="overlay">
-                  <p className="line">
-                    vind <span className="highlight">it-talent</span>
-                  </p>
-                </div>
-              </Link>
 
             </div>
+
+
 
 
             <div className="teasers-container-swiper">
