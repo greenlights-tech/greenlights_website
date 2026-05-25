@@ -433,7 +433,7 @@ export const HomePage = () => {
             rotateX: 0,
             filter: "blur(0px)",
             // stagger: 0.01,
-            duration: 1,
+            duration: 2,
             ease: "power2.out",
           },
           1.5,
@@ -451,7 +451,7 @@ export const HomePage = () => {
           clipPath: "inset(0% 0 0 0)",
           duration: 1.2,
           ease: "power3.out",
-        }, 1.5);
+        }, 1.7);
 
 
 
@@ -620,12 +620,25 @@ export const HomePage = () => {
 
     if (!section || !glyphs.length) return;
 
+    // const bases = [
+    //   { x: -22, y: 5 },
+    //   { x: -10, y: 35 },
+    //   { x: 0, y: 0 },
+    //   { x: 6, y: 20 },
+    //   { x: 10, y: 10 },
+    //   { x: 12, y: 40 },
+    //   { x: 24, y: 40 },
+    // ];
+
+
+
     const bases = [
       { x: -22, y: 5 },
       { x: -10, y: 35 },
       { x: 0, y: 0 },
-      { x: 12, y: 40 },
+      { x: 12, y: 15 },
       { x: 24, y: 10 },
+
     ];
 
     let currentX = 0;
@@ -652,20 +665,32 @@ export const HomePage = () => {
 
         const base = bases[index];
 
-        const depth = (index - glyphs.length / 2);
+        const depth = index - glyphs.length / 2;
 
-        // 🔥 core motion field
         const moveX = currentX * 70;
         const moveY = currentY * 70;
 
+        // 🔥 UNIQUE BEHAVIOR PER GLYPH
+        const intensity = 0.6 + index * 0.15;     // different strength
+        const wobble = Math.sin(currentX * 3 + index) * 6; // subtle offset
+        const lag = 1 - index * 0.08;             // slight response delay feel
+
         gsap.set(glyph, {
 
-          x: base.x + moveX + depth * 7,
-          y: base.y + moveY + depth * 7,
+          x:
+            base.x +
+            moveX * intensity +
+            depth * 7 +
+            wobble * lag,
 
-          // 🔥 dit is je 3D gevoel dat je miste
-          rotateY: currentX * 28,
-          rotateX: -currentY * 28,
+          y:
+            base.y +
+            moveY * (1.1 - index * 0.1) +
+            depth * 7 +
+            Math.cos(currentY * 3 + index) * 5,
+
+          rotateY: currentX * (28 + index * 2),
+          rotateX: -currentY * (28 + index * 2),
 
           transformPerspective: 1000,
           transformOrigin: "center"
@@ -778,6 +803,43 @@ export const HomePage = () => {
 
   // }, { scope: container });
 
+
+  useGSAP((context, contextSafe) => {
+
+    const buttons = container.current.querySelectorAll(".homepage-button");
+
+    if (!buttons.length) return;
+
+    buttons.forEach((btn) => {
+
+      const text = btn.querySelector(".line");
+      if (!text) return;
+
+      const play = contextSafe(() => {
+
+        gsap.killTweensOf(text);
+
+        gsap.set(text, {
+          yPercent: -25,  // start boven het element
+        });
+
+        gsap.to(text, {
+          yPercent: 0,
+          duration: 1.2,
+          ease: "elastic.out"
+        });
+
+      });
+
+      btn.addEventListener("mouseenter", play);
+
+      return () => {
+        btn.removeEventListener("mouseenter", play);
+      };
+
+    });
+
+  }, { scope: container });
 
 
   useGSAP(
