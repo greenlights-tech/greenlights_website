@@ -10,6 +10,8 @@ import { useIntro } from "../context/IntroContext";
 import rightImage from "../assets/Homepage-right.jpg";
 // import rightImage from "../assets/background7-kopie.jpg";
 import leftImage from "../assets/Homepage-left.jpg";
+import { AboutSection } from "../components/AboutSection";
+import { Footer } from "../components/Footer";
 // import { Icon } from "../components/Icon";
 
 import { gsap, useGSAP, ScrollTrigger, ScrollSmoother, Flip, SplitText } from "../utils/gsap-setup";
@@ -87,10 +89,10 @@ export const HomePage = () => {
 
         gsap.set(".bg", { opacity: 0 });
 
-        gsap.set(".teasers-container-swiper", {
-          yPercent: 10,
-          opacity: 0.9
-        });
+        // gsap.set(".teasers-container-swiper", {
+        //   yPercent: 10,
+        //   opacity: 0.9
+        // });
 
         // const zweefTL = gsap.timeline({ repeat: -1, yoyo: true });
 
@@ -469,12 +471,12 @@ export const HomePage = () => {
 
 
 
-        tl.current.to(".teasers-container-swiper", {
-          visibility: "visible",
-          yPercent: 0,
-          duration: 0.1,
-          ease: "power3.out"
-        }, 3);
+        // tl.current.to(".teasers-container-swiper", {
+        //   visibility: "visible",
+        //   yPercent: 0,
+        //   duration: 0.1,
+        //   ease: "power3.out"
+        // }, 3);
 
 
 
@@ -1361,100 +1363,114 @@ export const HomePage = () => {
 
                 </div>
 
+
+
+
+
+
+
+
+
+
               </div>
 
 
             </div>
 
 
+            <AboutSection className="home-section" />
 
 
-            <div className="teasers-container-swiper">
-              <Swiper
-                modules={[Pagination, EffectCoverflow]}
-                effect="coverflow"
-                centeredSlides={true}
-                slidesPerView="auto"
-                spaceBetween={12}
-                pagination={{
-                  el: ".swiper-pagination",
-                  clickable: true,
-                }}
-                breakpoints={{
-                  768: {
-                    slidesPerView: 2,
-                    centeredSlides: false,
-                    spaceBetween: 100,
-                    coverflowEffect: {
-                      rotate: 0,
-                      stretch: 0,
-                      depth: 0,
-                      modifier: 0,
-                    },
-                  },
-                }}
-                coverflowEffect={{
-                  rotate: 0,
-                  stretch: 0,
-                  depth: 0,
-                  modifier: 1,
-                  slideShadows: false,
-                }}
-                className="mySwiper"
-                onSwiper={(swiper) => {
-                  // Forceer een update zodra de component mount
-                  setTimeout(() => {
-                    swiper.update();
-                  }, 100);
-                }}
-              >
-                <SwiperSlide>
-                  <Link
-                    to="/talent"
-                    id="openSolliMobile"
-                    className="teaser-swiper leftSwiper left"
-                    aria-label="Ontdek opdrachten"
-                  >
-                    <img
-                      src={leftImage}
-                      alt="Opdrachten"
-                      className="teaser-image teaser-image-left"
-                    />
-                    <div className="centered-text">
-                      <p className="centered-subtext">
-                        Ontdek <span className="highlight">opdrachten</span>
-                      </p>
-                    </div>
-                  </Link>
-                </SwiperSlide>
 
-                <SwiperSlide>
-                  <Link
-                    to="/opdrachtgever"
-                    id="openOpdrachtgeverMobile"
-                    className="teaser-swiper rightSwiper right"
-                    aria-label="Ontdek trainees"
-                  >
-                    <img
-                      src={rightImage}
-                      alt="Trainees"
-                      className="teaser-image teaser-image-right"
-                    />
-                    <div className="centered-text">
-                      <p className="centered-subtext">
-                        Ontdek <span className="highlight">trainees</span>
-                      </p>
-                    </div>
-                  </Link>
-                </SwiperSlide>
 
-                <div className="swiper-pagination" aria-hidden="true"></div>
-              </Swiper>
-            </div>
+
           </div>
 
         </section>
+        {/* <div className="teasers-container-swiper">
+          <Swiper
+            modules={[Pagination, EffectCoverflow]}
+            effect="coverflow"
+            centeredSlides={true}
+            slidesPerView="auto"
+            spaceBetween={12}
+            pagination={{
+              el: ".swiper-pagination",
+              clickable: true,
+            }}
+            breakpoints={{
+              768: {
+                slidesPerView: 2,
+                centeredSlides: false,
+                spaceBetween: 100,
+                coverflowEffect: {
+                  rotate: 0,
+                  stretch: 0,
+                  depth: 0,
+                  modifier: 0,
+                },
+              },
+            }}
+            coverflowEffect={{
+              rotate: 0,
+              stretch: 0,
+              depth: 0,
+              modifier: 1,
+              slideShadows: false,
+            }}
+            className="mySwiper"
+            onSwiper={(swiper) => {
+              setTimeout(() => {
+                swiper.update();
+              }, 100);
+            }}
+          >
+            <SwiperSlide>
+              <Link
+                to="/talent"
+                id="openSolliMobile"
+                className="teaser-swiper leftSwiper left"
+                aria-label="Ontdek opdrachten"
+              >
+                <img
+                  src={leftImage}
+                  alt="Opdrachten"
+                  className="teaser-image teaser-image-left"
+                />
+                <div className="centered-text">
+                  <p className="centered-subtext">
+                    Ontdek <span className="highlight">opdrachten</span>
+                  </p>
+                </div>
+              </Link>
+            </SwiperSlide>
+
+            <SwiperSlide>
+              <Link
+                to="/opdrachtgever"
+                id="openOpdrachtgeverMobile"
+                className="teaser-swiper rightSwiper right"
+                aria-label="Ontdek trainees"
+              >
+                <img
+                  src={rightImage}
+                  alt="Trainees"
+                  className="teaser-image teaser-image-right"
+                />
+                <div className="centered-text">
+                  <p className="centered-subtext">
+                    Ontdek <span className="highlight">trainees</span>
+                  </p>
+                </div>
+              </Link>
+            </SwiperSlide>
+
+            <div className="swiper-pagination" aria-hidden="true"></div>
+          </Swiper>
+        </div> */}
+        <Footer className="home-section" />
       </div>
+      {/* <Footer className="client-section" /> */}
     </>
   );
 };

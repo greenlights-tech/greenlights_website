@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { AboutSection } from "../components/AboutSection";
+
 // import { BlogSection } from "../components/BlogSection";
 import { Footer } from "../components/Footer";
 import { SollicitatieModal } from "../components/SollicitatieModal";
@@ -164,7 +164,7 @@ export const TalentPage = () => {
 
       </section>
 
-      <AboutSection className="talent-section" />
+
       {/* <BlogSection className="talent-section" /> */}
       <Footer className="talent-section" />
     </div>
