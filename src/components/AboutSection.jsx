@@ -14,77 +14,68 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 export const AboutSection = ({ className }) => {
   const container = useRef();
-  const imageRefs = useRef([]);
+  const cardsRef = useRef([]);
 
-  useGSAP(
-    () => {
-      const imageElements = imageRefs.current;
-      const totalCards = imageElements.length;
+  useGSAP(() => {
+    const cards = cardsRef.current.filter(Boolean);
 
-      if (!imageElements[0]) return;
+    if (!cards.length) return;
 
-      gsap.set(imageElements[0], { y: "0%", scale: 1, rotation: 0 });
+    cards.forEach((card, i) => {
+      const inner = card.querySelector(".card-content");
 
-      for (let i = 1; i < totalCards; i++) {
-        if (!imageElements[i]) continue;
-        gsap.set(imageElements[i], { y: "100%", scale: 1, rotation: 0 });
-      }
-
-      const scrollTimeline = gsap.timeline({
+      // 1. MAIN ANIMATION (transform)
+      gsap.to(inner, {
+        scale: 0.75,
+        rotation: i % 2 === 0 ? 4 : -4,
+        y: -40,
+        ease: "none",
         scrollTrigger: {
-          trigger: ".cards-container",
+          trigger: card,
           start: "top top",
-          end: `+=${window.innerHeight * (totalCards - 1)}`,
-          pin: true,
-          scrub: 0.5,
-          pinSpacing: true,
+          end: "+=" + window.innerHeight,
+          scrub: true,
+          pin: inner,   // 👈 belangrijk: PIN INNER, niet card
         },
       });
 
-      for (let i = 0; i < totalCards - 1; i++) {
-        const currentImage = imageElements[i];
-        const nextImage = imageElements[i + 1];
-        const position = i;
-        if (!currentImage || !nextImage) continue;
-
-        scrollTimeline.to(
-          currentImage,
-          {
-            scale: 0.7,
-            rotation: 5,
-            duration: 1,
-            ease: "none",
-          },
-          position,
-        );
-
-        scrollTimeline.to(
-          nextImage,
-          {
-            y: "0%",
-            duration: 1,
-            ease: "none",
-          },
-          position,
-        );
-      }
-
-      const resizeObserver = new ResizeObserver(() => {
-        ScrollTrigger.refresh();
+      // 2. FADE OUT
+      gsap.to(inner, {
+        opacity: 0,
+        ease: "none",
+        scrollTrigger: {
+          trigger: card,
+          start: "top -60%",
+          end: "top -100%",
+          scrub: true,
+        },
       });
+    });
+  }, { scope: container });
 
-      if (container.current) {
-        resizeObserver.observe(container.current);
-      }
-
-      return () => {
-        resizeObserver.disconnect();
-        scrollTimeline.kill();
-        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-      };
+  const data = [
+    {
+      title: "Selectie op Motivatie & Fit",
+      text: "Onze selectie focust op de menselijke factor...",
     },
-    { scope: container },
-  );
+    {
+      title: "Praktijkgerichte Opleiding",
+      text: "Uw behoeften staan centraal...",
+    },
+    {
+      title: "Persoonlijke Begeleiding",
+      text: "Onze coaches bieden holistische begeleiding...",
+    },
+    {
+      title: "Directe Inzet op Maat",
+      text: "Dankzij de gerichte selectie...",
+    },
+    {
+      title: "Duurzame Detavast-constructie",
+      text: "Bouwen aan slagkracht...",
+    },
+  ];
+
   return (
     <section
       id="over-ons"
@@ -92,41 +83,18 @@ export const AboutSection = ({ className }) => {
       ref={container}
     >
       <section className="cards-container">
-        <div className="cards">
-          {[
-            {
-              title: "Selectie op Motivatie & Fit",
-              text: "Onze selectie focust op de menselijke factor...",
-            },
-            {
-              title: "Praktijkgerichte Opleiding",
-              text: "Uw behoeften staan centraal...",
-            },
-            {
-              title: "Persoonlijke Begeleiding",
-              text: "Onze coaches bieden holistische begeleiding...",
-            },
-            {
-              title: "Directe Inzet op Maat",
-              text: "Dankzij de gerichte selectie...",
-            },
-            {
-              title: "Duurzame Detavast-constructie",
-              text: "Bouwen aan slagkracht...",
-            },
-          ].map((card, i) => (
-            <div
-              key={i}
-              className={`card card${i + 1}`}
-              ref={(el) => (imageRefs.current[i] = el)}
-            >
-              <div className="card-content">
-                <h3>{card.title}</h3>
-                <p>{card.text}</p>
-              </div>
+        {data.map((card, i) => (
+          <div
+            key={i}
+            className={`card card-${i}`}
+            ref={(el) => (cardsRef.current[i] = el)}
+          >
+            <div className="card-content">
+              <h3>{card.title}</h3>
+              <p>{card.text}</p>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </section>
     </section>
   );
