@@ -635,15 +635,21 @@ export const HomePage = () => {
 
 
 
+    // const bases = [
+    //   { x: -22, y: 5 },
+    //   { x: -10, y: 35 },
+    //   { x: 0, y: 0 },
+    //   { x: 12, y: 15 },
+    //   { x: 24, y: 10 },
+
+    // ];
     const bases = [
-      { x: -22, y: 5 },
-      { x: -10, y: 35 },
+      { x: 0, y: 5 },
+      { x: 0, y: 35 },
       { x: 0, y: 0 },
-      { x: 12, y: 15 },
-      { x: 24, y: 10 },
-
+      { x: 0, y: 15 },
+      { x: 0, y: 10 },
     ];
-
     let currentX = 0;
     let currentY = 0;
     let targetX = 0;

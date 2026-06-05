@@ -964,6 +964,8 @@ li {
 
 
 
+
+
 @media (min-width: 992px) {
 
   /* .hero-container {
@@ -1034,11 +1036,16 @@ li {
 
 .g4 {
   width: 14vw;
+
 }
 
 .g5 {
   width: 10vw;
+  margin-left: -8vw;
 }
+
+
+
 
 /* .g1 {
   transform: translateY(60%);
@@ -3583,7 +3590,7 @@ button {
   border-radius: 2vw;
   /* padding: 3rem; */
   gap: 1rem;
-  width: 50%;
+  width: 80%;
   height: 80%;
   will-change: transform;
   overflow: hidden;
@@ -3600,7 +3607,7 @@ button {
   justify-content: center;
   justify-content: space-evenly;
   height: 100%;
-  padding: 1rem 3rem 3rem 3rem;
+  padding: 1rem 1rem 1rem 1rem;
   /* border: 1px solid red; */
 }
 
@@ -3641,6 +3648,12 @@ button {
 @media (min-width: 992px) {
   .card-content {
     width: 50%;
+    height: 80%;
+  }
+
+  .card-text-wrapper {
+    padding: 1rem 3rem 3rem 3rem;
+    /* border: 1px solid red; */
   }
 }
 
