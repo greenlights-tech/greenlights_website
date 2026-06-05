@@ -33,7 +33,6 @@ export const AboutSection = ({ className }) => {
         scale: 0.75,
         rotation: i % 2 === 0 ? 4 : -4,
         y: -40,
-        force3D: true,
         ease: "none",
         scrollTrigger: {
           trigger: card,
