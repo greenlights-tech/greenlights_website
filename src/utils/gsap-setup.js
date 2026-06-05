@@ -8,6 +8,9 @@ import { SplitText } from "gsap/SplitText";
 // Registreer alles centraal
 gsap.registerPlugin(useGSAP, Flip, ScrollTrigger, ScrollSmoother, SplitText);
 
+// Normaliseer scrollgedrag
+ScrollTrigger.normalizeScroll(true);
+
 export * from "gsap";
 export { useGSAP, Flip, ScrollTrigger, ScrollSmoother, SplitText };
 export default gsap;

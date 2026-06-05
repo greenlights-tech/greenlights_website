@@ -26,7 +26,9 @@ export const AboutSection = ({ className }) => {
     if (!cards.length) return;
 
     cards.forEach((card, i) => {
+      const pin = card.querySelector(".card-pin");
       const inner = card.querySelector(".card-content");
+
 
       // 1. MAIN ANIMATION (transform)
       gsap.to(inner, {
@@ -39,7 +41,7 @@ export const AboutSection = ({ className }) => {
           start: "top top",
           end: "+=" + window.innerHeight,
           scrub: true,
-          pin: inner,
+          pin: pin,
         },
       });
 
@@ -99,20 +101,22 @@ export const AboutSection = ({ className }) => {
             ref={(el) => (cardsRef.current[i] = el)}
           >
 
+            <div className="card-pin">
+              <div className="card-content">
 
-            <div className="card-content">
-
-              <img className="card-image" src={card.image} alt={card.title} />
-
-
+                <img className="card-image" src={card.image} alt={card.title} />
 
 
-              <div className="card-text-wrapper">
-                <h3 className="card-title">{card.title}</h3>
-                <p className="card-text">{card.text}</p>
+
+
+                <div className="card-text-wrapper">
+                  <h3 className="card-title">{card.title}</h3>
+                  <p className="card-text">{card.text}</p>
+                </div>
+
               </div>
-
             </div>
+
           </div>
         ))}
       </section>

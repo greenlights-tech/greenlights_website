@@ -3582,6 +3582,15 @@ button {
 
 }
 
+.card-pin {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  will-change: transform;
+}
+
 .card-content {
   display: flex;
   flex-direction: column;
