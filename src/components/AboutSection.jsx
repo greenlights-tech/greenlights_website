@@ -12,8 +12,7 @@ import cardImage4 from "../assets/cards-4.jpg";
 import cardImage5 from "../assets/cards-5.jpg";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
-// import { CustomEase } from "gsap/CustomEase";
-// import Lenis from "lenis";
+
 
 // import { MdArrowOutward } from "react-icons/md";
 
@@ -34,13 +33,14 @@ export const AboutSection = ({ className }) => {
         scale: 0.75,
         rotation: i % 2 === 0 ? 4 : -4,
         y: -40,
+        force3D: true,
         ease: "none",
         scrollTrigger: {
           trigger: card,
           start: "top top",
           end: "+=" + window.innerHeight,
           scrub: true,
-          pin: inner,   // 👈 belangrijk: PIN INNER, niet card
+          pin: inner,
         },
       });
 
