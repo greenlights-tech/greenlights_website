@@ -313,6 +313,9 @@ body {
   background-color: beige;
   background-color: rgb(187, 184, 160);
   background-color: #f0ebd4;
+  background-color: #f3efe0;
+  background-color: #f0ecda;
+  background-color: #f0ecda;
   font-size: 16px;
   /* overflow: hidden; */
   /* -ms-overflow-style: none; */
@@ -405,6 +408,9 @@ body,
   background-color: hsl(0, 0%, 21%);
   background-color: rgb(187, 184, 160);
   background-color: #f0ebd4;
+  background-color: #f3efe0;
+  background-color: #f3efdd;
+  background-color: #f0ecda;
   height: auto;
   /* overflow-y: hidden; */
   /* border: 1px solid yellow; */
@@ -1757,6 +1763,8 @@ button {
   background-color: rgb(187, 184, 160);
   background-color: rgb(206, 202, 176);
   background-color: #f0ebd4;
+  background-color: #f3efe0;
+  background-color: #f0ecda;
   /* // Zorg dat hij achter alle tekst en buttons blijft */
   z-index: -1;
   will-change: background-color;
@@ -1892,6 +1900,10 @@ button {
   padding-top: 1.5rem;
 } */
 
+/* footer {
+  background-color: #435f4e;
+} */
+
 .footer-container {
   position: relative;
   width: 96%;
@@ -1921,6 +1933,7 @@ button {
   background-color: var(--color-limeCream);
   background-color: #1e1e1e;
   background-color: #e7e8e9;
+  background-color: #435f4e;
   color: var(--color-secondary);
   text-align: center;
   padding: 1rem 1rem;
@@ -3541,6 +3554,7 @@ button {
   overflow: hidden;
   background: #18201b;
   background-color: #f3efe0;
+  background-color: #f0ecda;
   color: #ffffff;
 }
 

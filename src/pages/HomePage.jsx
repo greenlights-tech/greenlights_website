@@ -10,6 +10,7 @@ import { useIntro } from "../context/IntroContext";
 import rightImage from "../assets/Homepage-right.jpg";
 // import rightImage from "../assets/background7-kopie.jpg";
 import leftImage from "../assets/Homepage-left.jpg";
+import image5 from "../assets/cards-laptop.jpg";
 import { AboutSection } from "../components/AboutSection";
 import { Footer } from "../components/Footer";
 // import { Icon } from "../components/Icon";
@@ -715,6 +716,8 @@ export const HomePage = () => {
 
 
 
+
+  // Animatie voor kleur overgang
   useGSAP(() => {
 
     const leftLayer =
@@ -733,7 +736,6 @@ export const HomePage = () => {
         start: "top top",
         end: "+=400",
         scrub: true,
-        // markers: true
       }
     })
 
