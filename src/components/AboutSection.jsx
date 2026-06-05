@@ -102,7 +102,10 @@ export const AboutSection = ({ className }) => {
 
 
             <div className="card-content">
+
               <img className="card-image" src={card.image} alt={card.title} />
+
+
 
 
               <div className="card-text-wrapper">
