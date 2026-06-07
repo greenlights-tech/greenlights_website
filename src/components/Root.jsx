@@ -30,7 +30,7 @@ export const Root = () => {
       <WhatsAppButton /> */}
       <div id="smooth-wrapper">
         <div id="smooth-content">
-          <Header />
+          {/* <Header /> */}
 
           <Outlet />
 

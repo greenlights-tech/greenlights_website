@@ -39,9 +39,10 @@ export const AboutSection = ({ className }) => {
         scrollTrigger: {
           trigger: card,
           start: "top top",
-          end: "+=" + window.innerHeight,
+          end: () => "+=" + window.innerHeight,
           scrub: true,
           pin: pin,
+          invalidateOnRefresh: true,
         },
       });
 
@@ -57,6 +58,11 @@ export const AboutSection = ({ className }) => {
         },
       });
     });
+
+    requestAnimationFrame(() => {
+      ScrollTrigger.refresh();
+    });
+
   }, { scope: container });
 
   const data = [

@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { AboutSection } from "../components/AboutSection";
+// import { AboutSection } from "../components/AboutSection";
 // import { BlogSection } from "../components/BlogSection";
 import { Footer } from "../components/Footer";
 import { ClientModal } from "../components/ClientModal";
@@ -162,7 +162,7 @@ export const ClientPage = () => {
               </div> --> */}
       </section>
 
-      <AboutSection className="client-section" />
+      {/* <AboutSection className="client-section" /> */}
       {/* <BlogSection className="client-section" /> */}
       <Footer className="client-section" />
     </div>

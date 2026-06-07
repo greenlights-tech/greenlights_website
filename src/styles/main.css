@@ -313,9 +313,9 @@ body {
   background-color: beige;
   background-color: rgb(187, 184, 160);
   background-color: #f0ebd4;
-  background-color: #f3efe0;
+  /* background-color: #f3efe0;
   background-color: #f0ecda;
-  background-color: #f0ecda;
+  background-color: #f0ecda; */
   font-size: 16px;
   /* overflow: hidden; */
   /* -ms-overflow-style: none; */
@@ -408,9 +408,9 @@ body,
   background-color: hsl(0, 0%, 21%);
   background-color: rgb(187, 184, 160);
   background-color: #f0ebd4;
-  background-color: #f3efe0;
+  /* background-color: #f3efe0;
   background-color: #f3efdd;
-  background-color: #f0ecda;
+  background-color: #f0ecda; */
   height: auto;
   /* overflow-y: hidden; */
   /* border: 1px solid yellow; */
@@ -835,11 +835,12 @@ li {
 
 .mid-text-container {
   display: flex;
+  flex: 2;
   flex-direction: column;
   position: relative;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-
+  margin-top: -4vw;
   /* position: relative;
   width: 100%;
   height: 100%; */
@@ -849,43 +850,81 @@ li {
   margin-bottom: 1rem; */
   /* Laat de hoogte bepalen door de inhoud (height: 100% kan problematisch zijn) */
   /* De container neemt nu de hoogte van de overlappende elementen. */
-  height: calc(50vh - 3.65rem);
+  /* height: calc(50vh - 3.65rem); */
+  height: auto;
   /* border: 1px solid red; */
   opacity: 0;
-  color: #fff;
-  color: #00450D;
+  gap: 2rem;
   /* border: 1px solid yellow; */
 }
 
-.mid-text-sollicitant {
+.mid-text-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
   width: 100%;
   text-align: center;
   pointer-events: none;
   z-index: 1;
-
+  line-height: 1.2;
   mix-blend-mode: color-dodge;
   /* border: 1px solid black; */
   /* border: 1px solid black; */
   /* opacity: 0; */
 }
 
-.mid-text-sollicitant h2 {
+.mid-text-split {
   /* font-family: "IBM Plex Mono"; */
   font-family: var(--font-ui);
   font-family: 'Inter', sans-serif;
+  font-family: "Montserrat", sans-serif;
   /* font-family: var(--font-playfair); */
-  /* text-transform: uppercase; */
+  text-transform: uppercase;
   /* color: #b9b9b9;
   color: var(--color-green); */
-  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  font-size: clamp(2rem, 5vw, 2.5rem);
   /* font-family: "Playfair Display SC", serif; */
   font-weight: 500;
-  text-shadow: 0 0 6px rgba(0, 0, 0, 0.144);
+  /* color: #00450D; */
+  color: white;
+  will-change: transform;
   /* line-height: 1.2; */
 }
 
 
 
+.highlight-mid-text {
+  /* color: #eed04a; */
+  color: #000000;
+
+}
+
+
+.mid-text-scramble {
+  /* font-family: "IBM Plex Mono"; */
+  font-family: var(--font-ui);
+  font-family: 'Inter', sans-serif;
+  font-family: "Montserrat", sans-serif;
+  /* font-family: var(--font-playfair); */
+  /* text-transform: uppercase; */
+  /* color: #b9b9b9;
+  color: var(--color-green); */
+  font-size: clamp(1rem, 5vw, 1.5rem);
+  /* font-family: "Playfair Display SC", serif; */
+  font-weight: 600;
+  color: #00450D;
+  /* line-height: 1.2; */
+}
+
+.word7 {
+  text-decoration: underline;
+  text-decoration-color: white;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 6px;
+  color: white;
+  font-weight: 600;
+}
 
 
 /* .icon2-wrapper {
@@ -923,7 +962,8 @@ li {
 
 .mid-hero-section {
   position: relative;
-  height: calc(100vh - 7.25rem);
+  /* height: calc(100vh - 7.25rem); */
+
   width: 100%;
   max-width: 3000px;
   /* overflow: hidden; */
@@ -932,9 +972,11 @@ li {
 .hero-container {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
   align-items: center;
   width: 100%;
-  height: 100%;
+  min-height: calc(100vh - 7.25rem);
   perspective: 1000px;
   /* border: 1px solid yellow; */
 }
@@ -951,12 +993,14 @@ li {
 
 .hero-pictures {
   display: flex;
+  flex: 4;
   position: relative;
   justify-content: space-between;
   align-items: center;
   gap: 2vw;
   width: 80%;
   height: calc(50vh - 3.65rem);
+  height: auto;
   opacity: 0;
   /* border: 1px solid red; */
 }
@@ -973,9 +1017,9 @@ li {
     flex-direction: row;
   } */
 
-  .mid-text-sollicitant {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+  .mid-text-container {
+    /* padding-top: 2rem;
+    padding-bottom: 2rem; */
     width: 60%;
   }
 
@@ -1497,11 +1541,13 @@ button {
 
 .homepage-buttons-container {
   display: flex;
+  flex: 1;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 1rem;
   width: 100%;
+  padding-bottom: 2rem;
   /* border: 1px solid red; */
   /* background-color: #435f4e; */
 
@@ -1536,6 +1582,7 @@ button {
   padding-left: 1rem;
   padding-right: 1rem;
   border-radius: 99px;
+  opacity: 0;
 
   /* background-color: #435f4e; */
 }
@@ -1550,7 +1597,7 @@ button {
 }
 
 .btn1 {
-  background-color: #698d78;
+  background-color: #707c4f;
 }
 
 .btn2 {
@@ -1770,8 +1817,9 @@ button {
   background-color: rgb(187, 184, 160);
   background-color: rgb(206, 202, 176);
   background-color: #f0ebd4;
-  background-color: #f3efe0;
-  background-color: #f0ecda;
+  /* background-color: #f3efe0;
+  background-color: #f0ecda; */
+
   /* // Zorg dat hij achter alle tekst en buttons blijft */
   z-index: -1;
   will-change: background-color;
@@ -1799,6 +1847,7 @@ button {
 .hover-layer-right {
   background-color: hsla(36, 7%, 30%, 1);
   background-color: #435f4e;
+  background-color: #A4b07e;
   /* Laag 3: De kleur voor Rechts */
 
   /* background-color: #635a54; */
@@ -3556,12 +3605,13 @@ button {
   outline: 1px solid blue;
 } */
 .about-component {
+  min-height: 100vh;
   width: 100%;
   position: relative;
   overflow: hidden;
   background: #18201b;
-  background-color: #f3efe0;
-  background-color: #f0ecda;
+  background-color: #f0ebd4;
+  /* background-color: #f0ecda; */
   color: #ffffff;
 }
 
@@ -3572,7 +3622,7 @@ button {
 
 /* each card is a full viewport scene */
 .card {
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   position: relative;
   display: flex;

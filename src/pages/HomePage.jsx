@@ -7,6 +7,7 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import { useIntro } from "../context/IntroContext";
+import { Header } from "../components/Header";
 import rightImage from "../assets/Homepage-right.jpg";
 // import rightImage from "../assets/background7-kopie.jpg";
 import leftImage from "../assets/Homepage-left.jpg";
@@ -34,7 +35,12 @@ export const HomePage = () => {
         //   ".original-container",
         // );
         const newContainer = document.querySelector(".new-container");
-        const lines = gsap.utils.toArray(".homepage-button");
+        const leftLayer =
+          container.current.querySelector(".hover-layer-left");
+
+        const rightLayer =
+          container.current.querySelector(".hover-layer-right");
+        const buttonLines = gsap.utils.toArray(".homepage-button");
         // const leftLayer = container.current.querySelector(".hover-layer-left");
         // const rightLayer =
         //   container.current.querySelector(".hover-layer-right");
@@ -70,11 +76,17 @@ export const HomePage = () => {
         // );
 
         // Als je split met characters gebruikt, altijd ook words erbij zetten omdat hij anders woorden afbreekt bij schermresizing
-        let splitMidTextSolli = SplitText.create(".mid-text-sollicitant", {
+        let splitMidTextSolli = SplitText.create(".mid-text-split", {
           type: "words",
           // charsclassName: "char",
-          wordsclassName: "word",
+          wordsClass: "word++",
+          linesClass: "line",
           // autoSplit: true,
+          autoAlpha: 0,
+          mask: "words",
+          // onSplit: () => {
+          //   ScrollTrigger.refresh();
+          // }
         });
 
 
@@ -89,6 +101,8 @@ export const HomePage = () => {
         // });
 
         gsap.set(".bg", { opacity: 0 });
+
+
 
         // gsap.set(".teasers-container-swiper", {
         //   yPercent: 10,
@@ -140,12 +154,9 @@ export const HomePage = () => {
         //   yPercent: -100,
         // });
 
-        tl.current.set(splitMidTextSolli.words, {
-          opacity: 0,
-          yPercent: 100,
-          rotateX: -90,
-          filter: "blur(10px)",
-        });
+        // tl.current.set(splitMidTextSolli.lines, {
+        //   opacity: 1,
+        // });
 
         tl.current.set(".glyph", {
           clipPath: "inset(100% 0 0 0)", // volledig verborgen (rechts dicht)
@@ -155,7 +166,7 @@ export const HomePage = () => {
           opacity: 0
         })
 
-        tl.current.set(lines, {
+        tl.current.set(buttonLines, {
           x: (i) => (i % 2 === 0 ? -200 : 200),
           opacity: 0,
         });
@@ -396,6 +407,30 @@ export const HomePage = () => {
           },
           1.5,
         );
+
+
+
+
+
+        tl.current.to(
+          rightLayer,
+          {
+            opacity: 1,
+            ease: "power1.inOut"
+          },
+          1.5
+        )
+
+        tl.current.to(
+          leftLayer,
+          {
+            opacity: 0,
+            ease: "power1.inOut"
+          },
+          1.5
+        )
+
+
         // tl.current.to(
         //   splitTagline.chars,
         //   {
@@ -428,16 +463,32 @@ export const HomePage = () => {
           0.5,
         );
 
-        tl.current.to(
+        // tl.current.to(".mid-text-split",
+        //   {
+        //     opacity: 1,
+        //   },
+        //   0.5,
+        // )
+
+        tl.current.from(
           splitMidTextSolli.words,
           {
-            opacity: 1,
-            yPercent: 0,
-            rotateX: 0,
-            filter: "blur(0px)",
+            // opacity: 1,
+            // yPercent: 0,
+            // rotateX: 0,
+            // filter: "blur(0px)",
             // stagger: 0.01,
-            duration: 2,
-            ease: "power2.out",
+            // duration: 2,
+            // ease: "power2.out",
+            duration: 1.2,
+            yPercent: 100,
+            opacity: 0,
+            // stagger: {
+            //   amount: 0.5,
+            //   from: "random",
+            // }
+            // stagger: 0.1,
+            ease: "expo.out",
           },
           1.5,
         );
@@ -457,18 +508,13 @@ export const HomePage = () => {
         }, 1.7);
 
 
-
-
-
-
-
-        tl.current.to(lines, {
+        tl.current.to(buttonLines, {
           x: 0,
           opacity: 1,
           stagger: 0.25,
           duration: 0.8,
           ease: "power3.out",
-        }, 3);
+        }, 2.5);
 
 
 
@@ -563,7 +609,9 @@ export const HomePage = () => {
           // }
         }
       });
+
     },
+
     { scope: container },
   );
 
@@ -724,58 +772,58 @@ export const HomePage = () => {
 
 
   // Animatie voor kleur overgang
-  useGSAP(() => {
+  // useGSAP(() => {
 
-    const leftLayer =
-      container.current.querySelector(".hover-layer-left");
+  //   const leftLayer =
+  //     container.current.querySelector(".hover-layer-left");
 
-    const rightLayer =
-      container.current.querySelector(".hover-layer-right");
+  //   const rightLayer =
+  //     container.current.querySelector(".hover-layer-right");
 
-    const midText =
-      container.current.querySelector(".homepage-hero");
-
-
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: midText,
-        start: "top top",
-        end: "+=400",
-        scrub: true,
-      }
-    })
-
-      .to(
-        rightLayer,
-        {
-          opacity: 1,
-          ease: "power1.inOut"
-        },
-        0
-      )
-
-      .to(
-        leftLayer,
-        {
-          opacity: 0,
-          ease: "power1.inOut"
-        },
-        0
-      )
-
-      .fromTo(".mid-text-sollicitant", {
-        opacity: 1,
-      },
-        {
-          color: "#ffffff",
-          ease: "power1.inOut"
-        }, 0
-      )
+  //   const midText =
+  //     container.current.querySelector(".homepage-hero");
 
 
+  //   gsap.timeline({
+  //     scrollTrigger: {
+  //       trigger: midText,
+  //       start: "top top",
+  //       end: "+=400",
+  //       scrub: true,
+  //     }
+  //   })
 
-  },
-    { scope: container });
+  //     .to(
+  //       rightLayer,
+  //       {
+  //         opacity: 1,
+  //         ease: "power1.inOut"
+  //       },
+  //       0
+  //     )
+
+  //     .to(
+  //       leftLayer,
+  //       {
+  //         opacity: 0,
+  //         ease: "power1.inOut"
+  //       },
+  //       0
+  //     )
+
+  //     .fromTo(".mid-text", {
+  //       opacity: 1,
+  //     },
+  //       {
+  //         color: "#ffffff",
+  //         ease: "power1.inOut"
+  //       }, 0
+  //     )
+
+
+
+  // },
+  //   { scope: container });
 
 
 
@@ -1015,7 +1063,7 @@ export const HomePage = () => {
   //   const leftSwiper = document.querySelector(".leftSwiper");
   //   const rightSwiper = document.querySelector(".rightSwiper");
 
-  //   const midTextSolli = document.querySelector(".mid-text-sollicitant");
+  //   const midTextSolli = document.querySelector(".mid-text");
   //   const midTextOpdr = document.querySelector(".mid-text-opdrachtgever");
   //   // Als je split met characters gebruikt, altijd ook words erbij zetten omdat hij anders woorden afbreekt bij schermresizing
   //   let splitMidTextSolli = SplitText.create(midTextSolli, {
@@ -1049,7 +1097,7 @@ export const HomePage = () => {
 
   //   // SplitText references
   //   // const splitMidTextSolli = container.current.querySelectorAll(
-  //   //   ".mid-text-sollicitant .char"
+  //   //   ".mid-text .char"
   //   // );
   //   // const splitMidTextOpdr = container.current.querySelectorAll(
   //   //   ".mid-text-opdrachtgever .char"
@@ -1158,7 +1206,7 @@ export const HomePage = () => {
   return (
     <>
       <div ref={container} className="homepage">
-
+        <Header />
 
         <section className="homepage-hero">
           <div className="featured-background-wrapper">
@@ -1325,49 +1373,47 @@ export const HomePage = () => {
                   </div>
                   <div className="mid-text-container">
                     {/* <div className="mid-text-placeholder"></div> */}
-                    <div className="mid-text-sollicitant">
-                      <h2>
-                        "Wij versnellen digitale ambities door passend it-talent te
-                        koppelen. Snel, passend IT-talent vinden."
+
+                    <div className="mid-text-title">
+                      <h2 className="mid-text-split">
+                        Wij versnellen digitale ambities met gemotiveerd IT-talent
                       </h2>
                     </div>
-                    {/* <div className="mid-text-opdrachtgever">
-                     <h2>
-                    Wij versnellen digitale ambities door passend IT-talent te
-                    koppelen
-                     </h2>
-                      </div> */}
-                    <div className="homepage-buttons-container">
 
-                      <Link
-                        to="/talent"
-                        className="homepage-button btn1"
-                        aria-label="Ontdek opdrachten"
-                      >
+                    {/* <p className="mid-text-scramble">Potentie herkennen, vaardigheden ontwikkelen en mensen op de juiste plek brengen.</p> */}
 
-                        <div className="overlay">
-                          <p className="line">
-                            start je <span className="highlight">it-carrière</span>
-                          </p>
-                        </div>
-                      </Link>
 
-                      <Link
-                        to="/opdrachtgever"
-                        className="homepage-button btn2"
-                        aria-label="Ontdek trainees"
-                      >
 
-                        <div className="overlay">
-                          <p className="line">
-                            vind <span className="highlight">it-talent</span>
-                          </p>
-                        </div>
-                      </Link>
-
-                    </div>
                   </div>
+                  <div className="homepage-buttons-container">
 
+                    <Link
+                      to="/talent"
+                      className="homepage-button btn1"
+                      aria-label="Ontdek opdrachten"
+                    >
+
+                      <div className="overlay">
+                        <p className="line">
+                          start je <span className="highlight">it-carrière</span>
+                        </p>
+                      </div>
+                    </Link>
+
+                    <Link
+                      to="/opdrachtgever"
+                      className="homepage-button btn2"
+                      aria-label="Ontdek trainees"
+                    >
+
+                      <div className="overlay">
+                        <p className="line">
+                          vind <span className="highlight">it-talent</span>
+                        </p>
+                      </div>
+                    </Link>
+
+                  </div>
 
                 </div>
 
