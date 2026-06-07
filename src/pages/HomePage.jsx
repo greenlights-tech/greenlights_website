@@ -480,7 +480,7 @@ export const HomePage = () => {
             // stagger: 0.01,
             // duration: 2,
             // ease: "power2.out",
-            duration: 1.2,
+            duration: 2,
             yPercent: 100,
             opacity: 0,
             // stagger: {
