@@ -3650,7 +3650,7 @@ button {
   /* padding: 3rem; */
   gap: 1rem;
   width: 80%;
-  height: 80%;
+  height: 100%;
   will-change: transform;
   overflow: hidden;
 }
@@ -3707,7 +3707,7 @@ button {
 @media (min-width: 992px) {
   .card-content {
     width: 50%;
-    height: 80%;
+    height: 100%;
   }
 
   .card-text-wrapper {
