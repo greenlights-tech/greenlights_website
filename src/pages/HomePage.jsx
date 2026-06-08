@@ -1523,7 +1523,7 @@ export const HomePage = () => {
             <div className="swiper-pagination" aria-hidden="true"></div>
           </Swiper>
         </div> */}
-        <Footer className="home-section" />
+        {/* <Footer className="home-section" /> */}
       </div>
       {/* <Footer className="client-section" /> */}
     </>
