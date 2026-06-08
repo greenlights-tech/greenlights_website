@@ -3639,7 +3639,7 @@ button {
   align-items: center;
   justify-content: center;
   /* border: 1px solid red; */
-  perspective: 250vw;
+  perspective: 1500px;
 }
 
 .card-pin {
@@ -3661,7 +3661,7 @@ button {
   gap: 1rem;
   width: 90%;
   height: 100%;
-  will-change: transform;
+  will-change: transform, opacity;
   overflow: hidden;
   transform-style: preserve-3d;
   box-shadow: 4px 8px 40px rgba(0, 0, 0, 0.158);
