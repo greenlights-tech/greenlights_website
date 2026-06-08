@@ -2753,7 +2753,7 @@ button {
   margin-bottom: 3rem;
   /* padding: 2rem; */
   margin-top: 3rem;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 /* .belofte-section {
@@ -3631,6 +3631,7 @@ button {
 /* each card is a full viewport scene */
 .card {
   height: 100vh;
+  height: 100dvh;
   width: 100%;
   position: relative;
   display: flex;

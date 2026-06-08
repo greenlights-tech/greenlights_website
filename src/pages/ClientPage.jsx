@@ -2,7 +2,7 @@ import { useRef, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 // import { AboutSection } from "../components/AboutSection";
 // import { BlogSection } from "../components/BlogSection";
-import { Footer } from "../components/Footer";
+// import { Footer } from "../components/Footer";
 import { ClientModal } from "../components/ClientModal";
 // import { MdArrowOutward } from "react-icons/md";
 
@@ -164,7 +164,7 @@ export const ClientPage = () => {
 
       {/* <AboutSection className="client-section" /> */}
       {/* <BlogSection className="client-section" /> */}
-      <Footer className="client-section" />
+      {/* <Footer className="client-section" /> */}
     </div>
   );
 };

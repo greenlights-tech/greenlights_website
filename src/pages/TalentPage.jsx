@@ -2,8 +2,8 @@ import { useRef, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 // import { BlogSection } from "../components/BlogSection";
-import { Footer } from "../components/Footer";
-import { SollicitatieModal } from "../components/SollicitatieModal";
+// import { Footer } from "../components/Footer";
+// import { SollicitatieModal } from "../components/SollicitatieModal";
 // import { MdArrowOutward } from "react-icons/md";
 
 import {
@@ -137,18 +137,18 @@ export const TalentPage = () => {
           <div className="sol-button-wrapper">
             <div className="button-container">
               <h4>Klaar voor je IT-start?</h4>
-              <button
+              {/* <button
                 id="sol-signup-button"
                 className="btn--gradient sol-signup-button"
                 onClick={() => setIsModalOpen(true)}
               >
                 <span className="sol-signup-button-text"> Ik doe mee! </span>
-              </button>
+              </button> */}
             </div>
-            <SollicitatieModal
+            {/* <SollicitatieModal
               isOpen={isModalOpen}
               onClose={() => setIsModalOpen(false)}
-            />
+            /> */}
 
             {/* <div className="meer-weten-container">
               <h4>Meer weten?</h4>
@@ -166,7 +166,7 @@ export const TalentPage = () => {
 
 
       {/* <BlogSection className="talent-section" /> */}
-      <Footer className="talent-section" />
+      {/* <Footer className="talent-section" /> */}
     </div>
   );
 };

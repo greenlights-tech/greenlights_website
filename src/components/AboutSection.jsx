@@ -43,6 +43,7 @@ export const AboutSection = ({ className }) => {
           end: '+=' + window.innerHeight,
           scrub: true,
           pin: pin,
+          // markers: true,
           invalidateOnRefresh: true,
         },
       });
