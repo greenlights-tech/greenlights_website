@@ -1057,7 +1057,7 @@ li {
   aspect-ratio: 4/5;
   flex: none;
   width: 12vw;
-  min-width: 60px;
+
   position: relative;
   transform-style: preserve-3d;
   will-change: transform;
@@ -1069,24 +1069,29 @@ li {
 
 .g1 {
   width: 12vw;
+  min-width: 60px;
 }
 
 .g2 {
   width: 15vw;
+  min-width: 75px;
 }
 
 .g3 {
   width: 11vw;
+  min-width: 55px;
 }
 
 .g4 {
   width: 14vw;
+  min-width: 70px;
 
 }
 
 .g5 {
   width: 10vw;
   margin-left: -8vw;
+  min-width: 55px;
 }
 
 
