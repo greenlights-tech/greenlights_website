@@ -997,9 +997,9 @@ li {
   position: relative;
   justify-content: space-between;
   align-items: center;
-  gap: 2vw;
+  /* gap: 2vw; */
   width: 80%;
-  height: calc(50vh - 3.65rem);
+  /* height: calc(50vh - 3.65rem); */
   height: auto;
   opacity: 0;
   /* border: 1px solid red; */
@@ -1057,6 +1057,7 @@ li {
   aspect-ratio: 4/5;
   flex: none;
   width: 12vw;
+  min-width: 60px;
   position: relative;
   transform-style: preserve-3d;
   will-change: transform;
@@ -1962,7 +1963,7 @@ button {
 
 .footer-container {
   position: relative;
-  width: 96%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1973,8 +1974,7 @@ button {
   flex-direction: column;
   /* margin-top: auto; */
   font-family: "MS Gothic", "Courier New", monospace;
-  flex-shrink: 0;
-  height: 100vh;
+  min-height: 100vh;
 
   /* border: 1px solid blue; */
 }
