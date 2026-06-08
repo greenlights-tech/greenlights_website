@@ -977,7 +977,7 @@ li {
   align-items: center;
   width: 100%;
   min-height: calc(100vh - 7.25rem);
-  perspective: 250vw;
+  perspective: 1000px;
   /* border: 1px solid yellow; */
 }
 
