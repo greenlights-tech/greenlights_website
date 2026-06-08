@@ -32,14 +32,15 @@ export const AboutSection = ({ className }) => {
 
       // 1. MAIN ANIMATION (transform)
       gsap.to(inner, {
-        scale: 0.75,
-        rotation: i % 2 === 0 ? 4 : -4,
+        scale: 0.65,
+        rotationX: 35,
+        rotationZ: i % 2 === 0 ? 4 : -4,
         y: -40,
-        ease: "none",
+        ease: 'power1.in',
         scrollTrigger: {
           trigger: card,
           start: "top top",
-          end: () => "+=" + window.innerHeight,
+          end: '+=' + window.innerHeight,
           scrub: true,
           pin: pin,
           invalidateOnRefresh: true,
@@ -48,11 +49,11 @@ export const AboutSection = ({ className }) => {
 
       // 2. FADE OUT
       gsap.to(inner, {
-        opacity: 0,
-        ease: "none",
+        autoAlpha: 0,
+        ease: 'power1.in',
         scrollTrigger: {
           trigger: card,
-          start: "top -60%",
+          start: "top -80%",
           end: "top -100%",
           scrub: true,
         },

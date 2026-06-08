@@ -504,6 +504,7 @@ export const HomePage = () => {
         tl.current.to(".glyph", {
           clipPath: "inset(0% 0 0 0)",
           duration: 1.2,
+
           ease: "power3.out",
         }, 1.7);
 
