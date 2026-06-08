@@ -33,10 +33,8 @@ export const AboutSection = ({ className }) => {
       // 1. MAIN ANIMATION (transform)
       gsap.to(inner, {
         scale: 0.65,
-        // rotationX: 20,
-        // rotationZ: i % 2 === 0 ? 4 : -4,
-        rotationX: 0,
-        rotationZ: 0,
+        rotationX: 20,
+        rotationZ: i % 2 === 0 ? 4 : -4,
         y: -40,
         ease: 'power1.in',
         scrollTrigger: {
