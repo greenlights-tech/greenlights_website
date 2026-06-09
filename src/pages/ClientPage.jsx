@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 // import { AboutSection } from "../components/AboutSection";
 // import { BlogSection } from "../components/BlogSection";
 // import { Footer } from "../components/Footer";
-import { ClientModal } from "../components/ClientModal";
+// import { ClientModal } from "../components/ClientModal";
 // import { MdArrowOutward } from "react-icons/md";
 
 import {
@@ -114,7 +114,7 @@ export const ClientPage = () => {
           <div className="opd-button-wrapper">
             <div className="button-container">
               <h4>Nieuw IT-talent nodig?</h4>
-              <button
+              {/* <button
                 id="opd-signup-button"
                 className="btn--gradient sol-signup-button"
                 onClick={() => setIsModalOpen(true)}
@@ -123,12 +123,12 @@ export const ClientPage = () => {
                   {" "}
                   Neem contact op{" "}
                 </span>
-              </button>
+              </button> */}
             </div>
-            <ClientModal
+            {/* <ClientModal
               isOpen={isModalOpen}
               onClose={() => setIsModalOpen(false)}
-            />
+            /> */}
             {/* <div className="meer-weten-container">
               <h4>Meer weten?</h4>
               <Link to="/about">
