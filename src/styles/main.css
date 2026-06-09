@@ -303,7 +303,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-tap-highlight-color: transparent;
   /* background-color: #041819; */
-
+  overflow-x: hidden;
   /* background-image: linear-gradient(
     to bottom,
     hsla(0, 0%, 21%, 1) 0%,
@@ -327,7 +327,7 @@ body,
 #root {
   height: 100%;
   width: 100%;
-  overflow-x: hidden;
+
 }
 
 
@@ -955,23 +955,9 @@ li {
   align-items: center;
   justify-content: center;
   width: 100%;
-  /* 
-  min-height: 100vh; */
-  min-height: calc(100vh - 7.25rem);
-
-  position: relative;
-  overflow: hidden;
-}
-
-
-.hero-scene {
-  display: flex;
-  width: 100%;
-  height: 100vh;
-  height: 100dvh;
-
-  /* belangrijk: voorkomt rare horizontal shift bij pinning */
-  overflow: hidden;
+  height: 100%;
+  margin: 0 auto;
+  /* perspective: 600px; */
 }
 
 
