@@ -8,10 +8,14 @@ import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import { useIntro } from "../context/IntroContext";
 import { Header } from "../components/Header";
-import rightImage from "../assets/Homepage-right.jpg";
+// import rightImage from "../assets/Homepage-right.jpg";
 // import rightImage from "../assets/background7-kopie.jpg";
-import leftImage from "../assets/Homepage-left.jpg";
-import image5 from "../assets/cards-laptop.jpg";
+// import leftImage from "../assets/Homepage-left.jpg";
+import heroImage1 from "../assets/cards-1.jpg";
+import heroImage2 from "../assets/cards-2.jpg";
+import heroImage3 from "../assets/Homepage-right.jpg";
+import heroImage4 from "../assets/hero-image3.jpg";
+import heroImage5 from "../assets/hero-image2.jpg";
 import { AboutSection } from "../components/AboutSection";
 import { Footer } from "../components/Footer";
 // import { Icon } from "../components/Icon";
@@ -1363,11 +1367,11 @@ export const HomePage = () => {
                     <img className="glyph g4" src={leftImage} />
                     <img className="glyph g5" src={rightImage} /> */}
 
-                    <img className="glyph skewElem g1" src={leftImage} />
-                    <img className="glyph skewElem g2" src={rightImage} />
-                    <img className="glyph skewElem g3" src={rightImage} />
-                    <img className="glyph skewElem g4" src={leftImage} />
-                    <img className="glyph skewElem g5" src={rightImage} />
+                    <img className="glyph skewElem g1" src={heroImage1} />
+                    <img className="glyph skewElem g2" src={heroImage3} />
+                    <img className="glyph skewElem g3" src={heroImage2} />
+                    <img className="glyph skewElem g4" src={heroImage4} />
+                    <img className="glyph skewElem g5" src={heroImage5} />
                     {/* <img className="glyph g6" src={leftImage} />
                     <img className="glyph g7" src={leftImage} /> */}
                     {/* <img className="glyph g8" data-speed="1.3" src={leftImage} /> */}
