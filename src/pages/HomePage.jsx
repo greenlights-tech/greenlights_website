@@ -669,89 +669,87 @@ export const HomePage = () => {
   //         gsap.to(".leftSwiper", { scale: 1, duration: 0.4 });
   //       });
 
+  useGSAP((context, contextSafe) => {
 
-  // Hero - images animatie
-  // useGSAP((context, contextSafe) => {
+    const section = document.querySelector(".hero-interaction-section");
+    const glyphs = document.querySelectorAll(".glyph");
 
-  //   const section = document.querySelector(".hero-interaction-section");
-  //   const glyphs = document.querySelectorAll(".glyph");
+    if (!section || !glyphs.length) return;
 
-  //   if (!section || !glyphs.length) return;
+    const bases = [
+      { x: 0, y: 5 },
+      { x: 0, y: 35 },
+      { x: 0, y: 0 },
+      { x: 0, y: 15 },
+      { x: 0, y: 10 },
+    ];
+    let currentX = 0;
+    let currentY = 0;
+    let targetX = 0;
+    let targetY = 0;
 
-  //   const bases = [
-  //     { x: 0, y: 5 },
-  //     { x: 0, y: 35 },
-  //     { x: 0, y: 0 },
-  //     { x: 0, y: 15 },
-  //     { x: 0, y: 10 },
-  //   ];
-  //   let currentX = 0;
-  //   let currentY = 0;
-  //   let targetX = 0;
-  //   let targetY = 0;
+    const onMove = contextSafe((e) => {
 
-  //   const onMove = contextSafe((e) => {
+      const rect = section.getBoundingClientRect();
 
-  //     const rect = section.getBoundingClientRect();
+      targetX = (e.clientX - rect.left) / rect.width - 0.5;
+      targetY = (e.clientY - rect.top) / rect.height - 0.5;
 
-  //     targetX = (e.clientX - rect.left) / rect.width - 0.5;
-  //     targetY = (e.clientY - rect.top) / rect.height - 0.5;
+    });
 
-  //   });
+    const animate = () => {
 
-  //   const animate = () => {
+      currentX += (targetX - currentX) * 0.08;
+      currentY += (targetY - currentY) * 0.08;
 
-  //     currentX += (targetX - currentX) * 0.08;
-  //     currentY += (targetY - currentY) * 0.08;
+      glyphs.forEach((glyph, index) => {
 
-  //     glyphs.forEach((glyph, index) => {
+        const base = bases[index];
 
-  //       const base = bases[index];
+        const depth = index - glyphs.length / 2;
 
-  //       const depth = index - glyphs.length / 2;
+        const moveX = currentX * 70;
+        const moveY = currentY * 70;
 
-  //       const moveX = currentX * 70;
-  //       const moveY = currentY * 70;
+        const intensity = 0.6 + index * 0.15;     // different strength
+        const wobble = Math.sin(currentX * 3 + index) * 6; // subtle offset
+        const lag = 1 - index * 0.08;             // slight response delay feel
 
-  //       const intensity = 0.6 + index * 0.15;     // different strength
-  //       const wobble = Math.sin(currentX * 3 + index) * 6; // subtle offset
-  //       const lag = 1 - index * 0.08;             // slight response delay feel
+        gsap.set(glyph, {
 
-  //       gsap.set(glyph, {
+          x:
+            base.x +
+            moveX * intensity +
+            depth * 7 +
+            wobble * lag,
 
-  //         x:
-  //           base.x +
-  //           moveX * intensity +
-  //           depth * 7 +
-  //           wobble * lag,
+          y:
+            base.y +
+            moveY * (1.1 - index * 0.1) +
+            depth * 7 +
+            Math.cos(currentY * 3 + index) * 5,
 
-  //         y:
-  //           base.y +
-  //           moveY * (1.1 - index * 0.1) +
-  //           depth * 7 +
-  //           Math.cos(currentY * 3 + index) * 5,
+          rotateY: currentX * (28 + index * 2),
+          rotateX: -currentY * (28 + index * 2),
 
-  //         rotateY: currentX * (28 + index * 2),
-  //         rotateX: -currentY * (28 + index * 2),
+          transformPerspective: 1000,
+          transformOrigin: "center"
+        });
 
-  //         transformPerspective: 1000,
-  //         transformOrigin: "center"
-  //       });
+      });
 
-  //     });
+      requestAnimationFrame(animate);
+    };
 
-  //     requestAnimationFrame(animate);
-  //   };
+    section.addEventListener("mousemove", onMove);
 
-  //   section.addEventListener("mousemove", onMove);
+    animate();
 
-  //   animate();
+    return () => {
+      section.removeEventListener("mousemove", onMove);
+    };
 
-  //   return () => {
-  //     section.removeEventListener("mousemove", onMove);
-  //   };
-
-  // }, { scope: container });
+  }, { scope: container });
 
 
 
