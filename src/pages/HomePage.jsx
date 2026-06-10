@@ -138,13 +138,13 @@ export const HomePage = () => {
         tl.current = gsap.timeline({
           paused: true,
 
-          onStart: () => { ScrollSmoother.get()?.paused(true); document.body.style.overflow = "hidden"; },
+          onStart: () => { ScrollSmoother.get()?.paused(true); document.body.style.overflowY = "hidden"; },
           onComplete: () => {
             introHasRunGlobal = true;
             setIntroFinished(true);
 
             ScrollSmoother.get()?.paused(false);
-            document.body.style.overflow = "";
+            document.body.style.overflowY = "";
 
             requestAnimationFrame(() => {
               ScrollTrigger.refresh(true);
