@@ -669,108 +669,89 @@ export const HomePage = () => {
   //         gsap.to(".leftSwiper", { scale: 1, duration: 0.4 });
   //       });
 
-  useGSAP((context, contextSafe) => {
 
-    const section = document.querySelector(".hero-interaction-section");
-    const glyphs = document.querySelectorAll(".glyph");
+  // Hero - images animatie
+  // useGSAP((context, contextSafe) => {
 
-    if (!section || !glyphs.length) return;
+  //   const section = document.querySelector(".hero-interaction-section");
+  //   const glyphs = document.querySelectorAll(".glyph");
 
-    // const bases = [
-    //   { x: -22, y: 5 },
-    //   { x: -10, y: 35 },
-    //   { x: 0, y: 0 },
-    //   { x: 6, y: 20 },
-    //   { x: 10, y: 10 },
-    //   { x: 12, y: 40 },
-    //   { x: 24, y: 40 },
-    // ];
+  //   if (!section || !glyphs.length) return;
 
+  //   const bases = [
+  //     { x: 0, y: 5 },
+  //     { x: 0, y: 35 },
+  //     { x: 0, y: 0 },
+  //     { x: 0, y: 15 },
+  //     { x: 0, y: 10 },
+  //   ];
+  //   let currentX = 0;
+  //   let currentY = 0;
+  //   let targetX = 0;
+  //   let targetY = 0;
 
+  //   const onMove = contextSafe((e) => {
 
-    // const bases = [
-    //   { x: -22, y: 5 },
-    //   { x: -10, y: 35 },
-    //   { x: 0, y: 0 },
-    //   { x: 12, y: 15 },
-    //   { x: 24, y: 10 },
+  //     const rect = section.getBoundingClientRect();
 
-    // ];
-    const bases = [
-      { x: 0, y: 5 },
-      { x: 0, y: 35 },
-      { x: 0, y: 0 },
-      { x: 0, y: 15 },
-      { x: 0, y: 10 },
-    ];
-    let currentX = 0;
-    let currentY = 0;
-    let targetX = 0;
-    let targetY = 0;
+  //     targetX = (e.clientX - rect.left) / rect.width - 0.5;
+  //     targetY = (e.clientY - rect.top) / rect.height - 0.5;
 
-    const onMove = contextSafe((e) => {
+  //   });
 
-      const rect = section.getBoundingClientRect();
+  //   const animate = () => {
 
-      targetX = (e.clientX - rect.left) / rect.width - 0.5;
-      targetY = (e.clientY - rect.top) / rect.height - 0.5;
+  //     currentX += (targetX - currentX) * 0.08;
+  //     currentY += (targetY - currentY) * 0.08;
 
-    });
+  //     glyphs.forEach((glyph, index) => {
 
-    const animate = () => {
+  //       const base = bases[index];
 
-      // smooth follow
-      currentX += (targetX - currentX) * 0.08;
-      currentY += (targetY - currentY) * 0.08;
+  //       const depth = index - glyphs.length / 2;
 
-      glyphs.forEach((glyph, index) => {
+  //       const moveX = currentX * 70;
+  //       const moveY = currentY * 70;
 
-        const base = bases[index];
+  //       const intensity = 0.6 + index * 0.15;     // different strength
+  //       const wobble = Math.sin(currentX * 3 + index) * 6; // subtle offset
+  //       const lag = 1 - index * 0.08;             // slight response delay feel
 
-        const depth = index - glyphs.length / 2;
+  //       gsap.set(glyph, {
 
-        const moveX = currentX * 70;
-        const moveY = currentY * 70;
+  //         x:
+  //           base.x +
+  //           moveX * intensity +
+  //           depth * 7 +
+  //           wobble * lag,
 
-        const intensity = 0.6 + index * 0.15;     // different strength
-        const wobble = Math.sin(currentX * 3 + index) * 6; // subtle offset
-        const lag = 1 - index * 0.08;             // slight response delay feel
+  //         y:
+  //           base.y +
+  //           moveY * (1.1 - index * 0.1) +
+  //           depth * 7 +
+  //           Math.cos(currentY * 3 + index) * 5,
 
-        gsap.set(glyph, {
+  //         rotateY: currentX * (28 + index * 2),
+  //         rotateX: -currentY * (28 + index * 2),
 
-          x:
-            base.x +
-            moveX * intensity +
-            depth * 7 +
-            wobble * lag,
+  //         transformPerspective: 1000,
+  //         transformOrigin: "center"
+  //       });
 
-          y:
-            base.y +
-            moveY * (1.1 - index * 0.1) +
-            depth * 7 +
-            Math.cos(currentY * 3 + index) * 5,
+  //     });
 
-          rotateY: currentX * (28 + index * 2),
-          rotateX: -currentY * (28 + index * 2),
+  //     requestAnimationFrame(animate);
+  //   };
 
-          transformPerspective: 1000,
-          transformOrigin: "center"
-        });
+  //   section.addEventListener("mousemove", onMove);
 
-      });
+  //   animate();
 
-      requestAnimationFrame(animate);
-    };
+  //   return () => {
+  //     section.removeEventListener("mousemove", onMove);
+  //   };
 
-    section.addEventListener("mousemove", onMove);
-
-    animate();
-
-    return () => {
-      section.removeEventListener("mousemove", onMove);
-    };
-
-  }, { scope: container });
+  // }, { scope: container });
 
 
 

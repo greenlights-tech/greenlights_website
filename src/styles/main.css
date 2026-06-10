@@ -3787,3 +3787,7 @@ button {
   background-color: var(--color-jungleGreen);
   background-color: #A4b07e;
 }
+
+/* * {
+  outline: 1px solid rgba(255, 0, 0, 0.15);
+} */
