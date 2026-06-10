@@ -317,6 +317,7 @@ body {
   background-color: #f0ecda; */
   font-size: 16px;
   overflow-x: hidden;
+
   /* overflow: hidden; */
   /* -ms-overflow-style: none; */
   /* border: 1px solid blue; */
@@ -328,6 +329,11 @@ body,
   height: 100%;
   width: 100%;
 
+}
+
+html,
+body {
+  overscroll-behavior: none;
 }
 
 #smooth-content {
@@ -873,7 +879,7 @@ li {
   pointer-events: none;
   z-index: 1;
   line-height: 1.2;
-  mix-blend-mode: color-dodge;
+  /* mix-blend-mode: difference; */
   /* border: 1px solid black; */
   /* border: 1px solid black; */
   /* opacity: 0; */
