@@ -316,6 +316,7 @@ body {
   background-color: #f0ecda;
   background-color: #f0ecda; */
   font-size: 16px;
+  overflow-x: hidden;
   /* overflow: hidden; */
   /* -ms-overflow-style: none; */
   /* border: 1px solid blue; */
@@ -329,11 +330,10 @@ body,
 
 }
 
-html,
-body {
-  overflow-x: clip;
+#smooth-content {
+  overflow: visible;
+  width: 100%;
 }
-
 
 .show .tagline-wrapper {
   opacity: 1;
