@@ -303,7 +303,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-tap-highlight-color: transparent;
   /* background-color: #041819; */
-  overflow-x: hidden;
   /* background-image: linear-gradient(
     to bottom,
     hsla(0, 0%, 21%, 1) 0%,
@@ -327,7 +326,7 @@ body,
 #root {
   height: 100%;
   width: 100%;
-
+  overflow-x: hidden;
 }
 
 
