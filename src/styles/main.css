@@ -2799,9 +2799,7 @@ button {
 }
 
 .sol-title,
-.opd-title,
-.info-title,
-.info-title-wie {
+.opd-title {
   font-family: "IBM Plex Mono", sans-serif;
   font-size: var(--title-font-size);
   font-weight: 400;
@@ -3385,6 +3383,31 @@ button {
 
 /* Over ons */
 
+.about-greenlights-component {
+background-color: #A4b07e;
+border: 1px solid blue;
+height: 100vh;
+width: 100%;
+}
+
+.info-title-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+}
+
+.info-title {
+  font-family: "IBM Plex Mono", sans-serif;
+  font-size: var(--title-font-size);
+  color: var(--color-green);
+  text-transform: uppercase;
+  line-height: 1.2;
+  text-align: center;
+}
+
+
 /* .info-container-effect .pin-height {
   height: 400vh;
 } */
@@ -3398,15 +3421,39 @@ button {
   min-height: 100vh;
 } */
 
-.alineas {
+
+.info-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 3rem;
+  width: 100%;
+  height: 100%;
+  border: 1px solid red;
+}
+
+.content-container {
   display: flex;
   flex-direction: column;
-  width: 80%;
-
-  /* border: 1px solid yellow; */
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  width: 50%;
+  height: 100%;
+  padding: 1rem;
+  border: 1px solid black;
 }
 
-.info-container-effect .alinea {
+.info-image-container {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  border: 1px solid green;
+}
+
+.info-container .alinea {
   position: relative;
   overflow: hidden;
   flex-wrap: wrap;
@@ -3414,10 +3461,10 @@ button {
   font-family: "Inter", sans-serif;
   font-weight: 500;
   line-height: 1.5;
-  color: #b9b9b9;
+  color: #ffffff;
 }
 
-.info-container-effect .first {
+/* .over-greenlights .first {
   position: relative;
   overflow: hidden;
   flex-wrap: wrap;
@@ -3425,18 +3472,13 @@ button {
   font-weight: 500;
   font-family: "Inter", sans-serif;
   line-height: 1.5;
-  color: #b9b9b9;
-  /* border: 1px solid green; */
-  /* border: 1px solid green; */
-}
+  color: #ffffff;
+} */
 
-.info-container-effect .second {
+.info-container .second {
   margin-top: 2rem;
 }
 
-.info-container-effect .third {
-  margin-top: 2rem;
-}
 
 /* .info-title-wie {
 } */
