@@ -17,6 +17,7 @@ import heroImage3 from "../assets/Homepage-right.jpg";
 import heroImage4 from "../assets/hero-image3.jpg";
 import heroImage5 from "../assets/hero-image2.jpg";
 import { AboutSection } from "../components/AboutSection";
+import { AboutGreenlights } from "../components/AboutGreenlights";
 import { Footer } from "../components/Footer";
 // import { Icon } from "../components/Icon";
 
@@ -1259,13 +1260,15 @@ export const HomePage = () => {
             </div>
 
 
-            <AboutSection className="home-section" />
+           
 
 
 
 
 
           </div>
+           <AboutSection className="home-section" />
+           <AboutGreenlights className="home-section" />
 
         </section>
         {/* <div className="teasers-container-swiper">

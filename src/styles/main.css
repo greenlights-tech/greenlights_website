@@ -1598,8 +1598,11 @@ button {
   padding-right: 1rem;
   border-radius: 99px;
   opacity: 0;
-
   /* background-color: #435f4e; */
+}
+
+.homepage-button:focus {
+  outline: none;
 }
 
 .homepage-button p {
@@ -3633,6 +3636,7 @@ button {
 /* wrapper */
 .cards-container {
   width: 100%;
+  padding: 100vh 0;
   /* border: 1px solid red; */
 
 }
