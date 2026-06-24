@@ -81,7 +81,10 @@ export const AboutGreenlights = ({ className }) => {
              duration: 0.6,
             yPercent: 100,
             opacity: 0,
-            stagger: 0.05,
+            stagger: {
+            amount: 0.1,
+            from: "begin",
+          },
             ease: "expo.out",
           });
         },
@@ -96,9 +99,6 @@ export const AboutGreenlights = ({ className }) => {
       className={`about-greenlights-component ${className}`}
       ref={container}
     >
-<div className="info-title-container">
-  <h2 className="info-title">Over ons</h2>
-</div>
          
       <section className="info-container">
             <div className="content-container">

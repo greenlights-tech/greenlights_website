@@ -3385,7 +3385,8 @@ button {
 
 .about-greenlights-component {
 background-color: #A4b07e;
-border: 1px solid blue;
+background-color: transparent;
+/* border: 1px solid blue; */
 height: 100vh;
 width: 100%;
 }
@@ -3421,6 +3422,9 @@ width: 100%;
   min-height: 100vh;
 } */
 
+.about-greenlights-component {
+background-color: transparent;
+}
 
 .info-container {
   display: flex;
@@ -3430,7 +3434,8 @@ width: 100%;
   /* padding: 3rem; */
   width: 100%;
   height: 100%;
-  border: 1px solid red;
+  /* border: 1px solid red; */
+  
 }
 
 .content-container {
@@ -3441,23 +3446,24 @@ width: 100%;
   flex: 1;
   height: 100%;
   padding: 1rem;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 .info-image-container {
   display: flex;
+  flex-direction: column;
   flex: 1;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
-  border: 1px solid white;
+  /* border: 1px solid white; */
 }
 
 .info-image {
   width: 35vw;
   min-width: 100px;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .info-container .alinea {
@@ -3469,7 +3475,7 @@ width: 100%;
   font-weight: 500;
   line-height: 1.7;
   color: #ffffff;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 /* .over-greenlights .first {
@@ -3679,7 +3685,7 @@ width: 100%;
   min-height: 100vh;
   width: 100%;
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */
   /* background: #18201b;
   background-color: #f0ebd4; */
   /* background-color: #f0ecda; */
@@ -3690,7 +3696,7 @@ width: 100%;
 /* wrapper */
 .cards-container {
   width: 100%;
-  padding-bottom: 100vh;
+  padding-bottom: 50vh;
   /* border: 1px solid red; */
 
 }
