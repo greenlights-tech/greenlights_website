@@ -3424,9 +3424,10 @@ width: 100%;
 
 .info-container {
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  padding: 3rem;
+  /* padding: 3rem; */
   width: 100%;
   height: 100%;
   border: 1px solid red;
@@ -3438,7 +3439,6 @@ width: 100%;
   align-items: center;
   justify-content: center;
   flex: 1;
-  width: 50%;
   height: 100%;
   padding: 1rem;
   border: 1px solid black;
@@ -3449,14 +3449,21 @@ width: 100%;
   flex: 1;
   align-items: center;
   justify-content: center;
+  width: 100%;
   height: 100%;
   border: 1px solid green;
 }
 
+.info-image {
+  width: 35vw;
+  min-width: 100px;
+  border: 1px solid red;
+}
+
 .info-container .alinea {
-  position: relative;
+  /* position: relative;
   overflow: hidden;
-  flex-wrap: wrap;
+  flex-wrap: wrap; */
   font-size: var(--p-font-size);
   font-family: "Inter", sans-serif;
   font-weight: 500;
@@ -3519,21 +3526,21 @@ width: 100%;
   color: #264a7c;
 } */
 
-@media (min-width: 992px) {
-  /* .card {
-    height: 40%;
-    width: 40%;
-  } */
+@media (min-width: 768px) {
+.info-container {
+  flex-direction: row;
+}
+}
+
+/* @media (min-width: 992px) {
 
   .info-container-effect .pin-height {
     height: 400vh;
-    /* border: 1px solid red; */
   }
 
   .info-container-effect .info-container {
     flex-direction: column;
     height: 100vh;
-    /* border: 1px solid red; */
   }
 
   .alineas {
@@ -3541,12 +3548,10 @@ width: 100%;
     padding: 4rem;
     gap: 5rem;
     width: 100%;
-    /* border: 1px solid yellow; */
   }
 
   .info-container-effect .alinea {
     flex: 1;
-    /* border: 1px solid green; */
   }
 
   .info-container-effect .first {
@@ -3560,7 +3565,7 @@ width: 100%;
   .info-container-effect .third {
     margin-top: 10rem;
   }
-}
+} */
 
 .info-container-missievisie {
   display: flex;
@@ -3668,8 +3673,8 @@ width: 100%;
   width: 100%;
   position: relative;
   overflow: hidden;
-  background: #18201b;
-  background-color: #f0ebd4;
+  /* background: #18201b;
+  background-color: #f0ebd4; */
   /* background-color: #f0ecda; */
   color: #ffffff;
 
@@ -3678,7 +3683,7 @@ width: 100%;
 /* wrapper */
 .cards-container {
   width: 100%;
-  padding: 100vh 0;
+  padding-bottom: 100vh;
   /* border: 1px solid red; */
 
 }

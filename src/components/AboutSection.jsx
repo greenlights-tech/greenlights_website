@@ -2,16 +2,14 @@ import { Link } from "react-router-dom";
 import { useRef } from "react";
 // import { GoChevronLeft } from "react-icons/go";
 // import missieVisieSvg from "../assets/missievisie.svg";
-import { gsap } from "gsap";
-import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import cardImage1 from "../assets/cards-1.jpg";
 import cardImage2 from "../assets/cards-2.jpg";
 import cardImage3 from "../assets/cards-3.jpg";
 import cardImage4 from "../assets/cards-4.jpg";
 import cardImage5 from "../assets/cards-5.jpg";
 
-gsap.registerPlugin(useGSAP, ScrollTrigger);
+
+import { gsap, useGSAP, ScrollTrigger, ScrollSmoother } from "../utils/gsap-setup";
 
 
 // import { MdArrowOutward } from "react-icons/md";

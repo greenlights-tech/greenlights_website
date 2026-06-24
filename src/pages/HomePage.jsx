@@ -29,6 +29,8 @@ export const HomePage = () => {
   // const [endX, setEndX] = useState(0);
   const container = useRef();
   const tl = useRef();
+//   const leftLayer = useRef();
+// const rightLayer = useRef();
   const { introFinished, setIntroFinished } = useIntro();
 
   useGSAP(
@@ -755,59 +757,7 @@ export const HomePage = () => {
 
 
 
-  // Animatie voor kleur overgang
-  // useGSAP(() => {
-
-  //   const leftLayer =
-  //     container.current.querySelector(".hover-layer-left");
-
-  //   const rightLayer =
-  //     container.current.querySelector(".hover-layer-right");
-
-  //   const midText =
-  //     container.current.querySelector(".homepage-hero");
-
-
-  //   gsap.timeline({
-  //     scrollTrigger: {
-  //       trigger: midText,
-  //       start: "top top",
-  //       end: "+=400",
-  //       scrub: true,
-  //     }
-  //   })
-
-  //     .to(
-  //       rightLayer,
-  //       {
-  //         opacity: 1,
-  //         ease: "power1.inOut"
-  //       },
-  //       0
-  //     )
-
-  //     .to(
-  //       leftLayer,
-  //       {
-  //         opacity: 0,
-  //         ease: "power1.inOut"
-  //       },
-  //       0
-  //     )
-
-  //     .fromTo(".mid-text", {
-  //       opacity: 1,
-  //     },
-  //       {
-  //         color: "#ffffff",
-  //         ease: "power1.inOut"
-  //       }, 0
-  //     )
-
-
-
-  // },
-  //   { scope: container });
+  
 
 
 

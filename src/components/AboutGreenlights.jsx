@@ -1,24 +1,78 @@
+import { useRef } from "react";
 import { Link } from "react-router-dom";
 // import { useRef } from "react";
 // import { GoChevronLeft } from "react-icons/go";
 // import missieVisieSvg from "../assets/missievisie.svg";
-import { gsap } from "gsap";
-import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import heroImage1 from "../assets/cards-1.jpg";
 
-gsap.registerPlugin(useGSAP, ScrollTrigger);
+import { gsap, useGSAP, ScrollTrigger, ScrollSmoother } from "../utils/gsap-setup";
 
 
 // import { MdArrowOutward } from "react-icons/md";
 
 export const AboutGreenlights = ({ className }) => {
+    const container = useRef();
+
+    // Animatie voor kleur overgang
+  useGSAP(() => {
+
+    const leftLayer =
+      container.current.querySelector(".hover-layer-left");
+
+    const rightLayer =
+      container.current.querySelector(".hover-layer-right");
+
+    const midText =
+      container.current.querySelector(".homepage-hero");
+
+
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: midText,
+        start: "top top",
+        end: "+=400",
+        scrub: true,
+      }
+    })
+
+      .to(
+        rightLayer,
+        {
+          opacity: 1,
+          ease: "power1.inOut"
+        },
+        0
+      )
+
+      .to(
+        leftLayer,
+        {
+          opacity: 0,
+          ease: "power1.inOut"
+        },
+        0
+      )
+
+      .fromTo(".mid-text", {
+        opacity: 1,
+      },
+        {
+          color: "#ffffff",
+          ease: "power1.inOut"
+        }, 0
+      )
+
+
+
+  },
+    { scope: container });
   
 
   return (
     <section
       id="over-ons"
       className={`about-greenlights-component ${className}`}
+      ref={container}
     //   ref={container}
     >
 <div className="info-title-container"></div>
@@ -43,7 +97,7 @@ export const AboutGreenlights = ({ className }) => {
               </div>
             </div>
             <div className="info-image-container">
-               <img className="card-image" src={heroImage1} alt="Over Greenlights" />
+               <img className="info-image" src={heroImage1} alt="Over Greenlights" />
             </div>
               
       </section>
