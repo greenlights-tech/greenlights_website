@@ -221,14 +221,14 @@ button {
 }
 
 ::selection {
-  background-color: var(--color-green);
-  color: black;
+  background-color: #707c4f;
+  color: white;
 }
 
 /* Voor Firefox */
 ::-moz-selection {
-  background-color: var(--color-green);
-  color: black;
+  background-color: #707c4f;
+  color: white;
 }
 
 /* ===== RESET & BASE STYLES ===== */
@@ -3401,7 +3401,7 @@ width: 100%;
 .info-title {
   font-family: "IBM Plex Mono", sans-serif;
   font-size: var(--title-font-size);
-  color: var(--color-green);
+  color: #707c4f;
   text-transform: uppercase;
   line-height: 1.2;
   text-align: center;
@@ -3436,7 +3436,7 @@ width: 100%;
 .content-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   flex: 1;
   height: 100%;
@@ -3451,7 +3451,7 @@ width: 100%;
   justify-content: center;
   width: 100%;
   height: 100%;
-  border: 1px solid green;
+  border: 1px solid white;
 }
 
 .info-image {
@@ -3467,8 +3467,9 @@ width: 100%;
   font-size: var(--p-font-size);
   font-family: "Inter", sans-serif;
   font-weight: 500;
-  line-height: 1.5;
+  line-height: 1.7;
   color: #ffffff;
+  border: 1px solid red;
 }
 
 /* .over-greenlights .first {
@@ -3482,9 +3483,9 @@ width: 100%;
   color: #ffffff;
 } */
 
-.info-container .second {
+/* .info-container .second {
   margin-top: 2rem;
-}
+} */
 
 
 /* .info-title-wie {
@@ -3530,6 +3531,12 @@ width: 100%;
 .info-container {
   flex-direction: row;
 }
+}
+
+@media (min-width: 992px) {
+  .content-container {
+    padding: 3rem;
+  }
 }
 
 /* @media (min-width: 992px) {
