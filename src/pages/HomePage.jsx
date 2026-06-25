@@ -42,11 +42,7 @@ export const HomePage = () => {
         //   ".original-container",
         // );
         const newContainer = document.querySelector(".new-container");
-        const leftLayer =
-          container.current.querySelector(".hover-layer-left");
-
-        const rightLayer =
-          container.current.querySelector(".hover-layer-right");
+     
         const buttonLines = gsap.utils.toArray(".homepage-button");
         // const leftLayer = container.current.querySelector(".hover-layer-left");
         // const rightLayer =
@@ -419,23 +415,6 @@ export const HomePage = () => {
 
 
 
-        tl.current.to(
-          rightLayer,
-          {
-            opacity: 1,
-            ease: "power1.inOut"
-          },
-          1.5
-        )
-
-        tl.current.to(
-          leftLayer,
-          {
-            opacity: 0,
-            ease: "power1.inOut"
-          },
-          1.5
-        )
 
 
         // tl.current.to(
@@ -680,11 +659,11 @@ export const HomePage = () => {
     if (!section || !glyphs.length) return;
 
     const bases = [
-      { x: 0, y: 5 },
-      { x: 0, y: 35 },
-      { x: 0, y: 0 },
-      { x: 0, y: 15 },
-      { x: 0, y: 10 },
+      { x: 0, yPercent: 5 },
+      { x: 0, yPercent: 35 },
+      { x: 0, yPercent: 0 },
+      { x: 0, yPercent: 15 },
+      { x: 0, yPercent: 10 },
     ];
     let currentX = 0;
     let currentY = 0;
@@ -832,6 +811,54 @@ export const HomePage = () => {
     });
 
   }, { scope: container });
+
+  useGSAP(() => {
+  const greenLayer = container.current.querySelector(".layer-green");
+  const contentContainer = container.current.querySelector(".content-container");
+  const alineaFirst = container.current.querySelector(".first");
+  const alineaSecond = container.current.querySelector(".second");
+
+  gsap.to(greenLayer, {
+    scrollTrigger: {
+      trigger: contentContainer,
+      start: "top center",
+      // markers: true,
+      toggleActions: "play reverse play reverse",
+    },
+    opacity: 1,
+    duration: 0.6,
+    ease: "power1.inOut",
+  });
+
+  gsap.from(alineaFirst, {
+    scrollTrigger: {
+      trigger: alineaFirst,
+      start: "top center",
+      toggleActions: "play reverse play reverse",
+    },
+    y: 100,
+    opacity: 0,
+    duration: 0.6,
+    ease: "power2.out",
+  });
+
+    gsap.from(alineaSecond, {
+    scrollTrigger: {
+      trigger: alineaSecond,
+      start: "top center",
+      toggleActions: "play reverse play reverse",
+    },
+    y: 100,
+    opacity: 0,
+    duration: 0.6,
+    ease: "power2.out",
+  });
+
+}, { scope: container });
+
+
+
+
 
 
 
@@ -985,12 +1012,12 @@ export const HomePage = () => {
       <div ref={container} className="homepage">
         <Header />
 
-        <section className="homepage-hero">
+       
           <div className="featured-background-wrapper">
             <div className="hover-layer-left">
 
             </div>
-            <div className="hover-layer-right">
+            <div className="layer-green">
 
             </div>
           </div>
@@ -1123,8 +1150,21 @@ export const HomePage = () => {
 
                   </section>
                 </section>
-                <div className="hero-container">
+               <div className="hero-container">
+                   <div className="mid-text-container">
+                    {/* <div className="mid-text-placeholder"></div> */}
 
+                    <div className="mid-text-title">
+                      <h2 className="mid-text-split">
+                        Wij versnellen digitale ambities met gemotiveerd IT-talent
+                      </h2>
+                    </div>
+
+                    {/* <p className="mid-text-scramble">Potentie herkennen, vaardigheden ontwikkelen en mensen op de juiste plek brengen.</p> */}
+
+
+
+                   </div>
                   <div className="hero-pictures">
                     {/* <img className="glyph g1" data-speed="clamp(1.3)" src={leftImage} />
                        <img className="glyph g2" data-speed="clamp(1.5)" src={rightImage} />
@@ -1148,22 +1188,7 @@ export const HomePage = () => {
                     {/* <img className="glyph g6" src={leftImage} />
                     <img className="glyph g7" src={leftImage} /> */}
                     {/* <img className="glyph g8" data-speed="1.3" src={leftImage} /> */}
-                  </div>
-                  <div className="mid-text-container">
-                    {/* <div className="mid-text-placeholder"></div> */}
-
-                    <div className="mid-text-title">
-                      <h2 className="mid-text-split">
-                        Wij versnellen digitale ambities met gemotiveerd IT-talent
-                      </h2>
-                    </div>
-
-                    {/* <p className="mid-text-scramble">Potentie herkennen, vaardigheden ontwikkelen en mensen op de juiste plek brengen.</p> */}
-
-
-
-                  </div>
-                  <div className="homepage-buttons-container">
+                    <div className="homepage-buttons-container">
 
                     <Link
                       to="/talent"
@@ -1192,6 +1217,9 @@ export const HomePage = () => {
                     </Link>
 
                   </div>
+                  </div>
+                
+                  
 
                 </div>
 
@@ -1217,10 +1245,11 @@ export const HomePage = () => {
 
 
           </div>
+           <AboutGreenlights className="home-info-section" />
            <AboutSection className="home-section" />
-           <AboutGreenlights className="home-section" />
+          
 
-        </section>
+     
         {/* <div className="teasers-container-swiper">
           <Swiper
             modules={[Pagination, EffectCoverflow]}

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 // import missieVisieSvg from "../assets/missievisie.svg";
 import heroImage1 from "../assets/cards-1.jpg";
 
-import { gsap, useGSAP, ScrollTrigger, ScrollSmoother, SplitText } from "../utils/gsap-setup";
+import { ScrollTrigger, ScrollSmoother, SplitText } from "../utils/gsap-setup";
 
 
 // import { MdArrowOutward } from "react-icons/md";
@@ -68,30 +68,31 @@ export const AboutGreenlights = ({ className }) => {
   //   { scope: container });
 
 
- useGSAP(() => {
-      const splitAlinea = SplitText.create(".alinea", {
-        type: "words, lines",
-        wordsClass: "word++",
-        linesClass: "line",
-        autoSplit: true,
-        mask: "lines",
+  
+//  useGSAP(() => {
+//       const splitAlinea = SplitText.create(".alinea", {
+//         type: "words, lines",
+//         wordsClass: "word++",
+//         linesClass: "line",
+//         autoSplit: true,
+//         mask: "lines",
 
-        onSplit: (self) => {
-          return gsap.from(self.lines, {
-             duration: 0.6,
-            yPercent: 100,
-            opacity: 0,
-            stagger: {
-            amount: 0.1,
-            from: "begin",
-          },
-            ease: "expo.out",
-          });
-        },
-      });
+//         onSplit: (self) => {
+//           return gsap.from(self.lines, {
+//              duration: 0.6,
+//             yPercent: 100,
+//             opacity: 0,
+//             stagger: {
+//             amount: 0.1,
+//             from: "begin",
+//           },
+//             ease: "expo.out",
+//           });
+//         },
+//       });
 
-      return splitAlinea;
-    }, container);
+//       return splitAlinea;
+//     }, container);
 
   return (
     <section
@@ -102,14 +103,14 @@ export const AboutGreenlights = ({ className }) => {
          
       <section className="info-container">
             <div className="content-container">
-                <p className="alinea">
+                <p className="alinea first">
                 Greenlights is hét IT-talentontwikkelingsbureau voor
                 organisaties die duurzaam willen investeren in hun team. Wij
                 geloven niet in stapels cv's. Onze aanpak is persoonlijk en
                 doelgericht: we selecteren gemotiveerde IT-starters op basis van
                 motivatie, leervermogen en culturele fit. 
               </p>
-              <p className="alinea">
+              <p className="alinea second">
                 Deze toptalenten
                 worden praktijkgericht opgeleid in de benodigde IT-skills en
                 intensief begeleid door ervaren coaches. Door onze
