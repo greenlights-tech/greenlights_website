@@ -120,9 +120,9 @@ export const AboutGreenlights = ({ className }) => {
                 eenvoudiger én effectiever.
               </p>
             </div>
-            <div className="info-image-container">
+            {/* <div className="info-image-container">
                <img className="info-image" data-speed="clamp(1.2)" src={heroImage1} alt="Over Greenlights" />
-            </div>
+            </div> */}
               
       </section>
     </section>

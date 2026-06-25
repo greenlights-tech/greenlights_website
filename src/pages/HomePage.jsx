@@ -660,10 +660,11 @@ export const HomePage = () => {
 
     const bases = [
       { x: 0, yPercent: 5 },
-      { x: 0, yPercent: 35 },
+
       { x: 0, yPercent: 0 },
       { x: 0, yPercent: 15 },
       { x: 0, yPercent: 10 },
+      { x: 0, yPercent: 15 },
     ];
     let currentX = 0;
     let currentY = 0;
@@ -834,7 +835,7 @@ export const HomePage = () => {
     scrollTrigger: {
       trigger: alineaFirst,
       start: "top center",
-      toggleActions: "play reverse play reverse",
+      toggleActions: "play none none none",
     },
     y: 100,
     opacity: 0,
@@ -846,7 +847,7 @@ export const HomePage = () => {
     scrollTrigger: {
       trigger: alineaSecond,
       start: "top center",
-      toggleActions: "play reverse play reverse",
+      toggleActions: "play none none none",
     },
     y: 100,
     opacity: 0,
@@ -1181,10 +1182,11 @@ export const HomePage = () => {
                     <img className="glyph g5" src={rightImage} /> */}
 
                     <img className="glyph skewElem g1" src={heroImage1} />
-                    <img className="glyph skewElem g2" src={heroImage3} />
-                    <img className="glyph skewElem g3" src={heroImage2} />
+                    {/* <img className="glyph skewElem g2" src={heroImage2} /> */}
+                    <img className="glyph skewElem g3" src={heroImage3} />
                     <img className="glyph skewElem g4" src={heroImage4} />
                     <img className="glyph skewElem g5" src={heroImage5} />
+                    <img className="glyph skewElem g6" src={heroImage2} />
                     {/* <img className="glyph g6" src={leftImage} />
                     <img className="glyph g7" src={leftImage} /> */}
                     {/* <img className="glyph g8" data-speed="1.3" src={leftImage} /> */}
