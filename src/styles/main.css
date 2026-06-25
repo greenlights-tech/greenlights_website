@@ -307,13 +307,12 @@ body {
     hsla(0, 1%, 32%, 1) 100%
   ); */
   background-color: #f0ebd4;
-  background-color: transparent;
   /* background-color: #f3efe0;
   background-color: #f0ecda;
   background-color: #f0ecda; */
   font-size: 16px;
   overflow-x: hidden;
-
+z-index: -1;
   /* overflow: hidden; */
   /* -ms-overflow-style: none; */
   /* border: 1px solid blue; */
@@ -1813,7 +1812,7 @@ button {
 
 .featured-background-wrapper {
   position: absolute;
-
+z-index: 0;
   top: 0;
   left: 0;
   width: 100%;
