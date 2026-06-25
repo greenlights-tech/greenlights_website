@@ -256,9 +256,7 @@ html::-webkit-scrollbar {
 body,
 html {
   -ms-overflow-style: none;
-  /* IE and Edge */
   scrollbar-width: none;
-  /* Firefox */
 }
 
 /* =========================================
@@ -308,10 +306,8 @@ body {
     hsla(0, 0%, 21%, 1) 0%,
     hsla(0, 1%, 32%, 1) 100%
   ); */
-  background-color: hsl(0, 0%, 21%);
-  background-color: beige;
-  background-color: rgb(187, 184, 160);
   background-color: #f0ebd4;
+  background-color: transparent;
   /* background-color: #f3efe0;
   background-color: #f0ecda;
   background-color: #f0ecda; */
