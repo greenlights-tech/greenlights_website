@@ -1816,19 +1816,20 @@ button {
 }
 
 .featured-background-wrapper {
-  position: fixed;
-inset: 0;
-  /* width: 100%;
-  height: 100%; */
+  position: absolute;
+
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-color: hsla(0, 0%, 21%, 1);
   background-color: beige;
   background-color: rgb(187, 184, 160);
   background-color: rgb(206, 202, 176);
   background-color: #f0ebd4;
   /* background-color: #f3efe0;
-
   background-color: #f0ecda; */
-  z-index: 0;
+
 }
 
 .hover-layer-left,
@@ -1837,7 +1838,6 @@ inset: 0;
   inset: 0;
   opacity: 0;
   /* Standaard onzichtbaar */
-  z-index: 1;
   will-change: opacity;
 }
 
@@ -1854,7 +1854,7 @@ inset: 0;
   background-color: #435f4e;
   background-color: #A4b07e;
   /* Laag 3: De kleur voor Rechts */
-border: 3px solid red;
+
   /* background-color: #635a54; */
 }
 
