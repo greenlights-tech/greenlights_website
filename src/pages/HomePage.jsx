@@ -236,7 +236,7 @@ export const HomePage = () => {
               each: 0.04,
               from: "end"
             }
-          }, 0.37
+          }, "<+=0.25"
         );
 
         // tl.current.fromTo(
@@ -401,15 +401,15 @@ export const HomePage = () => {
         //   0.7,
         // );
 
-        tl.current.to(
-          ".bg",
-          {
-            opacity: 1,
-            duration: 2,
-            ease: "power2.inOut",
-          },
-          1.5,
-        );
+        // tl.current.to(
+        //   ".bg",
+        //   {
+        //     opacity: 1,
+        //     duration: 2,
+        //     ease: "power2.inOut",
+        //   },
+        //   ">"
+        // );
 
 
 
@@ -446,7 +446,7 @@ export const HomePage = () => {
           {
             opacity: 1,
           },
-          0.5,
+          "<+=0.8",
         );
 
         // tl.current.to(".mid-text-split",
@@ -466,7 +466,7 @@ export const HomePage = () => {
             // stagger: 0.01,
             // duration: 2,
             // ease: "power2.out",
-            duration: 2,
+            duration: 1.2,
             yPercent: 100,
             opacity: 0,
             // stagger: {
@@ -476,7 +476,7 @@ export const HomePage = () => {
             // stagger: 0.1,
             ease: "expo.out",
           },
-          1.5,
+          "<",
         );
 
         tl.current.to(
@@ -484,7 +484,7 @@ export const HomePage = () => {
           {
             opacity: 1,
           },
-          0.5,
+          "<",
         );
 
         tl.current.to(".glyph", {
@@ -492,16 +492,16 @@ export const HomePage = () => {
           duration: 1.2,
 
           ease: "power3.out",
-        }, 1.7);
+        }, "<+=0.2");
 
 
         tl.current.to(buttonLines, {
           x: 0,
           opacity: 1,
-          stagger: 0.25,
+          stagger: 0.12,
           duration: 0.8,
           ease: "power3.out",
-        }, 2.5);
+        }, "<+=0.4");
 
 
 
@@ -543,7 +543,7 @@ export const HomePage = () => {
               scale: true,
               duration: 1.2,
               nested: true,
-              ease: "power2.inOut",
+              ease: "power1.out",
               absolute: true,
               zIndex: 1000,
             }),

@@ -980,7 +980,8 @@ li {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 2rem;
+  /* gap: 2rem; */
+  padding: 2rem;
   align-items: center;
   width: 100%;
   min-height: calc(100vh - 7.25rem);
@@ -1025,9 +1026,10 @@ li {
   } */
 
   .mid-text-container {
-    /* padding-top: 2rem;
-    padding-bottom: 2rem; */
+    /* padding-top: 4rem; */
+    margin-bottom: -4vw;
     width: 60%;
+
   }
 
   .icon2-wrapper {
@@ -1064,7 +1066,7 @@ li {
   aspect-ratio: 4/5;
   flex: none;
   width: 12vw;
-
+border-radius: 2px; 
   position: relative;
   transform-style: preserve-3d;
   will-change: transform;
@@ -1078,6 +1080,7 @@ li {
   width: 23vw;
   /* margin-top: -10vw; */  
   /* margin-top: -10vw; */
+  
   min-width: 100px;
 }
 
@@ -1090,14 +1093,14 @@ li {
 
 .g3 {
   width: 16vw;
-  margin-left: -30vw;
+  margin-left: -26vw;
   min-width: 65px;
 }
 
 .g4 {
-  width: 20vw;
+  width: 21vw;
   margin-right: -30vw;
-  margin-bottom: -6vw;
+  /* margin-bottom: -6vw; */
   min-width: 90px;
 
 }
@@ -1105,14 +1108,14 @@ li {
 .g5 {
   width: 15vw;
 
-  margin-right: -10vw;
+  margin-right: -12vw;
   margin-top: -20vw;
   min-width: 60px;
 }
 
 .g6 {
-  width: 13vw;
-  margin-left: -17vw;
+  width: 12vw;
+  margin-left: -15vw;
   min-width: 55px;
 }
 
