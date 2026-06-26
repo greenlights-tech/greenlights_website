@@ -466,7 +466,7 @@ export const HomePage = () => {
             // stagger: 0.01,
             // duration: 2,
             // ease: "power2.out",
-            duration: 1.2,
+            duration: 1.7,
             yPercent: 100,
             opacity: 0,
             // stagger: {
@@ -490,7 +490,10 @@ export const HomePage = () => {
         tl.current.to(".glyph", {
           clipPath: "inset(0% 0 0 0)",
           duration: 1.2,
-
+stagger: {
+  each: 0.025,
+  from: "random"
+},
           ease: "power3.out",
         }, "<+=0.2");
 
@@ -543,7 +546,7 @@ export const HomePage = () => {
               scale: true,
               duration: 1.2,
               nested: true,
-              ease: "power1.out",
+              ease: "power1.inOut",
               absolute: true,
               zIndex: 1000,
             }),
