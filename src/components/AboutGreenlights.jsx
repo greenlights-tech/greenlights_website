@@ -191,9 +191,11 @@ requestAnimationFrame(() => {
                 motivatie, leervermogen en culturele fit. 
               </p>
             </div>
-            {/* <div className="info-image-container">
+            <div className="info-image-container">
                <img className="info-image" data-speed="clamp(1.2)" src={heroImage1} alt="Over Greenlights" />
-            </div> */}
+               {/* <img className="info-image" data-speed="clamp(1.7)" src={heroImage1} alt="Over Greenlights" />
+               <img className="info-image" data-speed="clamp(1.3)" src={heroImage1} alt="Over Greenlights" /> */}
+            </div>
               
       </section>
     </section>

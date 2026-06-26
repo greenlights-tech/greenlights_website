@@ -3457,10 +3457,10 @@ width: 100%;
 
 .info-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  /* padding: 3rem; */
+  padding: 3rem;
   width: 100%;
   height: 100%;
   /* border: 1px solid red; */
@@ -3487,11 +3487,13 @@ width: 100%;
   justify-content: center;
   width: 100%;
   height: 100%;
+  gap: 1rem;
   border: 1px solid white;
 }
 
 .info-image {
-  width: 35vw;
+  aspect-ratio: 4/5;
+  width: 25vw;
   min-width: 100px;
   /* border: 1px solid red; */
 }
