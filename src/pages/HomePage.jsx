@@ -1169,7 +1169,8 @@ stagger: {
 
 
                    </div>
-                  <div className="hero-pictures">
+                   <div className="hero-pictures-container">
+                     <div className="hero-pictures">
                     {/* <img className="glyph g1" data-speed="clamp(1.3)" src={leftImage} />
                        <img className="glyph g2" data-speed="clamp(1.5)" src={rightImage} />
                        <img className="glyph g3" data-speed="clamp(1.4)" src={rightImage} />
@@ -1193,7 +1194,9 @@ stagger: {
                     {/* <img className="glyph g6" src={leftImage} />
                     <img className="glyph g7" src={leftImage} /> */}
                     {/* <img className="glyph g8" data-speed="1.3" src={leftImage} /> */}
-                    <div className="homepage-buttons-container">
+                
+                   </div>
+                     <div className="homepage-buttons-container">
 
                     <Link
                       to="/talent"
