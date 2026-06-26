@@ -1,7 +1,7 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 // import { AboutSection } from "../components/AboutSection";
-import { AboutGreenlights } from "../components/AboutGreenlights";
+// import { AboutGreenlights } from "../components/AboutGreenlights";
 // import { BlogSection } from "../components/BlogSection";
 // import { Footer } from "../components/Footer";
 // import { ClientModal } from "../components/ClientModal";
@@ -18,7 +18,7 @@ export const ClientPage = () => {
   const container = useRef();
   const { pathname, hash } = useLocation();
   const navigate = useNavigate();
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [isModalOpen, setIsModalOpen] = useState(false);
 
   const scrollToSection = (id) => {
     const smoother = ScrollSmoother.get();
@@ -74,7 +74,7 @@ export const ClientPage = () => {
 
   return (
     <div ref={container} className="opd-page">
-      <AboutGreenlights className="client-section" />
+      {/* <AboutGreenlights className="client-section" /> */}
       {/* <nav className="nav-bar">
         <button onClick={() => scrollToSection("#belofte")}>Belofte</button>
         <button onClick={() => scrollToSection("#over-ons")}>Over ons</button>
