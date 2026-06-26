@@ -5,13 +5,90 @@ import { Link } from "react-router-dom";
 // import missieVisieSvg from "../assets/missievisie.svg";
 import heroImage1 from "../assets/cards-1.jpg";
 
-import { ScrollTrigger, ScrollSmoother, SplitText } from "../utils/gsap-setup";
+import { gsap, useGSAP, ScrollTrigger, ScrollSmoother, SplitText } from "../utils/gsap-setup";
 
 
 // import { MdArrowOutward } from "react-icons/md";
 
 export const AboutGreenlights = ({ className }) => {
     const container = useRef();
+
+
+      useGSAP(() => {
+    document.fonts.ready.then(() => {
+  // const greenLayer = container.current.querySelector(".layer-green");
+  // const contentContainer = container.current.querySelector(".content-container");
+  const alineaFirst = container.current.querySelector(".first");
+  const alineaSecond = container.current.querySelector(".second");
+
+  // gsap.to(greenLayer, {
+  //   scrollTrigger: {
+  //     trigger: contentContainer,
+  //     start: "top center",
+  //     // markers: true,
+  //     toggleActions: "play reverse play reverse",
+  //   },
+  //   opacity: 1,
+  //   duration: 0.6,
+  //   ease: "power1.inOut",
+  // });
+
+  // gsap.from(alineaFirst, {
+  //   scrollTrigger: {
+  //     trigger: alineaFirst,
+  //     start: "top center",
+  //     toggleActions: "play none none none",
+  //   },
+  //   y: 100,
+  //   opacity: 0,
+  //   duration: 0.6,
+  //   ease: "power2.out",
+  // });
+
+  //   gsap.from(alineaSecond, {
+  //   scrollTrigger: {
+  //     trigger: alineaSecond,
+  //     start: "top center",
+  //     toggleActions: "play none none none",
+  //   },
+  //   y: 100,
+  //   opacity: 0,
+  //   duration: 0.6,
+  //   ease: "power2.out",
+  // });
+
+  const split = SplitText.create(alineaFirst, { type: "words", wordsClass: "wordInfoSection++" });
+  gsap.from(split.words, {
+    scrollTrigger: {
+      trigger: alineaFirst,
+      start: "top center",
+      toggleActions: "play none none none",
+    },
+     autoAlpha: 0,
+  scale: 0, filter: "blur(4px)",
+  stagger: { each: 0.03, from: "center" },
+  duration: 0.5, ease: "power2.out"
+  });
+  const splitSecond = SplitText.create(alineaSecond, { type: "words", wordsClass: "wordInfoSection++" });
+  gsap.from(splitSecond.words, {
+    scrollTrigger: {
+      trigger: alineaSecond,
+      start: "top center",
+      toggleActions: "play none none none",
+    },
+     autoAlpha: 0,
+  scale: 0, filter: "blur(4px)",
+  stagger: { each: 0.03, from: "center" },
+  duration: 0.5, ease: "power2.out"
+  });
+requestAnimationFrame(() => {
+    ScrollTrigger.refresh();
+
+    ScrollSmoother.get()?.refresh();
+})
+})
+}, { scope: container });
+
 
     // Animatie voor kleur overgang
   // useGSAP(() => {
@@ -106,18 +183,12 @@ export const AboutGreenlights = ({ className }) => {
                 <p className="alinea first">
                 Greenlights is hét IT-talentontwikkelingsbureau voor
                 organisaties die duurzaam willen investeren in hun team. Wij
-                geloven niet in stapels cv's. Onze aanpak is persoonlijk en
-                doelgericht: we selecteren gemotiveerde IT-starters op basis van
-                motivatie, leervermogen en culturele fit. 
+                geloven niet in stapels cv's. 
               </p>
               <p className="alinea second">
-                Deze toptalenten
-                worden praktijkgericht opgeleid in de benodigde IT-skills en
-                intensief begeleid door ervaren coaches. Door onze
-                detavast-constructie groeit de starter uit tot een waardevol en
-                vast teamlid snel inzetbaar, zonder te bouwen aan een flexibele
-                schil. Zo maken we het aantrekken van passend IT-talent
-                eenvoudiger én effectiever.
+                Onze aanpak is persoonlijk en
+                doelgericht: we selecteren gemotiveerde IT-starters op basis van
+                motivatie, leervermogen en culturele fit. 
               </p>
             </div>
             {/* <div className="info-image-container">

@@ -922,14 +922,17 @@ li {
   /* line-height: 1.2; */
 }
 
-.word7 {
+
+.word3, .word4 {
   /* text-decoration: underline;
   text-decoration-color: #707c4f;
   text-decoration-thickness: 3px;
   text-underline-offset: 6px; */
   color: white;
    color: #707c4f;
-  font-weight: 600;
+   color: #243129;
+   font-style: italic;
+  /* font-weight: 700; */
 }
 
 
@@ -3497,7 +3500,7 @@ width: 100%;
   /* position: relative;
   overflow: hidden;
   flex-wrap: wrap; */
-  font-size: var(--p-font-size);
+  font-size: clamp(1.5rem, 3vw, 2rem);
   font-family: "Inter", sans-serif;
   font-weight: 500;
   line-height: 1.7;

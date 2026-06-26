@@ -490,10 +490,10 @@ export const HomePage = () => {
         tl.current.to(".glyph", {
           clipPath: "inset(0% 0 0 0)",
           duration: 1.2,
-stagger: {
-  each: 0.025,
-  from: "random"
-},
+          stagger: {
+        each: 0.025,
+        from: "random"
+            },
           ease: "power3.out",
         }, "<+=0.2");
 
@@ -816,11 +816,9 @@ stagger: {
 
   }, { scope: container });
 
-  useGSAP(() => {
+      useGSAP(() => {
   const greenLayer = container.current.querySelector(".layer-green");
   const contentContainer = container.current.querySelector(".content-container");
-  const alineaFirst = container.current.querySelector(".first");
-  const alineaSecond = container.current.querySelector(".second");
 
   gsap.to(greenLayer, {
     scrollTrigger: {
@@ -834,35 +832,32 @@ stagger: {
     ease: "power1.inOut",
   });
 
-  gsap.from(alineaFirst, {
-    scrollTrigger: {
-      trigger: alineaFirst,
-      start: "top center",
-      toggleActions: "play none none none",
-    },
-    y: 100,
-    opacity: 0,
-    duration: 0.6,
-    ease: "power2.out",
-  });
+  // gsap.from(alineaFirst, {
+  //   scrollTrigger: {
+  //     trigger: alineaFirst,
+  //     start: "top center",
+  //     toggleActions: "play none none none",
+  //   },
+  //   y: 100,
+  //   opacity: 0,
+  //   duration: 0.6,
+  //   ease: "power2.out",
+  // });
 
-    gsap.from(alineaSecond, {
-    scrollTrigger: {
-      trigger: alineaSecond,
-      start: "top center",
-      toggleActions: "play none none none",
-    },
-    y: 100,
-    opacity: 0,
-    duration: 0.6,
-    ease: "power2.out",
-  });
+  //   gsap.from(alineaSecond, {
+  //   scrollTrigger: {
+  //     trigger: alineaSecond,
+  //     start: "top center",
+  //     toggleActions: "play none none none",
+  //   },
+  //   y: 100,
+  //   opacity: 0,
+  //   duration: 0.6,
+  //   ease: "power2.out",
+  // });
+
 
 }, { scope: container });
-
-
-
-
 
 
 
