@@ -4,6 +4,7 @@ import { Flip } from "gsap/Flip";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { SplitText } from "gsap/SplitText";
+import { Observer } from "gsap/Observer";
 
 // Registreer alles centraal
 gsap.registerPlugin(useGSAP, Flip, ScrollTrigger, ScrollSmoother, SplitText);

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 // import { useRef } from "react";
 // import { GoChevronLeft } from "react-icons/go";
 // import missieVisieSvg from "../assets/missievisie.svg";
-import heroImage1 from "../assets/cards-1.jpg";
+// import heroImage1 from "../assets/cards-1.jpg";
 
 import { gsap, useGSAP, ScrollTrigger, ScrollSmoother, SplitText } from "../utils/gsap-setup";
 
@@ -17,9 +17,11 @@ export const AboutGreenlights = ({ className }) => {
       useGSAP(() => {
     document.fonts.ready.then(() => {
   // const greenLayer = container.current.querySelector(".layer-green");
-  // const contentContainer = container.current.querySelector(".content-container");
+  // const pin = container.current.querySelector(".pin-container");
+  // const infoContainer = container.current.querySelector(".info-container");
   const alineaFirst = container.current.querySelector(".first");
   const alineaSecond = container.current.querySelector(".second");
+  const section = container.current.querySelector(".about-greenlights-component");
 
   // gsap.to(greenLayer, {
   //   scrollTrigger: {
@@ -56,6 +58,21 @@ export const AboutGreenlights = ({ className }) => {
   //   duration: 0.6,
   //   ease: "power2.out",
   // });
+
+//   ScrollTrigger.create({
+//   trigger: infoContainer,
+//   start: "top top",
+//   end: "+=100%",
+//   pin: pin,
+//   pinSpacing: true,
+// });
+
+ScrollTrigger.create({
+  trigger: section,
+  start: "top 80%",
+  end: "bottom 20%",
+  toggleActions: "play reverse play reverse",
+});
 
   const split = SplitText.create(alineaFirst, { type: "words", wordsClass: "wordInfoSection++" });
   gsap.from(split.words, {
@@ -173,12 +190,12 @@ requestAnimationFrame(() => {
 
   return (
     <section
-      id="over-ons"
+      id="over-greenlights"
       className={`about-greenlights-component ${className}`}
       ref={container}
     >
-         
-      <section className="info-container">
+         {/* <div className="pin-container"> */}
+          <section className="info-container">
             <div className="content-container">
                 <p className="alinea first">
                 Greenlights is hét IT-talentontwikkelingsbureau voor
@@ -191,13 +208,17 @@ requestAnimationFrame(() => {
                 motivatie, leervermogen en culturele fit. 
               </p>
             </div>
-            <div className="info-image-container">
-               <img className="info-image" data-speed="clamp(1.2)" src={heroImage1} alt="Over Greenlights" />
-               {/* <img className="info-image" data-speed="clamp(1.7)" src={heroImage1} alt="Over Greenlights" />
-               <img className="info-image" data-speed="clamp(1.3)" src={heroImage1} alt="Over Greenlights" /> */}
-            </div>
+            {/* <div className="info-image-container">
+               <img className="info-image info-image1"  src={heroImage1} alt="Over Greenlights" />
+               <img className="info-image info-image2"  src={heroImage1} alt="Over Greenlights" />
+               <img className="info-image info-image3" data-speed="clamp(1.3)" src={heroImage1} alt="Over Greenlights" />
+                <img className="info-image info-image4" data-speed="clamp(1.3)" src={heroImage1} alt="Over Greenlights" />
+            </div> */}
               
       </section>
+      
+         {/* </div> */}
+      
     </section>
   );
 };

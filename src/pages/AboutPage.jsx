@@ -19,14 +19,13 @@ export const ClientPage = () => {
   const container = useRef();
 
 
-  return (
-    <div ref={container} className="opd-page">
  
+
+  return (
+    <div ref={container} className="about-page">
       <AboutSectionObserver />
 
-      {/* <AboutSection className="client-section" /> */}
-      {/* <BlogSection className="client-section" /> */}
-      {/* <Footer className="client-section" /> */}
+      
     </div>
   );
 };

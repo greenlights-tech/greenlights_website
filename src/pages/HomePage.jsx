@@ -18,10 +18,12 @@ import heroImage4 from "../assets/hero-image3.jpg";
 import heroImage5 from "../assets/hero-image2.jpg";
 import { AboutSection } from "../components/AboutSection";
 import { AboutGreenlights } from "../components/AboutGreenlights";
+import { AboutSectionObserver } from "../components/AboutSectionObserver";
 import { Footer } from "../components/Footer";
 // import { Icon } from "../components/Icon";
 
 import { gsap, useGSAP, ScrollTrigger, ScrollSmoother, Flip, SplitText } from "../utils/gsap-setup";
+
 
 let introHasRunGlobal = false;
 
@@ -816,9 +818,16 @@ export const HomePage = () => {
 
   }, { scope: container });
 
+
+
+
+  
+
       useGSAP(() => {
   const greenLayer = container.current.querySelector(".layer-green");
   const contentContainer = container.current.querySelector(".content-container");
+
+  
 
   gsap.to(greenLayer, {
     scrollTrigger: {
@@ -1248,6 +1257,7 @@ export const HomePage = () => {
 
 
           </div>
+          {/* <AboutSectionObserver/> */}
            <AboutGreenlights className="home-info-section" />
            <AboutSection className="home-section" />
           
