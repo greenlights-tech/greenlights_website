@@ -107,6 +107,9 @@ export const HomePage = () => {
 
         gsap.set(".bg", { opacity: 0 });
 
+        gsap.set(".mid-text-container", {
+          opacity: 1});
+
 
 
         // gsap.set(".teasers-container-swiper", {
@@ -240,6 +243,16 @@ export const HomePage = () => {
             }
           }, "<+=0.25"
         );
+
+        //         tl.current.to(
+        //   ".bg",
+        //   {
+        //     opacity: 1,
+        //     duration: 1,
+        //     ease: "power2.inOut",
+        //   },
+        //   "<"
+        // );
 
         // tl.current.fromTo(
         //   ".letterLights",
@@ -403,15 +416,7 @@ export const HomePage = () => {
         //   0.7,
         // );
 
-        // tl.current.to(
-        //   ".bg",
-        //   {
-        //     opacity: 1,
-        //     duration: 2,
-        //     ease: "power2.inOut",
-        //   },
-        //   ">"
-        // );
+
 
 
 
@@ -443,13 +448,13 @@ export const HomePage = () => {
         //   2.5,
         // );
 
-        tl.current.to(
-          ".mid-text-container",
-          {
-            opacity: 1,
-          },
-          "<+=0.8",
-        );
+        // tl.current.to(
+        //   ".mid-text-container",
+        //   {
+        //     opacity: 1,
+        //   },
+        //   "<+=0.8",
+        // );
 
         // tl.current.to(".mid-text-split",
         //   {
@@ -478,7 +483,7 @@ export const HomePage = () => {
             // stagger: 0.1,
             ease: "expo.out",
           },
-          "<",
+          ">+=0.2",
         );
 
         tl.current.to(
@@ -822,25 +827,27 @@ export const HomePage = () => {
 
 
   
-
-      useGSAP(() => {
-  const greenLayer = container.current.querySelector(".layer-green");
-  const contentContainer = container.current.querySelector(".content-container");
+// Kleur overgang
+//       useGSAP(() => {
+//   const greenLayer = container.current.querySelector(".layer-green");
+//   const contentContainer = container.current.querySelector(".content-container");
 
   
 
-  gsap.to(greenLayer, {
-    scrollTrigger: {
-      trigger: contentContainer,
-      start: "top center",
-      // markers: true,
-      toggleActions: "play reverse play reverse",
-    },
-    opacity: 1,
-    duration: 0.6,
-    ease: "power1.inOut",
-  });
+//   gsap.to(greenLayer, {
+//     scrollTrigger: {
+//       trigger: contentContainer,
+//       start: "top center",
+//       // markers: true,
+//       toggleActions: "play reverse play reverse",
+//     },
+//     opacity: 1,
+//     duration: 0.6,
+//     ease: "power1.inOut",
+//   });
 
+// }, { scope: container });
+  
   // gsap.from(alineaFirst, {
   //   scrollTrigger: {
   //     trigger: alineaFirst,
@@ -866,7 +873,7 @@ export const HomePage = () => {
   // });
 
 
-}, { scope: container });
+
 
 
 
@@ -1258,7 +1265,7 @@ export const HomePage = () => {
 
           </div>
           {/* <AboutSectionObserver/> */}
-           <AboutGreenlights className="home-info-section" />
+           {/* <AboutGreenlights className="home-info-section" /> */}
            <AboutSection className="home-section" />
           
 

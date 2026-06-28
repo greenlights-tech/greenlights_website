@@ -4,6 +4,10 @@ import { Link } from "react-router-dom";
 // import { GoChevronLeft } from "react-icons/go";
 // import missieVisieSvg from "../assets/missievisie.svg";
 import heroImage1 from "../assets/cards-1.jpg";
+import heroImage2 from "../assets/cards-2.jpg";
+import heroImage3 from "../assets/Homepage-right.jpg";
+import heroImage4 from "../assets/hero-image3.jpg";
+import heroImage5 from "../assets/hero-image2.jpg";
 
 import { gsap, useGSAP, ScrollTrigger, ScrollSmoother, SplitText } from "../utils/gsap-setup";
 
@@ -16,7 +20,7 @@ export const AboutSectionObserver = ({ className }) => {
 
   useGSAP(() => {
     const sections = container.current.querySelectorAll(".about-section");
-    const images = container.current.querySelectorAll(".about-bg");
+    const aboutColor = container.current.querySelectorAll(".about-bg");
 
     const headings = gsap.utils.toArray(
       container.current.querySelectorAll(".section-heading")
@@ -29,6 +33,8 @@ export const AboutSectionObserver = ({ className }) => {
     const innerWrappers = gsap.utils.toArray(
       container.current.querySelectorAll(".about-inner")
     );
+
+    const images = gsap.utils.toArray(".info-image");
 
     const splitHeadings = headings.map(
       heading =>
@@ -70,8 +76,8 @@ function clamp(index) {
       if (currentIndex >= 0) {
         gsap.set(sections[currentIndex], { zIndex: 0 });
 
-        tl.to(images[currentIndex], {
-          yPercent: -15 * dFactor,
+        tl.to(aboutColor[currentIndex], {
+          yPercent: 0 * dFactor,
         }).set(sections[currentIndex], {
           autoAlpha: 0,
         });
@@ -94,9 +100,9 @@ function clamp(index) {
         0
       )
         .fromTo(
-          images[index],
+          aboutColor[index],
           {
-            yPercent: 15 * dFactor,
+            yPercent: 0 * dFactor,
           },
           {
             yPercent: 0,
@@ -124,17 +130,37 @@ function clamp(index) {
             },
           },
           0.2
-        );
+        )
+        
+//         const endPositions = [-25, 10, -35, 20];
+
+// tl.fromTo(
+//   images,
+//   {
+//     yPercent: 100,
+//     autoAlpha: 0,
+//   },
+//   {
+//     yPercent: (i) => endPositions[i],
+//     ease: "power2.out",
+//     autoAlpha: 1,
+//     stagger: {
+//       each: 0.01,
+//       from: "random",
+//     },
+//   },
+//   0
+// );
 
       currentIndex = index;
     }
 
     ScrollTrigger.observe({
-        target: ".about-greenlights-observer",
+        target: container.current,
       type: "wheel,touch,pointer",
       wheelSpeed: -1,
       tolerance: 10,
-      preventDefault: false,
+      preventDefault: true,
 
       onDown: () => {
         if (!animating) {
@@ -169,16 +195,19 @@ function clamp(index) {
   <div className="about-outer">
     <div className="about-inner">
       <div className="about-bg about-one">
-        <h2 className="section-heading">Over Greenlights  </h2>
+        <div className="section-heading-container">
+           <h2 className="section-heading">Over ons</h2>
         <p>Greenlights is een Nederlands IT-talentontwikkelingsbureau dat zich richt op het vinden, selecteren en begeleiden van gemotiveerde IT-starters.
 
 Wij kijken verder dan cv’s of standaard traineeships. Alles draait om motivatie, leervermogen en culturele fit met het team waarin iemand terechtkomt.</p>
-{/* <div className="info-image-container">
+        </div>
+       
+<div className="info-image-container">
                <img className="info-image info-image1"  src={heroImage1} alt="Over Greenlights" />
-               <img className="info-image info-image2"  src={heroImage1} alt="Over Greenlights" />
+               {/* <img className="info-image info-image2"  src={heroImage1} alt="Over Greenlights" />
                <img className="info-image info-image3" data-speed="clamp(1.3)" src={heroImage1} alt="Over Greenlights" />
-                <img className="info-image info-image4" data-speed="clamp(1.3)" src={heroImage1} alt="Over Greenlights" />
-            </div> */}
+                <img className="info-image info-image4" data-speed="clamp(1.3)" src={heroImage1} alt="Over Greenlights" /> */}
+            </div>
       </div>
     </div>
   </div>
@@ -189,10 +218,18 @@ Wij kijken verder dan cv’s of standaard traineeships. Alles draait om motivati
     <div className="about-inner">
         
       <div className="about-bg">
-        <h2 className="section-heading">Wat doen we</h2>
+        <div className="section-heading-container">
+          <h2 className="section-heading">Wat doen we</h2>
         <p>Wij vinden en begeleiden IT-starters die willen groeien.
 Geen cv’s, geen standaardtrajecten — maar selectie op motivatie, leervermogen en teamfit.</p>
- 
+        </div>
+        
+ <div className="info-image-container">
+               <img className="info-image info-image1"  src={heroImage2} alt="Over Greenlights" />
+               {/* <img className="info-image info-image2"  src={heroImage1} alt="Over Greenlights" />
+               <img className="info-image info-image3" data-speed="clamp(1.3)" src={heroImage1} alt="Over Greenlights" />
+                <img className="info-image info-image4" data-speed="clamp(1.3)" src={heroImage1} alt="Over Greenlights" /> */}
+            </div>
       </div>
     </div>
   </div>
@@ -201,9 +238,18 @@ Geen cv’s, geen standaardtrajecten — maar selectie op motivatie, leervermoge
   <div className="about-outer">
     <div className="about-inner">
       <div className="about-bg">
-        <h2 className="section-heading">Wat maakt ons anders</h2>
+        <div className="section-heading-container">
+           <h2 className="section-heading">Wat maakt ons anders</h2>
         <p>We leiden talent op in de praktijk en begeleiden ze intensief op de werkvloer.
 Zo ontstaan geen tijdelijke krachten, maar echte teamleden.</p>
+        </div>
+       
+<div className="info-image-container">
+               <img className="info-image info-image1"  src={heroImage3} alt="Over Greenlights" />
+               {/* <img className="info-image info-image2"  src={heroImage1} alt="Over Greenlights" />
+               <img className="info-image info-image3" data-speed="clamp(1.3)" src={heroImage1} alt="Over Greenlights" />
+                <img className="info-image info-image4" data-speed="clamp(1.3)" src={heroImage1} alt="Over Greenlights" /> */}
+            </div>
       </div>
     </div>
   </div>
@@ -212,9 +258,18 @@ Zo ontstaan geen tijdelijke krachten, maar echte teamleden.</p>
   <div className="about-outer">
     <div className="about-inner">
       <div className="about-bg">
-        <h2 className="section-heading">Missie</h2>
+        <div className="section-heading-container">
+           <h2 className="section-heading">Missie</h2>
         <p>Wij bouwen aan duurzame IT-teams.
             Niet sneller vullen, maar beter verbinden — zodat organisaties écht kunnen groeien.</p>
+        </div>
+       
+            <div className="info-image-container">
+               <img className="info-image info-image1"  src={heroImage4} alt="Over Greenlights" />
+               {/* <img className="info-image info-image2"  src={heroImage1} alt="Over Greenlights" />
+               <img className="info-image info-image3" data-speed="clamp(1.3)" src={heroImage1} alt="Over Greenlights" />
+                <img className="info-image info-image4" data-speed="clamp(1.3)" src={heroImage1} alt="Over Greenlights" /> */}
+            </div>
       </div>
     </div>
   </div>
@@ -223,7 +278,18 @@ Zo ontstaan geen tijdelijke krachten, maar echte teamleden.</p>
   <div className="about-outer">
     <div className="about-inner">
       <div className="about-bg">
-        <h2 className="section-heading">Keep scrolling</h2>
+        <div className="section-heading-container">
+           <h2 className="section-heading">Visie</h2>
+           <p>Wij bouwen aan duurzame IT-teams.
+            Niet sneller vullen, maar beter verbinden — zodat organisaties écht kunnen groeien.</p>
+        </div>
+       
+        <div className="info-image-container">
+               <img className="info-image info-image1"  src={heroImage5} alt="Over Greenlights" />
+               {/* <img className="info-image info-image2"  src={heroImage1} alt="Over Greenlights" />
+               <img className="info-image info-image3" data-speed="clamp(1.3)" src={heroImage1} alt="Over Greenlights" />
+                <img className="info-image info-image4" data-speed="clamp(1.3)" src={heroImage1} alt="Over Greenlights" /> */}
+            </div>
       </div>
     </div>
   </div>
