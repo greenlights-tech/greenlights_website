@@ -21,7 +21,7 @@ export const ClientPage = () => {
 
   return (
     <div ref={container} className="opd-page">
- 
+
       <AboutSectionObserver />
 
       {/* <AboutSection className="client-section" /> */}

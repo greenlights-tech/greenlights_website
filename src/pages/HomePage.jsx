@@ -105,7 +105,7 @@ export const HomePage = () => {
         //   "stopColor": "#00450D",
         // });
 
-        gsap.set(".bg", { opacity: 0 });
+        // gsap.set(".bg", { opacity: 0 });
 
         gsap.set(".mid-text-container", {
           opacity: 1});
@@ -554,7 +554,7 @@ export const HomePage = () => {
               duration: 1.2,
               nested: true,
               ease: "power1.inOut",
-              absolute: true,
+              // absolute: true,
               zIndex: 1000,
             }),
             1,
@@ -825,7 +825,46 @@ export const HomePage = () => {
 
 
 
+      useGSAP(() => {
+  // const menu = document.querySelector(".header .menu");
+   const logo = document.querySelector(".new-container");
+  const midtextFadeContainer = container.current.querySelector(".homepage");
 
+  // gsap.set(logo, {
+  //   opacity: 1,
+  //   filter: "blur(0px)",
+  // })
+
+  // gsap.to(menu, {
+  //   scrollTrigger: {
+  //     trigger: midtextFadeContainer,
+  //     start: "top top",
+  //     markers: true,
+  //     scrub: true,
+      
+  //   },
+  //   opacity: 0,
+  //   duration: 0.6,
+  //   ease: "none",
+  // });
+
+    gsap.to(logo, {
+    scrollTrigger: {
+      trigger: midtextFadeContainer,
+      start: "top top",
+      // markers: true,
+      toggleActions: "play reverse play reverse",
+    },
+    //  yPercent: 10,
+     scale: 0.6,
+  ease: "expo.in",
+  easeReverse: "elastic.out",
+ 
+opacity: 0,
+duration: 0.8
+  });
+
+}, { scope: container });
   
 // Kleur overgang
 //       useGSAP(() => {
@@ -1025,7 +1064,7 @@ export const HomePage = () => {
   return (
     <>
       <div ref={container} className="homepage">
-        <Header />
+        {/* <Header /> */}
 
        
           <div className="featured-background-wrapper">

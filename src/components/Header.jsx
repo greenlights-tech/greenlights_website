@@ -35,17 +35,17 @@ export const Header = () => {
           // // Gebruik van kill() om eventuele lopende animaties op dit element te stoppen
           gsap.killTweensOf(headerRef.current);
 
-          gsap.fromTo(
-            headerRef.current,
-            { opacity: 0, y: -50 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 1,
-              ease: "power3.out",
-              overwrite: "auto", // Zorgt dat nieuwe animaties oude overschrijven
-            }
-          );
+          // gsap.fromTo(
+          //   headerRef.current,
+          //   { opacity: 0, y: -50 },
+          //   {
+          //     opacity: 1,
+          //     y: 0,
+          //     duration: 1,
+          //     ease: "power3.out",
+          //     overwrite: "auto", // Zorgt dat nieuwe animaties oude overschrijven
+          //   }
+          // );
 
           // if (reactLogoRef.current) {
           //   gsap.fromTo(
@@ -77,7 +77,7 @@ export const Header = () => {
       // style={{ opacity: isHome ? 1 : 0 }}
       >
         <div className="container">
-          <div className="bg"></div>
+          {/* <div className="bg"></div> */}
           <div className="new-container-wrapper">
             <div className="new-container" data-flip-id="image">
               {shouldRenderLogo && (
@@ -201,6 +201,7 @@ export const Header = () => {
             </div> */}
           </div>
         </div>
+         <div className="menu">Menu</div>
       </header>
     </>
   );

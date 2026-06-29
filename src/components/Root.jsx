@@ -28,6 +28,7 @@ export const Root = () => {
       {/* <ScrollToTop /> */}
       {/* <NavBar />
       <WhatsAppButton /> */}
+      <Header />
       <div id="smooth-wrapper">
         <div id="smooth-content">
           {/* <Header /> */}
