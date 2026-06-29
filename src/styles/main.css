@@ -587,14 +587,14 @@ body {
 
 #flip {
   width: 100%;
+  z-index: 1000;
 }
 
 .header {
   /* height: 6.5rem; */
-  top: 0;
+  /* top: 0;
   left: 0;
-  right: 0;
-  z-index: 100;
+  right: 0; */
 
   width: 100%;
   /* flex-shrink: 0; */
@@ -602,12 +602,12 @@ body {
     padding: 0 5%;
     display: flex;
   position: relative;
-  
+  opacity: 0;
   position: fixed;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  z-index: 3;
+  z-index: 100;
 font-size: clamp(1rem, 2vw, 1.5rem);
   letter-spacing: 0.5em;
 
@@ -628,17 +628,18 @@ font-size: clamp(1rem, 2vw, 1.5rem);
 
 
 
-/* .header .container .bg {
+.header .container .bg {
   position: absolute;
   inset: 0;
   background-color: rgb(187, 184, 160);
   background-color: transparent;
   border: 1px solid green;
-} */
+}
 
 
 .new-container-wrapper {
   display: flex;
+  flex: 2;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -646,26 +647,22 @@ font-size: clamp(1rem, 2vw, 1.5rem);
   /* border: 1px solid red; */
 }
 
-.new-container {
+/* .new-container {
   display: flex;
   position: relative;
   justify-content: center;
   align-items: center;
   width: 100%;
-  /* border: 1px dashed blue; */
   background-color: transparent;
-  /* padding-top: 1.5rem;
-  padding-bottom: 1rem;
-  padding-left: 2rem; */
   z-index: 10;
-}
+} */
 
-.child1.is-refreshing {
-  opacity: 0;
-  animation: fadeInLogo 0.1s forwards;
-  /* Hele korte delay */
-  animation-delay: 0.05s;
-}
+/* .menu {
+
+  border: 1px solid yellow;
+} */
+
+
 
 @keyframes fadeInLogo {
   to {

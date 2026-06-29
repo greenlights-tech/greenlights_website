@@ -1,90 +1,19 @@
-import { useRef } from "react";
-import { useIntro } from "../context/IntroContext";
-import { useLocation } from "react-router-dom";
 
-import { gsap, useGSAP } from "../utils/gsap-setup";
 
 export const Header = () => {
-  const { introFinished } = useIntro();
-  const location = useLocation();
-  const isHome = location.pathname === "/";
-  const headerRef = useRef(null);
-  const reactLogoRef = useRef(null);
 
-  // Deze ref zorgt ervoor dat we per pagina-wissel maar ÉÉN keer animeren
-  const hasAnimatedRef = useRef("");
-
-  useGSAP(
-    () => {
-      const container = document.querySelector(".new-container");
-      if (!container) return;
-      const logos = container.querySelectorAll(".child1");
-
-      if (!isHome) {
-        logos.forEach((logo) => {
-          if (logo !== reactLogoRef.current) logo.remove();
-        });
-
-        // ALLEEN animeren als dit pad nog niet geanimeerd is
-        // ÉN als de intro klaar is (of we niet op home zijn)
-        const shouldAnimate = hasAnimatedRef.current !== location.pathname;
-
-        if (shouldAnimate && headerRef.current) {
-          hasAnimatedRef.current = location.pathname;
-
-          // // Gebruik van kill() om eventuele lopende animaties op dit element te stoppen
-          gsap.killTweensOf(headerRef.current);
-
-          // gsap.fromTo(
-          //   headerRef.current,
-          //   { opacity: 0, y: -50 },
-          //   {
-          //     opacity: 1,
-          //     y: 0,
-          //     duration: 1,
-          //     ease: "power3.out",
-          //     overwrite: "auto", // Zorgt dat nieuwe animaties oude overschrijven
-          //   }
-          // );
-
-          // if (reactLogoRef.current) {
-          //   gsap.fromTo(
-          //     reactLogoRef.current,
-          //     { opacity: 0 },
-          //     { opacity: 1, duration: 0.5, delay: 0.2 }
-          //   );
-          // }
-        }
-      } else if (isHome && introFinished) {
-        // // Op home: Alleen opruimen
-        if (logos.length > 1) {
-          logos[0].remove();
-        }
-        hasAnimatedRef.current = "/"; // Reset voor als je  terugkomt
-      }
-    },
-    { dependencies: [location.pathname, introFinished] }
-  );
-  // De dependencies zorgen ervoor dat de animatie alleen start als de pagina echt verandert
-
-  const showHeader = !isHome || introFinished;
-  const shouldRenderLogo = !isHome || introFinished;
   return (
     <>
       <header
-        ref={headerRef}
-        className={`header ${showHeader ? "show" : ""}`}
+        className="header"
       // style={{ opacity: isHome ? 1 : 0 }}
       >
         <div className="container">
           {/* <div className="bg"></div> */}
           <div className="new-container-wrapper">
-            <div className="new-container" data-flip-id="image">
-              {shouldRenderLogo && (
+            <div className="new-container">
                 <svg
-                  ref={reactLogoRef}
-                  className="child1"
-                  data-flip-id="image"
+                  className="logo"
                   // style={{
                   //   filter: "drop-shadow(0 0 1px #00dc82)",
                   // }}
@@ -194,7 +123,7 @@ export const Header = () => {
                   </defs>
                 </svg>
 
-              )}
+            
             </div>
             {/* <div className="tagline-wrapper">
               <p className="tagline">Slimme instroom, blijvend resultaat</p>

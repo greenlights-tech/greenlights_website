@@ -22,7 +22,7 @@ import { AboutSectionObserver } from "../components/AboutSectionObserver";
 import { Footer } from "../components/Footer";
 // import { Icon } from "../components/Icon";
 
-import { gsap, useGSAP, ScrollTrigger, ScrollSmoother, Flip, SplitText } from "../utils/gsap-setup";
+import { gsap, useGSAP, ScrollTrigger, ScrollSmoother, SplitText } from "../utils/gsap-setup";
 
 
 let introHasRunGlobal = false;
@@ -38,14 +38,18 @@ export const HomePage = () => {
   useGSAP(
     (context, contextSafe) => {
       document.fonts.ready.then(() => {
-        const logo = document.querySelector(".child1");
+        // const logo = document.querySelector(".child1");
         // const logoPath = document.querySelector("#logoPath");
         // const originalContainer = container.current.querySelector(
         //   ".original-container",
         // );
-        const newContainer = document.querySelector(".new-container");
+        // const newContainer = document.querySelector(".new-container");
      
         const buttonLines = gsap.utils.toArray(".homepage-button");
+         const header = document.querySelector(".header");
+                const menu = document.querySelector(".header .menu");
+   const logo = document.querySelector(".new-container-wrapper");
+   
         // const leftLayer = container.current.querySelector(".hover-layer-left");
         // const rightLayer =
         //   container.current.querySelector(".hover-layer-right");
@@ -97,7 +101,19 @@ export const HomePage = () => {
 
 
         gsap.set(".child1", { visibility: "visible" });
+          gsap.set(header, {
+  opacity: 1
+   })
 
+  gsap.set(logo, {
+    opacity: 0,
+    filter: "blur(0px)",
+  })
+
+  gsap.set(menu, {
+    opacity: 0,
+    filter: "blur(0px)",
+  })
 
 
         // gsap.set(["#color1", "#color2"], {
@@ -110,6 +126,8 @@ export const HomePage = () => {
         gsap.set(".mid-text-container", {
           opacity: 1});
 
+
+ 
 
 
         // gsap.set(".teasers-container-swiper", {
@@ -166,13 +184,15 @@ export const HomePage = () => {
         //   opacity: 1,
         // });
 
+ 
+
         tl.current.set(".glyph", {
           clipPath: "inset(100% 0 0 0)", // volledig verborgen (rechts dicht)
         });
 
-        tl.current.set(".icon", {
-          opacity: 0
-        })
+        // tl.current.set(".icon", {
+        //   opacity: 0
+        // })
 
         tl.current.set(buttonLines, {
           x: (i) => (i % 2 === 0 ? -200 : 200),
@@ -184,7 +204,7 @@ export const HomePage = () => {
 
 
         tl.current.set(".letter", {
-          opacity: 0
+          opacity: 1
         },);
 
         // tl.current.set(".icon", {
@@ -205,44 +225,100 @@ export const HomePage = () => {
 
 
 
-        tl.current.fromTo(
-          ".icon",
-          {
-            opacity: 0,
-            xPercent: -300,
-            rotate: -20,
-            // scale: 0.5
-          },
-          {
-            opacity: 1,
-            xPercent: 0,
-            rotate: 0,
-            // scale: 1,
-            ease: "elastic.out",
-            duration: 1.4,
-          }, 0.1
-        );
+        // tl.current.fromTo(
+        //   ".icon",
+        //   {
+        //     opacity: 0,
+        //     xPercent: -300,
+        //     rotate: -20,
+        //     // scale: 0.5
+        //   },
+        //   {
+        //     opacity: 1,
+        //     xPercent: 0,
+        //     rotate: 0,
+        //     // scale: 1,
+        //     ease: "elastic.out",
+        //     duration: 1.4,
+        //   }, 0.1
+        // );
 
-        tl.current.fromTo(
-          ".letter",
-          {
-            opacity: 0,
-            transformOrigin: "center center"
-            // xPercent: -100,
-            // rotate: -20,
-            // transformOrigin: "center center"
-          },
-          {
-            opacity: 1,
+        //   tl.current.fromTo(
+        //   ".icon",
+        //   {
+        //     opacity: 0,
+        //     xPercent: -300,
+        //     rotate: -20,
+        //     // scale: 0.5
+        //   },
+        //   {
+        //     opacity: 1,
+        //     xPercent: 0,
+        //     rotate: 0,
+        //     // scale: 1,
+        //     ease: "elastic.out",
+        //     duration: 1.4,
+        //   }, 0.1
+        // );
 
-            // ease: "elastic.out(0.6, 0.8)",
-            ease: "back",
-            stagger: {
-              each: 0.04,
-              from: "end"
-            }
-          }, "<+=0.25"
-        );
+        // tl.current.fromTo(
+        //   ".letter",
+        //   {
+        //     opacity: 0,
+        //     transformOrigin: "center center"
+        //   },
+        //   {
+        //     opacity: 1,
+
+        //     ease: "back",
+        //     stagger: {
+        //       each: 0.04,
+        //       from: "end"
+        //     }
+        //   }, "<+=0.25"
+        // );
+
+
+tl.current
+  .fromTo(
+    ".original-container .child1",
+    {
+      yPercent: -100,
+      opacity: 0,
+    },
+    {
+      yPercent: 0,
+      opacity: 1,
+      duration: 0.4,
+      ease: "power4.in"
+    }, 0.1
+  )
+  .to(
+    ".letter, .icon",
+    {
+      y: () => gsap.utils.random(60, 200),
+      rotation: () => gsap.utils.random(-30, 30),
+      opacity: 0,
+      stagger: 0.02,
+      duration: 0.6,
+      delay: 0.5
+    },
+    ">"
+  )
+   tl.current.to(
+    ".original-container",
+    {
+      opacity: 0,
+      pointerEvents: "none",
+      duration: 0.01,
+      ease: "power2.out"
+    }, 
+    ">+=0.01"
+  );
+
+
+
+  
 
         //         tl.current.to(
         //   ".bg",
@@ -483,8 +559,34 @@ export const HomePage = () => {
             // stagger: 0.1,
             ease: "expo.out",
           },
-          ">+=0.2",
+          "<-=0.2",
         );
+        
+ 
+
+  tl.current.to(menu, {
+   
+    opacity: 1,
+    duration: 0.8,
+    ease: "expo.in",
+  }, "<-=0.2");
+
+    tl.current.to(logo, {
+   
+    //  yPercent: 10,
+  ease: "expo.in",
+ 
+opacity: 1,
+duration: 0.8
+  }, ">-=0.8");
+
+    // tl.current.to(
+    //          ".original-container .child1",
+    //       {
+    //         opacity: 0,
+    //       },
+    //       "<",
+    //     );
 
         tl.current.to(
           ".hero-pictures",
@@ -514,6 +616,8 @@ export const HomePage = () => {
         }, "<+=0.4");
 
 
+      
+
 
         // tl.current.to(".teasers-container-swiper", {
         //   visibility: "visible",
@@ -542,23 +646,7 @@ export const HomePage = () => {
         // );
 
         const startIntro = contextSafe(() => {
-          // FLIP LOGICA HIER:
-          const state = Flip.getState(logo);
 
-          // Verplaats fysiek
-          newContainer.appendChild(logo);
-
-          tl.current.add(
-            Flip.from(state, {
-              scale: true,
-              duration: 1.2,
-              nested: true,
-              ease: "power1.inOut",
-              // absolute: true,
-              zIndex: 1000,
-            }),
-            1,
-          );
 
           // gsap.fromTo(
           //   logo,
@@ -586,15 +674,16 @@ export const HomePage = () => {
 
 
         const skipIntro = contextSafe(() => {
-          // Directe DOM verplaatsing voor terugkerende bezoekers
-          if (logo.parentNode !== newContainer) {
-            newContainer.appendChild(logo);
-          }
-          // Forceer de tijdlijn naar het eindpunt (GSAP handelt de Flip eindstand af)
-          tl.current.progress(1);
-          setIntroFinished(true);
-          // gsap.set(switchBtn, { display: "none" });
-        });
+        
+   if (tl.current) {
+    tl.current.progress(1);   // spring naar einde timeline
+    tl.current.pause();       // voorkomt verdere play triggers
+  }
+
+  // Belangrijk: markeer intro als afgerond
+  introHasRunGlobal = true;
+  setIntroFinished(true);
+        })
 
         // Uitvoering check
         if (introHasRunGlobal) {
@@ -828,7 +917,7 @@ export const HomePage = () => {
       useGSAP(() => {
   // const menu = document.querySelector(".header .menu");
    const logo = document.querySelector(".new-container");
-  const midtextFadeContainer = container.current.querySelector(".homepage");
+  const midtextFadeContainer = container.current.querySelector(".mid-text-container");
 
   // gsap.set(logo, {
   //   opacity: 1,
@@ -1080,15 +1169,15 @@ duration: 0.8
             <div className="hero-interaction-section">
               <div className="mid-hero-section">
 
-                <section id="flip-logo" className="header-hero">
+                <section className="header-hero">
                   {/* <Header /> */}
                   <section className="hero">
-                    {!introFinished && (
+                    {/* {!introFinished && ( */}
                       <div className="original-container">
                         <svg
                           className="child1"
                           id="logoPath"
-                          data-flip-id="image"
+
                           width="295" height="70" viewBox="0 0 295 70" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path className="letter letterLights" d="M284.985 56.3841C283.193 56.3841 281.475 56.1494 279.833 55.6801C278.19 55.1894 276.867 54.5601 275.865 53.7921L277.625 49.8881C278.585 50.5707 279.715 51.1361 281.017 51.5841C282.339 52.0107 283.673 52.2241 285.017 52.2241C286.041 52.2241 286.862 52.1281 287.481 51.9361C288.121 51.7227 288.59 51.4347 288.889 51.0721C289.187 50.7094 289.337 50.2934 289.337 49.8241C289.337 49.2267 289.102 48.7574 288.633 48.4161C288.163 48.0534 287.545 47.7654 286.777 47.5521C286.009 47.3174 285.155 47.1041 284.217 46.9121C283.299 46.6987 282.371 46.4427 281.433 46.1441C280.515 45.8454 279.673 45.4614 278.905 44.9921C278.137 44.5227 277.507 43.9041 277.017 43.1361C276.547 42.3681 276.313 41.3867 276.313 40.1921C276.313 38.9121 276.654 37.7494 277.337 36.7041C278.041 35.6374 279.086 34.7947 280.473 34.1761C281.881 33.5361 283.641 33.2161 285.753 33.2161C287.161 33.2161 288.547 33.3867 289.913 33.7281C291.278 34.0481 292.483 34.5387 293.529 35.2001L291.929 39.1361C290.883 38.5387 289.838 38.1014 288.793 37.8241C287.747 37.5254 286.723 37.3761 285.721 37.3761C284.718 37.3761 283.897 37.4934 283.257 37.7281C282.617 37.9627 282.158 38.2721 281.881 38.6561C281.603 39.0187 281.465 39.4454 281.465 39.9361C281.465 40.5121 281.699 40.9814 282.169 41.3441C282.638 41.6854 283.257 41.9627 284.025 42.1761C284.793 42.3894 285.635 42.6027 286.553 42.8161C287.491 43.0294 288.419 43.2747 289.337 43.5521C290.275 43.8294 291.129 44.2027 291.897 44.6721C292.665 45.1414 293.283 45.7601 293.753 46.5281C294.243 47.2961 294.489 48.2667 294.489 49.4401C294.489 50.6987 294.137 51.8507 293.433 52.8961C292.729 53.9414 291.673 54.7841 290.265 55.4241C288.878 56.0641 287.118 56.3841 284.985 56.3841Z" fill="#00450D" />
                           <path className="letter letterLights" d="M262.64 56.0001V37.8241H255.472V33.6001H274.992V37.8241H267.824V56.0001H262.64Z" fill="#00450D" />
@@ -1197,7 +1286,7 @@ duration: 0.8
 
 
                       </div>
-                    )}
+                    {/* )} */}
 
 
 
