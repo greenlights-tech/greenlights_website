@@ -333,6 +333,7 @@ body {
 
 #smooth-content {
   overflow: visible;
+   will-change: transform;
   width: 100%;
 }
 
@@ -612,7 +613,7 @@ font-size: clamp(1rem, 2vw, 1.5rem);
   letter-spacing: 0.5em;
 
   
-  /* border: 1px solid red; */
+  border: 1px solid red;
 
 }
 
@@ -639,13 +640,20 @@ font-size: clamp(1rem, 2vw, 1.5rem);
 
 .new-container-wrapper {
   display: flex;
-  flex: 2;
+  flex: 1;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
-  /* border: 1px solid red; */
+  border: 1px solid red;
 }
+
+.logo {
+   max-width: 40vw;
+  height: auto;
+}
+
+
 
 /* .new-container {
   display: flex;
@@ -853,6 +861,7 @@ li {
   position: relative;
   justify-content: center;
   align-items: center;
+  /* margin-bottom: -15vw; */
   /* position: relative;
   width: 100%;
   height: 100%; */
@@ -866,7 +875,7 @@ li {
   height: auto;
   /* border: 1px solid red; */
   opacity: 0;
-  /* border: 1px solid yellow; */
+  border: 1px solid yellow;
 }
 
 .mid-text-title {
@@ -880,7 +889,7 @@ li {
   z-index: 1;
   line-height: 1.2;
   /* mix-blend-mode: difference; */
-  /* border: 1px solid black; */
+  border: 1px solid black;
   /* border: 1px solid black; */
   /* opacity: 0; */
 }
@@ -991,10 +1000,10 @@ li {
   flex-direction: column;
   justify-content: center;
   /* gap: 2rem; */
-  padding: 2rem 0;
+  /* padding: 2rem 0; */
   align-items: center;
+  padding-top: 7.25rem;
   width: 100%;
-  min-height: calc(100vh - 7.25rem);
   min-height: 100vh;
   perspective: 1000px;
   /* border: 1px solid yellow; */
@@ -1022,7 +1031,7 @@ li {
   /* height: calc(50vh - 3.65rem); */
   height: auto;
   
-  /* border: 1px solid red; */
+  border: 1px solid red;
 }
 
 .hero-pictures {
@@ -1051,7 +1060,8 @@ li {
 
   .mid-text-container {
     /* padding-top: 4rem; */
-    margin-bottom: -4vw;
+    /* margin-bottom: -4vw; */
+   
     width: 60%;
 
   }
@@ -4106,4 +4116,129 @@ h2 {
 a {
   color: white;
   text-decoration: none;
+}
+
+ /* Horizontal gallery */
+
+.about-horizontal {
+  overflow-x: hidden;
+  margin: 0;
+  border: 1px solid blue;
+}
+
+ .about-horizontal .section, .about-horizontal .row, .about-horizontal section
+  {
+  position: relative;
+  overflow: hidden;
+}
+
+
+.container-fluid {
+  width: 100%;
+  padding-right: 0;
+  padding-left: 0;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.horiz-gallery-strip,
+.horiz-gallery-wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  will-change: transform;
+  position: relative;
+}
+
+.project-wrap {
+  width: 30vw;
+  padding: 2rem;
+  box-sizing: content-box;
+}
+
+.project-wrap img{
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 0.6em;
+}
+
+.project-wrap .content-container {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 0.6em;
+   width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 25px;
+   
+}
+
+.card-horiz-nr {
+  font: 500 normal 1.9vw / 0.9 'Inter', sans-serif;
+    letter-spacing: -0.03em;
+}
+.project-wrap .content-container h3 {
+  font: 500 normal 1.9vw / 0.9 'Inter', sans-serif;
+    letter-spacing: -0.03em;
+}
+
+.card-horiz-text {
+ font: 500 normal 1.1vw / 0.9 'Inter', sans-serif;
+    letter-spacing: -0.03em;
+}
+
+
+
+
+.project-wrap:nth-child(1) .content-container {
+  border: none;
+  color: white;
+  /* background: linear-gradient(135deg,
+      #5dc1ff,
+      #83aaff); */
+  background-color: #5dc1ff;
+ 
+  background-color: #707c4f;
+}
+
+/* .project-wrap:nth-child(2) .card-content {
+  border: 10px solid #707c4f;
+  background-color: var(--color-jungleTeal);
+  background-color: #707c4f;
+
+} */
+
+.card:nth-child(2) .card-title {
+  color: white;
+}
+
+.project-wrap:nth-child(2) .content-container {
+ border: none;
+ color: white;
+  background-color: #8ec5ff;
+  background-color: #e0ff98;
+  background-color: #e1da97;
+}
+
+.project-wrap:nth-child(4) .content-container {
+    border: none;
+    color: white;
+   background-color: #efb9a5;
+}
+
+.project-wrap:nth-child(5) .content-container {
+ border: none;
+ color: white;
+  background-color: var(--color-jungleGreen);
+  background-color: #A4b07e;
+}
+
+.project-wrap:nth-child(7) .content-container {
+ border: none;
+ color: white;
+  background-color: var(--color-jungleGreen);
+  background-color: #e2c48d;
 }

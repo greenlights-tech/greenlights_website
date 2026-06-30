@@ -16,6 +16,7 @@ import heroImage2 from "../assets/cards-2.jpg";
 import heroImage3 from "../assets/Homepage-right.jpg";
 import heroImage4 from "../assets/hero-image3.jpg";
 import heroImage5 from "../assets/hero-image2.jpg";
+import { AboutHoriz } from "../components/AboutHoriz";
 import { AboutSection } from "../components/AboutSection";
 import { AboutGreenlights } from "../components/AboutGreenlights";
 import { AboutSectionObserver } from "../components/AboutSectionObserver";
@@ -941,13 +942,14 @@ duration: 0.8
     scrollTrigger: {
       trigger: midtextFadeContainer,
       start: "top top",
+      end: '+=' + window.innerHeight,
       // markers: true,
       toggleActions: "play reverse play reverse",
     },
     //  yPercent: 10,
      scale: 0.6,
   ease: "expo.in",
-  easeReverse: "elastic.out",
+  easeReverse: "expo.out",
  
 opacity: 0,
 duration: 0.8
@@ -1394,6 +1396,7 @@ duration: 0.8
           </div>
           {/* <AboutSectionObserver/> */}
            {/* <AboutGreenlights className="home-info-section" /> */}
+           <AboutHoriz />
            <AboutSection className="home-section" />
           
 
